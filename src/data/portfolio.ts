@@ -20,6 +20,15 @@ export type Experience = {
   evidence: string[];
 };
 
+export type Project = {
+  title: string;
+  type: string;
+  positioning: string;
+  contributions: string[];
+  relevance: string;
+  tags: string[];
+};
+
 export type SkillGroup = {
   title: string;
   skills: string[];
@@ -35,6 +44,7 @@ export const portfolio = {
   navigation: [
     { label: "Home", href: "#home" },
     { label: "Case Studies", href: "#case-studies" },
+    { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
     { label: "Game/Product Thinking", href: "#game-thinking" },
@@ -95,6 +105,43 @@ export const portfolio = {
       skills: ["System thinking", "Permission design", "Operational logic", "Edge case analysis"],
     },
   ] satisfies CaseStudy[],
+  projects: [
+    {
+      title: "ImmerseVietnam",
+      type: "UX/Product Design Project",
+      positioning:
+        "A product-flow project focused on turning user needs into screen structure, interaction logic, and a working prototype.",
+      contributions: ["User persona", "Logical flow", "Figma prototype", "Multi-platform UX logic"],
+      relevance:
+        "Supports Associate PM and Game BA positioning by showing how ambiguous user needs become concrete screens, journeys, and interaction decisions.",
+      tags: ["Product flow", "Prototype", "UX logic", "User journey"],
+    },
+    {
+      title: "Sales Performance Dashboard",
+      type: "Data Analytics Project",
+      positioning:
+        "A structured analytics project showing data modeling discipline and stakeholder-facing KPI clarity.",
+      contributions: ["ETL pipeline", "Star schema", "KPI dashboard", "Power BI visualization"],
+      relevance:
+        "Shows analytical grounding for KPI thinking, reporting clarity, and stakeholder-facing business metrics.",
+      tags: ["ETL", "KPI", "Data model", "Power BI"],
+    },
+    {
+      title: "Market Forecasting & Portfolio Optimization Thesis",
+      type: "Machine Learning / Analytical Research Project",
+      positioning:
+        "A research-depth proof point that supports analytical rigor alongside BA/Product work.",
+      contributions: [
+        "Time-series forecasting",
+        "Machine learning model comparison",
+        "Portfolio optimization",
+        "ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, Transformer, Reinforcement Learning",
+      ],
+      relevance:
+        "Adds evidence of research depth, model comparison, and structured evaluation while keeping the site's main story focused on product systems.",
+      tags: ["Forecasting", "Model comparison", "Research", "Optimization"],
+    },
+  ] satisfies Project[],
   experience: [
     {
       company: "Vega Fintech",

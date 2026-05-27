@@ -7,7 +7,7 @@ type SkillsMatrixProps = {
 
 function SkillsMatrix({ groups }: SkillsMatrixProps) {
   return (
-    <section id="skills" className="section-padding bg-cream" aria-labelledby="skills-title">
+    <section id="skills" className="section-padding bg-card" aria-labelledby="skills-title">
       <div className="container-main">
         <SectionHeader
           eyebrow="Skills Matrix"

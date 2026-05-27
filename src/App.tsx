@@ -7,6 +7,7 @@ import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import ProofStrip from "./components/ProofStrip";
+import ProjectCard from "./components/ProjectCard";
 import SectionHeader from "./components/SectionHeader";
 import SkillsMatrix from "./components/SkillsMatrix";
 import { portfolio } from "./data/portfolio";
@@ -24,8 +25,8 @@ function App() {
             <SectionHeader
               eyebrow="Featured Case Studies"
               titleId="case-studies-title"
-              title="Evidence of requirement clarity, system flow, and product handoff."
-              description="Selected work is framed around the problem, role, delivered artifacts, and implementation value. Case study pages are prepared as placeholders for future expansion."
+              title="Requirement clarity shown through system-heavy product artifacts."
+              description="Each case is framed around the problem, the artifact produced, and how the work clarified expectations for product, business, and technical handoff."
             />
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {portfolio.caseStudies.map((caseStudy) => (
@@ -35,7 +36,23 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="section-padding bg-card" aria-labelledby="experience-title">
+        <section id="projects" className="section-padding bg-card" aria-labelledby="projects-title">
+          <div className="container-main">
+            <SectionHeader
+              eyebrow="Selected Projects"
+              titleId="projects-title"
+              title="Supporting evidence across product flow, analytics, and research depth."
+              description="Academic and side projects add context around product flow, KPI thinking, and structured analysis without shifting the portfolio away from BA/Product work."
+            />
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {portfolio.projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="section-padding bg-cream" aria-labelledby="experience-title">
           <div className="container-main">
             <SectionHeader
               eyebrow="Experience Snapshot"
