@@ -4,17 +4,20 @@ type SectionHeaderProps = {
   description?: string;
   inverse?: boolean;
   titleId?: string;
+  wide?: boolean;
 };
 
-function SectionHeader({ eyebrow, title, description, inverse = false, titleId }: SectionHeaderProps) {
+function SectionHeader({ eyebrow, title, description, inverse = false, titleId, wide = false }: SectionHeaderProps) {
   return (
-    <div className="max-w-4xl">
-      <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.14em] ${inverse ? "text-sky" : "text-navy"}`}>
+    <div className={wide ? "max-w-6xl" : "max-w-4xl"}>
+      <p className={`section-kicker ${inverse ? "text-sky" : "text-navy"}`}>
         {eyebrow}
       </p>
       <h2
         id={titleId}
-        className={`text-balance text-[34px] font-semibold leading-[1.08] md:text-[48px] ${inverse ? "text-cream" : "text-navy"}`}
+        className={`text-balance text-[38px] font-semibold leading-[1.03] md:text-[64px] lg:text-[76px] ${
+          inverse ? "text-cream" : "text-navy"
+        }`}
       >
         {title}
       </h2>

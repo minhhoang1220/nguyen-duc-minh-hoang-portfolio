@@ -1,28 +1,28 @@
+import type { PortfolioContent } from "../data/portfolio";
+
 type ProofStripProps = {
-  proof: {
-    eyebrow: string;
-    title: string;
-    items: string[];
-  };
+  proof: PortfolioContent["proof"];
 };
 
 function ProofStrip({ proof }: ProofStripProps) {
   return (
-    <section className="border-y border-line bg-card py-10 md:py-12" aria-labelledby="proof-title">
-      <div className="container-main grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-navy">{proof.eyebrow}</p>
-          <h2 id="proof-title" className="text-balance text-3xl font-semibold leading-tight text-navy md:text-[40px]">
+    <section className="section-padding bg-navy text-cream" aria-labelledby="proof-title">
+      <div className="container-wide">
+        <div className="grid gap-8 border-t border-cream/25 pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
+          <p className="section-kicker text-sky">{proof.eyebrow}</p>
+          <h2 id="proof-title" className="max-w-5xl text-balance text-[40px] font-semibold leading-[1.03] md:text-[70px] lg:text-[86px]">
             {proof.title}
           </h2>
         </div>
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
-          {proof.items.map((item) => (
-            <li key={item} className="border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
-              {item}
-            </li>
+
+        <dl className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+          {proof.stats.map((stat, index) => (
+            <div key={`${stat.value}-${stat.label}`} className="reveal-number border-t border-cream/20 pt-6" style={{ transitionDelay: `${index * 70}ms` }}>
+              <dt className="text-sm font-semibold leading-6 text-cream/80">{stat.label}</dt>
+              <dd className="mt-3 text-[68px] font-semibold leading-none text-sky md:text-[92px] lg:text-[104px]">{stat.value}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </div>
     </section>
   );

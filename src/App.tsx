@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import About from "./components/About";
+import ArtifactLightbox from "./components/ArtifactLightbox";
 import CaseStudyCard from "./components/CaseStudyCard";
 import Contact from "./components/Contact";
 import ExperienceCard from "./components/ExperienceCard";
@@ -13,7 +14,7 @@ import ProjectCard from "./components/ProjectCard";
 import Reveal from "./components/Reveal";
 import SectionHeader from "./components/SectionHeader";
 import SkillsMatrix from "./components/SkillsMatrix";
-import { type Language, portfolioContent } from "./data/portfolio";
+import { type AssetImage, type Language, portfolioContent } from "./data/portfolio";
 
 const getInitialLanguage = (): Language => {
   if (typeof window === "undefined") {
@@ -26,6 +27,7 @@ const getInitialLanguage = (): Language => {
 
 function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
+  const [selectedImage, setSelectedImage] = useState<AssetImage | null>(null);
   const portfolio = useMemo(() => portfolioContent[language], [language]);
 
   useEffect(() => {
@@ -54,25 +56,39 @@ function App() {
           cvFallback={portfolio.ui.cvFallback}
           linkedinAria={portfolio.ui.linkedinAria}
           cvDownloadAria={portfolio.ui.cvDownloadAria}
+          openArtifactLabel={portfolio.ui.openArtifact}
+          onImageOpen={setSelectedImage}
         />
+
         <Reveal>
           <ProofStrip proof={portfolio.proof} />
         </Reveal>
 
+        <Reveal>
+          <About content={portfolio.about} />
+        </Reveal>
+
         <section id="case-studies" className="section-padding bg-cream" aria-labelledby="case-studies-title">
-          <div className="container-main">
+          <div className="container-wide">
             <Reveal>
               <SectionHeader
                 eyebrow={portfolio.sections.caseStudies.eyebrow}
                 titleId="case-studies-title"
                 title={portfolio.sections.caseStudies.title}
                 description={portfolio.sections.caseStudies.description}
+                wide
               />
             </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div className="mt-10">
               {portfolio.caseStudies.map((caseStudy, index) => (
-                <Reveal key={caseStudy.title} delay={index * 100}>
-                  <CaseStudyCard caseStudy={caseStudy} labels={portfolio.caseStudyLabels} />
+                <Reveal key={caseStudy.title} delay={index * 90}>
+                  <CaseStudyCard
+                    caseStudy={caseStudy}
+                    labels={portfolio.caseStudyLabels}
+                    index={index}
+                    openArtifactLabel={portfolio.ui.openArtifact}
+                    onImageOpen={setSelectedImage}
+                  />
                 </Reveal>
               ))}
             </div>
@@ -80,19 +96,20 @@ function App() {
         </section>
 
         <section id="projects" className="section-padding bg-card" aria-labelledby="projects-title">
-          <div className="container-main">
+          <div className="container-wide">
             <Reveal>
               <SectionHeader
                 eyebrow={portfolio.sections.projects.eyebrow}
                 titleId="projects-title"
                 title={portfolio.sections.projects.title}
                 description={portfolio.sections.projects.description}
+                wide
               />
             </Reveal>
             <Reveal delay={80}>
-              <ProductProof proof={portfolio.projectProof} />
+              <ProductProof proof={portfolio.projectProof} openArtifactLabel={portfolio.ui.openArtifact} onImageOpen={setSelectedImage} />
             </Reveal>
-            <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {portfolio.projects.map((project, index) => (
                 <Reveal key={project.title} delay={index * 100}>
                   <ProjectCard project={project} labels={portfolio.projectLabels} />
@@ -103,13 +120,14 @@ function App() {
         </section>
 
         <section id="experience" className="section-padding bg-cream" aria-labelledby="experience-title">
-          <div className="container-main">
+          <div className="container-wide">
             <Reveal>
               <SectionHeader
                 eyebrow={portfolio.sections.experience.eyebrow}
                 titleId="experience-title"
                 title={portfolio.sections.experience.title}
                 description={portfolio.sections.experience.description}
+                wide
               />
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -123,13 +141,10 @@ function App() {
         </section>
 
         <Reveal>
-          <SkillsMatrix content={portfolio.skillsMatrix} />
+          <SkillsMatrix content={portfolio.process} />
         </Reveal>
         <Reveal>
-          <GameThinking content={portfolio.gameThinking} />
-        </Reveal>
-        <Reveal>
-          <About content={portfolio.about} />
+          <GameThinking content={portfolio.gameDirection} />
         </Reveal>
         <Reveal>
           <Contact
@@ -142,6 +157,7 @@ function App() {
         </Reveal>
       </main>
       <Footer personal={portfolio.personal} footer={portfolio.footer} />
+      <ArtifactLightbox image={selectedImage} closeLabel={portfolio.ui.closeArtifact} onClose={() => setSelectedImage(null)} />
     </div>
   );
 }

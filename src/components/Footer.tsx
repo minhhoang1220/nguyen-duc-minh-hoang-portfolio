@@ -8,7 +8,7 @@ type FooterProps = {
 function Footer({ personal, footer }: FooterProps) {
   return (
     <footer className="bg-navy-night py-10 text-cream">
-      <div className="container-main flex flex-col gap-6 text-sm font-medium md:flex-row md:items-start md:justify-between">
+      <div className="container-wide flex flex-col gap-6 text-sm font-medium md:flex-row md:items-start md:justify-between">
         <div>
           <p className="font-semibold">{personal.name}</p>
           <p className="mt-1 text-cream/70">{personal.shortRole}</p>

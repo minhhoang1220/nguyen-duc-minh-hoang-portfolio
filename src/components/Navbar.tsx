@@ -20,7 +20,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-card/95 backdrop-blur">
-      <nav className="container-main flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
+      <nav className="container-wide flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
         <a
           href="#home"
           className="text-base font-semibold text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -53,7 +53,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+                  className="inline-flex min-h-11 items-center px-2.5 text-sm font-medium text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
                 >
                   {item.label}
                 </a>
@@ -66,7 +66,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
 
       {isOpen ? (
         <div id="mobile-navigation" className="border-t border-line bg-navy xl:hidden">
-          <ul className="container-main py-3" aria-label={labels.mobileNavAria}>
+          <ul className="container-wide py-3" aria-label={labels.mobileNavAria}>
             {items.map((item) => (
               <li key={item.href}>
                 <a

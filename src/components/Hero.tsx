@@ -1,4 +1,4 @@
-import type { HeroArtifact, PortfolioContent } from "../data/portfolio";
+import type { AssetImage, HeroArtifact, PortfolioContent } from "../data/portfolio";
 import CvLink from "./CvLink";
 
 type HeroProps = {
@@ -7,31 +7,44 @@ type HeroProps = {
   cvFallback: string;
   linkedinAria: string;
   cvDownloadAria: string;
+  openArtifactLabel: string;
+  onImageOpen: (image: AssetImage) => void;
 };
 
-function Hero({ personal, hero, cvFallback, linkedinAria, cvDownloadAria }: HeroProps) {
+function Hero({
+  personal,
+  hero,
+  cvFallback,
+  linkedinAria,
+  cvDownloadAria,
+  openArtifactLabel,
+  onImageOpen,
+}: HeroProps) {
+  const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
+  const supportingArtifacts = hero.artifacts.filter((artifact) => artifact !== mainArtifact);
+
   return (
     <section
       id="home"
-      className="relative overflow-hidden border-b border-line bg-cream py-12 md:py-16 lg:min-h-[calc(100vh-72px)] lg:py-20"
+      className="relative overflow-hidden border-b border-line bg-cream py-14 md:py-18 lg:min-h-[calc(100vh-72px)] lg:py-16"
       aria-labelledby="hero-title"
     >
-      <div className="container-main grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
-        <div className="max-w-3xl">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-navy">{personal.name}</p>
+      <div className="container-wide grid min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] xl:gap-16">
+        <div className="min-w-0 max-w-3xl">
+          <p className="section-kicker text-navy">{personal.name}</p>
           <p className="mb-6 max-w-2xl text-base font-medium leading-7 text-muted md:text-lg">{hero.roleLine}</p>
           <h1
             id="hero-title"
-            className="max-w-3xl text-balance text-[38px] font-semibold leading-[1.04] text-navy sm:text-[44px] md:text-[58px] lg:text-[64px] xl:text-[68px]"
+            className="text-balance text-[42px] font-semibold leading-[1.02] text-navy md:text-[64px] lg:text-[68px] xl:text-[74px]"
           >
             {hero.headline}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
-          <p className="mt-4 max-w-2xl border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
+          <p className="mt-5 max-w-2xl border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
             {hero.focusLine}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a className="btn-primary" href="#case-studies" aria-label={hero.ctas.caseStudies}>
               {hero.ctas.caseStudies}
             </a>
@@ -50,12 +63,40 @@ function Hero({ personal, hero, cvFallback, linkedinAria, cvDownloadAria }: Hero
           </div>
         </div>
 
-        <div className="hero-artifact-shell" aria-label={hero.artifactAria}>
-          <div className="absolute left-4 top-4 h-20 w-20 border border-line bg-cream md:left-6 md:top-6" aria-hidden="true" />
-          <div className="floating-artifact relative z-10 grid h-full grid-cols-1 gap-4 sm:grid-cols-2">
-            {hero.artifacts.map((artifact, index) => (
-              <HeroArtifactCard key={`${artifact.title}-${index}`} artifact={artifact} index={index} />
-            ))}
+        <div className="hero-stage" aria-label={hero.artifactAria}>
+          {mainArtifact?.type === "image" ? (
+            <ArtifactImageButton
+              artifact={mainArtifact}
+              className="hero-main-artifact"
+              imageClassName="object-cover object-center"
+              showCaption
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+            />
+          ) : null}
+
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+            {supportingArtifacts.map((artifact) => {
+              if (artifact.type === "image") {
+                const supportImageClass = artifact.image.src.includes("cdp-flow-report")
+                  ? "object-cover object-[center_18%]"
+                  : "object-cover object-top";
+
+                return (
+                  <ArtifactImageButton
+                    key={artifact.title}
+                    artifact={artifact}
+                    className="hero-support-artifact"
+                    imageClassName={supportImageClass}
+                    showCaption={false}
+                    openArtifactLabel={openArtifactLabel}
+                    onImageOpen={onImageOpen}
+                  />
+                );
+              }
+
+              return <TimelineArtifact key={artifact.title} artifact={artifact} />;
+            })}
           </div>
         </div>
       </div>
@@ -63,72 +104,68 @@ function Hero({ personal, hero, cvFallback, linkedinAria, cvDownloadAria }: Hero
   );
 }
 
-function HeroArtifactCard({ artifact, index }: { artifact: HeroArtifact; index: number }) {
-  const offsetClass = index === 1 ? "sm:mt-8" : index === 2 ? "sm:-mt-4" : "";
-
-  if (artifact.type === "image") {
-    return (
-      <figure className={`artifact-card grid min-h-[240px] content-between gap-4 ${offsetClass}`}>
-        <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
-          <figcaption className="artifact-label">{artifact.title}</figcaption>
+function ArtifactImageButton({
+  artifact,
+  className,
+  imageClassName,
+  showCaption = false,
+  openArtifactLabel,
+  onImageOpen,
+}: {
+  artifact: Extract<HeroArtifact, { type: "image" }>;
+  className: string;
+  imageClassName: string;
+  showCaption?: boolean;
+  openArtifactLabel: string;
+  onImageOpen: (image: AssetImage) => void;
+}) {
+  return (
+    <figure className={`${className} group border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/45`}>
+      <button
+        type="button"
+        className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        aria-label={`${openArtifactLabel}: ${artifact.image.title}`}
+        onClick={() => onImageOpen(artifact.image)}
+      >
+        <span className="mb-3 flex items-center justify-between gap-4 border-b border-line pb-3">
+          <span className="artifact-label">{artifact.title}</span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{artifact.meta}</span>
-        </div>
-        <div className="artifact-image-frame">
+        </span>
+        <span className="artifact-media relative block overflow-hidden bg-cream">
           <img
             src={artifact.image.src}
             alt={artifact.image.alt}
-            className={`h-full w-full ${artifact.fit === "cover" ? "object-cover object-top" : "object-contain"}`}
+            className={`h-full w-full transition duration-500 group-hover:scale-[1.015] ${imageClassName}`}
             loading="eager"
             decoding="async"
           />
-        </div>
-      </figure>
-    );
-  }
+          <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            {openArtifactLabel}
+          </span>
+        </span>
+      </button>
+      {showCaption && artifact.image.caption ? <figcaption className="mt-3 text-sm leading-6 text-muted">{artifact.image.caption}</figcaption> : null}
+    </figure>
+  );
+}
 
-  if (artifact.type === "matrix") {
-    return (
-      <div className={`artifact-card min-h-[220px] ${offsetClass}`}>
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <span className="artifact-label">{artifact.title}</span>
-          <span className="text-[11px] font-semibold text-navy">{artifact.meta}</span>
-        </div>
-        <div className="grid grid-cols-[1.1fr_repeat(5,1fr)] gap-px bg-line text-[9px] font-semibold text-muted">
-          <span className="bg-cream px-2 py-2 text-navy">{artifact.rowLabel}</span>
-          {artifact.columnLabels.map((label) => (
-            <span key={label} className="bg-cream px-2 py-2 text-navy">
-              {label}
-            </span>
-          ))}
-          {Array.from({ length: 30 }).map((_, cellIndex) => (
-            <span
-              key={cellIndex}
-              className={`h-7 bg-card ${cellIndex % 6 === 0 ? "bg-cream" : ""} ${
-                cellIndex % 8 === 0 || cellIndex % 11 === 0 ? "bg-sky/70" : ""
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
+function TimelineArtifact({ artifact }: { artifact: Extract<HeroArtifact, { type: "timeline" }> }) {
   return (
-    <div className={`artifact-card min-h-[220px] ${offsetClass}`}>
+    <div className="hero-support-artifact border border-line bg-card p-4">
       <div className="mb-5 flex items-center justify-between gap-3">
         <span className="artifact-label">{artifact.title}</span>
         <span className="text-[11px] font-semibold text-muted">{artifact.meta}</span>
       </div>
       <div className="space-y-3">
         {artifact.phases.map((phase, phaseIndex) => (
-          <div key={phase} className="grid grid-cols-[88px_1fr] items-center gap-3 text-[11px] font-semibold text-navy">
+          <div key={phase} className="grid grid-cols-[92px_1fr] items-center gap-3 text-[11px] font-semibold text-navy">
             <span className="truncate text-muted">{phase}</span>
-            <span className="relative h-5 bg-cream">
+            <span className="relative h-6 bg-cream">
               <span
-                className="absolute top-1/2 h-2 -translate-y-1/2 bg-navy"
+                className="absolute top-1/2 h-2.5 -translate-y-1/2 bg-navy"
                 style={{
-                  left: `${Math.min(phaseIndex * 13, 68)}%`,
-                  width: `${phaseIndex % 2 === 0 ? 30 : 22}%`,
+                  left: `${Math.min(phaseIndex * 12, 66)}%`,
+                  width: `${phaseIndex % 2 === 0 ? 32 : 24}%`,
                 }}
               />
             </span>

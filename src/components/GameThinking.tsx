@@ -1,48 +1,48 @@
-import SectionHeader from "./SectionHeader";
 import type { PortfolioContent } from "../data/portfolio";
 
 type GameThinkingProps = {
-  content: PortfolioContent["gameThinking"];
+  content: PortfolioContent["gameDirection"];
 };
 
 function GameThinking({ content }: GameThinkingProps) {
   return (
-    <section id="game-thinking" className="section-padding bg-navy text-cream" aria-labelledby="game-thinking-title">
-      <div className="container-main">
-        <SectionHeader
-          eyebrow={content.header.eyebrow}
-          titleId="game-thinking-title"
-          title={content.header.title}
-          description={content.description}
-          inverse
-        />
-
-        <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {content.notes.map((note) => (
-            <article key={note.title} className="card-hover border border-cream/20 bg-navy-night/35 p-6">
-              <p className="mb-5 inline-flex border border-sky/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-sky">
-                {note.label}
-              </p>
-              <h3 className="text-2xl font-semibold leading-tight text-cream">{note.title}</h3>
-              <p className="mt-4 text-base leading-7 text-cream/80">{note.focus}</p>
-              <ul className="mt-5 space-y-3">
-                {note.points.map((point) => (
-                  <li key={point} className="flex gap-3 text-sm leading-6 text-cream/75">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-sky" aria-hidden="true" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 grid grid-cols-[32px_1fr_32px] items-center gap-3" aria-hidden="true">
-                <span className="h-8 border border-sky/60" />
-                <span className="h-px bg-cream/30" />
-                <span className="h-8 bg-sky/80" />
-              </div>
-            </article>
-          ))}
+    <section id="game-direction" className="section-padding bg-card" aria-labelledby="game-direction-title">
+      <div className="container-wide">
+        <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
+          <p className="section-kicker text-navy">{content.eyebrow}</p>
+          <div>
+            <h2 id="game-direction-title" className="max-w-5xl text-balance text-[38px] font-semibold leading-[1.03] text-navy md:text-[64px] lg:text-[76px]">
+              {content.title}
+            </h2>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-muted md:text-xl md:leading-9">{content.body}</p>
+          </div>
         </div>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          <ListPanel title={content.genresTitle} items={content.genres} />
+          <ListPanel title={content.gamesTitle} items={content.games} />
+        </div>
+
+        <p className="mt-10 max-w-5xl border-l-2 border-navy pl-5 text-lg font-medium leading-8 text-ink md:text-xl md:leading-9">
+          {content.closing}
+        </p>
       </div>
     </section>
+  );
+}
+
+function ListPanel({ title, items }: { title: string; items: string[] }) {
+  return (
+    <article className="border-y border-line py-6">
+      <h3 className="text-2xl font-semibold text-navy">{title}</h3>
+      <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+        {items.map((item) => (
+          <li key={item} className="border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
