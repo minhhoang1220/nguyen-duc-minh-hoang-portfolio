@@ -6,7 +6,7 @@ type ExperienceCardProps = {
 
 function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
-    <article className="border border-line bg-cream p-6 md:p-8">
+    <article className="card-hover border border-line bg-card p-6 md:p-8">
       <div className="mb-6 border-b border-line pb-6">
         <p className="text-sm font-semibold text-navy">{experience.period}</p>
         <h3 className="mt-3 text-2xl font-semibold leading-tight text-navy">{experience.company}</h3>

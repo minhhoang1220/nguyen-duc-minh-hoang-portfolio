@@ -41,15 +41,27 @@ Before publishing publicly:
 1. Run `npm install`.
 2. Run `npm run build`.
 3. Run `npm run preview` and check the site on mobile, tablet, and desktop widths.
-4. Replace the placeholder CV file in `public/Nguyen-Duc-Minh-Hoang-CV.pdf`.
-5. Replace the LinkedIn placeholder `#` in `src/data/portfolio.ts` with the final profile URL.
-6. Update Open Graph metadata in `index.html` if a final domain or custom preview image is available.
+4. Confirm the CV file exists at `public/Nguyen-Duc-Minh-Hoang-CV.pdf`.
+5. Confirm the LinkedIn URL in `src/data/portfolio.ts` is current.
+6. Confirm Open Graph metadata in `index.html` uses the deployed domain.
 
 ## CV File
 
 The website links to `/Nguyen-Duc-Minh-Hoang-CV.pdf`.
 
-Replace `public/Nguyen-Duc-Minh-Hoang-CV.pdf` with the final CV PDF before publishing.
+The UI checks whether the PDF is available before navigating. If the file is missing in production, visitors see a fallback message asking them to email Hoang directly.
+
+Current LinkedIn URL:
+
+```text
+https://www.linkedin.com/in/hoangnguyenducminh/
+```
+
+Current Open Graph URL:
+
+```text
+https://nguyen-duc-minh-hoang-portfolio.vercel.app/
+```
 
 ## Deploy to Vercel
 

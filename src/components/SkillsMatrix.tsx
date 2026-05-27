@@ -16,9 +16,9 @@ function SkillsMatrix({ groups }: SkillsMatrixProps) {
           description="The matrix connects BA fundamentals with product flow, technical understanding, coordination, and game/product direction."
         />
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-5">
           {groups.map((group) => (
-            <article key={group.title} className="border border-line bg-card p-6">
+            <article key={group.title} className="card-hover border border-line bg-cream p-6">
               <h3 className="mb-5 text-xl font-semibold text-navy">{group.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (

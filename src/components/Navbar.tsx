@@ -21,7 +21,7 @@ function Navbar({ items }: NavbarProps) {
 
         <button
           type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 lg:hidden"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 xl:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -34,7 +34,7 @@ function Navbar({ items }: NavbarProps) {
           </span>
         </button>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {items.map((item) => (
             <li key={item.href}>
               <a
@@ -49,7 +49,7 @@ function Navbar({ items }: NavbarProps) {
       </nav>
 
       {isOpen ? (
-        <div id="mobile-navigation" className="border-t border-line bg-navy lg:hidden">
+        <div id="mobile-navigation" className="border-t border-line bg-navy xl:hidden">
           <ul className="container-main py-3" aria-label="Mobile navigation">
             {items.map((item) => (
               <li key={item.href}>

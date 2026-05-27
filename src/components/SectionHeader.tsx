@@ -8,18 +8,20 @@ type SectionHeaderProps = {
 
 function SectionHeader({ eyebrow, title, description, inverse = false, titleId }: SectionHeaderProps) {
   return (
-    <div className="max-w-3xl">
-      <p className={`mb-3 text-sm font-semibold uppercase tracking-[0.08em] ${inverse ? "text-sky" : "text-navy"}`}>
+    <div className="max-w-4xl">
+      <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.14em] ${inverse ? "text-sky" : "text-navy"}`}>
         {eyebrow}
       </p>
       <h2
         id={titleId}
-        className={`text-balance text-3xl font-semibold leading-tight md:text-[40px] ${inverse ? "text-cream" : "text-navy"}`}
+        className={`text-balance text-[34px] font-semibold leading-[1.08] md:text-[48px] ${inverse ? "text-cream" : "text-navy"}`}
       >
         {title}
       </h2>
       {description ? (
-        <p className={`mt-5 text-lg leading-8 ${inverse ? "text-cream/80" : "text-muted"}`}>{description}</p>
+        <p className={`mt-6 max-w-3xl text-base leading-8 md:text-lg ${inverse ? "text-cream/80" : "text-muted"}`}>
+          {description}
+        </p>
       ) : null}
     </div>
   );

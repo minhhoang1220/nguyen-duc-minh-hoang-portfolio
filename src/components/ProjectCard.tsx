@@ -6,7 +6,7 @@ type ProjectCardProps = {
 
 function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="grid h-full gap-6 border border-line bg-cream p-6 md:p-8">
+    <article className="card-hover grid h-full gap-6 border border-line bg-cream p-6 md:p-8">
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-muted">{project.type}</p>
         <h3 className="text-2xl font-semibold leading-tight text-navy">{project.title}</h3>

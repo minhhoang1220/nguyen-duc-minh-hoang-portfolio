@@ -34,19 +34,19 @@ body {
   }
 
   .section-padding {
-    @apply py-16 md:py-20 lg:py-24;
+    @apply py-12 md:py-14 lg:py-24;
   }
 
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center border-2 border-navy bg-navy px-6 py-3 text-base font-medium text-cream transition duration-300 hover:border-navy-accent hover:bg-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
+    @apply inline-flex min-h-12 items-center justify-center border-2 border-navy bg-navy px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-navy-accent hover:bg-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center border-2 border-navy bg-transparent px-6 py-3 text-base font-medium text-navy transition duration-300 hover:bg-beige focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
+    @apply inline-flex min-h-12 items-center justify-center border-2 border-navy bg-transparent px-6 py-3 text-base font-medium text-navy transition duration-300 hover:-translate-y-px hover:bg-beige focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
   }
 
   .btn-ghost {
-    @apply inline-flex min-h-12 items-center justify-center border border-line bg-card px-6 py-3 text-base font-medium text-navy transition duration-300 hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
+    @apply inline-flex min-h-12 items-center justify-center border border-line bg-card px-6 py-3 text-base font-medium text-navy transition duration-300 hover:-translate-y-px hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
   }
 
   .badge {
@@ -67,5 +67,69 @@ body {
 
   .flow-line {
     @apply h-px flex-1 bg-line;
+  }
+
+  .hero-artifact-shell {
+    @apply relative min-h-[440px] overflow-hidden border border-line bg-card p-5 md:min-h-[560px] md:p-8;
+  }
+
+  .artifact-preview {
+    @apply min-w-0 overflow-hidden border border-line bg-cream p-4;
+  }
+
+  .preview-node {
+    @apply inline-flex h-9 min-w-0 max-w-[56px] flex-1 items-center justify-center truncate border border-line bg-card px-1 text-center text-[9px] font-semibold text-navy sm:h-10 sm:text-[10px];
+  }
+
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-0.5 hover:border-navy/40 hover:shadow-minimal;
+  }
+
+  .reveal {
+    min-width: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 640ms ease,
+      transform 640ms ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floating-artifact {
+  animation: artifact-float 9s ease-in-out infinite;
+}
+
+@keyframes artifact-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
