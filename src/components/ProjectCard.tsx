@@ -2,9 +2,13 @@ import type { Project } from "../data/portfolio";
 
 type ProjectCardProps = {
   project: Project;
+  labels: {
+    contributions: string;
+    whyItMatters: string;
+  };
 };
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, labels }: ProjectCardProps) {
   return (
     <article className="card-hover grid h-full gap-6 border border-line bg-cream p-6 md:p-8">
       <div>
@@ -14,7 +18,7 @@ function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">Contributions</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.contributions}</p>
         <ul className="grid gap-2">
           {project.contributions.map((item) => (
             <li key={item} className="flex gap-3 text-sm leading-6 text-ink">
@@ -26,7 +30,7 @@ function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">Why it matters</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.whyItMatters}</p>
         <p className="text-sm leading-6 text-muted">{project.relevance}</p>
       </div>
 

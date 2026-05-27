@@ -7,9 +7,10 @@ type CvLinkProps = {
   className: string;
   children: string;
   ariaLabel?: string;
+  fallbackMessage: string;
 };
 
-function CvLink({ href, email, className, children, ariaLabel }: CvLinkProps) {
+function CvLink({ href, email, className, children, ariaLabel, fallbackMessage }: CvLinkProps) {
   const [status, setStatus] = useState("");
 
   const handleClick = async (event: MouseEvent<HTMLAnchorElement>) => {
@@ -30,7 +31,7 @@ function CvLink({ href, email, className, children, ariaLabel }: CvLinkProps) {
       // Fall through to the visible fallback message below.
     }
 
-    setStatus(`CV file is unavailable right now. Please email ${email} and I will send it directly.`);
+    setStatus(fallbackMessage.replace("{email}", email));
   };
 
   return (

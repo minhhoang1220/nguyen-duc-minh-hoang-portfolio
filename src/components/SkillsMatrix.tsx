@@ -1,23 +1,23 @@
 import SectionHeader from "./SectionHeader";
-import type { SkillGroup } from "../data/portfolio";
+import type { PortfolioContent } from "../data/portfolio";
 
 type SkillsMatrixProps = {
-  groups: SkillGroup[];
+  content: PortfolioContent["skillsMatrix"];
 };
 
-function SkillsMatrix({ groups }: SkillsMatrixProps) {
+function SkillsMatrix({ content }: SkillsMatrixProps) {
   return (
     <section id="skills" className="section-padding bg-card" aria-labelledby="skills-title">
       <div className="container-main">
         <SectionHeader
-          eyebrow="Skills Matrix"
+          eyebrow={content.header.eyebrow}
           titleId="skills-title"
-          title="A product-system skill stack, not a pure data or software engineering profile."
-          description="The matrix connects BA fundamentals with product flow, technical understanding, coordination, and game/product direction."
+          title={content.header.title}
+          description={content.header.description}
         />
 
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-5">
-          {groups.map((group) => (
+          {content.groups.map((group) => (
             <article key={group.title} className="card-hover border border-line bg-cream p-6">
               <h3 className="mb-5 text-xl font-semibold text-navy">{group.title}</h3>
               <div className="flex flex-wrap gap-2">

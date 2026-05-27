@@ -1,25 +1,24 @@
 import SectionHeader from "./SectionHeader";
-import type { GameNote } from "../data/portfolio";
+import type { PortfolioContent } from "../data/portfolio";
 
 type GameThinkingProps = {
-  description: string;
-  notes: GameNote[];
+  content: PortfolioContent["gameThinking"];
 };
 
-function GameThinking({ description, notes }: GameThinkingProps) {
+function GameThinking({ content }: GameThinkingProps) {
   return (
     <section id="game-thinking" className="section-padding bg-navy text-cream" aria-labelledby="game-thinking-title">
       <div className="container-main">
         <SectionHeader
-          eyebrow="Game & Product Thinking"
+          eyebrow={content.header.eyebrow}
           titleId="game-thinking-title"
-          title="Game interest framed as product systems analysis."
-          description={description}
+          title={content.header.title}
+          description={content.description}
           inverse
         />
 
         <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {notes.map((note) => (
+          {content.notes.map((note) => (
             <article key={note.title} className="card-hover border border-cream/20 bg-navy-night/35 p-6">
               <p className="mb-5 inline-flex border border-sky/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-sky">
                 {note.label}

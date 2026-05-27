@@ -70,7 +70,11 @@ body {
   }
 
   .hero-artifact-shell {
-    @apply relative min-h-[440px] overflow-hidden border border-line bg-card p-5 md:min-h-[560px] md:p-8;
+    @apply relative min-h-[540px] overflow-hidden border border-line bg-card p-4 md:min-h-[590px] md:p-6 xl:p-8;
+  }
+
+  .artifact-image-frame {
+    @apply h-40 overflow-hidden border border-line bg-cream md:h-44;
   }
 
   .artifact-preview {

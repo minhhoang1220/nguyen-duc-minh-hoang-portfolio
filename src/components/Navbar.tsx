@@ -1,56 +1,72 @@
 import { useState } from "react";
-import type { NavItem } from "../data/portfolio";
+import type { Language, NavItem } from "../data/portfolio";
+import LanguageToggle from "./LanguageToggle";
 
 type NavbarProps = {
   items: NavItem[];
+  language: Language;
+  labels: {
+    brandAria: string;
+    navAria: string;
+    mobileNavAria: string;
+    menuAria: string;
+    switchLanguageAria: string;
+  };
+  onLanguageChange: (language: Language) => void;
 };
 
-function Navbar({ items }: NavbarProps) {
+function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-card/95 backdrop-blur">
-      <nav className="container-main flex min-h-[72px] items-center justify-between" aria-label="Primary navigation">
+      <nav className="container-main flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
         <a
           href="#home"
           className="text-base font-semibold text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
-          aria-label="Go to home section"
+          aria-label={labels.brandAria}
         >
           NDMH
         </a>
 
-        <button
-          type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 xl:hidden"
-          aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
-          onClick={() => setIsOpen((current) => !current)}
-        >
-          <span aria-hidden="true" className="relative h-4 w-5">
-            <span className="absolute left-0 top-0 h-0.5 w-5 bg-navy" />
-            <span className="absolute left-0 top-[7px] h-0.5 w-5 bg-navy" />
-            <span className="absolute bottom-0 left-0 h-0.5 w-5 bg-navy" />
-          </span>
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <LanguageToggle language={language} onChange={onLanguageChange} ariaLabel={labels.switchLanguageAria} />
+          <button
+            type="button"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+            aria-label={labels.menuAria}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsOpen((current) => !current)}
+          >
+            <span aria-hidden="true" className="relative h-4 w-5">
+              <span className="absolute left-0 top-0 h-0.5 w-5 bg-navy" />
+              <span className="absolute left-0 top-[7px] h-0.5 w-5 bg-navy" />
+              <span className="absolute bottom-0 left-0 h-0.5 w-5 bg-navy" />
+            </span>
+          </button>
+        </div>
 
-        <ul className="hidden items-center gap-1 xl:flex">
-          {items.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-4 xl:flex">
+          <ul className="flex items-center gap-1">
+            {items.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <LanguageToggle language={language} onChange={onLanguageChange} ariaLabel={labels.switchLanguageAria} />
+        </div>
       </nav>
 
       {isOpen ? (
         <div id="mobile-navigation" className="border-t border-line bg-navy xl:hidden">
-          <ul className="container-main py-3" aria-label="Mobile navigation">
+          <ul className="container-main py-3" aria-label={labels.mobileNavAria}>
             {items.map((item) => (
               <li key={item.href}>
                 <a

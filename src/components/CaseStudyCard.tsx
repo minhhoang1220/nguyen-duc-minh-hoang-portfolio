@@ -1,28 +1,29 @@
 import { useId, useState } from "react";
-import type { CaseStudy } from "../data/portfolio";
+import type { CaseStudy, PortfolioContent } from "../data/portfolio";
 
 type CaseStudyCardProps = {
   caseStudy: CaseStudy;
+  labels: PortfolioContent["caseStudyLabels"];
 };
 
-function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
+function CaseStudyCard({ caseStudy, labels }: CaseStudyCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const detailId = useId();
   const rows = [
-    ["Context", caseStudy.context],
-    ["Problem", caseStudy.problem],
-    ["My Role", caseStudy.role],
-    ["Product/System Impact", caseStudy.impact],
+    [labels.context, caseStudy.context],
+    [labels.problem, caseStudy.problem],
+    [labels.role, caseStudy.role],
+    [labels.impact, caseStudy.impact],
   ];
 
   return (
     <article className="card-hover flex h-full min-w-0 flex-col border border-line bg-card p-6 md:p-8">
       <div className="mb-6">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-muted">Case Study</p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-muted">{labels.eyebrow}</p>
         <h3 className="text-2xl font-semibold leading-tight text-navy">{caseStudy.title}</h3>
       </div>
 
-      <ArtifactPreview type={caseStudy.preview} />
+      <ArtifactPreview caseStudy={caseStudy} labels={labels} />
 
       <div className="mt-7 space-y-5">
         {rows.map(([label, value]) => (
@@ -34,20 +35,24 @@ function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
       </div>
 
       <div id={detailId} className={`${isExpanded ? "grid" : "hidden"} mt-6 gap-5 border-t border-line pt-6`}>
-        <DetailList title="Process" items={caseStudy.process} />
-        <DetailList title="Delivered Artifacts" items={caseStudy.artifacts} />
+        {caseStudy.detailPreview ? <ImagePreview image={caseStudy.detailPreview} label={labels.sanitized} detail /> : null}
+        <DetailList title={labels.process} items={caseStudy.process} />
+        <DetailList title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-navy">Delivered</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.delivered}</p>
           <p className="text-sm leading-6 text-ink">{caseStudy.delivered}</p>
         </div>
       </div>
 
-      <div className="mt-7 flex flex-wrap gap-2">
-        {caseStudy.skills.map((skill) => (
-          <span key={skill} className="badge">
-            {skill}
-          </span>
-        ))}
+      <div className="mt-7">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.skills}</p>
+        <div className="flex flex-wrap gap-2">
+          {caseStudy.skills.map((skill) => (
+            <span key={skill} className="badge">
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
 
       <button
@@ -57,7 +62,7 @@ function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
         aria-expanded={isExpanded}
         onClick={() => setIsExpanded((current) => !current)}
       >
-        {isExpanded ? "Hide Summary" : "View Summary"}
+        {isExpanded ? labels.hideSummary : labels.viewSummary}
       </button>
     </article>
   );
@@ -79,16 +84,20 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function ArtifactPreview({ type }: { type: CaseStudy["preview"] }) {
-  if (type === "matrix") {
+function ArtifactPreview({ caseStudy, labels }: { caseStudy: CaseStudy; labels: PortfolioContent["caseStudyLabels"] }) {
+  if (caseStudy.mainPreview) {
+    return <ImagePreview image={caseStudy.mainPreview} label={labels.sanitized} />;
+  }
+
+  if (caseStudy.preview === "matrix") {
     return (
       <div className="artifact-preview">
         <div className="mb-4 flex items-center justify-between">
-          <span className="artifact-label">Role-permission matrix</span>
-          <span className="text-[11px] font-semibold text-muted">Sanitized</span>
+          <span className="artifact-label">{labels.matrixTitle}</span>
+          <span className="text-[11px] font-semibold text-muted">{labels.sanitized}</span>
         </div>
         <div className="grid grid-cols-[1.2fr_repeat(5,1fr)] gap-px bg-line text-[10px] font-semibold text-muted">
-          {["Role", "Read", "Create", "Edit", "Approve", "Admin"].map((label) => (
+          {labels.matrixColumns.map((label) => (
             <span key={label} className="bg-cream px-2 py-2 text-navy">
               {label}
             </span>
@@ -104,31 +113,20 @@ function ArtifactPreview({ type }: { type: CaseStudy["preview"] }) {
     );
   }
 
-  const nodes =
-    type === "api"
-      ? ["Channel", "OAuth", "Webhook", "Event", "Agent"]
-      : ["Trigger", "Segment", "State", "Push", "Review"];
+  return null;
+}
 
+function ImagePreview({ image, label, detail = false }: { image: NonNullable<CaseStudy["mainPreview"]>; label: string; detail?: boolean }) {
   return (
-    <div className="artifact-preview">
-      <div className="mb-4 flex items-center justify-between">
-        <span className="artifact-label">{type === "api" ? "API / webhook flow" : "Automation flow"}</span>
-        <span className="h-2 w-12 bg-sky" />
+    <figure className="artifact-preview">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <figcaption className="artifact-label">{image.title}</figcaption>
+        <span className="text-[11px] font-semibold text-muted">{image.caption ?? label}</span>
       </div>
-      <div className="flex min-w-0 items-center overflow-hidden">
-        {nodes.map((node, index) => (
-          <div key={node} className="flex min-w-0 flex-1 items-center">
-            <span className={`preview-node ${index === 2 ? "bg-navy text-cream" : ""}`}>{node}</span>
-            {index < nodes.length - 1 ? <span className="h-px flex-1 bg-line" /> : null}
-          </div>
-        ))}
+      <div className={`bg-card ${detail ? "h-48" : "h-44"} border border-line`}>
+        <img src={image.src} alt={image.alt} className="h-full w-full object-contain" loading="lazy" decoding="async" />
       </div>
-      <div className="mt-5 grid grid-cols-3 gap-2">
-        <span className="h-8 border border-line bg-cream" />
-        <span className="h-8 border border-line bg-card" />
-        <span className="h-8 border border-line bg-sky/50" />
-      </div>
-    </div>
+    </figure>
   );
 }
 
