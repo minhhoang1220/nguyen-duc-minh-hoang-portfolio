@@ -16,12 +16,12 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
         <div className="grid gap-8 border-t border-cream/25 pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-sky">{content.eyebrow}</p>
           <div>
-            <h2 id="contact-title" className="max-w-5xl text-balance text-[42px] font-semibold leading-[1.03] text-cream md:text-[74px] lg:text-[92px]">
+            <h2 id="contact-title" className="max-w-5xl text-balance text-[36px] font-semibold leading-[1.05] text-cream md:text-[64px] lg:text-[82px]">
               {content.title}
             </h2>
 
             <a
-              className="mt-12 inline-flex max-w-full break-all border-b border-sky pb-4 text-[42px] font-semibold leading-none text-sky transition duration-300 hover:-translate-y-1 hover:text-cream focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy md:text-[76px]"
+              className="mt-12 inline-flex max-w-full break-all border-b border-sky pb-4 text-[34px] font-semibold leading-none text-sky transition duration-300 hover:-translate-y-1 hover:text-cream focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy md:text-[64px]"
               href={`mailto:${personal.email}`}
               aria-label={content.emailLabel}
             >

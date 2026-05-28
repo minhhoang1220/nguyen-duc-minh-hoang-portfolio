@@ -12,7 +12,7 @@ function ProductProof({ proof, openArtifactLabel, onImageOpen }: ProductProofPro
       <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
         <p className="section-kicker text-navy">{proof.eyebrow}</p>
         <div>
-          <h3 className="max-w-5xl text-balance text-[38px] font-semibold leading-[1.03] text-navy md:text-[64px] lg:text-[76px]">{proof.title}</h3>
+          <h3 className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">{proof.title}</h3>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">{proof.description}</p>
         </div>
       </div>
@@ -27,7 +27,13 @@ function ProductProof({ proof, openArtifactLabel, onImageOpen }: ProductProofPro
               onClick={() => onImageOpen(image)}
             >
               <span className="relative block h-[360px] overflow-hidden bg-card md:h-[520px]">
-                <img src={image.src} alt={image.alt} className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]" loading="lazy" decoding="async" />
+                <img
+                  src={image.previewSrc ?? image.src}
+                  alt={image.alt}
+                  className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   {openArtifactLabel}
                 </span>

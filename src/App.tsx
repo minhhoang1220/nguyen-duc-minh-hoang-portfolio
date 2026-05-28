@@ -130,12 +130,19 @@ function App() {
                 wide
               />
             </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-              {portfolio.experience.map((experience, index) => (
-                <Reveal key={experience.company} delay={index * 100}>
-                  <ExperienceCard experience={experience} />
+            <div className="mt-10 grid grid-cols-1 gap-6">
+              {portfolio.experience[0] ? (
+                <Reveal>
+                  <ExperienceCard experience={portfolio.experience[0]} featured />
                 </Reveal>
-              ))}
+              ) : null}
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {portfolio.experience.slice(1).map((experience, index) => (
+                  <Reveal key={experience.company} delay={(index + 1) * 100}>
+                    <ExperienceCard experience={experience} />
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -157,7 +164,14 @@ function App() {
         </Reveal>
       </main>
       <Footer personal={portfolio.personal} footer={portfolio.footer} />
-      <ArtifactLightbox image={selectedImage} closeLabel={portfolio.ui.closeArtifact} onClose={() => setSelectedImage(null)} />
+      <ArtifactLightbox
+        image={selectedImage}
+        closeLabel={portfolio.ui.closeArtifact}
+        zoomInLabel={portfolio.ui.zoomInArtifact}
+        zoomOutLabel={portfolio.ui.zoomOutArtifact}
+        resetZoomLabel={portfolio.ui.resetArtifactZoom}
+        onClose={() => setSelectedImage(null)}
+      />
     </div>
   );
 }

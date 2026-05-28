@@ -15,7 +15,7 @@ function SectionHeader({ eyebrow, title, description, inverse = false, titleId, 
       </p>
       <h2
         id={titleId}
-        className={`text-balance text-[38px] font-semibold leading-[1.03] md:text-[64px] lg:text-[76px] ${
+        className={`text-balance text-[34px] font-semibold leading-[1.05] md:text-[56px] lg:text-[72px] ${
           inverse ? "text-cream" : "text-navy"
         }`}
       >

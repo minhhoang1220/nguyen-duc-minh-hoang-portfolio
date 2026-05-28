@@ -27,7 +27,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           <p className="section-kicker text-muted">
             {labels.eyebrow} 0{index + 1}
           </p>
-          <h3 className="max-w-3xl text-balance text-[34px] font-semibold leading-[1.06] text-navy md:text-[48px]">{caseStudy.title}</h3>
+          <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {rows.map(([label, value]) => (
               <div key={label}>
@@ -107,7 +107,13 @@ function ImagePreview({
         onClick={() => onImageOpen(image)}
       >
         <span className={`relative block overflow-hidden bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
-          <img src={image.src} alt={image.alt} className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]" loading="lazy" decoding="async" />
+          <img
+            src={image.previewSrc ?? image.src}
+            alt={image.alt}
+            className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]"
+            loading="lazy"
+            decoding="async"
+          />
           <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
           </span>

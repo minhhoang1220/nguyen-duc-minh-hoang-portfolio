@@ -11,7 +11,7 @@ function GameThinking({ content }: GameThinkingProps) {
         <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-navy">{content.eyebrow}</p>
           <div>
-            <h2 id="game-direction-title" className="max-w-5xl text-balance text-[38px] font-semibold leading-[1.03] text-navy md:text-[64px] lg:text-[76px]">
+            <h2 id="game-direction-title" className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">
               {content.title}
             </h2>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-muted md:text-xl md:leading-9">{content.body}</p>
@@ -22,10 +22,6 @@ function GameThinking({ content }: GameThinkingProps) {
           <ListPanel title={content.genresTitle} items={content.genres} />
           <ListPanel title={content.gamesTitle} items={content.games} />
         </div>
-
-        <p className="mt-10 max-w-5xl border-l-2 border-navy pl-5 text-lg font-medium leading-8 text-ink md:text-xl md:leading-9">
-          {content.closing}
-        </p>
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ function ProofStrip({ proof }: ProofStripProps) {
       <div className="container-wide">
         <div className="grid gap-8 border-t border-cream/25 pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-sky">{proof.eyebrow}</p>
-          <h2 id="proof-title" className="max-w-5xl text-balance text-[40px] font-semibold leading-[1.03] md:text-[70px] lg:text-[86px]">
+          <h2 id="proof-title" className="max-w-5xl text-balance text-[36px] font-semibold leading-[1.05] md:text-[64px] lg:text-[80px]">
             {proof.title}
           </h2>
         </div>
@@ -19,7 +19,7 @@ function ProofStrip({ proof }: ProofStripProps) {
           {proof.stats.map((stat, index) => (
             <div key={`${stat.value}-${stat.label}`} className="reveal-number border-t border-cream/20 pt-6" style={{ transitionDelay: `${index * 70}ms` }}>
               <dt className="text-sm font-semibold leading-6 text-cream/80">{stat.label}</dt>
-              <dd className="mt-3 text-[68px] font-semibold leading-none text-sky md:text-[92px] lg:text-[104px]">{stat.value}</dd>
+              <dd className="mt-3 text-[58px] font-semibold leading-none text-sky md:text-[86px] lg:text-[98px]">{stat.value}</dd>
             </div>
           ))}
         </dl>

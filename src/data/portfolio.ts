@@ -13,6 +13,7 @@ export type SectionCopy = {
 
 export type AssetImage = {
   src: string;
+  previewSrc?: string;
   alt: string;
   title: string;
   caption?: string;
@@ -57,6 +58,12 @@ export type Experience = {
   role: string;
   period: string;
   context: string;
+  featuredLabel?: string;
+  summary?: string;
+  highlights?: {
+    value: string;
+    label: string;
+  }[];
   evidence: string[];
 };
 
@@ -96,6 +103,9 @@ export type PortfolioContent = {
     cvFallback: string;
     openArtifact: string;
     closeArtifact: string;
+    zoomInArtifact: string;
+    zoomOutArtifact: string;
+    resetArtifactZoom: string;
   };
   hero: {
     roleLine: string;
@@ -181,7 +191,6 @@ export type PortfolioContent = {
     gamesTitle: string;
     genres: string[];
     games: string[];
-    closing: string;
   };
   contact: {
     eyebrow: string;
@@ -204,6 +213,15 @@ const assets = {
   cdpFlowStates: "/assets/cdp-flow-management-states.png",
   chatbotJourney: "/assets/chatbot-zalo-journey-flow.png",
   chatbotFeedback: "/assets/chatbot-feedback-rating-flow.png",
+};
+
+const assetPreviews = {
+  cdpCampaignList: "/assets/previews/cdp-campaign-list-ui-preview.jpg",
+  cdpFlowReport: "/assets/previews/cdp-flow-report-detail-preview.jpg",
+  cdpAutomationFlow: "/assets/previews/cdp-automation-flow-map-preview.jpg",
+  cdpFlowStates: "/assets/previews/cdp-flow-management-states-preview.jpg",
+  chatbotJourney: "/assets/previews/chatbot-zalo-journey-flow-preview.jpg",
+  chatbotFeedback: "/assets/previews/chatbot-feedback-rating-flow-preview.jpg",
 };
 
 export const portfolioContent: Record<Language, PortfolioContent> = {
@@ -237,6 +255,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       cvFallback: "CV file is unavailable right now. Please email {email} and I will send it directly.",
       openArtifact: "View artifact",
       closeArtifact: "Close artifact preview",
+      zoomInArtifact: "Zoom in",
+      zoomOutArtifact: "Zoom out",
+      resetArtifactZoom: "Reset zoom",
     },
     hero: {
       roleLine:
@@ -254,14 +275,15 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       artifacts: [
         {
           type: "image",
-          title: "CDP automation flow",
-          meta: "Main artifact",
+          title: "Flow management states",
+          meta: "Feature states",
           priority: true,
           image: {
-            src: assets.cdpAutomationFlow,
-            alt: "Sanitized CDP automation flow map showing trigger, notification, and state logic",
-            title: "CDP automation flow map",
-            caption: "Main visual proof of flow mapping and automation logic.",
+            src: assets.cdpFlowStates,
+            previewSrc: assetPreviews.cdpFlowStates,
+            alt: "Sanitized CDP flow management state screens showing feature-state and operational logic",
+            title: "CDP flow management states",
+            caption: "Main visual proof of feature-state clarity and operational logic.",
           },
         },
         {
@@ -270,6 +292,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           meta: "System flow",
           image: {
             src: assets.chatbotJourney,
+            previewSrc: assetPreviews.chatbotJourney,
             alt: "Sanitized chatbot Zalo OA journey flow diagram",
             title: "Chatbot Zalo journey flow",
             caption: "Supporting artifact for channel journey and interaction logic.",
@@ -281,6 +304,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           meta: "Operations view",
           image: {
             src: assets.cdpFlowReport,
+            previewSrc: assetPreviews.cdpFlowReport,
             alt: "Sanitized CDP flow report detail interface screenshot",
             title: "CDP flow report detail",
             caption: "Supporting artifact for reporting and operational visibility.",
@@ -380,12 +404,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "Omnichannel AI Chatbot / API Integration Flow",
         mainPreview: {
           src: assets.chatbotJourney,
+          previewSrc: assetPreviews.chatbotJourney,
           alt: "Sanitized Zalo OA chatbot journey flow used to clarify channel and system behavior",
           title: "Zalo OA chatbot journey flow",
           caption: "Main flow preview",
         },
         detailPreview: {
           src: assets.chatbotFeedback,
+          previewSrc: assetPreviews.chatbotFeedback,
           alt: "Sanitized chatbot feedback and rating flow detail",
           title: "Feedback and rating flow",
           caption: "Expanded detail preview",
@@ -412,12 +438,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "CDP Automation & Push Notification Flow",
         mainPreview: {
           src: assets.cdpAutomationFlow,
+          previewSrc: assetPreviews.cdpAutomationFlow,
           alt: "Sanitized CDP automation flow map showing trigger and flow logic",
           title: "CDP automation flow map",
           caption: "Main flow preview",
         },
         detailPreview: {
           src: assets.cdpFlowStates,
+          previewSrc: assetPreviews.cdpFlowStates,
           alt: "Sanitized CDP flow management state screens",
           title: "CDP flow management states",
           caption: "Expanded detail preview",
@@ -464,15 +492,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       images: [
         {
           src: assets.cdpCampaignList,
+          previewSrc: assetPreviews.cdpCampaignList,
           alt: "Sanitized CDP campaign list product UI screenshot",
           title: "CDP campaign list UI",
           caption: "Feature screen / operations proof",
         },
         {
-          src: assets.cdpFlowReport,
-          alt: "Sanitized CDP flow report detail interface screenshot",
-          title: "CDP flow report detail",
-          caption: "Reporting / performance proof",
+          src: assets.cdpAutomationFlow,
+          previewSrc: assetPreviews.cdpAutomationFlow,
+          alt: "Sanitized CDP automation flow map showing trigger and delivery logic",
+          title: "CDP automation flow map",
+          caption: "Flow-builder / automation proof",
         },
       ],
     },
@@ -522,6 +552,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         role: "Project Management & Business Analysis Collaborator",
         period: "03/2026 - Present",
         context: "AI, customer service, fintech, and CDP product modules.",
+        featuredLabel: "Core experience",
+        summary:
+          "Primary experience anchor across AI/customer-service and CDP modules, spanning requirement clarification, flow design, mockup support, backlog coordination, permission logic, and pre-UAT testing.",
+        highlights: [
+          { value: "65+", label: "screens / feature states" },
+          { value: "21 / ~400", label: "roles and permissions" },
+          { value: "3-4", label: "features planned per sprint" },
+        ],
         evidence: [
           "Designed end-to-end user flows and Figma mockups for around 65 screens/features across CDP customer-service modules.",
           "Managed backlog and sprint planning for 3-4 features per sprint and 8-10 tasks.",
@@ -593,7 +631,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Game direction",
       title: "Games are the domain I want to understand deeper as a product person.",
       body:
-        "Beyond work, I’m genuinely interested in how different game genres create motivation, competition, progression, and long-term engagement. I’m especially drawn to MOBA, FPS, battle royale, auto-battler, card games, strategy games, and live-service multiplayer systems.",
+        "Beyond work, I’m genuinely interested in how different game genres create motivation, competition, progression, and long-term engagement. I’m especially drawn to MOBA, FPS, battle royale, auto-battler, card games, strategy games, and live-service multiplayer systems. That interest supports my long-term direction toward Game BA, Product Operations, and LiveOps.",
       genresTitle: "Game genres and systems I’m interested in",
       gamesTitle: "Games I follow or play",
       genres: [
@@ -616,8 +654,6 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "CS2",
         "Other competitive and live-service titles",
       ],
-      closing:
-        "I do not want to present gaming only as a hobby. I see it as a product domain where game mechanics, system design, player motivation, balance updates, community feedback, and live operations all shape the player experience.",
     },
     contact: {
       eyebrow: "Reach out",
@@ -663,6 +699,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       cvFallback: "Hiện tại chưa tải được file CV. Vui lòng email {email}, tôi sẽ gửi CV trực tiếp.",
       openArtifact: "Xem artifact",
       closeArtifact: "Đóng preview artifact",
+      zoomInArtifact: "Phóng to",
+      zoomOutArtifact: "Thu nhỏ",
+      resetArtifactZoom: "Đặt lại zoom",
     },
     hero: {
       roleLine:
@@ -680,14 +719,15 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       artifacts: [
         {
           type: "image",
-          title: "CDP automation flow",
-          meta: "Main artifact",
+          title: "Flow management states",
+          meta: "Feature states",
           priority: true,
           image: {
-            src: assets.cdpAutomationFlow,
-            alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger, notification và state logic",
-            title: "CDP automation flow map",
-            caption: "Bằng chứng chính về flow mapping và automation logic.",
+            src: assets.cdpFlowStates,
+            previewSrc: assetPreviews.cdpFlowStates,
+            alt: "Các màn hình trạng thái CDP flow management đã được làm sạch, thể hiện feature-state và operational logic",
+            title: "CDP flow management states",
+            caption: "Bằng chứng chính về feature-state clarity và operational logic.",
           },
         },
         {
@@ -696,6 +736,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           meta: "System flow",
           image: {
             src: assets.chatbotJourney,
+            previewSrc: assetPreviews.chatbotJourney,
             alt: "Sơ đồ user journey chatbot Zalo OA đã được làm sạch",
             title: "Chatbot Zalo journey flow",
             caption: "Artifact bổ trợ cho channel journey và interaction logic.",
@@ -707,6 +748,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           meta: "Operations view",
           image: {
             src: assets.cdpFlowReport,
+            previewSrc: assetPreviews.cdpFlowReport,
             alt: "Ảnh chụp giao diện CDP flow report detail đã được làm sạch",
             title: "CDP flow report detail",
             caption: "Artifact bổ trợ cho reporting và operational visibility.",
@@ -806,12 +848,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "Omnichannel AI Chatbot / API Integration Flow",
         mainPreview: {
           src: assets.chatbotJourney,
+          previewSrc: assetPreviews.chatbotJourney,
           alt: "Flow chatbot Zalo OA đã được làm sạch, dùng để làm rõ hành vi giữa channel và system",
           title: "Zalo OA chatbot journey flow",
           caption: "Preview flow chính",
         },
         detailPreview: {
           src: assets.chatbotFeedback,
+          previewSrc: assetPreviews.chatbotFeedback,
           alt: "Flow feedback và rating của chatbot đã được làm sạch",
           title: "Feedback and rating flow",
           caption: "Preview chi tiết mở rộng",
@@ -838,12 +882,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "CDP Automation & Push Notification Flow",
         mainPreview: {
           src: assets.cdpAutomationFlow,
+          previewSrc: assetPreviews.cdpAutomationFlow,
           alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger và flow logic",
           title: "CDP automation flow map",
           caption: "Preview flow chính",
         },
         detailPreview: {
           src: assets.cdpFlowStates,
+          previewSrc: assetPreviews.cdpFlowStates,
           alt: "Các màn hình trạng thái CDP flow management đã được làm sạch",
           title: "CDP flow management states",
           caption: "Preview chi tiết mở rộng",
@@ -890,15 +936,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       images: [
         {
           src: assets.cdpCampaignList,
+          previewSrc: assetPreviews.cdpCampaignList,
           alt: "Ảnh chụp UI danh sách campaign CDP đã được làm sạch thông tin nhạy cảm",
           title: "CDP campaign list UI",
           caption: "Bằng chứng feature screen / operations",
         },
         {
-          src: assets.cdpFlowReport,
-          alt: "Ảnh chụp giao diện CDP flow report detail đã được làm sạch",
-          title: "CDP flow report detail",
-          caption: "Bằng chứng reporting / performance",
+          src: assets.cdpAutomationFlow,
+          previewSrc: assetPreviews.cdpAutomationFlow,
+          alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger và delivery logic",
+          title: "CDP automation flow map",
+          caption: "Bằng chứng flow-builder / automation",
         },
       ],
     },
@@ -948,6 +996,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         role: "Project Management & Business Analysis Collaborator",
         period: "03/2026 - Present",
         context: "AI, customer service, fintech và CDP product modules.",
+        featuredLabel: "Kinh nghiệm chính",
+        summary:
+          "Trọng tâm kinh nghiệm hiện tại trong các module AI/customer-service và CDP, bao gồm làm rõ requirement, thiết kế flow, hỗ trợ mockup, điều phối backlog, permission logic và testing trước UAT.",
+        highlights: [
+          { value: "65+", label: "màn hình / trạng thái tính năng" },
+          { value: "21 / ~400", label: "vai trò và quyền hạn" },
+          { value: "3-4", label: "feature được plan mỗi sprint" },
+        ],
         evidence: [
           "Thiết kế end-to-end user flows và Figma mockups cho khoảng 65 screens/features trong các module CDP customer-service.",
           "Quản lý backlog và sprint planning cho 3-4 features mỗi sprint và 8-10 tasks.",
@@ -1019,7 +1075,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Định hướng game",
       title: "Game là domain tôi muốn hiểu sâu hơn dưới góc nhìn sản phẩm.",
       body:
-        "Ngoài công việc, tôi thực sự hứng thú với cách các thể loại game tạo động lực, cạnh tranh, progression và long-term engagement cho người chơi. Tôi đặc biệt quan tâm đến MOBA, FPS, battle royale, auto-battler, card games, strategy games và các live-service multiplayer systems.",
+        "Ngoài công việc, tôi thực sự hứng thú với cách các thể loại game tạo động lực, cạnh tranh, progression và long-term engagement cho người chơi. Tôi đặc biệt quan tâm đến MOBA, FPS, battle royale, auto-battler, card games, strategy games và các live-service multiplayer systems. Đây là nền tảng cho định hướng dài hạn của tôi toward Game BA, Product Operations và LiveOps.",
       genresTitle: "Thể loại và hệ thống game tôi quan tâm",
       gamesTitle: "Một số game tôi theo dõi hoặc chơi",
       genres: [
@@ -1042,8 +1098,6 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "CS2",
         "Các tựa game competitive và live-service khác",
       ],
-      closing:
-        "Tôi không muốn thể hiện game chỉ như một sở thích chơi game. Tôi nhìn game như một product domain, nơi game mechanics, system design, player motivation, balance updates, community feedback và live operations cùng tác động trực tiếp đến trải nghiệm người chơi.",
     },
     contact: {
       eyebrow: "Kết nối",

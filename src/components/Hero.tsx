@@ -35,7 +35,7 @@ function Hero({
           <p className="mb-6 max-w-2xl text-base font-medium leading-7 text-muted md:text-lg">{hero.roleLine}</p>
           <h1
             id="hero-title"
-            className="text-balance text-[42px] font-semibold leading-[1.02] text-navy md:text-[64px] lg:text-[68px] xl:text-[74px]"
+            className="text-balance text-[38px] font-semibold leading-[1.04] text-navy sm:text-[44px] md:text-[60px] lg:text-[68px] xl:text-[72px]"
           >
             {hero.headline}
           </h1>
@@ -68,7 +68,7 @@ function Hero({
             <ArtifactImageButton
               artifact={mainArtifact}
               className="hero-main-artifact"
-              imageClassName="object-cover object-center"
+              imageClassName="object-cover object-top"
               showCaption
               openArtifactLabel={openArtifactLabel}
               onImageOpen={onImageOpen}
@@ -133,7 +133,7 @@ function ArtifactImageButton({
         </span>
         <span className="artifact-media relative block overflow-hidden bg-cream">
           <img
-            src={artifact.image.src}
+            src={artifact.image.previewSrc ?? artifact.image.src}
             alt={artifact.image.alt}
             className={`h-full w-full transition duration-500 group-hover:scale-[1.015] ${imageClassName}`}
             loading="eager"
