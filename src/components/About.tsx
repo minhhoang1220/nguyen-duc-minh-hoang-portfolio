@@ -24,11 +24,11 @@ function About({ content }: AboutProps) {
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-stretch">
-          <aside className="relative overflow-hidden border border-line bg-card p-6 md:p-8" aria-label={content.abstractCard.eyebrow}>
+          <aside className="relative overflow-hidden rounded-lg border border-line bg-card p-6 md:p-8" aria-label={content.abstractCard.eyebrow}>
             <p className="section-kicker text-navy">{content.abstractCard.eyebrow}</p>
             <div className="mt-7 grid grid-cols-4 gap-2" aria-hidden="true">
               {Array.from({ length: 8 }).map((_, index) => (
-                <span key={index} className={`h-7 border border-line ${index % 3 === 0 ? "bg-sky/55" : "bg-cream"}`} />
+                <span key={index} className={`h-7 rounded border border-line ${index % 3 === 0 ? "bg-sky/55" : "bg-cream"}`} />
               ))}
             </div>
             <h3 className="mt-8 max-w-sm break-words text-[34px] font-semibold leading-[1.04] text-navy sm:text-[40px] md:text-[52px]">
@@ -41,7 +41,7 @@ function About({ content }: AboutProps) {
                 </span>
               ))}
             </div>
-            <div className="mt-10 border border-line bg-cream p-4">
+            <div className="mt-10 rounded-md border border-line bg-cream p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-navy">{content.educationLabel}</p>
               <p className="mt-3 text-base font-semibold leading-6 text-navy">{content.education.school}</p>
               <p className="mt-3 text-sm font-medium text-ink">{content.education.degree}</p>

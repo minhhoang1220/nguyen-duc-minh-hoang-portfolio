@@ -14,10 +14,9 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   const detailId = useId();
   const isReversed = index % 2 === 1;
   const rows = [
-    [labels.context, caseStudy.context],
     [labels.problem, caseStudy.problem],
     [labels.role, caseStudy.role],
-    [labels.impact, caseStudy.impact],
+    [labels.outcomeLearning, caseStudy.outcomeLearning],
   ];
 
   return (
@@ -37,6 +36,18 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             ))}
           </div>
 
+          <div className="mt-7 border-y border-line py-5">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.keyDecisions}</p>
+            <ul className="grid gap-3">
+              {caseStudy.keyDecisions.map((decision) => (
+                <li key={decision} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
+                  <span>{decision}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="mt-7">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.skills}</p>
             <div className="flex flex-wrap gap-2">
@@ -50,7 +61,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
           <button
             type="button"
-            className="mt-8 min-h-11 border border-navy px-5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-px hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+            className="mt-8 min-h-11 rounded-md border border-navy px-5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-px hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
             aria-controls={detailId}
             aria-expanded={isExpanded}
             onClick={() => setIsExpanded((current) => !current)}
@@ -74,7 +85,11 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         ) : (
           <TimelinePreview />
         )}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.context}</p>
+            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.context}</p>
+          </div>
           <DetailList title={labels.process} items={caseStudy.process} />
           <DetailList title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
           <div>
@@ -99,14 +114,14 @@ function ImagePreview({
   compact?: boolean;
 }) {
   return (
-    <figure className="group border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/40">
+    <figure className="group rounded-lg border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/40">
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
         aria-label={`${openArtifactLabel}: ${image.title}`}
         onClick={() => onImageOpen(image)}
       >
-        <span className={`relative block overflow-hidden bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
+        <span className={`relative block overflow-hidden rounded-md bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
@@ -114,7 +129,7 @@ function ImagePreview({
             loading="lazy"
             decoding="async"
           />
-          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
           </span>
         </span>
@@ -129,7 +144,7 @@ function ImagePreview({
 
 function PermissionPreview({ labels }: { labels: PortfolioContent["caseStudyLabels"] }) {
   return (
-    <div className="border border-line bg-card p-5 md:p-6">
+    <div className="rounded-lg border border-line bg-card p-5 md:p-6">
       <div className="mb-6 flex items-center justify-between gap-4">
         <span className="artifact-label">{labels.matrixTitle}</span>
         <span className="text-xs font-semibold text-muted">{labels.matrixMeta}</span>
@@ -157,7 +172,7 @@ function TimelinePreview() {
   const phases = ["Discovery", "Flow Mapping", "Mockup", "Review", "Dev Handoff", "QA"];
 
   return (
-    <div className="border border-line bg-card p-5 md:p-6">
+    <div className="rounded-lg border border-line bg-card p-5 md:p-6">
       <div className="space-y-4">
         {phases.map((phase, phaseIndex) => (
           <div key={phase} className="grid grid-cols-[108px_1fr] items-center gap-4 text-xs font-semibold text-navy">

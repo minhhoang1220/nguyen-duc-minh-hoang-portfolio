@@ -33,7 +33,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
           <LanguageToggle language={language} onChange={onLanguageChange} ariaLabel={labels.switchLanguageAria} />
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
             aria-label={labels.menuAria}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"

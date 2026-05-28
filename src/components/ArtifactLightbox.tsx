@@ -220,7 +220,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
         }
       }}
     >
-      <div ref={dialogRef} className="relative flex max-h-[94vh] w-full max-w-[1500px] flex-col border border-cream/20 bg-card">
+      <div ref={dialogRef} className="relative flex max-h-[94vh] w-full max-w-[1500px] flex-col rounded-lg border border-cream/20 bg-card">
         <div className="flex flex-col gap-4 border-b border-line p-4 md:flex-row md:items-start md:justify-between md:p-5">
           <div className="min-w-0">
             <p id="artifact-lightbox-title" className="text-base font-semibold text-navy md:text-xl">
@@ -232,7 +232,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
             <button
               type="button"
               data-lightbox-control="zoom-out"
-              className="min-h-10 border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
               aria-label={zoomOutLabel}
               onClick={() => zoomBy(-zoomStep)}
               disabled={scale <= minScale}
@@ -245,7 +245,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
             <button
               type="button"
               data-lightbox-control="zoom-in"
-              className="min-h-10 border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
               aria-label={zoomInLabel}
               onClick={() => zoomBy(zoomStep)}
               disabled={scale >= maxScale}
@@ -255,7 +255,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
             <button
               type="button"
               data-lightbox-control="reset"
-              className="min-h-10 border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
               aria-label={resetZoomLabel}
               onClick={resetZoom}
             >
@@ -264,7 +264,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
             <button
               type="button"
               data-autofocus="true"
-              className="min-h-10 border border-navy px-3 text-sm font-semibold text-navy transition hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-navy px-3 text-sm font-semibold text-navy transition hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
               aria-label={closeLabel}
               onClick={onClose}
             >

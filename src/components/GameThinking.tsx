@@ -33,7 +33,7 @@ function ListPanel({ title, items }: { title: string; items: string[] }) {
       <h3 className="text-2xl font-semibold text-navy">{title}</h3>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {items.map((item) => (
-          <li key={item} className="border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
+          <li key={item} className="rounded-md border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
             {item}
           </li>
         ))}

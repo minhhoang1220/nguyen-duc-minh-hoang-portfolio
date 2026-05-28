@@ -120,7 +120,7 @@ function ArtifactImageButton({
   onImageOpen: (image: AssetImage) => void;
 }) {
   return (
-    <figure className={`${className} group border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/45`}>
+    <figure className={`${className} group rounded-lg border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/45`}>
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -131,7 +131,7 @@ function ArtifactImageButton({
           <span className="artifact-label">{artifact.title}</span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{artifact.meta}</span>
         </span>
-        <span className="artifact-media relative block overflow-hidden bg-cream">
+        <span className="artifact-media relative block overflow-hidden rounded-md bg-cream">
           <img
             src={artifact.image.previewSrc ?? artifact.image.src}
             alt={artifact.image.alt}
@@ -139,7 +139,7 @@ function ArtifactImageButton({
             loading="eager"
             decoding="async"
           />
-          <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
           </span>
         </span>
@@ -151,7 +151,7 @@ function ArtifactImageButton({
 
 function TimelineArtifact({ artifact }: { artifact: Extract<HeroArtifact, { type: "timeline" }> }) {
   return (
-    <div className="hero-support-artifact border border-line bg-card p-4">
+    <div className="hero-support-artifact rounded-lg border border-line bg-card p-4">
       <div className="mb-5 flex items-center justify-between gap-3">
         <span className="artifact-label">{artifact.title}</span>
         <span className="text-[11px] font-semibold text-muted">{artifact.meta}</span>

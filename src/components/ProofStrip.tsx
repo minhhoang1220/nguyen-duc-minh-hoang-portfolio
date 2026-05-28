@@ -15,7 +15,7 @@ function ProofStrip({ proof }: ProofStripProps) {
           </h2>
         </div>
 
-        <dl className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+        <dl className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {proof.stats.map((stat, index) => (
             <div key={`${stat.value}-${stat.label}`} className="reveal-number border-t border-cream/20 pt-6" style={{ transitionDelay: `${index * 70}ms` }}>
               <dt className="text-sm font-semibold leading-6 text-cream/80">{stat.label}</dt>

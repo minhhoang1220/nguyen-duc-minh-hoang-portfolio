@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import ProductNotes from "./components/ProductNotes";
 import ProductProof from "./components/ProductProof";
 import ProofStrip from "./components/ProofStrip";
 import ProjectCard from "./components/ProjectCard";
@@ -149,6 +150,9 @@ function App() {
 
         <Reveal>
           <SkillsMatrix content={portfolio.process} />
+        </Reveal>
+        <Reveal>
+          <ProductNotes content={portfolio.productNotes} />
         </Reveal>
         <Reveal>
           <GameThinking content={portfolio.gameDirection} />

@@ -46,6 +46,8 @@ export type CaseStudy = {
   context: string;
   problem: string;
   role: string;
+  keyDecisions: string[];
+  outcomeLearning: string;
   process: string[];
   delivered: string;
   artifacts: string[];
@@ -60,6 +62,8 @@ export type Experience = {
   context: string;
   featuredLabel?: string;
   summary?: string;
+  proofLabel?: string;
+  proof?: string;
   highlights?: {
     value: string;
     label: string;
@@ -155,6 +159,8 @@ export type PortfolioContent = {
     context: string;
     problem: string;
     role: string;
+    keyDecisions: string;
+    outcomeLearning: string;
     process: string;
     deliveredArtifacts: string;
     delivered: string;
@@ -182,6 +188,15 @@ export type PortfolioContent = {
   process: {
     header: SectionCopy;
     rows: ProcessRow[];
+  };
+  productNotes: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    noteLabel: string;
+    noteTitle: string;
+    notePreview: string;
+    availability: string;
   };
   gameDirection: {
     eyebrow: string;
@@ -232,13 +247,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       { label: "Case Studies", href: "#case-studies" },
       { label: "Projects", href: "#projects" },
       { label: "Experience", href: "#experience" },
-      { label: "Skills", href: "#skills" },
+      { label: "How I Think", href: "#skills" },
+      { label: "Product Notes", href: "#product-notes" },
       { label: "Game Direction", href: "#game-direction" },
       { label: "Contact", href: "#contact" },
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Business Analyst / Associate PM",
+      shortRole: "Product/System Business Analyst",
       location: "Hanoi, Vietnam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -261,11 +277,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Business Analyst / Associate PM focused on product systems, requirement clarity, and game-oriented product thinking.",
+        "Product/System Business Analyst focused on turning ambiguous requirements into clear flows, documentation, and delivery-ready artifacts.",
       headline: "Turning ambiguity into clear product flows.",
       intro:
         "I turn unclear business needs into structured product flows, functional requirements, mockups, and delivery-ready artifacts across product, business, and technical teams.",
-      focusLine: "Focused on BA, product systems, and game-oriented product thinking.",
+      focusLine: "Primary focus: Product/System BA. Secondary direction: Associate PM and Product Operations. Future direction: Game Product and LiveOps.",
       artifactAria: "Selected product artifact previews",
       ctas: {
         caseStudies: "View Case Studies",
@@ -322,18 +338,19 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "In numbers",
       title: "Measured artifacts, not abstract traits.",
       stats: [
-        { value: "65+", label: "Figma screens / feature states" },
-        { value: "21", label: "Roles mapped" },
-        { value: "~400", label: "Permissions structured" },
+        { value: "65+", label: "Figma screens / feature states across CDP modules" },
+        { value: "21", label: "Roles mapped in permission logic" },
+        { value: "~400", label: "Permissions structured for access control" },
         { value: "3-4", label: "Features planned per sprint" },
-        { value: "5", label: "Bugs found per sprint before UAT" },
+        { value: "8-10", label: "Tasks coordinated per sprint" },
+        { value: "~5", label: "Bugs found per sprint before UAT" },
       ],
     },
     about: {
       eyebrow: "About",
-      title: "I bridge product logic, system clarity, and user understanding.",
+      title: "I bridge requirements, product logic, and system clarity.",
       body:
-        "I’m Hoàng, a Business Analyst / Associate PM profile based in Hanoi. I enjoy roles where unclear ideas need to be turned into structured flows, product artifacts, and decisions that teams can actually build from.",
+        "I’m Hoàng, a Product/System Business Analyst profile based in Hanoi. I work best where unclear requirements need to become structured flows, documentation, artifacts, and decisions that teams can actually build from.",
       points: [
         {
           title: "System-first thinking",
@@ -348,7 +365,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         {
           title: "Game direction",
           description:
-            "My long-term direction is to move closer to game products, especially roles around Game BA, Product Operations, LiveOps, and player-facing systems.",
+            "Game Product and LiveOps are where I want to apply this product/system thinking next, especially in player-facing systems and live-service operations.",
         },
       ],
       abstractCard: {
@@ -378,9 +395,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       experience: {
         eyebrow: "Experience Snapshot",
-        title: "Practical BA/Product evidence across fintech, transformation, and operations.",
+        title: "Practical Product/System BA evidence across fintech, transformation, and operations.",
         description:
-          "The emphasis is on transferable product systems work: flows, documentation, backlog coordination, permission logic, testing, and stakeholder alignment.",
+          "The emphasis is current evidence: flows, documentation, backlog coordination, permission logic, testing, and stakeholder alignment. Associate PM/Product Operations is a secondary direction built from this base.",
       },
     },
     caseStudyLabels: {
@@ -388,6 +405,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       context: "Context",
       problem: "Problem",
       role: "My Role",
+      keyDecisions: "Key Decisions / Tradeoffs",
+      outcomeLearning: "Outcome / Learning",
       process: "Process",
       deliveredArtifacts: "Delivered Artifacts",
       delivered: "Delivered",
@@ -422,6 +441,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Multi-channel chatbot systems require clear integration logic, permission handling, event triggers, and consistent user interaction flow.",
         role:
           "Requirement analysis, API research, user flow mapping, functional documentation, stakeholder clarification.",
+        keyDecisions: [
+          "Separated channel behavior, OAuth/webhook constraints, event triggers, and user interaction states so each part could be reviewed clearly.",
+          "Kept the flow business-readable while preserving the technical details needed for Dev discussion.",
+        ],
+        outcomeLearning:
+          "The artifact reduced ambiguity for discussion and handoff, especially around event triggers, permissions, and user feedback states.",
         process: [
           "Read API documentation for OAuth, webhook, permission scope, and event trigger logic.",
           "Mapped channel-to-system behavior so business expectations could be checked against technical constraints.",
@@ -455,6 +480,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         problem:
           "Automation and push notification features can easily become confusing without clear trigger logic, states, segmentation, and edge cases.",
         role: "User flow design, feature breakdown, Figma mockup, edge case analysis, Dev handoff support.",
+        keyDecisions: [
+          "Structured the feature around trigger, segment, state, and notification behavior instead of treating it as one generic flow.",
+          "Highlighted edge cases and state differences so stakeholders could compare behavior before handoff.",
+        ],
+        outcomeLearning:
+          "Helped stakeholders compare behavior across states and created a clearer basis for mockup, handoff, and QA/UAT checks.",
         process: [
           "Broke features into trigger, segment, state, and notification behavior.",
           "Mapped end-to-end user and system flow before preparing mockups.",
@@ -473,6 +504,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         problem:
           "Internal systems with many roles need consistent access logic to prevent operational confusion and security gaps.",
         role: "Permission logic analysis, role mapping, matrix design, validation support.",
+        keyDecisions: [
+          "Grouped permissions by operational need and role behavior instead of handling each access request as a separate exception.",
+          "Used a matrix format so stakeholders could scan gaps, overlaps, and governance questions before implementation.",
+        ],
+        outcomeLearning:
+          "Made permission logic easier to validate before implementation and reduced access-control ambiguity.",
         process: [
           "Grouped roles and permissions into a matrix structure that could be reviewed by stakeholders.",
           "Checked consistency across role behavior, permission scope, and operational impact.",
@@ -518,7 +555,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "A product-flow project focused on turning user needs into screen structure, interaction logic, and a working prototype.",
         contributions: ["User persona", "Logical flow", "Figma prototype", "Multi-platform UX logic"],
         relevance:
-          "Supports Associate PM and Game BA positioning by showing how ambiguous user needs become concrete screens, journeys, and interaction decisions.",
+          "Supports Associate PM/Product Operations direction by showing how ambiguous user needs become concrete screens, journeys, and interaction decisions.",
         tags: ["Product flow", "Prototype", "UX logic", "User journey"],
       },
       {
@@ -533,17 +570,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "Market Forecasting & Portfolio Optimization Thesis",
-        type: "Machine Learning / Analytical Research Project",
-        positioning: "A research-depth proof point that supports analytical rigor alongside BA/Product work.",
+        type: "Analytical Research Project",
+        positioning:
+          "A comparative analytical research project exploring how forecasting models and portfolio optimization methods can support investment decision-making.",
         contributions: [
-          "Time-series forecasting",
-          "Machine learning model comparison",
-          "Portfolio optimization",
-          "ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, Transformer, Reinforcement Learning",
+          "Structured research framing",
+          "Model comparison across ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, and Transformer",
+          "Portfolio optimization comparison using Markowitz, Black-Litterman, and Reinforcement Learning/PPO",
+          "Time-series reasoning and decision-making under uncertainty",
         ],
         relevance:
-          "Adds evidence of research depth, model comparison, and structured evaluation while keeping the site focused on product systems.",
-        tags: ["Forecasting", "Model comparison", "Research", "Optimization"],
+          "Adds supporting evidence of analytical discipline, model comparison, and business reasoning without shifting the portfolio away from product/system BA work.",
+        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning"],
       },
     ],
     experience: [
@@ -554,11 +592,16 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         context: "AI, customer service, fintech, and CDP product modules.",
         featuredLabel: "Core experience",
         summary:
-          "Primary experience anchor across AI/customer-service and CDP modules, spanning requirement clarification, flow design, mockup support, backlog coordination, permission logic, and pre-UAT testing.",
+          "Core experience where I practiced BA/Product work across AI, customer-service, fintech, and CDP systems — translating unclear needs into flows, mockups, documentation, backlog items, and QA-ready checklists.",
+        proofLabel: "What it proves",
+        proof:
+          "Practical Product/System BA ability in system-heavy contexts: clarifying behavior, structuring handoff artifacts, coordinating work, and checking logic before UAT.",
         highlights: [
           { value: "65+", label: "screens / feature states" },
           { value: "21 / ~400", label: "roles and permissions" },
           { value: "3-4", label: "features planned per sprint" },
+          { value: "8-10", label: "tasks coordinated per sprint" },
+          { value: "~5", label: "bugs found before UAT" },
         ],
         evidence: [
           "Designed end-to-end user flows and Figma mockups for around 65 screens/features across CDP customer-service modules.",
@@ -591,47 +634,57 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     process: {
       header: {
-        eyebrow: "Working Process",
-        title: "How I turn ambiguity into build-ready artifacts.",
+        eyebrow: "How I Think",
+        title: "How I approach ambiguous product problems",
       },
       rows: [
         {
           number: "01",
-          title: "Requirement & Flow Clarity",
+          title: "Clarify context",
           description:
-            "Clarifying vague needs, mapping user flows, defining feature behavior, and identifying edge cases.",
+            "Understand the business goal, users, constraints, and success criteria before jumping into solution.",
         },
         {
           number: "02",
-          title: "Product/System Documentation",
-          description:
-            "Turning product logic into functional documents, acceptance criteria, mockups, and structured handoff materials.",
+          title: "Map the flow",
+          description: "Turn scattered requirements into user flows, system flows, states, and dependencies.",
         },
         {
           number: "03",
-          title: "Stakeholder & Sprint Coordination",
+          title: "Identify edge cases",
           description:
-            "Supporting sprint planning, backlog tracking, testing checklists, UAT preparation, and cross-functional alignment.",
+            "Look for permission gaps, trigger conflicts, failure states, and operational risks.",
         },
         {
           number: "04",
-          title: "Technical-Business Translation",
+          title: "Translate into artifacts",
           description:
-            "Reading API documentation, OAuth/webhook concepts, permission scope, event triggers, and translating them into business-readable logic.",
+            "Convert logic into functional documents, mockups, acceptance criteria, checklists, and backlog-ready items.",
         },
         {
           number: "05",
-          title: "Game/Product Domain Curiosity",
+          title: "Align and iterate",
           description:
-            "Connecting product thinking with game genres, player motivation, live-service systems, and competitive multiplayer behavior.",
+            "Use artifacts to align stakeholders, support dev handoff, and refine through review or QA feedback.",
         },
       ],
     },
+    productNotes: {
+      eyebrow: "Product Notes",
+      title: "Writing sample for structured product thinking.",
+      description:
+        "A lightweight note signal, not a published blog. It shows how I explain BA/Product reasoning in a concise, reviewable format.",
+      noteLabel: "Writing sample / Draft note",
+      noteTitle: "How I turn vague requirements into product flows",
+      notePreview:
+        "A short note on how I clarify context, map flows, identify edge cases, and turn product logic into artifacts that teams can discuss and build from.",
+      availability: "Available on request",
+    },
     gameDirection: {
       eyebrow: "Game direction",
-      title: "Games are the domain I want to understand deeper as a product person.",
+      title: "Games are where I want to apply product/system thinking next.",
       body:
-        "Beyond work, I’m genuinely interested in how different game genres create motivation, competition, progression, and long-term engagement. I’m especially drawn to MOBA, FPS, battle royale, auto-battler, card games, strategy games, and live-service multiplayer systems. That interest supports my long-term direction toward Game BA, Product Operations, and LiveOps.",
+        "Game Product and LiveOps are a future direction, not the main evidence base yet. I’m interested in how different genres create motivation, competition, progression, and long-term engagement, especially across MOBA, FPS, battle royale, auto-battler, card games, strategy games, and live-service multiplayer systems.",
       genresTitle: "Game genres and systems I’m interested in",
       gamesTitle: "Games I follow or play",
       genres: [
@@ -657,7 +710,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Reach out",
-      title: "Let’s talk about product systems, game operations, or BA/Product roles.",
+      title: "Let’s talk about product systems, BA/Product roles, or future Game Product/LiveOps direction.",
       emailLabel: "Send an email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Download CV",
@@ -676,13 +729,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       { label: "Case Studies", href: "#case-studies" },
       { label: "Dự án", href: "#projects" },
       { label: "Kinh nghiệm", href: "#experience" },
-      { label: "Kỹ năng", href: "#skills" },
+      { label: "Cách tiếp cận", href: "#skills" },
+      { label: "Ghi chú", href: "#product-notes" },
       { label: "Định hướng game", href: "#game-direction" },
       { label: "Liên hệ", href: "#contact" },
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Business Analyst / Associate PM",
+      shortRole: "Product/System Business Analyst",
       location: "Hà Nội, Việt Nam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -705,11 +759,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Business Analyst / Associate PM tập trung vào product systems, requirement clarity và tư duy sản phẩm định hướng game.",
+        "Business Analyst định hướng Product/System, tập trung biến yêu cầu mơ hồ thành flow, tài liệu và artifact sẵn sàng triển khai.",
       headline: "Biến sự mơ hồ thành product flow rõ ràng.",
       intro:
         "Tôi chuyển hóa nhu cầu kinh doanh chưa rõ ràng thành product flow, tài liệu chức năng, mockup và artifact sẵn sàng cho triển khai giữa product, business và technical team.",
-      focusLine: "Tập trung vào BA, product systems và tư duy sản phẩm định hướng game.",
+      focusLine: "Trọng tâm hiện tại: Product/System BA. Hướng phát triển gần: Associate PM và Product Operations. Định hướng dài hạn: Game Product và LiveOps.",
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
         caseStudies: "Xem Case Studies",
@@ -766,18 +820,19 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Số liệu nổi bật",
       title: "Bằng chứng cụ thể, không chỉ là mô tả năng lực.",
       stats: [
-        { value: "65+", label: "Màn hình / trạng thái tính năng Figma" },
-        { value: "21", label: "Vai trò được mapping" },
-        { value: "~400", label: "Quyền hạn được cấu trúc" },
+        { value: "65+", label: "Màn hình / trạng thái tính năng Figma trong các module CDP" },
+        { value: "21", label: "Vai trò được mapping trong permission logic" },
+        { value: "~400", label: "Quyền hạn được cấu trúc cho access control" },
         { value: "3-4", label: "Feature được lập kế hoạch mỗi sprint" },
-        { value: "5", label: "Bug phát hiện mỗi sprint trước UAT" },
+        { value: "8-10", label: "Task được điều phối mỗi sprint" },
+        { value: "~5", label: "Bug phát hiện mỗi sprint trước UAT" },
       ],
     },
     about: {
       eyebrow: "Giới thiệu",
-      title: "Tôi kết nối product logic, system clarity và góc nhìn người dùng.",
+      title: "Tôi kết nối requirement, product logic và system clarity.",
       body:
-        "Tôi là Hoàng, định hướng Business Analyst / Associate PM tại Hà Nội. Tôi thích những vai trò cần biến ý tưởng chưa rõ ràng thành flow, artifact sản phẩm và quyết định đủ rõ để team có thể triển khai.",
+        "Tôi là Hoàng, định hướng Product/System Business Analyst tại Hà Nội. Tôi làm tốt nhất khi requirement chưa rõ ràng cần được chuyển thành flow, tài liệu, artifact và quyết định đủ rõ để team có thể triển khai.",
       points: [
         {
           title: "Tư duy hệ thống",
@@ -792,7 +847,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         {
           title: "Định hướng game",
           description:
-            "Về dài hạn, tôi muốn tiến gần hơn tới sản phẩm game, đặc biệt là các vai trò liên quan đến Game BA, Product Operations, LiveOps và những hệ thống trực tiếp ảnh hưởng tới người chơi.",
+            "Game Product và LiveOps là nơi tôi muốn áp dụng tư duy product/system này trong bước tiếp theo, đặc biệt với player-facing systems và live-service operations.",
         },
       ],
       abstractCard: {
@@ -822,9 +877,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       experience: {
         eyebrow: "Kinh nghiệm tiêu biểu",
-        title: "Bằng chứng BA/Product thực tế qua fintech, chuyển đổi số và vận hành.",
+        title: "Bằng chứng Product/System BA thực tế qua fintech, chuyển đổi số và vận hành.",
         description:
-          "Trọng tâm là năng lực có thể chuyển giao: flow, documentation, backlog coordination, permission logic, testing và stakeholder alignment.",
+          "Trọng tâm là evidence hiện tại: flow, documentation, backlog coordination, permission logic, testing và stakeholder alignment. Associate PM/Product Operations là hướng phát triển thứ hai từ nền tảng này.",
       },
     },
     caseStudyLabels: {
@@ -832,6 +887,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       context: "Bối cảnh",
       problem: "Vấn đề",
       role: "Vai trò của tôi",
+      keyDecisions: "Quyết định / tradeoff chính",
+      outcomeLearning: "Kết quả / bài học",
       process: "Quy trình xử lý",
       deliveredArtifacts: "Artifact đã bàn giao",
       delivered: "Kết quả bàn giao",
@@ -866,6 +923,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Hệ thống chatbot đa kênh cần logic tích hợp, permission handling, event trigger và interaction flow nhất quán.",
         role:
           "Requirement analysis, API research, user flow mapping, functional documentation và stakeholder clarification.",
+        keyDecisions: [
+          "Tách riêng channel behavior, OAuth/webhook constraints, event trigger và trạng thái tương tác để từng phần có thể được review rõ ràng.",
+          "Giữ flow đủ dễ hiểu cho business nhưng vẫn giữ chi tiết kỹ thuật cần thiết cho trao đổi với Dev.",
+        ],
+        outcomeLearning:
+          "Artifact giúp giảm ambiguity trong thảo luận và handoff, đặc biệt quanh event trigger, permission và trạng thái feedback của user.",
         process: [
           "Đọc tài liệu API về OAuth, webhook, permission scope và event trigger logic.",
           "Map hành vi giữa channel và system để kiểm tra kỳ vọng business với ràng buộc kỹ thuật.",
@@ -899,6 +962,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         problem:
           "Automation và push notification dễ trở nên khó hiểu nếu trigger logic, state, segmentation và edge case không được làm rõ.",
         role: "User flow design, feature breakdown, Figma mockup, edge case analysis và Dev handoff support.",
+        keyDecisions: [
+          "Cấu trúc feature theo trigger, segment, state và notification behavior thay vì xem như một flow chung.",
+          "Làm rõ edge case và khác biệt giữa các state để stakeholder có thể so sánh behavior trước handoff.",
+        ],
+        outcomeLearning:
+          "Giúp stakeholder so sánh behavior giữa các state và tạo nền tảng rõ hơn cho mockup, handoff và checklist QA/UAT.",
         process: [
           "Tách feature theo trigger, segment, state và notification behavior.",
           "Map end-to-end user/system flow trước khi chuẩn bị mockup.",
@@ -917,6 +986,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         problem:
           "Hệ thống nội bộ có nhiều role cần access logic nhất quán để tránh nhầm lẫn vận hành và lỗ hổng quản trị.",
         role: "Permission logic analysis, role mapping, matrix design và validation support.",
+        keyDecisions: [
+          "Nhóm permission theo nhu cầu vận hành và role behavior thay vì xử lý từng yêu cầu quyền như một ngoại lệ riêng.",
+          "Dùng matrix để stakeholder dễ scan gap, overlap và câu hỏi governance trước implementation.",
+        ],
+        outcomeLearning:
+          "Giúp permission logic dễ validate hơn trước implementation và giảm ambiguity về access-control.",
         process: [
           "Nhóm role và permission thành matrix để stakeholder có thể review rõ ràng.",
           "Kiểm tra tính nhất quán giữa role behavior, permission scope và operational impact.",
@@ -962,7 +1037,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Dự án product-flow tập trung vào việc chuyển user needs thành screen structure, interaction logic và prototype.",
         contributions: ["User persona", "Logical flow", "Figma prototype", "Multi-platform UX logic"],
         relevance:
-          "Hỗ trợ định vị Associate PM và Game BA bằng cách cho thấy cách nhu cầu mơ hồ trở thành screen, journey và interaction decision cụ thể.",
+          "Hỗ trợ định hướng Associate PM/Product Operations bằng cách cho thấy cách nhu cầu mơ hồ trở thành screen, journey và interaction decision cụ thể.",
         tags: ["Product flow", "Prototype", "UX logic", "User journey"],
       },
       {
@@ -977,17 +1052,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "Market Forecasting & Portfolio Optimization Thesis",
-        type: "Machine Learning / Analytical Research Project",
-        positioning: "Một proof point về chiều sâu nghiên cứu, bổ trợ cho BA/Product work.",
+        type: "Analytical Research Project",
+        positioning:
+          "Một dự án nghiên cứu phân tích so sánh cách các mô hình dự báo và phương pháp tối ưu danh mục có thể hỗ trợ ra quyết định đầu tư.",
         contributions: [
-          "Time-series forecasting",
-          "Machine learning model comparison",
-          "Portfolio optimization",
-          "ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, Transformer, Reinforcement Learning",
+          "Định khung câu hỏi nghiên cứu có cấu trúc",
+          "So sánh mô hình ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM và Transformer",
+          "So sánh tối ưu danh mục với Markowitz, Black-Litterman và Reinforcement Learning/PPO",
+          "Time-series reasoning và ra quyết định trong điều kiện không chắc chắn",
         ],
         relevance:
-          "Bổ sung bằng chứng về research depth, model comparison và structured evaluation, trong khi vẫn giữ trọng tâm chính là product systems.",
-        tags: ["Forecasting", "Model comparison", "Research", "Optimization"],
+          "Bổ sung bằng chứng về analytical discipline, model comparison và business reasoning, trong khi vẫn giữ trọng tâm portfolio là Product/System BA.",
+        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning"],
       },
     ],
     experience: [
@@ -998,11 +1074,16 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         context: "AI, customer service, fintech và CDP product modules.",
         featuredLabel: "Kinh nghiệm chính",
         summary:
-          "Trọng tâm kinh nghiệm hiện tại trong các module AI/customer-service và CDP, bao gồm làm rõ requirement, thiết kế flow, hỗ trợ mockup, điều phối backlog, permission logic và testing trước UAT.",
+          "Kinh nghiệm chính nơi tôi thực hành BA/Product work qua các hệ thống AI, CSKH, fintech và CDP — chuyển nhu cầu chưa rõ ràng thành flow, mockup, tài liệu, backlog item và checklist hỗ trợ QA/UAT.",
+        proofLabel: "Điều kinh nghiệm này chứng minh",
+        proof:
+          "Năng lực Product/System BA trong bối cảnh system-heavy: làm rõ behavior, cấu trúc artifact handoff, điều phối công việc và kiểm tra logic trước UAT.",
         highlights: [
           { value: "65+", label: "màn hình / trạng thái tính năng" },
           { value: "21 / ~400", label: "vai trò và quyền hạn" },
           { value: "3-4", label: "feature được plan mỗi sprint" },
+          { value: "8-10", label: "task được điều phối mỗi sprint" },
+          { value: "~5", label: "bug phát hiện trước UAT" },
         ],
         evidence: [
           "Thiết kế end-to-end user flows và Figma mockups cho khoảng 65 screens/features trong các module CDP customer-service.",
@@ -1035,47 +1116,55 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     process: {
       header: {
-        eyebrow: "Working Process",
-        title: "Cách tôi biến sự mơ hồ thành artifact sẵn sàng triển khai.",
+        eyebrow: "Cách tôi nghĩ",
+        title: "Cách tôi tiếp cận những bài toán sản phẩm còn mơ hồ",
       },
       rows: [
         {
           number: "01",
-          title: "Requirement & Flow Clarity",
-          description:
-            "Làm rõ nhu cầu mơ hồ, map user flow, xác định hành vi tính năng và edge case.",
+          title: "Làm rõ bối cảnh",
+          description: "Hiểu business goal, người dùng, constraint và tiêu chí thành công trước khi đi vào solution.",
         },
         {
           number: "02",
-          title: "Product/System Documentation",
-          description:
-            "Chuyển product logic thành tài liệu chức năng, acceptance criteria, mockup và handoff material có cấu trúc.",
+          title: "Map flow",
+          description: "Chuyển requirement rời rạc thành user flow, system flow, state và dependency.",
         },
         {
           number: "03",
-          title: "Stakeholder & Sprint Coordination",
-          description:
-            "Hỗ trợ sprint planning, backlog tracking, checklist kiểm thử, chuẩn bị UAT và phối hợp cross-functional.",
+          title: "Xác định edge case",
+          description: "Tìm permission gap, trigger conflict, failure state và rủi ro vận hành.",
         },
         {
           number: "04",
-          title: "Technical-Business Translation",
+          title: "Chuyển thành artifact",
           description:
-            "Đọc tài liệu API, hiểu OAuth/webhook, permission scope, event trigger và chuyển thành logic dễ hiểu cho business.",
+            "Chuyển logic thành tài liệu chức năng, mockup, acceptance criteria, checklist và backlog-ready item.",
         },
         {
           number: "05",
-          title: "Game/Product Domain Curiosity",
+          title: "Align và iterate",
           description:
-            "Kết nối product thinking với thể loại game, player motivation, live-service systems và hành vi trong competitive multiplayer.",
+            "Dùng artifact để align stakeholder, hỗ trợ dev handoff và refine qua review hoặc QA feedback.",
         },
       ],
     },
+    productNotes: {
+      eyebrow: "Ghi chú sản phẩm",
+      title: "Mẫu viết thể hiện tư duy sản phẩm có cấu trúc.",
+      description:
+        "Một tín hiệu viết nhẹ, không phải bài blog đã xuất bản. Phần này cho thấy cách tôi giải thích BA/Product reasoning ngắn gọn và dễ review.",
+      noteLabel: "Mẫu viết / Ghi chú nháp",
+      noteTitle: "Cách tôi biến yêu cầu mơ hồ thành product flow rõ ràng",
+      notePreview:
+        "Một ghi chú ngắn về cách tôi làm rõ context, map flow, xác định edge case và chuyển product logic thành artifact để team có thể thảo luận và triển khai.",
+      availability: "Có thể gửi khi cần",
+    },
     gameDirection: {
       eyebrow: "Định hướng game",
-      title: "Game là domain tôi muốn hiểu sâu hơn dưới góc nhìn sản phẩm.",
+      title: "Game là nơi tôi muốn áp dụng product/system thinking trong bước tiếp theo.",
       body:
-        "Ngoài công việc, tôi thực sự hứng thú với cách các thể loại game tạo động lực, cạnh tranh, progression và long-term engagement cho người chơi. Tôi đặc biệt quan tâm đến MOBA, FPS, battle royale, auto-battler, card games, strategy games và các live-service multiplayer systems. Đây là nền tảng cho định hướng dài hạn của tôi toward Game BA, Product Operations và LiveOps.",
+        "Game Product và LiveOps là định hướng tương lai, chưa phải evidence base chính hiện tại. Tôi quan tâm đến cách các thể loại game tạo động lực, cạnh tranh, progression và long-term engagement, đặc biệt trong MOBA, FPS, battle royale, auto-battler, card games, strategy games và live-service multiplayer systems.",
       genresTitle: "Thể loại và hệ thống game tôi quan tâm",
       gamesTitle: "Một số game tôi theo dõi hoặc chơi",
       genres: [
@@ -1101,7 +1190,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Kết nối",
-      title: "Hãy trao đổi về product systems, game operations hoặc các vị trí BA/Product.",
+      title: "Hãy trao đổi về product systems, BA/Product roles hoặc định hướng Game Product/LiveOps.",
       emailLabel: "Gửi email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Tải CV",

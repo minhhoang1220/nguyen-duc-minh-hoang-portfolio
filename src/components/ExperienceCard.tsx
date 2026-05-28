@@ -27,10 +27,18 @@ function ExperienceCard({ experience, featured = false }: ExperienceCardProps) {
         {featured ? (
           <div>
             {experience.summary ? <p className="text-base leading-8 text-ink md:text-lg">{experience.summary}</p> : null}
+            {experience.proof ? (
+              <div className="mt-5 rounded-md border border-line bg-cream p-4">
+                {experience.proofLabel ? (
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{experience.proofLabel}</p>
+                ) : null}
+                <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{experience.proof}</p>
+              </div>
+            ) : null}
             {experience.highlights ? (
-              <dl className="mt-6 grid gap-3 sm:grid-cols-3">
+              <dl className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
                 {experience.highlights.map((highlight) => (
-                  <div key={`${highlight.value}-${highlight.label}`} className="border border-line bg-cream p-4">
+                  <div key={`${highlight.value}-${highlight.label}`} className="rounded-md border border-line bg-cream p-4">
                     <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{highlight.label}</dt>
                     <dd className="mt-2 text-2xl font-semibold leading-none text-navy md:text-3xl">{highlight.value}</dd>
                   </div>

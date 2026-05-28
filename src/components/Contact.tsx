@@ -30,7 +30,7 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
 
             <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                className="inline-flex min-h-12 items-center justify-center border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
                 href={personal.linkedin}
                 aria-label={linkedinAria}
                 target="_blank"
@@ -39,7 +39,7 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
                 {content.linkedinLabel}
               </a>
               <CvLink
-                className="inline-flex min-h-12 items-center justify-center border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
                 href={personal.cv}
                 email={personal.email}
                 ariaLabel={cvDownloadAria}
