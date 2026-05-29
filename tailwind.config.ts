@@ -19,10 +19,13 @@ const config: Config = {
         sky: "#9DC4FF",
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        sans: ["Inter Display", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
       },
       boxShadow: {
-        minimal: "0 2px 8px rgba(8, 14, 36, 0.06)",
+        minimal: "0 1px 3px rgba(8, 14, 36, 0.04)",
+        card:    "0 2px 8px rgba(8, 14, 36, 0.06)",
+        hover:   "0 8px 20px rgba(8, 14, 36, 0.10)",
+        modal:   "0 16px 40px rgba(8, 14, 36, 0.14)",
       },
     },
   },

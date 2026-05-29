@@ -149,7 +149,7 @@ function App() {
         </section>
 
         <Reveal>
-          <SkillsMatrix content={portfolio.process} />
+          <SkillsMatrix process={portfolio.process} approach={portfolio.approach} skillGroups={portfolio.skillGroups} />
         </Reveal>
         <Reveal>
           <ProductNotes content={portfolio.productNotes} />

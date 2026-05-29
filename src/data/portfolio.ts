@@ -86,6 +86,16 @@ export type ProcessRow = {
   description: string;
 };
 
+export type ApproachItem = {
+  title: string;
+  body: string;
+};
+
+export type SkillGroup = {
+  category: string;
+  skills: string[];
+};
+
 export type PortfolioContent = {
   navigation: NavItem[];
   personal: {
@@ -189,6 +199,14 @@ export type PortfolioContent = {
     header: SectionCopy;
     rows: ProcessRow[];
   };
+  approach: {
+    header: SectionCopy;
+    items: ApproachItem[];
+  };
+  skillGroups: {
+    header: SectionCopy;
+    groups: SkillGroup[];
+  };
   productNotes: {
     eyebrow: string;
     title: string;
@@ -280,7 +298,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Product/System Business Analyst focused on turning ambiguous requirements into clear flows, documentation, and delivery-ready artifacts.",
       headline: "Turning ambiguity into clear product flows.",
       intro:
-        "I turn unclear business needs into structured product flows, functional requirements, mockups, and delivery-ready artifacts across product, business, and technical teams.",
+        "I turn ambiguous requirements into delivery-ready artifacts — across product flows, system specs, and stakeholder alignment.",
       focusLine: "Primary focus: Product/System BA. Secondary direction: Associate PM and Product Operations. Future direction: Game Product and LiveOps.",
       artifactAria: "Selected product artifact previews",
       ctas: {
@@ -438,15 +456,16 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         context:
           "Vega Fintech work across AI/customer-service modules where multiple channels and platform constraints needed to be translated into implementation-ready logic.",
         problem:
-          "Multi-channel chatbot systems require clear integration logic, permission handling, event triggers, and consistent user interaction flow.",
+          "The company needed to integrate an AI chatbot across multiple channels (Zalo, web, internal) but had no API strategy, flow documentation, or stakeholder alignment.",
         role:
-          "Requirement analysis, API research, user flow mapping, functional documentation, stakeholder clarification.",
+          "Business Analyst / Product flow designer — responsible for requirement analysis, API research, user flow mapping, functional documentation, and stakeholder clarification.",
         keyDecisions: [
-          "Separated channel behavior, OAuth/webhook constraints, event triggers, and user interaction states so each part could be reviewed clearly.",
-          "Kept the flow business-readable while preserving the technical details needed for Dev discussion.",
+          "Researched and documented OAuth 2.0 flows, webhook event triggers, and permission handling across channels.",
+          "Designed user interaction flows, trigger logic, and conversation state transitions.",
+          "Created feature mockups for stakeholder review and coordinated requirement alignment across product, engineering, and business teams.",
         ],
         outcomeLearning:
-          "The artifact reduced ambiguity for discussion and handoff, especially around event triggers, permissions, and user feedback states.",
+          "Delivered complete flow documents and feature specifications that unblocked engineering to begin implementation. Reduced ambiguity in cross-team handoffs.",
         process: [
           "Read API documentation for OAuth, webhook, permission scope, and event trigger logic.",
           "Mapped channel-to-system behavior so business expectations could be checked against technical constraints.",
@@ -460,7 +479,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         skills: ["API research", "System flow", "BA documentation", "Stakeholder alignment"],
       },
       {
-        title: "CDP Automation & Push Notification Flow",
+        title: "AI Cash Flow Forecasting System & Backlog Management",
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
@@ -476,40 +495,43 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           caption: "Expanded detail preview",
         },
         context:
-          "CDP customer-service modules involving App Push Notification, Automation Flow, and omnichannel feature behavior.",
+          "Vega Fintech cash flow forecasting product involving AI predictive models and financial stakeholder requirements.",
         problem:
-          "Automation and push notification features can easily become confusing without clear trigger logic, states, segmentation, and edge cases.",
-        role: "User flow design, feature breakdown, Figma mockup, edge case analysis, Dev handoff support.",
+          "The team was building a cash flow forecasting system with AI components but lacked a structured requirement pipeline, backlog structure, or sprint process.",
+        role: "Project Management Collaborator / Business Analyst — responsible for requirements translation, backlog management, sprint planning, testing, and pre-UAT release tracking.",
         keyDecisions: [
-          "Structured the feature around trigger, segment, state, and notification behavior instead of treating it as one generic flow.",
-          "Highlighted edge cases and state differences so stakeholders could compare behavior before handoff.",
+          "Translated complex financial stakeholder requirements into functional specifications for the engineering team.",
+          "Coordinated with the AI Team Lead to align machine learning model outputs with product expectations and business logic.",
+          "Managed the product backlog, structured sprint planning, and established pre-UAT testing and bug tracking.",
         ],
         outcomeLearning:
-          "Helped stakeholders compare behavior across states and created a clearer basis for mockup, handoff, and QA/UAT checks.",
+          "Established a repeatable sprint delivery process and significantly improved requirement clarity between business stakeholders and engineering.",
         process: [
-          "Broke features into trigger, segment, state, and notification behavior.",
-          "Mapped end-to-end user and system flow before preparing mockups.",
-          "Identified edge cases and checked behavior against development handoff needs.",
+          "Conducted requirement elicitation sessions with financial and business stakeholders.",
+          "Mapped predictive model output requirements with the AI team lead.",
+          "Structured user stories, backlog items, and acceptance criteria in Jira.",
+          "Created Dev testing checklists and validated features before UAT release.",
         ],
-        delivered: "End-to-end flows and mockups as part of 65+ screens/features across CDP modules.",
-        artifacts: ["User flow", "Feature breakdown", "Figma mockups", "Dev testing checklist"],
+        delivered: "Product backlog, user stories, functional requirements documentation, and testing checklists.",
+        artifacts: ["Functional requirements spec", "Sprint planning backlog", "Dev testing checklists", "Pre-UAT release tracker"],
         impact:
-          "Helped align stakeholders, clarify feature behavior, and support product pitching and development handoff.",
-        skills: ["Product flow", "UX logic", "CDP", "Automation", "Feature breakdown"],
+          "Streamlined cross-team development cycles, reduced requirement ambiguity, and ensured high-quality releases before UAT.",
+        skills: ["Backlog management", "Sprint coordination", "Requirements translation", "Testing & bug tracking", "Stakeholder alignment"],
       },
       {
         title: "Permission Matrix for Internal Operations System",
         context:
           "Internal operations logic for a system with many user roles and permission-sensitive workflows.",
         problem:
-          "Internal systems with many roles need consistent access logic to prevent operational confusion and security gaps.",
-        role: "Permission logic analysis, role mapping, matrix design, validation support.",
+          "The internal platform had no permission framework. Needed a model covering 21 user roles and ~400 permission entries with clear conflict resolution rules.",
+        role: "Business Analyst / System analyst — responsible for permission logic analysis, role mapping, matrix design, and validation support.",
         keyDecisions: [
-          "Grouped permissions by operational need and role behavior instead of handling each access request as a separate exception.",
-          "Used a matrix format so stakeholders could scan gaps, overlaps, and governance questions before implementation.",
+          "Designed the full permission matrix (21 roles, ~400 entries) with clear conflict resolution rules.",
+          "Defined edge cases, role inheritance logic, and conflict resolution rules.",
+          "Tracked issue lifecycle on Jira; consolidated stakeholder feedback into requirement updates.",
         ],
         outcomeLearning:
-          "Made permission logic easier to validate before implementation and reduced access-control ambiguity.",
+          "Delivered permission specification that served as the single source of truth for engineering during implementation.",
         process: [
           "Grouped roles and permissions into a matrix structure that could be reviewed by stakeholders.",
           "Checked consistency across role behavior, permission scope, and operational impact.",
@@ -570,18 +592,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "Market Forecasting & Portfolio Optimization Thesis",
-        type: "Analytical Research Project",
+        type: "Analytical / Academic Research",
         positioning:
-          "A comparative analytical research project exploring how forecasting models and portfolio optimization methods can support investment decision-making.",
+          "Can ML models outperform traditional methods in forecasting market trends and optimizing investment portfolios across 15 global companies (2020–2024)? Sole researcher and implementer.",
         contributions: [
-          "Structured research framing",
-          "Model comparison across ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, and Transformer",
-          "Portfolio optimization comparison using Markowitz, Black-Litterman, and Reinforcement Learning/PPO",
-          "Time-series reasoning and decision-making under uncertainty",
+          "Collected and processed 4 years of market data via yfinance and Macrotrends",
+          "Implemented and compared 7 forecasting models: ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, Transformer",
+          "Implemented 3 portfolio strategies: Mean-Variance (Markowitz), Black-Litterman, Reinforcement Learning (PPO)",
+          "Validated results with paired t-tests; visualized Sharpe ratios and drawdown across strategies",
         ],
         relevance:
-          "Adds supporting evidence of analytical discipline, model comparison, and business reasoning without shifting the portfolio away from product/system BA work.",
-        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning"],
+          "Demonstrates ability to frame research questions, manage ambiguous data problems, make evidence-based decisions, and communicate quantitative findings clearly. Deep learning models (LSTM, Transformer) outperformed on volatile periods; RL-based rebalancing showed more adaptive behavior than static Markowitz under stress scenarios.",
+        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning", "Python"],
       },
     ],
     experience: [
@@ -666,6 +688,54 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           title: "Align and iterate",
           description:
             "Use artifacts to align stakeholders, support dev handoff, and refine through review or QA feedback.",
+        },
+      ],
+    },
+    approach: {
+      header: {
+        eyebrow: "How I Work",
+        title: "Core approaches to problem solving",
+      },
+      items: [
+        {
+          title: "System-first thinking",
+          body: "I analyze system dependencies, event triggers, permission states, and edge cases before designing features.",
+        },
+        {
+          title: "Business ↔ Technical Translation",
+          body: "I bridge communication gaps by reading API docs, understanding system constraints, and translating business goals into clear specs.",
+        },
+        {
+          title: "Evidence-based decisions",
+          body: "I use data analysis, structured reasoning, and quantitative model benchmarking to support product direction and tradeoffs.",
+        },
+        {
+          title: "Stakeholder alignment",
+          body: "I create clear visual flows, mockups, and detailed checklists to align product, engineering, and business teams.",
+        },
+      ],
+    },
+    skillGroups: {
+      header: {
+        eyebrow: "Skills Matrix",
+        title: "Capability groups & toolsets",
+      },
+      groups: [
+        {
+          category: "System & Integration",
+          skills: ["API Integration", "OAuth 2.0", "Webhooks", "Permission Design", "Role-Matrix Logic", "Event-Driven Flows"],
+        },
+        {
+          category: "Business Analysis & PM",
+          skills: ["Requirement Gathering", "BRD/SRS Documentation", "User Stories", "Sprint Planning", "Backlog Management", "Jira/Confluence"],
+        },
+        {
+          category: "Product & UX Design",
+          skills: ["Figma Mockups", "User Journey Mapping", "Interaction Logic", "Edge Case Analysis", "Product Wireframes"],
+        },
+        {
+          category: "Data & Machine Learning",
+          skills: ["Python (Pandas, NumPy)", "SQL", "Time-Series Forecasting", "Machine Learning Models", "Portfolio Optimization"],
         },
       ],
     },
@@ -762,7 +832,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Business Analyst định hướng Product/System, tập trung biến yêu cầu mơ hồ thành flow, tài liệu và artifact sẵn sàng triển khai.",
       headline: "Biến sự mơ hồ thành product flow rõ ràng.",
       intro:
-        "Tôi chuyển hóa nhu cầu kinh doanh chưa rõ ràng thành product flow, tài liệu chức năng, mockup và artifact sẵn sàng cho triển khai giữa product, business và technical team.",
+        "Tôi biến những yêu cầu mơ hồ thành tài liệu sẵn sàng để phát triển — từ product flow, system spec đến stakeholder alignment.",
       focusLine: "Trọng tâm hiện tại: Product/System BA. Hướng phát triển gần: Associate PM và Product Operations. Định hướng dài hạn: Game Product và LiveOps.",
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
@@ -942,7 +1012,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         skills: ["API research", "System flow", "BA documentation", "Stakeholder alignment"],
       },
       {
-        title: "CDP Automation & Push Notification Flow",
+        title: "Hệ thống Dự báo Dòng tiền AI & Quản lý Backlog",
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
@@ -958,44 +1028,47 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           caption: "Preview chi tiết mở rộng",
         },
         context:
-          "Các module CDP customer-service liên quan đến App Push Notification, Automation Flow và hành vi omnichannel.",
+          "Sản phẩm dự báo dòng tiền tại Vega Fintech tích hợp các module dự đoán bằng AI và yêu cầu nghiệp vụ tài chính phức tạp.",
         problem:
-          "Automation và push notification dễ trở nên khó hiểu nếu trigger logic, state, segmentation và edge case không được làm rõ.",
-        role: "User flow design, feature breakdown, Figma mockup, edge case analysis và Dev handoff support.",
+          "Đội ngũ phát triển hệ thống dự báo dòng tiền AI nhưng thiếu một quy trình pipeline yêu cầu, cấu trúc backlog hoặc quy trình sprint rõ ràng.",
+        role: "Project Management Collaborator / Business Analyst — chịu trách nhiệm dịch yêu cầu, quản lý backlog, lập kế hoạch sprint, testing và theo dõi release trước UAT.",
         keyDecisions: [
-          "Cấu trúc feature theo trigger, segment, state và notification behavior thay vì xem như một flow chung.",
-          "Làm rõ edge case và khác biệt giữa các state để stakeholder có thể so sánh behavior trước handoff.",
+          "Dịch các yêu cầu phức tạp từ stakeholder tài chính thành functional spec cụ thể cho đội ngũ kỹ thuật.",
+          "Làm việc chặt chẽ với AI Team Lead để khớp đầu ra của mô hình máy học với kỳ vọng thực tế của sản phẩm.",
+          "Quản lý backlog sản phẩm, cấu trúc kế hoạch sprint và thiết lập quy trình kiểm thử và theo dõi lỗi trước UAT.",
         ],
         outcomeLearning:
-          "Giúp stakeholder so sánh behavior giữa các state và tạo nền tảng rõ hơn cho mockup, handoff và checklist QA/UAT.",
+          "Xây dựng thành công quy trình sprint bàn giao lặp lại hiệu quả, tăng tính rõ ràng của yêu cầu giữa kinh doanh và kỹ thuật.",
         process: [
-          "Tách feature theo trigger, segment, state và notification behavior.",
-          "Map end-to-end user/system flow trước khi chuẩn bị mockup.",
-          "Xác định edge case và kiểm tra behavior theo nhu cầu handoff cho development.",
+          "Thực hiện các buổi làm rõ yêu cầu với stakeholder tài chính và kinh doanh.",
+          "Định hình tiêu chí nghiệm thu của mô hình dự báo cùng AI team lead.",
+          "Cấu trúc user story, backlog item và tiêu chí chấp nhận trên Jira.",
+          "Xây dựng checklists kiểm thử cho Dev và xác thực tính năng trước khi chạy UAT.",
         ],
-        delivered: "End-to-end flows và mockups trong nhóm 65+ màn hình/tính năng ở các module CDP.",
-        artifacts: ["User flow", "Feature breakdown", "Figma mockups", "Dev testing checklist"],
+        delivered: "Backlog sản phẩm, đặc tả yêu cầu chức năng và checklists kiểm thử.",
+        artifacts: ["Đặc tả yêu cầu chức năng", "Backlog & kế hoạch sprint", "Checklist kiểm thử", "Release tracker trước UAT"],
         impact:
-          "Hỗ trợ align stakeholder, làm rõ feature behavior và hỗ trợ product pitching cũng như development handoff.",
-        skills: ["Product flow", "UX logic", "CDP", "Automation", "Feature breakdown"],
+          "Tối ưu hóa chu kỳ phát triển liên phòng ban, loại bỏ sự mơ hồ trong bàn giao và đảm bảo chất lượng release trước UAT.",
+        skills: ["Backlog management", "Sprint coordination", "Translate requirements", "Testing & bug tracking", "Stakeholder alignment"],
       },
       {
         title: "Permission Matrix for Internal Operations System",
         context:
           "Logic vận hành nội bộ cho một hệ thống có nhiều user role và các workflow nhạy cảm về quyền truy cập.",
         problem:
-          "Hệ thống nội bộ có nhiều role cần access logic nhất quán để tránh nhầm lẫn vận hành và lỗ hổng quản trị.",
-        role: "Permission logic analysis, role mapping, matrix design và validation support.",
+          "Nền tảng nội bộ chưa có khung phân quyền nhất quán. Cần thiết kế một mô hình quản lý quyền truy cập bao gồm 21 vai trò (role) và khoảng 400 mục quyền hạn (permission entries) với các quy tắc giải quyết xung đột rõ ràng.",
+        role: "Business Analyst / System Analyst — chịu trách nhiệm phân tích permission logic, role mapping, thiết kế ma trận phân quyền và hỗ trợ kiểm thử logic phân quyền.",
         keyDecisions: [
-          "Nhóm permission theo nhu cầu vận hành và role behavior thay vì xử lý từng yêu cầu quyền như một ngoại lệ riêng.",
-          "Dùng matrix để stakeholder dễ scan gap, overlap và câu hỏi governance trước implementation.",
+          "Thiết kế ma trận phân quyền hoàn chỉnh (21 roles, ~400 entries) với cơ chế giải quyết xung đột quyền hạn rõ ràng.",
+          "Xác định rõ các trường hợp biên (edge case), logic kế thừa quyền (role inheritance) và các quy tắc xung đột.",
+          "Quản lý và theo dõi vòng đời ticket trên Jira; tổng hợp phản hồi vận hành từ stakeholder để cập nhật đặc tả yêu cầu.",
         ],
         outcomeLearning:
-          "Giúp permission logic dễ validate hơn trước implementation và giảm ambiguity về access-control.",
+          "Bàn giao đặc tả phân quyền chi tiết làm single source of truth giúp kỹ thuật triển khai chính xác và rút ngắn thời gian phát triển.",
         process: [
-          "Nhóm role và permission thành matrix để stakeholder có thể review rõ ràng.",
-          "Kiểm tra tính nhất quán giữa role behavior, permission scope và operational impact.",
-          "Hỗ trợ validation để expectation về access-control rõ ràng trước implementation.",
+          "Nhóm các role và permission thành cấu trúc ma trận để các bên liên quan tiện xem xét.",
+          "Kiểm tra tính nhất quán chéo giữa hành vi vai trò, phạm vi quyền hạn và tác động vận hành.",
+          "Xây dựng và làm rõ các logic thừa kế, xung đột quyền trước khi chuyển giao cho đội phát triển.",
         ],
         delivered: "Permission matrix cho 21 role và khoảng 400 permission.",
         artifacts: ["Role-permission matrix", "Permission logic notes", "Validation support"],
@@ -1146,6 +1219,54 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           title: "Align và iterate",
           description:
             "Dùng artifact để align stakeholder, hỗ trợ dev handoff và refine qua review hoặc QA feedback.",
+        },
+      ],
+    },
+    approach: {
+      header: {
+        eyebrow: "Cách tôi làm việc",
+        title: "Cách tôi tiếp cận các bài toán sản phẩm",
+      },
+      items: [
+        {
+          title: "Tư duy hệ thống",
+          body: "Tôi luôn phân tích sự phụ thuộc (dependency), trạng thái và các trường hợp biên (edge case) trước khi đi vào giải pháp.",
+        },
+        {
+          title: "Dịch thuật Business ↔ Technical",
+          body: "Tôi đọc tài liệu kỹ thuật, API, hiểu giới hạn hệ thống để dịch mục tiêu kinh doanh thành đặc tả rõ ràng cho dev.",
+        },
+        {
+          title: "Quyết định dựa trên dữ liệu",
+          body: "Tôi sử dụng dữ liệu, tư duy phân tích có cấu trúc và so sánh định lượng để bảo vệ định hướng sản phẩm.",
+        },
+        {
+          title: "Đồng thuận stakeholder",
+          body: "Tôi tạo ra luồng flow trực quan, mockup và checklist chi tiết để kết nối và thống nhất ý kiến giữa các bên.",
+        },
+      ],
+    },
+    skillGroups: {
+      header: {
+        eyebrow: "Ma trận kỹ năng",
+        title: "Các nhóm năng lực & công cụ",
+      },
+      groups: [
+        {
+          category: "Hệ thống & Tích hợp",
+          skills: ["API Tích hợp", "OAuth 2.0", "Webhooks", "Thiết kế phân quyền", "Ma trận vai trò", "Event-Driven Flows"],
+        },
+        {
+          category: "BA & Quản lý dự án (BA/PM)",
+          skills: ["Thu thập yêu cầu", "Tài liệu BRD/SRS", "User Stories", "Sprint Planning", "Quản lý Backlog", "Jira/Confluence"],
+        },
+        {
+          category: "Product & Thiết kế UX",
+          skills: ["Figma Mockups", "User Journey Mapping", "Logic tương tác", "Phân tích trường hợp biên", "Product Wireframes"],
+        },
+        {
+          category: "Dữ liệu & Học máy",
+          skills: ["Python (Pandas, NumPy)", "SQL", "Dự báo Time-Series", "Mô hình Machine Learning", "Tối ưu hóa danh mục"],
         },
       ],
     },

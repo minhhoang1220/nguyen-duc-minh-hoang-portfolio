@@ -1,6 +1,8 @@
 # Nguyễn Đức Minh Hoàng Portfolio
 
-Public-facing portfolio website for Nguyễn Đức Minh Hoàng, positioned for Business Analyst, Associate Product Manager, Product Operations, System/Product Analyst, and future Game Product / LiveOps roles.
+Public-facing portfolio website for Nguyễn Đức Minh Hoàng,
+positioned as a Product/System Business Analyst with a long-term trajectory
+toward BA/PM roles in the game and tech industry.
 
 ## Tech Stack
 
