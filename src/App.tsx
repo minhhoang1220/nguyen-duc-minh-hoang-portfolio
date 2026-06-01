@@ -228,7 +228,7 @@ function ProjectPreviewCollage({
             <img
               src={image.previewSrc ?? image.src}
               alt={image.alt}
-              className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]"
+              className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
               loading="lazy"
               decoding="async"
             />

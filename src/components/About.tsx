@@ -8,6 +8,11 @@ type AboutProps = {
 function About({ content }: AboutProps) {
   const [portraitFailed, setPortraitFailed] = useState(false);
   const showPortrait = Boolean(content.portrait && !portraitFailed);
+  const pointTones = [
+    "border-line bg-card",
+    "border-sky/45 bg-sky/15",
+    "border-navy/10 bg-beige/75",
+  ];
 
   return (
     <section id="about" className="section-padding bg-cream" aria-labelledby="about-title">
@@ -49,10 +54,13 @@ function About({ content }: AboutProps) {
             </h2>
             <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9" text={content.body} />
 
-            <div className="mt-12 grid gap-0 border-y border-line">
+            <div className="mt-12 grid gap-4">
               {content.points.map((point, index) => (
-                <article key={point.title} className="grid gap-5 border-b border-line py-7 last:border-b-0 md:grid-cols-[96px_1fr]">
-                  <p className="text-[40px] font-semibold leading-none text-navy/20 md:text-[58px]">{String(index + 1).padStart(2, "0")}</p>
+                <article
+                  key={point.title}
+                  className={`grid gap-5 rounded-lg border p-5 md:grid-cols-[96px_1fr] md:p-6 ${pointTones[index % pointTones.length]}`}
+                >
+                  <p className="text-[40px] font-semibold leading-none text-navy/25 md:text-[58px]">{String(index + 1).padStart(2, "0")}</p>
                   <div>
                     <h3 className="text-2xl font-semibold leading-tight text-navy">{point.title}</h3>
                     <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-muted" text={point.description} />

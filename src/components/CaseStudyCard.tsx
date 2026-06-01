@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useId, useState, type ReactNode } from "react";
 import type { AssetImage, CaseStudy, PortfolioContent } from "../data/portfolio";
 import { preloadImage } from "../utils/preloadImage";
 
@@ -25,12 +25,12 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
           <EmphasizedText className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
 
-          <div className="mt-6 border-l-2 border-navy pl-4">
+          <div className="mt-6 rounded-lg border border-sky/45 border-l-4 border-l-navy bg-sky/15 p-5">
             <p className="detail-label">{labels.role}</p>
             <EmphasizedText className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7" text={caseStudy.role} />
           </div>
 
-          <div className="mt-7 rounded-lg border border-line bg-cream p-5">
+          <div className="mt-7 rounded-lg border border-line bg-cream p-5 shadow-minimal">
             <p className="detail-label mb-4">{labels.evidence}</p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
@@ -65,31 +65,31 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
       </div>
 
       <div id={detailId} className={`${isExpanded ? "block" : "hidden"} mt-8 border-t border-line pt-8`}>
-        <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-          <div>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <DetailBlock>
             <p className="detail-label mb-3">{labels.problem}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.problem} />
-          </div>
-          <div>
+          </DetailBlock>
+          <DetailBlock tone="blue">
             <p className="detail-label mb-3">{labels.outcomeLearning}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
-          </div>
-          <div>
+          </DetailBlock>
+          <DetailBlock tone="cream">
             <p className="detail-label mb-3">{labels.impact}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.impact} />
-          </div>
-          <div>
+          </DetailBlock>
+          <DetailBlock>
             <p className="detail-label mb-3">{labels.context}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.context} />
-          </div>
-          <DetailList title={labels.keyDecisions} items={caseStudy.keyDecisions} />
+          </DetailBlock>
+          <DetailList tone="blue" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
           <DetailList title={labels.process} items={caseStudy.process} />
-          <DetailList title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
-          <div>
+          <DetailList tone="cream" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
+          <DetailBlock>
             <p className="detail-label mb-3">{labels.delivered}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.delivered} />
-          </div>
-          <div>
+          </DetailBlock>
+          <DetailBlock tone="blue">
             <p className="detail-label mb-3">{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
@@ -98,7 +98,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                 </span>
               ))}
             </div>
-          </div>
+          </DetailBlock>
         </div>
       </div>
     </article>
@@ -130,7 +130,7 @@ function ImagePreview({
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
-            className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]"
+            className={`h-full w-full transition duration-500 group-hover:scale-[1.015] ${getPreviewImageClass(image.src)}`}
             loading="lazy"
             decoding="async"
           />
@@ -198,9 +198,20 @@ function TimelinePreview({ large = false }: { large?: boolean }) {
   );
 }
 
-function DetailList({ title, items }: { title: string; items: string[] }) {
+function DetailBlock({ children, tone = "card" }: { children: ReactNode; tone?: "card" | "blue" | "cream" }) {
+  const toneClass =
+    tone === "blue"
+      ? "border-sky/45 border-l-sky bg-sky/12"
+      : tone === "cream"
+        ? "border-line border-l-navy/30 bg-cream"
+        : "border-line border-l-navy/20 bg-card";
+
+  return <div className={`rounded-lg border border-l-4 p-5 ${toneClass}`}>{children}</div>;
+}
+
+function DetailList({ title, items, tone = "card" }: { title: string; items: string[]; tone?: "card" | "blue" | "cream" }) {
   return (
-    <div>
+    <DetailBlock tone={tone}>
       <p className="detail-label mb-3">{title}</p>
       <ul className="space-y-3">
         {items.map((item) => (
@@ -210,8 +221,24 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
           </li>
         ))}
       </ul>
-    </div>
+    </DetailBlock>
   );
+}
+
+function getPreviewImageClass(src: string) {
+  if (src.includes("cdp-automation-flow-map")) {
+    return "object-cover object-center";
+  }
+
+  if (src.includes("cdp-flow-management-states")) {
+    return "object-cover object-top";
+  }
+
+  if (src.includes("cdp-flow-report") || src.includes("cdp-campaign")) {
+    return "object-cover object-top";
+  }
+
+  return "object-cover object-center";
 }
 
 function EmphasizedText({ text, className }: { text: string; className: string }) {
