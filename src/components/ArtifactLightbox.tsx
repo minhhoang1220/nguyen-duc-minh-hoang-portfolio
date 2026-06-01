@@ -7,6 +7,7 @@ type ArtifactLightboxProps = {
   zoomInLabel: string;
   zoomOutLabel: string;
   resetZoomLabel: string;
+  loadingLabel: string;
   onClose: () => void;
 };
 
@@ -21,10 +22,19 @@ const zoomStep = 0.35;
 
 const clampScale = (value: number) => Math.min(maxScale, Math.max(minScale, value));
 
-function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZoomLabel, onClose }: ArtifactLightboxProps) {
+function ArtifactLightbox({
+  image,
+  closeLabel,
+  zoomInLabel,
+  zoomOutLabel,
+  resetZoomLabel,
+  loadingLabel,
+  onClose,
+}: ArtifactLightboxProps) {
   const [scale, setScale] = useState(minScale);
   const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<Element | null>(null);
   const dragStartRef = useRef<Point | null>(null);
@@ -57,6 +67,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
 
   useEffect(() => {
     resetZoom();
+    setIsImageLoaded(false);
   }, [image?.src, resetZoom]);
 
   useEffect(() => {
@@ -207,6 +218,7 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
   }
 
   const zoomPercentage = `${Math.round(scale * 100)}%`;
+  const previewSrc = image.previewSrc && image.previewSrc !== image.src ? image.previewSrc : undefined;
 
   return (
     <div
@@ -274,28 +286,47 @@ function ArtifactLightbox({ image, closeLabel, zoomInLabel, zoomOutLabel, resetZ
         </div>
         <div
           className={`relative min-h-0 h-[68vh] overflow-hidden bg-cream md:h-[72vh] ${
-            scale > minScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-zoom-in"
+            scale > minScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-default"
           }`}
-          style={{ touchAction: scale > minScale ? "none" : "pan-y" }}
+          style={{ touchAction: scale > minScale ? "none" : "manipulation" }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerEnd}
           onPointerCancel={handlePointerEnd}
-          onDoubleClick={() => {
-            if (scale === minScale) {
-              zoomBy(zoomStep * 2);
-            } else {
-              resetZoom();
-            }
-          }}
         >
           <div className="flex h-full w-full items-center justify-center p-3 md:p-6">
+            {!isImageLoaded ? (
+              <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                <span className="rounded-md border border-line bg-card px-4 py-2 text-sm font-semibold text-muted shadow-minimal">
+                  {loadingLabel}
+                </span>
+              </div>
+            ) : null}
+            {previewSrc && !isImageLoaded ? (
+              <img
+                src={previewSrc}
+                alt=""
+                className="absolute h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] select-none object-contain opacity-70 blur-[1px] md:h-[calc(100%-3rem)] md:w-[calc(100%-3rem)]"
+                draggable={false}
+                decoding="async"
+                aria-hidden="true"
+                style={{
+                  transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`,
+                  transition: isDragging ? "none" : "transform 180ms ease-out",
+                  transformOrigin: "center center",
+                }}
+              />
+            ) : null}
             <img
               src={image.src}
               alt={image.alt}
-              className="max-h-full max-w-full select-none object-contain"
+              className={`max-h-full max-w-full select-none object-contain transition-opacity duration-200 ${
+                isImageLoaded ? "opacity-100" : "opacity-0"
+              }`}
               draggable={false}
               decoding="async"
+              onLoad={() => setIsImageLoaded(true)}
+              onError={() => setIsImageLoaded(true)}
               style={{
                 transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`,
                 transition: isDragging ? "none" : "transform 180ms ease-out",

@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import type { AssetImage, CaseStudy, PortfolioContent } from "../data/portfolio";
+import { preloadImage } from "../utils/preloadImage";
 
 type CaseStudyCardProps = {
   caseStudy: CaseStudy;
@@ -73,6 +74,8 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         <div className="min-w-0">
           {caseStudy.mainPreview ? (
             <ImagePreview image={caseStudy.mainPreview} openArtifactLabel={openArtifactLabel} onImageOpen={onImageOpen} />
+          ) : caseStudy.visualType === "timeline" ? (
+            <TimelinePreview large />
           ) : (
             <PermissionPreview labels={labels} />
           )}
@@ -120,6 +123,8 @@ function ImagePreview({
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
         aria-label={`${openArtifactLabel}: ${image.title}`}
         onClick={() => onImageOpen(image)}
+        onPointerEnter={() => preloadImage(image.src)}
+        onFocus={() => preloadImage(image.src)}
       >
         <span className={`relative block overflow-hidden rounded-md bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
           <img
@@ -168,18 +173,18 @@ function PermissionPreview({ labels }: { labels: PortfolioContent["caseStudyLabe
   );
 }
 
-function TimelinePreview() {
+function TimelinePreview({ large = false }: { large?: boolean }) {
   const phases = ["Discovery", "Flow Mapping", "Mockup", "Review", "Dev Handoff", "QA"];
 
   return (
-    <div className="rounded-lg border border-line bg-card p-5 md:p-6">
-      <div className="space-y-4">
+    <div className={`rounded-lg border border-line bg-card p-5 md:p-6 ${large ? "lg:min-h-[420px]" : ""}`}>
+      <div className={`space-y-4 ${large ? "lg:pt-8" : ""}`}>
         {phases.map((phase, phaseIndex) => (
-          <div key={phase} className="grid grid-cols-[108px_1fr] items-center gap-4 text-xs font-semibold text-navy">
+          <div key={phase} className="grid grid-cols-[minmax(88px,108px)_1fr] items-center gap-4 text-xs font-semibold text-navy">
             <span className="truncate text-muted">{phase}</span>
-            <span className="relative h-7 bg-cream">
+            <span className={`relative bg-cream ${large ? "h-10" : "h-7"}`}>
               <span
-                className="absolute top-1/2 h-3 -translate-y-1/2 bg-navy"
+                className={`absolute top-1/2 -translate-y-1/2 bg-navy ${large ? "h-4" : "h-3"}`}
                 style={{
                   left: `${Math.min(phaseIndex * 12, 66)}%`,
                   width: `${phaseIndex % 2 === 0 ? 30 : 24}%`,

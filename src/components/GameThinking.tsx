@@ -6,7 +6,7 @@ type GameThinkingProps = {
 
 function GameThinking({ content }: GameThinkingProps) {
   return (
-    <section id="game-direction" className="section-padding bg-card" aria-labelledby="game-direction-title">
+    <section id="game-direction" className="section-padding bg-cream" aria-labelledby="game-direction-title">
       <div className="container-wide">
         <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-navy">{content.eyebrow}</p>

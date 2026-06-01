@@ -122,6 +122,21 @@ img {
     @apply rounded-lg transition duration-300 hover:-translate-y-0.5 hover:border-navy/40 hover:shadow-minimal;
   }
 
+  .stat-number {
+    display: block;
+    color: #9dc4ff;
+    font-size: clamp(3.25rem, 6.5vw, 6rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 0.92;
+    white-space: nowrap;
+  }
+
+  .stat-number-wide {
+    font-size: clamp(3rem, 5.2vw, 5.25rem);
+    letter-spacing: -0.04em;
+  }
+
   .reveal {
     min-width: 0;
     opacity: 0;
@@ -178,6 +193,14 @@ img {
 
   .floating-artifact {
     animation: none;
+  }
+
+  .stat-number {
+    font-size: clamp(3rem, 17vw, 4.8rem);
+  }
+
+  .stat-number-wide {
+    font-size: clamp(2.75rem, 14vw, 4.35rem);
   }
 }
 

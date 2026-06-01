@@ -69,7 +69,7 @@ function App() {
           <About content={portfolio.about} />
         </Reveal>
 
-        <section id="case-studies" className="section-padding bg-cream" aria-labelledby="case-studies-title">
+        <section id="case-studies" className="section-padding bg-card" aria-labelledby="case-studies-title">
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -96,7 +96,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="section-padding bg-card" aria-labelledby="projects-title">
+        <section id="projects" className="section-padding bg-cream" aria-labelledby="projects-title">
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -120,7 +120,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="section-padding bg-cream" aria-labelledby="experience-title">
+        <section id="experience" className="section-padding bg-navy text-cream" aria-labelledby="experience-title">
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -129,6 +129,7 @@ function App() {
                 title={portfolio.sections.experience.title}
                 description={portfolio.sections.experience.description}
                 wide
+                inverse
               />
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-6">
@@ -174,6 +175,7 @@ function App() {
         zoomInLabel={portfolio.ui.zoomInArtifact}
         zoomOutLabel={portfolio.ui.zoomOutArtifact}
         resetZoomLabel={portfolio.ui.resetArtifactZoom}
+        loadingLabel={portfolio.ui.loadingArtifact}
         onClose={() => setSelectedImage(null)}
       />
     </div>

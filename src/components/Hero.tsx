@@ -1,4 +1,5 @@
 import type { AssetImage, HeroArtifact, PortfolioContent } from "../data/portfolio";
+import { preloadImage } from "../utils/preloadImage";
 import CvLink from "./CvLink";
 
 type HeroProps = {
@@ -40,9 +41,14 @@ function Hero({
             {hero.headline}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
-          <p className="mt-5 max-w-2xl border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
-            {hero.focusLine}
-          </p>
+          <ul className="mt-5 max-w-2xl space-y-2 border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
+            {hero.focusItems.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a className="btn-primary" href="#case-studies" aria-label={hero.ctas.caseStudies}>
@@ -126,6 +132,8 @@ function ArtifactImageButton({
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
         aria-label={`${openArtifactLabel}: ${artifact.image.title}`}
         onClick={() => onImageOpen(artifact.image)}
+        onPointerEnter={() => preloadImage(artifact.image.src)}
+        onFocus={() => preloadImage(artifact.image.src)}
       >
         <span className="mb-3 flex items-center justify-between gap-4 border-b border-line pb-3">
           <span className="artifact-label">{artifact.title}</span>
@@ -136,7 +144,7 @@ function ArtifactImageButton({
             src={artifact.image.previewSrc ?? artifact.image.src}
             alt={artifact.image.alt}
             className={`h-full w-full transition duration-500 group-hover:scale-[1.015] ${imageClassName}`}
-            loading="eager"
+            loading={showCaption ? "eager" : "lazy"}
             decoding="async"
           />
           <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">

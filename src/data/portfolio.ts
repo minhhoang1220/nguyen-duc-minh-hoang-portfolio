@@ -43,6 +43,7 @@ export type CaseStudy = {
   title: string;
   mainPreview?: AssetImage;
   detailPreview?: AssetImage;
+  visualType?: "permission" | "timeline";
   context: string;
   problem: string;
   role: string;
@@ -120,12 +121,13 @@ export type PortfolioContent = {
     zoomInArtifact: string;
     zoomOutArtifact: string;
     resetArtifactZoom: string;
+    loadingArtifact: string;
   };
   hero: {
     roleLine: string;
     headline: string;
     intro: string;
-    focusLine: string;
+    focusItems: string[];
     artifactAria: string;
     ctas: {
       caseStudies: string;
@@ -292,6 +294,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       zoomInArtifact: "Zoom in",
       zoomOutArtifact: "Zoom out",
       resetArtifactZoom: "Reset zoom",
+      loadingArtifact: "Loading high-resolution artifact",
     },
     hero: {
       roleLine:
@@ -299,7 +302,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       headline: "Turning ambiguity into clear product flows.",
       intro:
         "I turn ambiguous requirements into delivery-ready artifacts — across product flows, system specs, and stakeholder alignment.",
-      focusLine: "Primary focus: Product/System BA. Secondary direction: Associate PM and Product Operations. Future direction: Game Product and LiveOps.",
+      focusItems: [
+        "Primary focus: Product / System Business Analyst",
+        "Secondary direction: Associate PM / Product Operations",
+        "Future direction: Game Product / LiveOps",
+      ],
       artifactAria: "Selected product artifact previews",
       ctas: {
         caseStudies: "View Case Studies",
@@ -438,52 +445,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     caseStudies: [
       {
-        title: "Omnichannel AI Chatbot / API Integration Flow",
-        mainPreview: {
-          src: assets.chatbotJourney,
-          previewSrc: assetPreviews.chatbotJourney,
-          alt: "Sanitized Zalo OA chatbot journey flow used to clarify channel and system behavior",
-          title: "Zalo OA chatbot journey flow",
-          caption: "Main flow preview",
-        },
-        detailPreview: {
-          src: assets.chatbotFeedback,
-          previewSrc: assetPreviews.chatbotFeedback,
-          alt: "Sanitized chatbot feedback and rating flow detail",
-          title: "Feedback and rating flow",
-          caption: "Expanded detail preview",
-        },
-        context:
-          "Vega Fintech work across AI/customer-service modules where multiple channels and platform constraints needed to be translated into implementation-ready logic.",
-        problem:
-          "The company needed to integrate an AI chatbot across multiple channels (Zalo, web, internal) but had no API strategy, flow documentation, or stakeholder alignment.",
-        role:
-          "Business Analyst / Product flow designer — responsible for requirement analysis, API research, user flow mapping, functional documentation, and stakeholder clarification.",
-        keyDecisions: [
-          "Researched and documented OAuth 2.0 flows, webhook event triggers, and permission handling across channels.",
-          "Designed user interaction flows, trigger logic, and conversation state transitions.",
-          "Created feature mockups for stakeholder review and coordinated requirement alignment across product, engineering, and business teams.",
-        ],
-        outcomeLearning:
-          "Delivered complete flow documents and feature specifications that unblocked engineering to begin implementation. Reduced ambiguity in cross-team handoffs.",
-        process: [
-          "Read API documentation for OAuth, webhook, permission scope, and event trigger logic.",
-          "Mapped channel-to-system behavior so business expectations could be checked against technical constraints.",
-          "Clarified ambiguous interaction states with stakeholders before Dev handoff.",
-        ],
-        delivered:
-          "OAuth/webhook/event-trigger research, integration flows, feature logic, mockup support, documentation.",
-        artifacts: ["API research notes", "Integration flow", "Functional requirement notes", "Mockup support"],
-        impact:
-          "Reduced ambiguity for handoff, clarified technical-business expectations, and supported implementation planning.",
-        skills: ["API research", "System flow", "BA documentation", "Stakeholder alignment"],
-      },
-      {
-        title: "AI Cash Flow Forecasting System & Backlog Management",
+        title: "CDP Automation & Push Notification Flow",
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sanitized CDP automation flow map showing trigger and flow logic",
+          alt: "Sanitized CDP automation flow map showing trigger, segment, state, and notification logic",
           title: "CDP automation flow map",
           caption: "Main flow preview",
         },
@@ -492,30 +458,58 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           previewSrc: assetPreviews.cdpFlowStates,
           alt: "Sanitized CDP flow management state screens",
           title: "CDP flow management states",
-          caption: "Expanded detail preview",
+          caption: "Expanded state preview",
         },
         context:
-          "Vega Fintech cash flow forecasting product involving AI predictive models and financial stakeholder requirements.",
+          "CDP customer-service modules involving Automation Flow, App Push Notification, flow reporting, and feature-state management.",
         problem:
-          "The team was building a cash flow forecasting system with AI components but lacked a structured requirement pipeline, backlog structure, or sprint process.",
-        role: "Project Management Collaborator / Business Analyst — responsible for requirements translation, backlog management, sprint planning, testing, and pre-UAT release tracking.",
+          "The feature logic was complex: triggers, segments, notification states, reporting behavior, and edge cases needed to be aligned before mockup and handoff.",
+        role:
+          "Product/System BA — responsible for user flow design, feature breakdown, Figma mockup support, edge case analysis, and Dev handoff preparation.",
         keyDecisions: [
-          "Translated complex financial stakeholder requirements into functional specifications for the engineering team.",
-          "Coordinated with the AI Team Lead to align machine learning model outputs with product expectations and business logic.",
-          "Managed the product backlog, structured sprint planning, and established pre-UAT testing and bug tracking.",
+          "Separated trigger, segment, action, state, and reporting behavior instead of treating automation as one generic screen flow.",
+          "Used flow maps and state screens together so stakeholders could compare product behavior before implementation.",
+          "Kept confidential data out of the artifact while preserving enough structure for QA/UAT discussion.",
         ],
         outcomeLearning:
-          "Established a repeatable sprint delivery process and significantly improved requirement clarity between business stakeholders and engineering.",
+          "The artifact reduced ambiguity for product discussion, helped stakeholders compare behavior across states, and created a clearer basis for Dev handoff and QA/UAT checks.",
         process: [
-          "Conducted requirement elicitation sessions with financial and business stakeholders.",
-          "Mapped predictive model output requirements with the AI team lead.",
-          "Structured user stories, backlog items, and acceptance criteria in Jira.",
+          "Mapped end-to-end user and system flow for automation and push notification behavior.",
+          "Broke feature behavior into trigger, segment, state, notification, and reporting logic.",
+          "Prepared mockup-ready requirements and edge-case notes for stakeholder review and Dev handoff.",
+        ],
+        delivered:
+          "End-to-end flows and mockups as part of 65+ screens/features across CDP modules.",
+        artifacts: ["Automation flow map", "Feature-state screens", "Figma mockups", "Dev testing checklist"],
+        impact:
+          "Helped clarify feature behavior, reduce handoff ambiguity, and create a more reliable basis for QA/UAT review.",
+        skills: ["Product flow", "System logic", "CDP", "Automation", "Feature breakdown"],
+      },
+      {
+        title: "AI Cash Flow Forecasting System & Backlog Management",
+        visualType: "timeline",
+        context:
+          "Vega Fintech cash flow forecasting product involving AI predictive models, financial stakeholder requirements, and release coordination.",
+        problem:
+          "The work involved sensitive AI/financial logic that could not be shown publicly, while the team still needed clearer requirement structure, backlog handling, and pre-UAT coordination.",
+        role: "Project Management Collaborator / Business Analyst — responsible for requirements translation, backlog management, sprint planning, testing, and pre-UAT release tracking.",
+        keyDecisions: [
+          "Used delivery planning and backlog artifacts rather than product screenshots to represent the work without exposing confidential forecasting logic.",
+          "Translated financial stakeholder expectations into functional requirements and acceptance criteria for engineering discussion.",
+          "Structured sprint planning, Dev testing checklists, and bug tracking so releases could be reviewed before UAT.",
+        ],
+        outcomeLearning:
+          "Created a clearer delivery rhythm and reduced requirement ambiguity between business stakeholders, AI/product logic, and engineering execution.",
+        process: [
+          "Conducted requirement clarification with financial and business stakeholders.",
+          "Aligned predictive model output expectations with the AI team lead and product requirements.",
+          "Structured user stories, backlog items, and acceptance criteria for sprint planning.",
           "Created Dev testing checklists and validated features before UAT release.",
         ],
-        delivered: "Product backlog, user stories, functional requirements documentation, and testing checklists.",
+        delivered: "Product backlog, user stories, functional requirements documentation, testing checklists, and release tracking.",
         artifacts: ["Functional requirements spec", "Sprint planning backlog", "Dev testing checklists", "Pre-UAT release tracker"],
         impact:
-          "Streamlined cross-team development cycles, reduced requirement ambiguity, and ensured high-quality releases before UAT.",
+          "Improved delivery coordination, made handoff expectations clearer, and created a repeatable basis for testing before UAT.",
         skills: ["Backlog management", "Sprint coordination", "Requirements translation", "Testing & bug tracking", "Stakeholder alignment"],
       },
       {
@@ -557,11 +551,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           caption: "Feature screen / operations proof",
         },
         {
-          src: assets.cdpAutomationFlow,
-          previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sanitized CDP automation flow map showing trigger and delivery logic",
-          title: "CDP automation flow map",
-          caption: "Flow-builder / automation proof",
+          src: assets.cdpFlowReport,
+          previewSrc: assetPreviews.cdpFlowReport,
+          alt: "Sanitized CDP flow report detail interface showing reporting and operational visibility",
+          title: "CDP flow report detail",
+          caption: "Reporting / analytics proof",
         },
       ],
     },
@@ -826,6 +820,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       zoomInArtifact: "Phóng to",
       zoomOutArtifact: "Thu nhỏ",
       resetArtifactZoom: "Đặt lại zoom",
+      loadingArtifact: "Đang tải artifact độ phân giải cao",
     },
     hero: {
       roleLine:
@@ -833,7 +828,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       headline: "Biến sự mơ hồ thành product flow rõ ràng.",
       intro:
         "Tôi biến những yêu cầu mơ hồ thành tài liệu sẵn sàng để phát triển — từ product flow, system spec đến stakeholder alignment.",
-      focusLine: "Trọng tâm hiện tại: Product/System BA. Hướng phát triển gần: Associate PM và Product Operations. Định hướng dài hạn: Game Product và LiveOps.",
+      focusItems: [
+        "Trọng tâm chính: Product / System Business Analyst",
+        "Định hướng thứ hai: Associate PM / Product Operations",
+        "Định hướng tương lai: Game Product / LiveOps",
+      ],
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
         caseStudies: "Xem Case Studies",
@@ -972,51 +971,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     caseStudies: [
       {
-        title: "Omnichannel AI Chatbot / API Integration Flow",
-        mainPreview: {
-          src: assets.chatbotJourney,
-          previewSrc: assetPreviews.chatbotJourney,
-          alt: "Flow chatbot Zalo OA đã được làm sạch, dùng để làm rõ hành vi giữa channel và system",
-          title: "Zalo OA chatbot journey flow",
-          caption: "Preview flow chính",
-        },
-        detailPreview: {
-          src: assets.chatbotFeedback,
-          previewSrc: assetPreviews.chatbotFeedback,
-          alt: "Flow feedback và rating của chatbot đã được làm sạch",
-          title: "Feedback and rating flow",
-          caption: "Preview chi tiết mở rộng",
-        },
-        context:
-          "Công việc tại Vega Fintech trong các module AI/customer-service, nơi nhiều channel và giới hạn nền tảng cần được chuyển hóa thành logic sẵn sàng triển khai.",
-        problem:
-          "Hệ thống chatbot đa kênh cần logic tích hợp, permission handling, event trigger và interaction flow nhất quán.",
-        role:
-          "Requirement analysis, API research, user flow mapping, functional documentation và stakeholder clarification.",
-        keyDecisions: [
-          "Tách riêng channel behavior, OAuth/webhook constraints, event trigger và trạng thái tương tác để từng phần có thể được review rõ ràng.",
-          "Giữ flow đủ dễ hiểu cho business nhưng vẫn giữ chi tiết kỹ thuật cần thiết cho trao đổi với Dev.",
-        ],
-        outcomeLearning:
-          "Artifact giúp giảm ambiguity trong thảo luận và handoff, đặc biệt quanh event trigger, permission và trạng thái feedback của user.",
-        process: [
-          "Đọc tài liệu API về OAuth, webhook, permission scope và event trigger logic.",
-          "Map hành vi giữa channel và system để kiểm tra kỳ vọng business với ràng buộc kỹ thuật.",
-          "Làm rõ các trạng thái tương tác còn mơ hồ với stakeholder trước Dev handoff.",
-        ],
-        delivered:
-          "OAuth/webhook/event-trigger research, integration flows, feature logic, mockup support và documentation.",
-        artifacts: ["API research notes", "Integration flow", "Functional requirement notes", "Mockup support"],
-        impact:
-          "Giảm ambiguity khi handoff, làm rõ kỳ vọng technical-business và hỗ trợ planning triển khai.",
-        skills: ["API research", "System flow", "BA documentation", "Stakeholder alignment"],
-      },
-      {
-        title: "Hệ thống Dự báo Dòng tiền AI & Quản lý Backlog",
+        title: "CDP Automation & Push Notification Flow",
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger và flow logic",
+          alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger, segment, state và notification logic",
           title: "CDP automation flow map",
           caption: "Preview flow chính",
         },
@@ -1025,31 +984,60 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           previewSrc: assetPreviews.cdpFlowStates,
           alt: "Các màn hình trạng thái CDP flow management đã được làm sạch",
           title: "CDP flow management states",
-          caption: "Preview chi tiết mở rộng",
+          caption: "Preview trạng thái mở rộng",
         },
         context:
-          "Sản phẩm dự báo dòng tiền tại Vega Fintech tích hợp các module dự đoán bằng AI và yêu cầu nghiệp vụ tài chính phức tạp.",
+          "Các module CDP customer-service liên quan đến Automation Flow, App Push Notification, flow reporting và quản lý trạng thái tính năng.",
         problem:
-          "Đội ngũ phát triển hệ thống dự báo dòng tiền AI nhưng thiếu một quy trình pipeline yêu cầu, cấu trúc backlog hoặc quy trình sprint rõ ràng.",
-        role: "Project Management Collaborator / Business Analyst — chịu trách nhiệm dịch yêu cầu, quản lý backlog, lập kế hoạch sprint, testing và theo dõi release trước UAT.",
+          "Logic tính năng phức tạp: trigger, segment, trạng thái notification, reporting behavior và edge case cần được làm rõ trước mockup và handoff.",
+        role:
+          "Product/System BA — phụ trách user flow design, feature breakdown, hỗ trợ Figma mockup, edge case analysis và chuẩn bị Dev handoff.",
         keyDecisions: [
-          "Dịch các yêu cầu phức tạp từ stakeholder tài chính thành functional spec cụ thể cho đội ngũ kỹ thuật.",
-          "Làm việc chặt chẽ với AI Team Lead để khớp đầu ra của mô hình máy học với kỳ vọng thực tế của sản phẩm.",
-          "Quản lý backlog sản phẩm, cấu trúc kế hoạch sprint và thiết lập quy trình kiểm thử và theo dõi lỗi trước UAT.",
+          "Tách trigger, segment, action, state và reporting behavior thay vì xem automation như một screen flow chung.",
+          "Dùng flow map kết hợp với state screens để stakeholder có thể so sánh product behavior trước implementation.",
+          "Loại bỏ dữ liệu nhạy cảm khỏi artifact nhưng vẫn giữ đủ cấu trúc để hỗ trợ thảo luận QA/UAT.",
         ],
         outcomeLearning:
-          "Xây dựng thành công quy trình sprint bàn giao lặp lại hiệu quả, tăng tính rõ ràng của yêu cầu giữa kinh doanh và kỹ thuật.",
+          "Artifact giúp giảm ambiguity trong thảo luận product, hỗ trợ stakeholder so sánh behavior giữa các state và tạo nền tảng rõ hơn cho Dev handoff cũng như QA/UAT checks.",
         process: [
-          "Thực hiện các buổi làm rõ yêu cầu với stakeholder tài chính và kinh doanh.",
-          "Định hình tiêu chí nghiệm thu của mô hình dự báo cùng AI team lead.",
-          "Cấu trúc user story, backlog item và tiêu chí chấp nhận trên Jira.",
-          "Xây dựng checklists kiểm thử cho Dev và xác thực tính năng trước khi chạy UAT.",
+          "Map end-to-end user flow và system flow cho automation và push notification behavior.",
+          "Tách feature behavior thành trigger, segment, state, notification và reporting logic.",
+          "Chuẩn bị requirement đủ rõ cho mockup, review với stakeholder và Dev handoff.",
         ],
-        delivered: "Backlog sản phẩm, đặc tả yêu cầu chức năng và checklists kiểm thử.",
-        artifacts: ["Đặc tả yêu cầu chức năng", "Backlog & kế hoạch sprint", "Checklist kiểm thử", "Release tracker trước UAT"],
+        delivered:
+          "End-to-end flows và mockup nằm trong phạm vi 65+ screens/features qua các CDP modules.",
+        artifacts: ["Automation flow map", "Feature-state screens", "Figma mockups", "Dev testing checklist"],
         impact:
-          "Tối ưu hóa chu kỳ phát triển liên phòng ban, loại bỏ sự mơ hồ trong bàn giao và đảm bảo chất lượng release trước UAT.",
-        skills: ["Backlog management", "Sprint coordination", "Translate requirements", "Testing & bug tracking", "Stakeholder alignment"],
+          "Làm rõ feature behavior, giảm ambiguity khi handoff và tạo nền tảng đáng tin cậy hơn cho QA/UAT review.",
+        skills: ["Product flow", "System logic", "CDP", "Automation", "Feature breakdown"],
+      },
+      {
+        title: "AI Cash Flow Forecasting System & Backlog Management",
+        visualType: "timeline",
+        context:
+          "Sản phẩm dự báo dòng tiền tại Vega Fintech liên quan đến AI predictive models, yêu cầu stakeholder tài chính và release coordination.",
+        problem:
+          "Phần logic AI/tài chính nhạy cảm không thể public, nhưng team vẫn cần cấu trúc requirement, backlog handling và pre-UAT coordination rõ hơn.",
+        role:
+          "Project Management Collaborator / Business Analyst — phụ trách dịch yêu cầu, quản lý backlog, sprint planning, testing và theo dõi release trước UAT.",
+        keyDecisions: [
+          "Dùng delivery planning và backlog artifacts thay vì product screenshots để thể hiện công việc mà không lộ logic dự báo nhạy cảm.",
+          "Chuyển kỳ vọng của stakeholder tài chính thành functional requirements và acceptance criteria cho engineering discussion.",
+          "Cấu trúc sprint planning, Dev testing checklist và bug tracking để release có thể được review trước UAT.",
+        ],
+        outcomeLearning:
+          "Tạo delivery rhythm rõ hơn và giảm ambiguity giữa business stakeholders, AI/product logic và engineering execution.",
+        process: [
+          "Làm rõ yêu cầu với financial và business stakeholders.",
+          "Khớp kỳ vọng về output của mô hình dự báo với AI team lead và product requirements.",
+          "Cấu trúc user stories, backlog items và acceptance criteria cho sprint planning.",
+          "Xây dựng Dev testing checklists và validate tính năng trước UAT release.",
+        ],
+        delivered: "Product backlog, user stories, functional requirements documentation, testing checklists và release tracking.",
+        artifacts: ["Functional requirements spec", "Sprint planning backlog", "Dev testing checklists", "Pre-UAT release tracker"],
+        impact:
+          "Cải thiện delivery coordination, làm rõ kỳ vọng handoff và tạo basis lặp lại được cho testing trước UAT.",
+        skills: ["Backlog management", "Sprint coordination", "Requirements translation", "Testing & bug tracking", "Stakeholder alignment"],
       },
       {
         title: "Permission Matrix for Internal Operations System",
@@ -1090,11 +1078,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           caption: "Bằng chứng feature screen / operations",
         },
         {
-          src: assets.cdpAutomationFlow,
-          previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger và delivery logic",
-          title: "CDP automation flow map",
-          caption: "Bằng chứng flow-builder / automation",
+          src: assets.cdpFlowReport,
+          previewSrc: assetPreviews.cdpFlowReport,
+          alt: "Ảnh chụp CDP flow report detail đã được làm sạch, thể hiện reporting và operational visibility",
+          title: "CDP flow report detail",
+          caption: "Bằng chứng reporting / analytics",
         },
       ],
     },

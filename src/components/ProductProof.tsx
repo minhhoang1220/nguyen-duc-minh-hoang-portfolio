@@ -1,4 +1,5 @@
 import type { AssetImage, PortfolioContent } from "../data/portfolio";
+import { preloadImage } from "../utils/preloadImage";
 
 type ProductProofProps = {
   proof: PortfolioContent["projectProof"];
@@ -25,6 +26,8 @@ function ProductProof({ proof, openArtifactLabel, onImageOpen }: ProductProofPro
               className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
               aria-label={`${openArtifactLabel}: ${image.title}`}
               onClick={() => onImageOpen(image)}
+              onPointerEnter={() => preloadImage(image.src)}
+              onFocus={() => preloadImage(image.src)}
             >
               <span className="relative block h-[360px] overflow-hidden rounded-md bg-card md:h-[520px]">
                 <img

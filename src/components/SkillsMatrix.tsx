@@ -16,7 +16,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           <SectionHeader eyebrow={approach.header.eyebrow} titleId="skills-title" title={approach.header.title} wide />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {approach.items.map((item, index) => (
-              <article key={item.title} className="border border-line bg-card p-8 flex flex-col gap-4 shadow-minimal hover:shadow-hover hover:-translate-y-1 transition-all duration-300">
+              <article key={item.title} className="flex flex-col gap-4 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:shadow-hover">
                 <span className="text-xs font-semibold text-muted tracking-wider">0{index + 1}</span>
                 <h3 className="text-xl font-semibold leading-tight text-navy">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-muted mt-auto">{item.body}</p>
@@ -30,8 +30,8 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {skillGroups.groups.map((group) => (
-              <article key={group.category} className="border border-line bg-card p-8 flex flex-col gap-6 shadow-minimal hover:shadow-hover transition-all duration-300">
-                <h3 className="text-lg font-semibold leading-tight text-navy border-b border-line pb-3">{group.category}</h3>
+              <article key={group.category} className="flex flex-col gap-6 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:shadow-hover">
+                <h3 className="border-b border-line pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
                     <span key={skill} className="px-3 py-1.5 bg-beige text-xs font-medium text-navy rounded-[3px]">
