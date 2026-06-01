@@ -11,7 +11,7 @@ type ContactProps = {
 
 function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }: ContactProps) {
   return (
-    <section id="contact" className="section-padding bg-cream text-ink" aria-labelledby="contact-title">
+    <section id="contact" className="section-contact section-padding text-ink" aria-labelledby="contact-title">
       <div className="container-wide">
         <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-navy">{content.eyebrow}</p>

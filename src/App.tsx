@@ -69,7 +69,7 @@ function App() {
           <About content={portfolio.about} />
         </Reveal>
 
-        <section id="case-studies" className="section-padding bg-card" aria-labelledby="case-studies-title">
+        <section id="case-studies" className="section-cases section-padding" aria-labelledby="case-studies-title">
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -96,7 +96,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="section-padding bg-cream" aria-labelledby="product-proof-title">
+        <section id="projects" className="section-product-proof section-padding" aria-labelledby="product-proof-title">
           <div className="container-wide">
             <Reveal>
               <ProductProof

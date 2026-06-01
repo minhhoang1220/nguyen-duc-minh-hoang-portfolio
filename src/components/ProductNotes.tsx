@@ -7,7 +7,7 @@ type ProductNotesProps = {
 
 function ProductNotes({ content }: ProductNotesProps) {
   return (
-    <section id="product-notes" className="section-padding bg-card" aria-labelledby="product-notes-title">
+    <section id="product-notes" className="section-notes section-padding" aria-labelledby="product-notes-title">
       <div className="container-wide">
         <SectionHeader
           eyebrow={content.eyebrow}

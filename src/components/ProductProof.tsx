@@ -21,7 +21,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
         {proof.images.map((image) => (
-          <figure key={image.src} className="group rounded-lg border border-line bg-cream p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/40">
+          <figure key={image.src} className="group rounded-lg border border-line bg-cream p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40 hover:shadow-card">
             <button
               type="button"
               className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -34,7 +34,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
                 <img
                   src={image.previewSrc ?? image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
                   loading="lazy"
                   decoding="async"
                 />

@@ -22,7 +22,7 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
           <img
             src={project.image.previewSrc ?? project.image.src}
             alt={project.image.alt}
-            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
+            className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
             loading="lazy"
             decoding="async"
           />

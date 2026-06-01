@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { AssetImage, HeroArtifact, PortfolioContent } from "../data/portfolio";
 import { preloadImage } from "../utils/preloadImage";
 import CvLink from "./CvLink";
@@ -23,11 +24,47 @@ function Hero({
 }: HeroProps) {
   const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
   const supportingArtifacts = hero.artifacts.filter((artifact) => artifact !== mainArtifact);
+  const artifactStageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const node = artifactStageRef.current;
+    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    let frame = 0;
+    const updateArtifactMotion = () => {
+      frame = 0;
+      const progress = Math.min(Math.max(window.scrollY / 620, 0), 1);
+      node.style.setProperty("--hero-artifact-y", `${progress * 18}px`);
+      node.style.setProperty("--hero-artifact-scale", `${1 - progress * 0.025}`);
+    };
+
+    const requestUpdate = () => {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(updateArtifactMotion);
+    };
+
+    updateArtifactMotion();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, []);
 
   return (
     <section
       id="home"
-      className="relative overflow-hidden border-b border-line bg-cream py-14 md:py-18 lg:min-h-[calc(100vh-72px)] lg:py-16"
+      className="section-hero relative overflow-hidden border-b border-line py-14 md:py-18 lg:min-h-[calc(100vh-72px)] lg:py-16"
       aria-labelledby="hero-title"
     >
       <div className="container-wide grid min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] xl:gap-16">
@@ -41,7 +78,7 @@ function Hero({
           <p className="mb-6 max-w-2xl text-base font-medium leading-7 text-muted md:text-lg">{hero.roleLine}</p>
           <h1
             id="hero-title"
-            className="text-balance text-[38px] font-semibold leading-[1.04] text-navy sm:text-[44px] md:text-[60px] lg:text-[68px] xl:text-[72px]"
+            className="text-balance text-[clamp(2.1rem,5.2vw,3.65rem)] font-semibold leading-[1.06] text-navy"
           >
             {hero.headline}
           </h1>
@@ -74,7 +111,7 @@ function Hero({
           </div>
         </div>
 
-        <div className="hero-stage" aria-label={hero.artifactAria}>
+        <div ref={artifactStageRef} className="hero-stage hero-artifact-scroll" aria-label={hero.artifactAria}>
           {mainArtifact?.type === "image" ? (
             <ArtifactImageButton
               artifact={mainArtifact}
@@ -131,7 +168,7 @@ function ArtifactImageButton({
   onImageOpen: (image: AssetImage) => void;
 }) {
   return (
-    <figure className={`${className} group rounded-lg border border-line bg-card p-3 transition duration-300 hover:-translate-y-1 hover:border-navy/45`}>
+    <figure className={`${className} group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/45 hover:shadow-card`}>
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -148,7 +185,7 @@ function ArtifactImageButton({
           <img
             src={artifact.image.previewSrc ?? artifact.image.src}
             alt={artifact.image.alt}
-            className={`h-full w-full transition duration-500 group-hover:scale-[1.015] ${imageClassName}`}
+            className={`h-full w-full transition duration-700 group-hover:scale-[1.025] ${imageClassName}`}
             loading={showCaption ? "eager" : "lazy"}
             decoding="async"
           />
