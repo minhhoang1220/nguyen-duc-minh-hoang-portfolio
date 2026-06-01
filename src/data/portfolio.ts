@@ -148,6 +148,7 @@ export type PortfolioContent = {
     eyebrow: string;
     title: string;
     body: string;
+    portrait?: AssetImage;
     points: {
       title: string;
       description: string;
@@ -386,6 +387,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       title: "I bridge product systems, delivery clarity, and game-facing direction.",
       body:
         "I’m Hoàng, a Product/System BA based in Hanoi, aiming toward Game Product, LiveOps, and Game Operations. My current proof base is system-heavy BA/Product work: clarifying feature logic, mapping flows, structuring documentation, and helping teams move from ambiguity to implementation.",
+      portrait: {
+        src: "/assets/portrait-nguyen-duc-minh-hoang.jpg",
+        alt: "Portrait of Nguyễn Đức Minh Hoàng",
+        title: "Nguyễn Đức Minh Hoàng portrait",
+        caption: "Hanoi, Vietnam",
+      },
       points: [
         {
           title: "System-first thinking",
@@ -958,6 +965,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       title: "Tôi kết nối product systems, delivery clarity và định hướng game.",
       body:
         "Tôi là Hoàng, một Product/System BA tại Hà Nội, đang định hướng tới Game Product, LiveOps và Game Operations. Nền tảng hiện tại của tôi là BA/Product work trong các hệ thống phức tạp: làm rõ logic tính năng, map flow, cấu trúc tài liệu và giúp team đi từ ambiguity tới implementation.",
+      portrait: {
+        src: "/assets/portrait-nguyen-duc-minh-hoang.jpg",
+        alt: "Ảnh chân dung Nguyễn Đức Minh Hoàng",
+        title: "Ảnh chân dung Nguyễn Đức Minh Hoàng",
+        caption: "Hà Nội, Việt Nam",
+      },
       points: [
         {
           title: "Tư duy hệ thống",

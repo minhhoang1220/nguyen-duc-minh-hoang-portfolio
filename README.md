@@ -71,6 +71,16 @@ public/Nguyen-Duc-Minh-Hoang-CV.pdf
 
 The UI checks whether the PDF is available before navigating. If the file is missing in production, visitors see a fallback message asking them to email Hoàng directly.
 
+## Portrait Image
+
+The About section is ready to use a portrait at:
+
+```text
+public/assets/portrait-nguyen-duc-minh-hoang.jpg
+```
+
+If the portrait file is missing, the section falls back to a structured profile card so the page remains deployable.
+
 ## Pre-Deploy Checklist
 
 Before publishing publicly:

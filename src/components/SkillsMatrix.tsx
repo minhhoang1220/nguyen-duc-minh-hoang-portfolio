@@ -11,22 +11,22 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
   return (
     <section id="skills" className="section-padding bg-cream" aria-labelledby="skills-title">
       <div className="container-wide">
-        {/* Subsection 1: How I Work (Approach) */}
-        <div>
+        <div className="rounded-lg border border-line bg-cream">
+          <div className="p-5 md:p-8 lg:p-10">
           <SectionHeader eyebrow={approach.header.eyebrow} titleId="skills-title" title={approach.header.title} wide />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {approach.items.map((item, index) => (
               <article key={item.title} className="flex flex-col gap-4 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:shadow-hover">
-                <span className="text-xs font-semibold text-muted tracking-wider">0{index + 1}</span>
+                <span className="detail-label text-muted">0{index + 1}</span>
                 <h3 className="text-xl font-semibold leading-tight text-navy">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-muted mt-auto">{item.body}</p>
               </article>
             ))}
           </div>
+          </div>
         </div>
 
-        {/* Subsection 2: Capability Groups (restructured skills) */}
-        <div className="mt-20">
+        <div className="mt-12 rounded-lg border border-line bg-beige/45 p-5 md:p-8 lg:p-10">
           <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {skillGroups.groups.map((group) => (
@@ -34,7 +34,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
                 <h3 className="border-b border-line pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
-                    <span key={skill} className="px-3 py-1.5 bg-beige text-xs font-medium text-navy rounded-[3px]">
+                    <span key={skill} className="badge">
                       {skill}
                     </span>
                   ))}
@@ -44,8 +44,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           </div>
         </div>
 
-        {/* Subsection 3: Methodology (original 5-step process) */}
-        <div className="mt-20">
+        <div className="mt-12 rounded-lg border border-line bg-card p-5 md:p-8 lg:p-10">
           <SectionHeader eyebrow={process.header.eyebrow} titleId="process-title" title={process.header.title} wide />
           <div className="mt-10 border-y border-line">
             {process.rows.map((row) => (

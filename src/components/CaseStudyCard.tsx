@@ -23,15 +23,15 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             {labels.eyebrow} 0{index + 1}
           </p>
           <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8">{caseStudy.summary}</p>
+          <EmphasizedText className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
 
           <div className="mt-6 border-l-2 border-navy pl-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.role}</p>
-            <p className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7">{caseStudy.role}</p>
+            <p className="detail-label">{labels.role}</p>
+            <EmphasizedText className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7" text={caseStudy.role} />
           </div>
 
           <div className="mt-7 rounded-lg border border-line bg-cream p-5">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.evidence}</p>
+            <p className="detail-label mb-4">{labels.evidence}</p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
@@ -72,34 +72,34 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         )}
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.problem}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.problem}</p>
+            <p className="detail-label mb-3">{labels.problem}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.problem} />
           </div>
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.role}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.role}</p>
+            <p className="detail-label mb-3">{labels.role}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.role} />
           </div>
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.outcomeLearning}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.outcomeLearning}</p>
+            <p className="detail-label mb-3">{labels.outcomeLearning}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
           </div>
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.impact}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.impact}</p>
+            <p className="detail-label mb-3">{labels.impact}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.impact} />
           </div>
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.context}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.context}</p>
+            <p className="detail-label mb-3">{labels.context}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.context} />
           </div>
           <DetailList title={labels.keyDecisions} items={caseStudy.keyDecisions} />
           <DetailList title={labels.process} items={caseStudy.process} />
           <DetailList title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.delivered}</p>
-            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.delivered}</p>
+            <p className="detail-label mb-3">{labels.delivered}</p>
+            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.delivered} />
           </div>
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.skills}</p>
+            <p className="detail-label mb-3">{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
                 <span key={skill} className="badge shrink-0">
@@ -210,7 +210,7 @@ function TimelinePreview({ large = false }: { large?: boolean }) {
 function DetailList({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{title}</p>
+      <p className="detail-label mb-3">{title}</p>
       <ul className="space-y-3">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
@@ -220,6 +220,30 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+function EmphasizedText({ text, className }: { text: string; className: string }) {
+  const sentenceMatch = text.match(/^(.{12,130}?[.!?])\s+(.*)$/);
+
+  if (sentenceMatch) {
+    return (
+      <p className={className}>
+        <strong className="font-semibold text-ink">{sentenceMatch[1]}</strong> {sentenceMatch[2]}
+      </p>
+    );
+  }
+
+  const words = text.split(" ");
+
+  if (words.length <= 8) {
+    return <p className={className}>{text}</p>;
+  }
+
+  return (
+    <p className={className}>
+      <strong className="font-semibold text-ink">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
+    </p>
   );
 }
 

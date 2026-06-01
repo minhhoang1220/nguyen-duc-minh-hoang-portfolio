@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { PortfolioContent } from "../data/portfolio";
 
 type AboutProps = {
@@ -5,64 +6,113 @@ type AboutProps = {
 };
 
 function About({ content }: AboutProps) {
+  const [portraitFailed, setPortraitFailed] = useState(false);
+  const showPortrait = Boolean(content.portrait && !portraitFailed);
+
   return (
     <section id="about" className="section-padding bg-cream" aria-labelledby="about-title">
       <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
-          <div>
-            <p className="section-kicker text-navy">{content.eyebrow}</p>
+        <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-start lg:gap-14">
+          <div className="min-w-0">
+            {showPortrait && content.portrait ? (
+              <div>
+                <figure className="overflow-hidden rounded-lg border border-line bg-card p-3">
+                  <div className="aspect-[4/5] overflow-hidden rounded-md bg-beige">
+                    <img
+                      src={content.portrait.src}
+                      alt={content.portrait.alt}
+                      className="h-full w-full object-cover object-center"
+                      loading="lazy"
+                      decoding="async"
+                      onError={() => setPortraitFailed(true)}
+                    />
+                  </div>
+                  <figcaption className="mt-4 flex items-center justify-between gap-4 text-sm font-semibold text-navy">
+                    <span>{content.portrait.title}</span>
+                    {content.portrait.caption ? <span className="text-xs text-muted">{content.portrait.caption}</span> : null}
+                  </figcaption>
+                </figure>
+                <EducationBlock content={content} />
+              </div>
+            ) : (
+              <ProfileFallback content={content} />
+            )}
           </div>
-          <div>
+
+          <div className="min-w-0">
+            <p className="section-kicker text-navy">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="max-w-5xl text-balance text-[36px] font-semibold leading-[1.04] text-navy sm:text-[42px] md:text-[64px] lg:text-[76px]"
+              className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy sm:text-[40px] md:text-[58px] lg:text-[68px]"
             >
               {content.title}
             </h2>
-            <p className="mt-8 max-w-3xl text-lg leading-8 text-muted md:text-xl md:leading-9">{content.body}</p>
-          </div>
-        </div>
+            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9" text={content.body} />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-stretch">
-          <aside className="relative overflow-hidden rounded-lg border border-line bg-card p-6 md:p-8" aria-label={content.abstractCard.eyebrow}>
-            <p className="section-kicker text-navy">{content.abstractCard.eyebrow}</p>
-            <div className="mt-7 grid grid-cols-4 gap-2" aria-hidden="true">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <span key={index} className={`h-7 rounded border border-line ${index % 3 === 0 ? "bg-sky/55" : "bg-cream"}`} />
+            <div className="mt-12 grid gap-0 border-y border-line">
+              {content.points.map((point, index) => (
+                <article key={point.title} className="grid gap-5 border-b border-line py-7 last:border-b-0 md:grid-cols-[96px_1fr]">
+                  <p className="text-[40px] font-semibold leading-none text-navy/20 md:text-[58px]">{String(index + 1).padStart(2, "0")}</p>
+                  <div>
+                    <h3 className="text-2xl font-semibold leading-tight text-navy">{point.title}</h3>
+                    <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-muted" text={point.description} />
+                  </div>
+                </article>
               ))}
             </div>
-            <h3 className="mt-8 max-w-sm break-words text-[34px] font-semibold leading-[1.04] text-navy sm:text-[40px] md:text-[52px]">
-              {content.abstractCard.title}
-            </h3>
-            <div className="mt-10 grid gap-2">
-              {content.abstractCard.lines.map((line) => (
-                <span key={line} className="border-t border-line pt-3 text-sm font-semibold text-muted">
-                  {line}
-                </span>
-              ))}
-            </div>
-            <div className="mt-10 rounded-md border border-line bg-cream p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-navy">{content.educationLabel}</p>
-              <p className="mt-3 text-base font-semibold leading-6 text-navy">{content.education.school}</p>
-              <p className="mt-3 text-sm font-medium text-ink">{content.education.degree}</p>
-              <p className="mt-1 text-sm text-muted">{content.education.period}</p>
-            </div>
-          </aside>
-
-          <div className="grid gap-0 border-y border-line">
-            {content.points.map((point, index) => (
-              <article key={point.title} className="grid gap-5 border-b border-line py-8 last:border-b-0 md:grid-cols-[120px_1fr]">
-                <p className="text-[48px] font-semibold leading-none text-navy/20 md:text-[72px]">{String(index + 1).padStart(2, "0")}</p>
-                <div>
-                  <h3 className="text-2xl font-semibold leading-tight text-navy md:text-3xl">{point.title}</h3>
-                  <p className="mt-4 max-w-2xl text-base leading-8 text-muted md:text-lg">{point.description}</p>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ProfileFallback({ content }: AboutProps) {
+  return (
+    <aside className="relative overflow-hidden rounded-lg border border-line bg-card p-6 md:p-8" aria-label={content.abstractCard.eyebrow}>
+      <p className="section-kicker text-navy">{content.abstractCard.eyebrow}</p>
+      <div className="mt-7 grid grid-cols-4 gap-2" aria-hidden="true">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <span key={index} className={`h-7 rounded border border-line ${index % 3 === 0 ? "bg-sky/55" : "bg-cream"}`} />
+        ))}
+      </div>
+      <h3 className="mt-8 max-w-sm break-words text-[34px] font-semibold leading-[1.04] text-navy sm:text-[40px] md:text-[52px]">
+        {content.abstractCard.title}
+      </h3>
+      <div className="mt-10 grid gap-2">
+        {content.abstractCard.lines.map((line) => (
+          <span key={line} className="border-t border-line pt-3 text-sm font-semibold text-muted">
+            {line}
+          </span>
+        ))}
+      </div>
+      <EducationBlock content={content} />
+    </aside>
+  );
+}
+
+function EducationBlock({ content }: AboutProps) {
+  return (
+    <div className="mt-8 rounded-md border border-line bg-cream p-4">
+      <p className="detail-label">{content.educationLabel}</p>
+      <p className="mt-3 text-base font-semibold leading-6 text-navy">{content.education.school}</p>
+      <p className="mt-3 text-sm font-medium text-ink">{content.education.degree}</p>
+      <p className="mt-1 text-sm text-muted">{content.education.period}</p>
+    </div>
+  );
+}
+
+function EmphasizedParagraph({ text, className }: { text: string; className: string }) {
+  const match = text.match(/^(.{12,140}?[.!?])\s+(.*)$/);
+
+  if (!match) {
+    return <p className={className}>{text}</p>;
+  }
+
+  return (
+    <p className={className}>
+      <strong className="font-semibold text-ink">{match[1]}</strong> {match[2]}
+    </p>
   );
 }
 

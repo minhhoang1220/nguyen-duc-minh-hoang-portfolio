@@ -29,11 +29,11 @@ function GameThinking({ content }: GameThinkingProps) {
 
 function ListPanel({ title, items, featured = false }: { title: string; items: string[]; featured?: boolean }) {
   return (
-    <article className="border-y border-cream/20 py-6">
-      <h3 className="text-2xl font-semibold text-cream">{title}</h3>
+    <article className="rounded-lg border border-cream/20 bg-card p-6 shadow-minimal md:p-8">
+      <h3 className="text-2xl font-semibold text-navy">{title}</h3>
       <ul className={`mt-6 flex flex-wrap items-start gap-3 ${featured ? "max-w-4xl" : ""}`}>
         {items.map((item) => (
-          <li key={item} className="w-fit max-w-full rounded-md border border-sky/35 bg-navy-accent/55 px-4 py-3 text-sm font-semibold text-cream">
+          <li key={item} className="w-fit max-w-full rounded-md border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
             {item}
           </li>
         ))}
