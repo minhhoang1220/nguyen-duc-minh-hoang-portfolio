@@ -79,7 +79,7 @@ img {
   }
 
   .detail-label {
-    @apply text-[13px] font-bold uppercase tracking-[0.09em] text-navy md:text-sm;
+    @apply inline-flex rounded-sm border border-line bg-beige px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-navy md:text-[15px];
   }
 
   .flow-node {

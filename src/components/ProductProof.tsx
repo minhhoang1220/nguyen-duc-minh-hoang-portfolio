@@ -3,17 +3,18 @@ import { preloadImage } from "../utils/preloadImage";
 
 type ProductProofProps = {
   proof: PortfolioContent["projectProof"];
+  titleId?: string;
   openArtifactLabel: string;
   onImageOpen: (image: AssetImage) => void;
 };
 
-function ProductProof({ proof, openArtifactLabel, onImageOpen }: ProductProofProps) {
+function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: ProductProofProps) {
   return (
-    <div className="mt-12">
+    <div>
       <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
         <p className="section-kicker text-navy">{proof.eyebrow}</p>
         <div>
-          <h3 className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">{proof.title}</h3>
+          <h2 id={titleId} className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">{proof.title}</h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">{proof.description}</p>
         </div>
       </div>

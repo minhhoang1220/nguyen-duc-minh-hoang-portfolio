@@ -9,6 +9,7 @@ import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import ProductNotes from "./components/ProductNotes";
+import ProductProof from "./components/ProductProof";
 import ProofStrip from "./components/ProofStrip";
 import ProjectCard from "./components/ProjectCard";
 import Reveal from "./components/Reveal";
@@ -95,13 +96,22 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="section-padding bg-cream" aria-labelledby="projects-title">
+        <section id="projects" className="section-padding bg-cream" aria-labelledby="product-proof-title">
           <div className="container-wide">
             <Reveal>
-              <div className="grid gap-8 lg:grid-cols-[0.44fr_0.56fr] lg:items-end">
+              <ProductProof
+                proof={portfolio.projectProof}
+                titleId="product-proof-title"
+                openArtifactLabel={portfolio.ui.openArtifact}
+                onImageOpen={setSelectedImage}
+              />
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-20 grid gap-8 border-t border-line pt-12 lg:grid-cols-[0.44fr_0.56fr] lg:items-end">
                 <div>
                   <p className="section-kicker text-navy">{portfolio.sections.projects.eyebrow}</p>
-                  <h2 id="projects-title" className="max-w-4xl text-balance text-[32px] font-semibold leading-[1.07] text-navy md:text-[48px] lg:text-[56px]">
+                  <h2 className="max-w-4xl text-balance text-[32px] font-semibold leading-[1.07] text-navy md:text-[48px] lg:text-[56px]">
                     {portfolio.sections.projects.title}
                   </h2>
                   {portfolio.sections.projects.description ? (

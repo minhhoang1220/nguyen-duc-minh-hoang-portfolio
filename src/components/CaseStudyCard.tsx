@@ -64,20 +64,11 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         </div>
       </div>
 
-      <div id={detailId} className={`${isExpanded ? "grid" : "hidden"} mt-8 gap-6 border-t border-line pt-8 lg:grid-cols-[0.72fr_1.28fr]`}>
-        {caseStudy.detailPreview ? (
-          <ImagePreview image={caseStudy.detailPreview} openArtifactLabel={openArtifactLabel} onImageOpen={onImageOpen} compact />
-        ) : (
-          <TimelinePreview />
-        )}
-        <div className="grid gap-6 md:grid-cols-2">
+      <div id={detailId} className={`${isExpanded ? "block" : "hidden"} mt-8 border-t border-line pt-8`}>
+        <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
           <div>
             <p className="detail-label mb-3">{labels.problem}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.problem} />
-          </div>
-          <div>
-            <p className="detail-label mb-3">{labels.role}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.role} />
           </div>
           <div>
             <p className="detail-label mb-3">{labels.outcomeLearning}</p>
