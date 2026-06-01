@@ -14,11 +14,6 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   const [isExpanded, setIsExpanded] = useState(false);
   const detailId = useId();
   const isReversed = index % 2 === 1;
-  const rows = [
-    [labels.problem, caseStudy.problem],
-    [labels.role, caseStudy.role],
-    [labels.outcomeLearning, caseStudy.outcomeLearning],
-  ];
 
   return (
     <article className="border-y border-line py-10 md:py-14">
@@ -28,36 +23,23 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             {labels.eyebrow} 0{index + 1}
           </p>
           <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {rows.map(([label, value]) => (
-              <div key={label}>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{label}</p>
-                <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{value}</p>
-              </div>
-            ))}
+          <p className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8">{caseStudy.summary}</p>
+
+          <div className="mt-6 border-l-2 border-navy pl-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.role}</p>
+            <p className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7">{caseStudy.role}</p>
           </div>
 
-          <div className="mt-7 border-y border-line py-5">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.keyDecisions}</p>
+          <div className="mt-7 rounded-lg border border-line bg-cream p-5">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.evidence}</p>
             <ul className="grid gap-3">
-              {caseStudy.keyDecisions.map((decision) => (
-                <li key={decision} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
+              {caseStudy.evidence.slice(0, 3).map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
-                  <span>{decision}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="mt-7">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.skills}</p>
-            <div className="flex flex-wrap gap-2">
-              {caseStudy.skills.map((skill) => (
-                <span key={skill} className="badge">
-                  {skill}
-                </span>
-              ))}
-            </div>
           </div>
 
           <button
@@ -88,16 +70,43 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         ) : (
           <TimelinePreview />
         )}
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.problem}</p>
+            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.problem}</p>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.role}</p>
+            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.role}</p>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.outcomeLearning}</p>
+            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.outcomeLearning}</p>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.impact}</p>
+            <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.impact}</p>
+          </div>
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.context}</p>
             <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.context}</p>
           </div>
+          <DetailList title={labels.keyDecisions} items={caseStudy.keyDecisions} />
           <DetailList title={labels.process} items={caseStudy.process} />
           <DetailList title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.delivered}</p>
             <p className="text-sm leading-6 text-ink md:text-base md:leading-7">{caseStudy.delivered}</p>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-navy">{labels.skills}</p>
+            <div className="flex flex-wrap items-start gap-2">
+              {caseStudy.skills.map((skill) => (
+                <span key={skill} className="badge shrink-0">
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

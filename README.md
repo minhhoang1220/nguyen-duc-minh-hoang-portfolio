@@ -1,8 +1,9 @@
 # Nguyễn Đức Minh Hoàng Portfolio
 
 Public-facing portfolio website for Nguyễn Đức Minh Hoàng,
-positioned as a Product/System Business Analyst with a long-term trajectory
-toward BA/PM roles in the game and tech industry.
+positioned toward Game Product, LiveOps, and Game Operations, supported by
+Product/System Business Analyst evidence from product flows, documentation,
+backlog coordination, system logic, and delivery-ready artifacts.
 
 ## Tech Stack
 
@@ -54,8 +55,11 @@ The active public image assets are stored in `public/assets/`:
 - `cdp-flow-management-states.png`
 - `chatbot-zalo-journey-flow.png`
 - `chatbot-feedback-rating-flow.png`
+- `immersevietnam-website-overview.png`
+- `dashboard-revenue-overview.png`
+- `thesis-portfolio-optimization-overview.png`
 
-Unused older screenshot names are not referenced by the website.
+In-page cards use optimized previews from `public/assets/previews/`, while full-size assets load in the artifact viewer. Unused project screenshots are kept in `public/assets/archive/` and are not referenced by the website.
 
 ## CV File
 

@@ -11,17 +11,17 @@ type ContactProps = {
 
 function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }: ContactProps) {
   return (
-    <section id="contact" className="section-padding bg-navy text-cream" aria-labelledby="contact-title">
+    <section id="contact" className="section-padding bg-cream text-ink" aria-labelledby="contact-title">
       <div className="container-wide">
-        <div className="grid gap-8 border-t border-cream/25 pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
-          <p className="section-kicker text-sky">{content.eyebrow}</p>
+        <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
+          <p className="section-kicker text-navy">{content.eyebrow}</p>
           <div>
-            <h2 id="contact-title" className="max-w-5xl text-balance text-[36px] font-semibold leading-[1.05] text-cream md:text-[64px] lg:text-[82px]">
+            <h2 id="contact-title" className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.06] text-navy md:text-[56px] lg:text-[68px]">
               {content.title}
             </h2>
 
             <a
-              className="mt-12 inline-flex max-w-full break-all border-b border-sky pb-4 text-[34px] font-semibold leading-none text-sky transition duration-300 hover:-translate-y-1 hover:text-cream focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy md:text-[64px]"
+              className="mt-10 inline-flex max-w-full border-b border-navy pb-3 text-[30px] font-semibold leading-none text-navy transition duration-300 hover:-translate-y-1 hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 md:text-[52px]"
               href={`mailto:${personal.email}`}
               aria-label={content.emailLabel}
             >
@@ -30,7 +30,7 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
 
             <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
+                className="btn-secondary"
                 href={personal.linkedin}
                 aria-label={linkedinAria}
                 target="_blank"
@@ -39,7 +39,7 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
                 {content.linkedinLabel}
               </a>
               <CvLink
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-cream/35 px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-cream hover:bg-cream hover:text-navy focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-navy"
+                className="btn-ghost"
                 href={personal.cv}
                 email={personal.email}
                 ariaLabel={cvDownloadAria}

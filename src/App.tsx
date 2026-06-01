@@ -113,7 +113,11 @@ function App() {
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {portfolio.projects.map((project, index) => (
                 <Reveal key={project.title} delay={index * 100}>
-                  <ProjectCard project={project} labels={portfolio.projectLabels} />
+                  <ProjectCard
+                    project={project}
+                    openArtifactLabel={portfolio.ui.openArtifact}
+                    onImageOpen={setSelectedImage}
+                  />
                 </Reveal>
               ))}
             </div>

@@ -41,6 +41,8 @@ export type ProofStat = {
 
 export type CaseStudy = {
   title: string;
+  summary: string;
+  evidence: string[];
   mainPreview?: AssetImage;
   detailPreview?: AssetImage;
   visualType?: "permission" | "timeline";
@@ -75,6 +77,7 @@ export type Experience = {
 export type Project = {
   title: string;
   type: string;
+  image: AssetImage;
   positioning: string;
   contributions: string[];
   relevance: string;
@@ -173,6 +176,7 @@ export type PortfolioContent = {
     role: string;
     keyDecisions: string;
     outcomeLearning: string;
+    evidence: string;
     process: string;
     deliveredArtifacts: string;
     delivered: string;
@@ -248,6 +252,9 @@ const assets = {
   cdpFlowStates: "/assets/cdp-flow-management-states.png",
   chatbotJourney: "/assets/chatbot-zalo-journey-flow.png",
   chatbotFeedback: "/assets/chatbot-feedback-rating-flow.png",
+  immerseVietnamOverview: "/assets/immersevietnam-website-overview.png",
+  thesisPortfolioOverview: "/assets/thesis-portfolio-optimization-overview.png",
+  dashboardRevenueOverview: "/assets/dashboard-revenue-overview.png",
 };
 
 const assetPreviews = {
@@ -257,6 +264,9 @@ const assetPreviews = {
   cdpFlowStates: "/assets/previews/cdp-flow-management-states-preview.jpg",
   chatbotJourney: "/assets/previews/chatbot-zalo-journey-flow-preview.jpg",
   chatbotFeedback: "/assets/previews/chatbot-feedback-rating-flow-preview.jpg",
+  immerseVietnamOverview: "/assets/previews/immersevietnam-website-overview-preview.jpg",
+  thesisPortfolioOverview: "/assets/previews/thesis-portfolio-optimization-overview-preview.jpg",
+  dashboardRevenueOverview: "/assets/previews/dashboard-revenue-overview-preview.jpg",
 };
 
 export const portfolioContent: Record<Language, PortfolioContent> = {
@@ -274,7 +284,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Product/System Business Analyst",
+      shortRole: "Game Product / LiveOps-oriented Product/System BA",
       location: "Hanoi, Vietnam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -298,14 +308,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Product/System Business Analyst focused on turning ambiguous requirements into clear flows, documentation, and delivery-ready artifacts.",
+        "Game Product / LiveOps-oriented Product/System BA — turning complex product logic into clear flows, artifacts, and decisions teams can build from.",
       headline: "Turning ambiguity into clear product flows.",
       intro:
-        "I turn ambiguous requirements into delivery-ready artifacts — across product flows, system specs, and stakeholder alignment.",
+        "I use Product/System BA experience across flow logic, documentation, backlog coordination, and QA-ready artifacts as a proof base for moving toward Game Product, LiveOps, and Game Operations.",
       focusItems: [
-        "Primary focus: Product / System Business Analyst",
-        "Secondary direction: Associate PM / Product Operations",
-        "Future direction: Game Product / LiveOps",
+        "Primary direction: Game Product / LiveOps / Game Operations",
+        "Proof base: Product / System BA experience",
+        "Fallback path: Associate PM / Product Operations",
       ],
       artifactAria: "Selected product artifact previews",
       ctas: {
@@ -373,9 +383,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     about: {
       eyebrow: "About",
-      title: "I bridge requirements, product logic, and system clarity.",
+      title: "I bridge product systems, delivery clarity, and game-facing direction.",
       body:
-        "I’m Hoàng, a Product/System Business Analyst profile based in Hanoi. I work best where unclear requirements need to become structured flows, documentation, artifacts, and decisions that teams can actually build from.",
+        "I’m Hoàng, a Product/System BA based in Hanoi, aiming toward Game Product, LiveOps, and Game Operations. My current proof base is system-heavy BA/Product work: clarifying feature logic, mapping flows, structuring documentation, and helping teams move from ambiguity to implementation.",
       points: [
         {
           title: "System-first thinking",
@@ -390,7 +400,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         {
           title: "Game direction",
           description:
-            "Game Product and LiveOps are where I want to apply this product/system thinking next, especially in player-facing systems and live-service operations.",
+            "Game Product, LiveOps, and Game Operations are the direction I want to move toward next, supported by transferable flow, system, coordination, and analytical thinking.",
         },
       ],
       abstractCard: {
@@ -413,16 +423,16 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "These cases focus on flow logic, system behavior, permissions, and delivery-ready artifacts rather than decorative portfolio work.",
       },
       projects: {
-        eyebrow: "Selected Projects",
-        title: "Supporting evidence across product flow, analytics, and research depth.",
+        eyebrow: "Supporting Projects",
+        title: "Additional proof across UX, analytics, and research depth.",
         description:
-          "Projects add context around product thinking, KPI logic, and structured analysis without shifting the portfolio into a pure data profile.",
+          "These projects stay lighter than case studies. They show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
       },
       experience: {
         eyebrow: "Experience Snapshot",
         title: "Practical Product/System BA evidence across fintech, transformation, and operations.",
         description:
-          "The emphasis is current evidence: flows, documentation, backlog coordination, permission logic, testing, and stakeholder alignment. Associate PM/Product Operations is a secondary direction built from this base.",
+          "This is the proof base behind the game direction: flows, documentation, backlog coordination, permission logic, testing, and stakeholder alignment in system-heavy products.",
       },
     },
     caseStudyLabels: {
@@ -432,6 +442,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       role: "My Role",
       keyDecisions: "Key Decisions / Tradeoffs",
       outcomeLearning: "Outcome / Learning",
+      evidence: "Key evidence",
       process: "Process",
       deliveredArtifacts: "Delivered Artifacts",
       delivered: "Delivered",
@@ -446,6 +457,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     caseStudies: [
       {
         title: "CDP Automation & Push Notification Flow",
+        summary:
+          "Mapped complex automation logic across triggers, segments, notification states, reporting behavior, and edge cases.",
+        evidence: [
+          "Clarified flow/state behavior before handoff",
+          "Structured feature logic for stakeholder review",
+          "Supported QA/UAT discussion with sanitized artifacts",
+        ],
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
@@ -487,6 +505,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "AI Cash Flow Forecasting System & Backlog Management",
+        summary:
+          "Structured backlog, sprint planning, release tracking, and pre-UAT checks for an AI forecasting product without exposing confidential screens.",
+        evidence: [
+          "Translated financial requirements into backlog-ready items",
+          "Used planning artifacts instead of sensitive product visuals",
+          "Supported sprint coordination and QA readiness",
+        ],
         visualType: "timeline",
         context:
           "Vega Fintech cash flow forecasting product involving AI predictive models, financial stakeholder requirements, and release coordination.",
@@ -514,6 +539,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "Permission Matrix for Internal Operations System",
+        summary:
+          "Created a role-permission structure to make access-control logic easier to validate before implementation.",
+        evidence: [
+          "Mapped 21 roles and ~400 permission entries",
+          "Clarified inheritance, conflict, and edge-case logic",
+          "Improved system governance discussion before build",
+        ],
         context:
           "Internal operations logic for a system with many user roles and permission-sensitive workflows.",
         problem:
@@ -567,37 +599,58 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       {
         title: "ImmerseVietnam",
         type: "UX/Product Design Project",
+        image: {
+          src: assets.immerseVietnamOverview,
+          previewSrc: assetPreviews.immerseVietnamOverview,
+          alt: "ImmerseVietnam website overview showing hero, navigation, and content sections",
+          title: "ImmerseVietnam website overview",
+          caption: "Web / UX structure",
+        },
         positioning:
-          "A product-flow project focused on turning user needs into screen structure, interaction logic, and a working prototype.",
-        contributions: ["User persona", "Logical flow", "Figma prototype", "Multi-platform UX logic"],
+          "User-facing web/UX project showing page structure, content layout, and front-end implementation.",
+        contributions: ["User persona", "Logical flow", "Figma prototype", "Content layout"],
         relevance:
-          "Supports Associate PM/Product Operations direction by showing how ambiguous user needs become concrete screens, journeys, and interaction decisions.",
-        tags: ["Product flow", "Prototype", "UX logic", "User journey"],
+          "Shows how user needs can become concrete navigation, screen structure, and content flow decisions.",
+        tags: ["Product flow", "Prototype", "UX logic", "Content structure"],
       },
       {
         title: "Sales Performance Dashboard",
         type: "Data Analytics Project",
+        image: {
+          src: assets.dashboardRevenueOverview,
+          previewSrc: assetPreviews.dashboardRevenueOverview,
+          alt: "Revenue dashboard overview with KPI cards, revenue chart, treemap, and order tables",
+          title: "Dashboard revenue overview",
+          caption: "KPI / BI storytelling",
+        },
         positioning:
-          "A structured analytics project showing data modeling discipline and stakeholder-facing KPI clarity.",
-        contributions: ["ETL pipeline", "Star schema", "KPI dashboard", "Power BI visualization"],
+          "BI/dashboard project showing KPI design, data storytelling, and operational analysis.",
+        contributions: ["ETL pipeline", "Star schema", "KPI dashboard", "Power BI"],
         relevance:
-          "Shows analytical grounding for KPI thinking, reporting clarity, and stakeholder-facing business metrics.",
+          "Supports product/ops thinking by turning business performance into scan-ready metrics and visual signals.",
         tags: ["ETL", "KPI", "Data model", "Power BI"],
       },
       {
         title: "Market Forecasting & Portfolio Optimization Thesis",
         type: "Analytical / Academic Research",
+        image: {
+          src: assets.thesisPortfolioOverview,
+          previewSrc: assetPreviews.thesisPortfolioOverview,
+          alt: "Thesis portfolio optimization overview with investment strategy analysis and portfolio metrics",
+          title: "Thesis portfolio optimization overview",
+          caption: "Analytical decision support",
+        },
         positioning:
-          "Can ML models outperform traditional methods in forecasting market trends and optimizing investment portfolios across 15 global companies (2020–2024)? Sole researcher and implementer.",
+          "Analytical research project showing model comparison, forecasting logic, portfolio optimization, and decision-making under uncertainty.",
         contributions: [
-          "Collected and processed 4 years of market data via yfinance and Macrotrends",
-          "Implemented and compared 7 forecasting models: ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM, Transformer",
-          "Implemented 3 portfolio strategies: Mean-Variance (Markowitz), Black-Litterman, Reinforcement Learning (PPO)",
-          "Validated results with paired t-tests; visualized Sharpe ratios and drawdown across strategies",
+          "Model comparison",
+          "Time-series forecasting",
+          "Portfolio optimization",
+          "Decision reasoning",
         ],
         relevance:
-          "Demonstrates ability to frame research questions, manage ambiguous data problems, make evidence-based decisions, and communicate quantitative findings clearly. Deep learning models (LSTM, Transformer) outperformed on volatile periods; RL-based rebalancing showed more adaptive behavior than static Markowitz under stress scenarios.",
-        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning", "Python"],
+          "Adds analytical depth without shifting the portfolio away from Product/System BA and game-product direction.",
+        tags: ["Research framing", "Model comparison", "Time-series", "Optimization"],
       },
     ],
     experience: [
@@ -746,10 +799,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     gameDirection: {
       eyebrow: "Game direction",
-      title: "Games are where I want to apply product/system thinking next.",
+      title: "Games are the domain I want to move toward next.",
       body:
-        "Game Product and LiveOps are a future direction, not the main evidence base yet. I’m interested in how different genres create motivation, competition, progression, and long-term engagement, especially across MOBA, FPS, battle royale, auto-battler, card games, strategy games, and live-service multiplayer systems.",
-      genresTitle: "Game genres and systems I’m interested in",
+        "I’m especially interested in how game systems create motivation, competition, progression, retention, and long-term engagement. My current BA/Product/System work gives me transferable practice in flow logic, edge cases, coordination, and delivery clarity.",
+      genresTitle: "Genres and systems I want to understand deeper",
       gamesTitle: "Games I follow or play",
       genres: [
         "MOBA",
@@ -762,6 +815,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Ranked systems",
         "Live-service events",
         "Progression and reward loops",
+        "Meta shifts",
+        "Balance updates",
+        "Player behavior",
       ],
       games: [
         "Arena of Valor / Liên Quân Mobile",
@@ -774,7 +830,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Reach out",
-      title: "Let’s talk about product systems, BA/Product roles, or future Game Product/LiveOps direction.",
+      title: "Let’s talk about Game Product, LiveOps, Game Operations, or Product/System BA roles.",
       emailLabel: "Send an email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Download CV",
@@ -800,7 +856,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Product/System Business Analyst",
+      shortRole: "Product/System BA định hướng Game Product / LiveOps",
       location: "Hà Nội, Việt Nam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -824,14 +880,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Business Analyst định hướng Product/System, tập trung biến yêu cầu mơ hồ thành flow, tài liệu và artifact sẵn sàng triển khai.",
+        "Product/System BA định hướng Game Product / LiveOps — biến logic sản phẩm phức tạp thành flow, artifact và quyết định đủ rõ để team có thể triển khai.",
       headline: "Biến sự mơ hồ thành product flow rõ ràng.",
       intro:
-        "Tôi biến những yêu cầu mơ hồ thành tài liệu sẵn sàng để phát triển — từ product flow, system spec đến stakeholder alignment.",
+        "Tôi dùng kinh nghiệm Product/System BA về flow logic, documentation, backlog coordination và artifact hỗ trợ QA/UAT làm nền tảng để tiến gần hơn tới Game Product, LiveOps và Game Operations.",
       focusItems: [
-        "Trọng tâm chính: Product / System Business Analyst",
-        "Định hướng thứ hai: Associate PM / Product Operations",
-        "Định hướng tương lai: Game Product / LiveOps",
+        "Định hướng chính: Game Product / LiveOps / Game Operations",
+        "Nền tảng chứng minh: Kinh nghiệm Product / System BA",
+        "Hướng dự phòng: Associate PM / Product Operations",
       ],
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
@@ -899,9 +955,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     about: {
       eyebrow: "Giới thiệu",
-      title: "Tôi kết nối requirement, product logic và system clarity.",
+      title: "Tôi kết nối product systems, delivery clarity và định hướng game.",
       body:
-        "Tôi là Hoàng, định hướng Product/System Business Analyst tại Hà Nội. Tôi làm tốt nhất khi requirement chưa rõ ràng cần được chuyển thành flow, tài liệu, artifact và quyết định đủ rõ để team có thể triển khai.",
+        "Tôi là Hoàng, một Product/System BA tại Hà Nội, đang định hướng tới Game Product, LiveOps và Game Operations. Nền tảng hiện tại của tôi là BA/Product work trong các hệ thống phức tạp: làm rõ logic tính năng, map flow, cấu trúc tài liệu và giúp team đi từ ambiguity tới implementation.",
       points: [
         {
           title: "Tư duy hệ thống",
@@ -916,7 +972,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         {
           title: "Định hướng game",
           description:
-            "Game Product và LiveOps là nơi tôi muốn áp dụng tư duy product/system này trong bước tiếp theo, đặc biệt với player-facing systems và live-service operations.",
+            "Game Product, LiveOps và Game Operations là hướng tôi muốn tiến gần hơn, dựa trên các năng lực có thể chuyển đổi: flow, system, coordination và analytical thinking.",
         },
       ],
       abstractCard: {
@@ -939,16 +995,16 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Các case này tập trung vào flow logic, system behavior, permission và artifact sẵn sàng handoff thay vì portfolio decoration.",
       },
       projects: {
-        eyebrow: "Dự án chọn lọc",
-        title: "Bằng chứng bổ trợ về product flow, analytics và chiều sâu phân tích.",
+        eyebrow: "Dự án hỗ trợ",
+        title: "Bằng chứng bổ sung qua UX, analytics và chiều sâu nghiên cứu.",
         description:
-          "Các dự án bổ sung góc nhìn về product thinking, KPI logic và phân tích có cấu trúc, nhưng không biến portfolio thành pure data profile.",
+          "Các dự án này nhẹ hơn case study chính. Chúng thể hiện kỹ năng có thể chuyển đổi: cấu trúc web/UX, KPI storytelling và analytical decision support.",
       },
       experience: {
         eyebrow: "Kinh nghiệm tiêu biểu",
         title: "Bằng chứng Product/System BA thực tế qua fintech, chuyển đổi số và vận hành.",
         description:
-          "Trọng tâm là evidence hiện tại: flow, documentation, backlog coordination, permission logic, testing và stakeholder alignment. Associate PM/Product Operations là hướng phát triển thứ hai từ nền tảng này.",
+          "Đây là nền tảng chứng minh cho định hướng game: flow, documentation, backlog coordination, permission logic, testing và stakeholder alignment trong các sản phẩm system-heavy.",
       },
     },
     caseStudyLabels: {
@@ -958,6 +1014,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       role: "Vai trò của tôi",
       keyDecisions: "Quyết định / tradeoff chính",
       outcomeLearning: "Kết quả / bài học",
+      evidence: "Bằng chứng chính",
       process: "Quy trình xử lý",
       deliveredArtifacts: "Artifact đã bàn giao",
       delivered: "Kết quả bàn giao",
@@ -972,6 +1029,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     caseStudies: [
       {
         title: "CDP Automation & Push Notification Flow",
+        summary:
+          "Map automation logic phức tạp qua trigger, segment, trạng thái notification, reporting behavior và edge case.",
+        evidence: [
+          "Làm rõ flow/state behavior trước handoff",
+          "Cấu trúc feature logic để stakeholder review",
+          "Hỗ trợ thảo luận QA/UAT bằng artifact đã làm sạch",
+        ],
         mainPreview: {
           src: assets.cdpAutomationFlow,
           previewSrc: assetPreviews.cdpAutomationFlow,
@@ -1013,6 +1077,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "AI Cash Flow Forecasting System & Backlog Management",
+        summary:
+          "Cấu trúc backlog, sprint planning, release tracking và pre-UAT checks cho sản phẩm AI forecasting mà không lộ màn hình nhạy cảm.",
+        evidence: [
+          "Chuyển yêu cầu tài chính thành backlog-ready items",
+          "Dùng planning artifact thay cho product visuals nhạy cảm",
+          "Hỗ trợ sprint coordination và QA readiness",
+        ],
         visualType: "timeline",
         context:
           "Sản phẩm dự báo dòng tiền tại Vega Fintech liên quan đến AI predictive models, yêu cầu stakeholder tài chính và release coordination.",
@@ -1041,6 +1112,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       {
         title: "Permission Matrix for Internal Operations System",
+        summary:
+          "Tạo cấu trúc role-permission để access-control logic dễ validate hơn trước implementation.",
+        evidence: [
+          "Map 21 roles và ~400 permission entries",
+          "Làm rõ inheritance, conflict và edge-case logic",
+          "Cải thiện thảo luận system governance trước build",
+        ],
         context:
           "Logic vận hành nội bộ cho một hệ thống có nhiều user role và các workflow nhạy cảm về quyền truy cập.",
         problem:
@@ -1094,37 +1172,58 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       {
         title: "ImmerseVietnam",
         type: "UX/Product Design Project",
+        image: {
+          src: assets.immerseVietnamOverview,
+          previewSrc: assetPreviews.immerseVietnamOverview,
+          alt: "Tổng quan website ImmerseVietnam với hero, navigation và content sections",
+          title: "ImmerseVietnam website overview",
+          caption: "Cấu trúc web / UX",
+        },
         positioning:
-          "Dự án product-flow tập trung vào việc chuyển user needs thành screen structure, interaction logic và prototype.",
-        contributions: ["User persona", "Logical flow", "Figma prototype", "Multi-platform UX logic"],
+          "Dự án web/UX hướng người dùng, thể hiện page structure, content layout và front-end implementation.",
+        contributions: ["User persona", "Logical flow", "Figma prototype", "Content layout"],
         relevance:
-          "Hỗ trợ định hướng Associate PM/Product Operations bằng cách cho thấy cách nhu cầu mơ hồ trở thành screen, journey và interaction decision cụ thể.",
-        tags: ["Product flow", "Prototype", "UX logic", "User journey"],
+          "Cho thấy cách user needs có thể trở thành navigation, screen structure và content flow cụ thể.",
+        tags: ["Product flow", "Prototype", "UX logic", "Content structure"],
       },
       {
         title: "Sales Performance Dashboard",
         type: "Data Analytics Project",
+        image: {
+          src: assets.dashboardRevenueOverview,
+          previewSrc: assetPreviews.dashboardRevenueOverview,
+          alt: "Dashboard doanh thu với KPI cards, revenue chart, treemap và bảng order",
+          title: "Dashboard revenue overview",
+          caption: "KPI / BI storytelling",
+        },
         positioning:
-          "Dự án analytics có cấu trúc, thể hiện kỷ luật data modeling và khả năng làm rõ KPI cho stakeholder.",
-        contributions: ["ETL pipeline", "Star schema", "KPI dashboard", "Power BI visualization"],
+          "Dự án BI/dashboard thể hiện KPI design, data storytelling và operational analysis.",
+        contributions: ["ETL pipeline", "Star schema", "KPI dashboard", "Power BI"],
         relevance:
-          "Thể hiện nền tảng phân tích cho KPI thinking, reporting clarity và business metrics phục vụ stakeholder.",
+          "Hỗ trợ product/ops thinking bằng cách chuyển performance thành metric và visual signal dễ scan.",
         tags: ["ETL", "KPI", "Data model", "Power BI"],
       },
       {
         title: "Market Forecasting & Portfolio Optimization Thesis",
         type: "Analytical Research Project",
+        image: {
+          src: assets.thesisPortfolioOverview,
+          previewSrc: assetPreviews.thesisPortfolioOverview,
+          alt: "Tổng quan thesis portfolio optimization với investment strategy analysis và portfolio metrics",
+          title: "Thesis portfolio optimization overview",
+          caption: "Analytical decision support",
+        },
         positioning:
-          "Một dự án nghiên cứu phân tích so sánh cách các mô hình dự báo và phương pháp tối ưu danh mục có thể hỗ trợ ra quyết định đầu tư.",
+          "Dự án nghiên cứu phân tích về model comparison, forecasting logic, portfolio optimization và decision-making under uncertainty.",
         contributions: [
-          "Định khung câu hỏi nghiên cứu có cấu trúc",
-          "So sánh mô hình ARIMA, GARCH, Random Forest, XGBoost, SVM, LSTM và Transformer",
-          "So sánh tối ưu danh mục với Markowitz, Black-Litterman và Reinforcement Learning/PPO",
-          "Time-series reasoning và ra quyết định trong điều kiện không chắc chắn",
+          "Model comparison",
+          "Time-series forecasting",
+          "Portfolio optimization",
+          "Decision reasoning",
         ],
         relevance:
-          "Bổ sung bằng chứng về analytical discipline, model comparison và business reasoning, trong khi vẫn giữ trọng tâm portfolio là Product/System BA.",
-        tags: ["Research framing", "Model comparison", "Time-series", "Decision reasoning"],
+          "Bổ sung analytical depth mà không làm lệch portfolio khỏi Product/System BA và định hướng game product.",
+        tags: ["Research framing", "Model comparison", "Time-series", "Optimization"],
       },
     ],
     experience: [
@@ -1271,10 +1370,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     gameDirection: {
       eyebrow: "Định hướng game",
-      title: "Game là nơi tôi muốn áp dụng product/system thinking trong bước tiếp theo.",
+      title: "Game là domain tôi muốn tiến gần hơn trong giai đoạn tiếp theo.",
       body:
-        "Game Product và LiveOps là định hướng tương lai, chưa phải evidence base chính hiện tại. Tôi quan tâm đến cách các thể loại game tạo động lực, cạnh tranh, progression và long-term engagement, đặc biệt trong MOBA, FPS, battle royale, auto-battler, card games, strategy games và live-service multiplayer systems.",
-      genresTitle: "Thể loại và hệ thống game tôi quan tâm",
+        "Tôi đặc biệt quan tâm đến cách game systems tạo motivation, competition, progression, retention và long-term engagement. BA/Product/System work hiện tại cho tôi nền tảng có thể chuyển đổi về flow logic, edge case, coordination và delivery clarity.",
+      genresTitle: "Thể loại và hệ thống tôi muốn hiểu sâu hơn",
       gamesTitle: "Một số game tôi theo dõi hoặc chơi",
       genres: [
         "MOBA",
@@ -1287,6 +1386,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Ranked systems",
         "Live-service events",
         "Progression và reward loops",
+        "Meta shifts",
+        "Balance updates",
+        "Hành vi người chơi",
       ],
       games: [
         "Liên Quân Mobile / Arena of Valor",
@@ -1299,7 +1401,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Kết nối",
-      title: "Hãy trao đổi về product systems, BA/Product roles hoặc định hướng Game Product/LiveOps.",
+      title: "Hãy trao đổi về Game Product, LiveOps, Game Operations hoặc các vị trí Product/System BA.",
       emailLabel: "Gửi email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Tải CV",
