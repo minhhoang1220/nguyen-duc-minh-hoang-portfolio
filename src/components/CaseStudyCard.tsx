@@ -64,32 +64,32 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         </div>
       </div>
 
-      <div id={detailId} className={`${isExpanded ? "block" : "hidden"} mt-8 border-t border-line pt-8`}>
+      <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-line pt-8`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          <DetailBlock>
+          <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.problem}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.problem} />
           </DetailBlock>
-          <DetailBlock tone="blue">
+          <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.outcomeLearning}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
           </DetailBlock>
-          <DetailBlock tone="cream">
+          <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.impact}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.impact} />
           </DetailBlock>
-          <DetailBlock>
+          <DetailBlock emphasis="medium">
             <p className="detail-label mb-3">{labels.context}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.context} />
           </DetailBlock>
-          <DetailList tone="blue" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
-          <DetailList title={labels.process} items={caseStudy.process} />
-          <DetailList tone="cream" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
-          <DetailBlock>
+          <DetailList emphasis="medium" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
+          <DetailList emphasis="medium" title={labels.process} items={caseStudy.process} />
+          <DetailList emphasis="low" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
+          <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.delivered}</p>
             <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.delivered} />
           </DetailBlock>
-          <DetailBlock tone="blue">
+          <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
@@ -198,22 +198,22 @@ function TimelinePreview({ large = false }: { large?: boolean }) {
   );
 }
 
-function DetailBlock({ children, tone = "card" }: { children: ReactNode; tone?: "card" | "blue" | "cream" }) {
+function DetailBlock({ children, emphasis = "low" }: { children: ReactNode; emphasis?: "high" | "medium" | "low" }) {
   const toneClass =
-    tone === "blue"
-      ? "border-sky/45 border-l-sky bg-sky/12"
-      : tone === "cream"
-        ? "border-line border-l-navy/30 bg-cream"
+    emphasis === "high"
+      ? "border-sky/70 border-l-navy bg-[linear-gradient(135deg,rgba(157,196,255,0.34),rgba(250,248,242,0.95))] shadow-card"
+      : emphasis === "medium"
+        ? "border-navy/15 border-l-sky bg-[linear-gradient(135deg,rgba(250,248,242,0.96),rgba(236,234,229,0.58))]"
         : "border-line border-l-navy/20 bg-card";
 
-  return <div className={`rounded-lg border border-l-4 p-5 ${toneClass}`}>{children}</div>;
+  return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-navy/35 ${toneClass}`}>{children}</div>;
 }
 
-function DetailList({ title, items, tone = "card" }: { title: string; items: string[]; tone?: "card" | "blue" | "cream" }) {
+function DetailList({ title, items, emphasis = "low" }: { title: string; items: string[]; emphasis?: "high" | "medium" | "low" }) {
   return (
-    <DetailBlock tone={tone}>
+    <DetailBlock emphasis={emphasis}>
       <p className="detail-label mb-3">{title}</p>
-      <ul className="space-y-3">
+      <ul className="space-y-3.5">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />

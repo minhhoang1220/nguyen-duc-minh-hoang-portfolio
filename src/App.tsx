@@ -108,23 +108,20 @@ function App() {
             </Reveal>
 
             <Reveal>
-              <div className="mt-20 grid gap-8 border-t border-line pt-12 lg:grid-cols-[0.44fr_0.56fr] lg:items-end">
-                <div>
+              <div className="mt-20 border-t border-line pt-12">
+                <div className="grid gap-6 lg:grid-cols-[0.28fr_0.72fr] lg:items-start">
                   <p className="section-kicker text-navy">{portfolio.sections.projects.eyebrow}</p>
-                  <h2 className="max-w-4xl text-balance text-[32px] font-semibold leading-[1.07] text-navy md:text-[48px] lg:text-[56px]">
-                    {portfolio.sections.projects.title}
-                  </h2>
-                  {portfolio.sections.projects.description ? (
-                    <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
-                      {portfolio.sections.projects.description}
-                    </p>
-                  ) : null}
+                  <div>
+                    <h2 className="max-w-4xl text-balance text-[32px] font-semibold leading-[1.07] text-navy md:text-[48px] lg:text-[56px]">
+                      {portfolio.sections.projects.title}
+                    </h2>
+                    {portfolio.sections.projects.description ? (
+                      <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
+                        {portfolio.sections.projects.description}
+                      </p>
+                    ) : null}
+                  </div>
                 </div>
-                <ProjectPreviewCollage
-                  images={portfolio.projects.map((project) => project.image)}
-                  openArtifactLabel={portfolio.ui.openArtifact}
-                  onImageOpen={setSelectedImage}
-                />
               </div>
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -199,42 +196,6 @@ function App() {
         loadingLabel={portfolio.ui.loadingArtifact}
         onClose={() => setSelectedImage(null)}
       />
-    </div>
-  );
-}
-
-function ProjectPreviewCollage({
-  images,
-  openArtifactLabel,
-  onImageOpen,
-}: {
-  images: AssetImage[];
-  openArtifactLabel: string;
-  onImageOpen: (image: AssetImage) => void;
-}) {
-  return (
-    <div className="grid min-w-0 grid-cols-3 gap-3 rounded-lg border border-line bg-card p-3 md:gap-4 md:p-4" aria-label="Supporting project previews">
-      {images.slice(0, 3).map((image, index) => (
-        <button
-          key={image.src}
-          type="button"
-          className={`group min-w-0 overflow-hidden rounded-md border border-line bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 ${
-            index === 0 ? "col-span-2 row-span-2" : ""
-          }`}
-          aria-label={`${openArtifactLabel}: ${image.title}`}
-          onClick={() => onImageOpen(image)}
-        >
-          <span className={`block ${index === 0 ? "aspect-[16/11]" : "aspect-square"}`}>
-            <img
-              src={image.previewSrc ?? image.src}
-              alt={image.alt}
-              className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
-              loading="lazy"
-              decoding="async"
-            />
-          </span>
-        </button>
-      ))}
     </div>
   );
 }

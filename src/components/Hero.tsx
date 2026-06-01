@@ -32,11 +32,11 @@ function Hero({
     >
       <div className="container-wide grid min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] xl:gap-16">
         <div className="min-w-0 max-w-3xl">
-          <div className="mb-6 inline-flex max-w-2xl flex-col gap-2 rounded-md border border-line border-l-4 border-l-navy bg-card/70 px-4 py-3">
-            <p className="text-[22px] font-semibold leading-tight tracking-[0.01em] text-navy sm:text-[24px] md:text-[28px]">
+          <div className="signature-card">
+            <p className="text-[23px] font-semibold leading-tight tracking-[0.01em] text-cream sm:text-[26px] md:text-[30px]">
               {personal.name}
             </p>
-            <p className="max-w-xl text-xs font-semibold uppercase tracking-[0.12em] text-muted md:text-sm">{personal.shortRole}</p>
+            <p className="max-w-xl text-xs font-semibold uppercase tracking-[0.12em] text-sky md:text-sm">{personal.shortRole}</p>
           </div>
           <p className="mb-6 max-w-2xl text-base font-medium leading-7 text-muted md:text-lg">{hero.roleLine}</p>
           <h1

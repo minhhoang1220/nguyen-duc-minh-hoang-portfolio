@@ -15,20 +15,34 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
     "linear-gradient(135deg, #2F55A8 0%, #6FA0F2 100%)",
     "linear-gradient(135deg, #3D6BC8 0%, #9DC4FF 100%)",
   ];
+  const approachCardBackgrounds = [
+    "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(250,248,242,0.92) 100%)",
+    "linear-gradient(135deg, rgba(250,248,242,0.96) 0%, rgba(244,244,239,0.95) 100%)",
+    "linear-gradient(135deg, rgba(250,248,242,0.96) 0%, rgba(228,237,250,0.78) 100%)",
+    "linear-gradient(135deg, rgba(247,249,252,0.96) 0%, rgba(214,226,244,0.72) 100%)",
+    "linear-gradient(135deg, rgba(244,248,252,0.96) 0%, rgba(202,221,250,0.72) 100%)",
+  ];
 
   return (
-    <section id="skills" className="section-padding bg-cream" aria-labelledby="skills-title">
+    <section
+      id="skills"
+      className="section-padding bg-[linear-gradient(180deg,#FAF8F2_0%,#F7F5EF_35%,#F3F6F8_68%,#FCFBF7_100%)]"
+      aria-labelledby="skills-title"
+    >
       <div className="container-wide">
-        <div className="rounded-lg border border-line bg-cream">
+        <div className="rounded-lg border border-line bg-cream/80">
           <div className="p-5 md:p-8 lg:p-10">
             <SectionHeader eyebrow={approach.header.eyebrow} titleId="skills-title" title={approach.header.title} wide />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {approach.items.map((item, index) => (
                 <article
                   key={item.title}
-                  className="flex flex-col gap-4 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:shadow-hover"
+                  className="group flex flex-col gap-4 rounded-lg border border-line p-8 shadow-minimal transition-all duration-500 hover:-translate-y-1 hover:border-navy/30 hover:shadow-hover"
+                  style={{ background: approachCardBackgrounds[index % approachCardBackgrounds.length] }}
                 >
-                  <span className="detail-label">0{index + 1}</span>
+                  <span className="sequence-badge" style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}>
+                    0{index + 1}
+                  </span>
                   <h3 className="text-xl font-semibold leading-tight text-navy">{item.title}</h3>
                   <p className="mt-auto text-sm leading-relaxed text-muted">{item.body}</p>
                 </article>
@@ -37,7 +51,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           </div>
         </div>
 
-        <div className="mt-12 rounded-lg border border-line bg-beige/45 p-5 md:p-8 lg:p-10">
+        <div className="mt-12 rounded-lg border border-line bg-[#F3F5F4]/85 p-5 md:p-8 lg:p-10">
           <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {skillGroups.groups.map((group) => (
@@ -58,7 +72,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           </div>
         </div>
 
-        <div className="mt-12 rounded-lg border border-line bg-card p-5 md:p-8 lg:p-10">
+        <div className="mt-12 rounded-lg border border-line bg-[#FBFCFC]/95 p-5 shadow-minimal md:p-8 lg:p-10">
           <SectionHeader eyebrow={process.header.eyebrow} titleId="process-title" title={process.header.title} wide />
           <div className="mt-10 border-y border-line">
             {process.rows.map((row, index) => (
