@@ -58,7 +58,8 @@ function About({ content }: AboutProps) {
               {content.points.map((point, index) => (
                 <article
                   key={point.title}
-                  className={`grid gap-5 rounded-lg border p-5 md:grid-cols-[96px_1fr] md:p-6 ${pointTones[index % pointTones.length]}`}
+                  className={`stagger-item grid gap-5 rounded-lg border p-5 md:grid-cols-[96px_1fr] md:p-6 ${pointTones[index % pointTones.length]}`}
+                  style={{ transitionDelay: `${index * 70}ms` }}
                 >
                   <p className="text-[40px] font-semibold leading-none text-navy/25 md:text-[58px]">{String(index + 1).padStart(2, "0")}</p>
                   <div>

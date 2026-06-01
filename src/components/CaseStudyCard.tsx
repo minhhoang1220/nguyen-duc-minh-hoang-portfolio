@@ -117,7 +117,7 @@ function ImagePreview({
   compact?: boolean;
 }) {
   return (
-    <figure className="group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40 hover:shadow-card">
+    <figure className="group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40">
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -130,7 +130,7 @@ function ImagePreview({
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
-            className={`h-full w-full transition duration-700 group-hover:scale-[1.025] ${getPreviewImageClass(image.src)}`}
+            className={`h-full w-full transition duration-700 group-hover:scale-[1.04] ${getPreviewImageClass(image.src)}`}
             loading="lazy"
             decoding="async"
           />

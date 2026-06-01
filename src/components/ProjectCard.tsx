@@ -22,7 +22,7 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
           <img
             src={project.image.previewSrc ?? project.image.src}
             alt={project.image.alt}
-            className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
+            className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
             loading="lazy"
             decoding="async"
           />
@@ -32,22 +32,22 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
         </span>
       </button>
 
-      <div className="flex flex-1 flex-col gap-5 p-6 md:p-7">
-      <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.08em] text-muted">{project.type}</p>
-        <h3 className="text-2xl font-semibold leading-tight text-navy">{project.title}</h3>
-        <p className="mt-4 text-sm leading-6 text-ink">{project.positioning}</p>
-      </div>
+      <div className="flex flex-1 flex-col gap-4 p-6 md:p-7">
+        <div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.1em] text-muted">{project.type}</p>
+          <h3 className="text-2xl font-semibold leading-tight text-navy">{project.title}</h3>
+          <p className="mt-4 text-sm leading-6 text-ink">{project.positioning}</p>
+        </div>
 
-      <p className="text-sm leading-6 text-muted">{project.relevance}</p>
+        <p className="text-sm leading-6 text-muted">{project.relevance}</p>
 
-      <div className="mt-auto flex flex-wrap items-start gap-2">
-        {project.tags.map((tag) => (
-          <span key={tag} className="badge shrink-0">
-            {tag}
-          </span>
-        ))}
-      </div>
+        <div className="mt-auto flex flex-wrap items-start gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className="badge shrink-0">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </article>
   );

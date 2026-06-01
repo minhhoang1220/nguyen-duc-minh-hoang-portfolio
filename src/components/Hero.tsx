@@ -70,8 +70,20 @@ function Hero({
       <div className="container-wide grid min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] xl:gap-16">
         <div className="min-w-0 max-w-3xl">
           <div className="signature-card">
-            <p className="text-[23px] font-semibold leading-tight tracking-[0.01em] text-cream sm:text-[26px] md:text-[30px]">
-              {personal.name}
+            <p
+              className="text-[23px] font-semibold leading-tight tracking-[0.01em] text-cream sm:text-[26px] md:text-[30px]"
+              aria-label={personal.name}
+            >
+              {personal.name.split(" ").map((word, index) => (
+                <span
+                  key={`${word}-${index}`}
+                  className="hero-name-word mr-[0.22em] last:mr-0"
+                  aria-hidden="true"
+                  style={{ animationDelay: `${180 + index * 70}ms` }}
+                >
+                  {word}
+                </span>
+              ))}
             </p>
             <p className="max-w-xl text-xs font-semibold uppercase tracking-[0.12em] text-sky md:text-sm">{personal.shortRole}</p>
           </div>
@@ -80,7 +92,7 @@ function Hero({
             id="hero-title"
             className="text-balance text-[clamp(2.1rem,5.2vw,3.65rem)] font-semibold leading-[1.06] text-navy"
           >
-            {hero.headline}
+            <HighlightedHeadline text={hero.headline} />
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
           <ul className="mt-5 max-w-2xl space-y-2 border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
@@ -168,7 +180,7 @@ function ArtifactImageButton({
   onImageOpen: (image: AssetImage) => void;
 }) {
   return (
-    <figure className={`${className} group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/45 hover:shadow-card`}>
+    <figure className={`${className} group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/45`}>
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -185,7 +197,7 @@ function ArtifactImageButton({
           <img
             src={artifact.image.previewSrc ?? artifact.image.src}
             alt={artifact.image.alt}
-            className={`h-full w-full transition duration-700 group-hover:scale-[1.025] ${imageClassName}`}
+            className={`h-full w-full transition duration-700 group-hover:scale-[1.04] ${imageClassName}`}
             loading={showCaption ? "eager" : "lazy"}
             decoding="async"
           />
@@ -223,6 +235,28 @@ function TimelineArtifact({ artifact }: { artifact: Extract<HeroArtifact, { type
         ))}
       </div>
     </div>
+  );
+}
+
+function HighlightedHeadline({ text }: { text: string }) {
+  const target = text.includes("clear product flows")
+    ? "clear product flows"
+    : text.includes("product flow rõ ràng")
+      ? "product flow rõ ràng"
+      : "";
+
+  if (!target) {
+    return <>{text}</>;
+  }
+
+  const [before, after] = text.split(target);
+
+  return (
+    <>
+      {before}
+      <span className="gradient-underline">{target}</span>
+      {after}
+    </>
   );
 }
 

@@ -19,21 +19,25 @@ function GameThinking({ content }: GameThinkingProps) {
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.64fr_0.36fr]">
-          <ListPanel title={content.genresTitle} items={content.genres} featured />
-          <ListPanel title={content.gamesTitle} items={content.games} />
+          <ListPanel title={content.genresTitle} items={content.genres} featured delay={0} />
+          <ListPanel title={content.gamesTitle} items={content.games} delay={80} />
         </div>
       </div>
     </section>
   );
 }
 
-function ListPanel({ title, items, featured = false }: { title: string; items: string[]; featured?: boolean }) {
+function ListPanel({ title, items, featured = false, delay = 0 }: { title: string; items: string[]; featured?: boolean; delay?: number }) {
   return (
-    <article className="rounded-lg border border-cream/20 bg-card p-6 shadow-minimal md:p-8">
+    <article className="stagger-item rounded-lg border border-cream/20 bg-card p-6 shadow-minimal md:p-8" style={{ transitionDelay: `${delay}ms` }}>
       <h3 className="text-2xl font-semibold text-navy">{title}</h3>
       <ul className={`mt-6 flex flex-wrap items-start gap-3 ${featured ? "max-w-4xl" : ""}`}>
-        {items.map((item) => (
-          <li key={item} className="w-fit max-w-full rounded-md border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy">
+        {items.map((item, index) => (
+          <li
+            key={item}
+            className="stagger-item w-fit max-w-full rounded-md border border-line bg-cream px-4 py-3 text-sm font-semibold text-navy"
+            style={{ transitionDelay: `${delay + 120 + index * 45}ms` }}
+          >
             {item}
           </li>
         ))}

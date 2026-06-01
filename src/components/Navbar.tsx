@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Language, NavItem } from "../data/portfolio";
 import LanguageToggle from "./LanguageToggle";
 
@@ -17,9 +17,47 @@ type NavbarProps = {
 
 function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState(items[0]?.href ?? "#home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 60);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = items
+      .map((item) => document.getElementById(item.href.replace("#", "")))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!("IntersectionObserver" in window) || sections.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleEntry?.target.id) {
+          setActiveHref(`#${visibleEntry.target.id}`);
+        }
+      },
+      { rootMargin: "-32% 0px -56% 0px", threshold: [0.12, 0.32, 0.56] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [items]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-card/95 backdrop-blur">
+    <header className={`nav-shell ${isScrolled ? "is-scrolled" : ""}`}>
       <nav className="container-wide flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
         <a
           href="#home"
@@ -53,7 +91,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="inline-flex min-h-11 items-center px-2.5 text-sm font-medium text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+                  className={`nav-link ${activeHref === item.href ? "is-active" : ""}`}
                 >
                   {item.label}
                 </a>

@@ -20,8 +20,12 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
       </div>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
-        {proof.images.map((image) => (
-          <figure key={image.src} className="group rounded-lg border border-line bg-cream p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40 hover:shadow-card">
+        {proof.images.map((image, index) => (
+          <figure
+            key={image.src}
+            className="stagger-item group rounded-lg border border-line bg-cream p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40"
+            style={{ transitionDelay: `${index * 70}ms` }}
+          >
             <button
               type="button"
               className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -34,7 +38,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
                 <img
                   src={image.previewSrc ?? image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
                 />

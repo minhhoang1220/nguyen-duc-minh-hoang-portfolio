@@ -40,8 +40,8 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {approach.items.map((item, index) => (
                 <article
                   key={item.title}
-                  className="how-work-card group flex flex-col gap-4 rounded-lg border border-line p-8 shadow-minimal transition-all duration-500 hover:-translate-y-1 hover:border-navy/30 hover:shadow-hover"
-                  style={{ background: approachCardBackgrounds[index % approachCardBackgrounds.length] }}
+                  className="stagger-item how-work-card group flex flex-col gap-4 rounded-lg border border-line p-8 shadow-minimal transition-all duration-500 hover:-translate-y-1 hover:border-navy/30 hover:shadow-hover"
+                  style={{ background: approachCardBackgrounds[index % approachCardBackgrounds.length], transitionDelay: `${index * 70}ms` }}
                 >
                   <span className="sequence-badge" style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}>
                     0{index + 1}
@@ -60,10 +60,11 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
           <div className="skills-band-shell section-panel--skills">
             <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {skillGroups.groups.map((group) => (
+              {skillGroups.groups.map((group, index) => (
                 <article
                   key={group.category}
-                  className="skill-group-card flex flex-col gap-6 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+                  className="stagger-item skill-group-card flex flex-col gap-6 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+                  style={{ transitionDelay: `${index * 70}ms` }}
                 >
                   <h3 className="border-b border-line pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
                   <div className="flex flex-wrap gap-2">

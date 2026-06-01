@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import type { PortfolioContent } from "../data/portfolio";
 
 type ProofStripProps = {
@@ -22,11 +23,11 @@ function ProofStrip({ proof }: ProofStripProps) {
             return (
               <div
                 key={`${stat.value}-${stat.label}`}
-                className="reveal-number min-w-0 border-t border-cream/20 pt-6"
+                className="stagger-item reveal-number min-w-0 border-t border-cream/20 pt-6"
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
                 <dt className="min-h-[3rem] text-sm font-semibold leading-6 text-cream/80">{stat.label}</dt>
-                <dd className={`stat-number mt-3 ${isWideValue ? "stat-number-wide" : ""}`}>{stat.value}</dd>
+                <CountUpStat value={stat.value} className={`stat-number mt-3 ${isWideValue ? "stat-number-wide" : ""}`} />
               </div>
             );
           })}
@@ -34,6 +35,83 @@ function ProofStrip({ proof }: ProofStripProps) {
       </div>
     </section>
   );
+}
+
+function CountUpStat({ value, className }: { value: string; className: string }) {
+  const nodeRef = useRef<HTMLElement | null>(null);
+  const [displayValue, setDisplayValue] = useState(() => {
+    const parsed = parseCountValue(value);
+    return parsed ? `${parsed.prefix}0${parsed.suffix}` : value;
+  });
+
+  useEffect(() => {
+    const node = nodeRef.current;
+    const parsed = parseCountValue(value);
+
+    if (!node || !parsed || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayValue(value);
+      return;
+    }
+
+    let frame = 0;
+    let started = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started) {
+          return;
+        }
+
+        started = true;
+        const start = performance.now();
+        const duration = 1200;
+
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(parsed.number * eased);
+          setDisplayValue(`${parsed.prefix}${current}${parsed.suffix}`);
+
+          if (progress < 1) {
+            frame = window.requestAnimationFrame(tick);
+          }
+        };
+
+        frame = window.requestAnimationFrame(tick);
+        observer.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+    };
+  }, [value]);
+
+  return (
+    <dd ref={nodeRef} className={className}>
+      {displayValue}
+    </dd>
+  );
+}
+
+function parseCountValue(value: string) {
+  const match = value.match(/^(~?)(\d+)(\+?)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    prefix: match[1],
+    number: Number(match[2]),
+    suffix: match[3],
+  };
 }
 
 export default ProofStrip;
