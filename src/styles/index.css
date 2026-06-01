@@ -56,15 +56,15 @@ img {
   }
 
   .section-how-work {
-    background: var(--section-how-work);
+    background: transparent;
   }
 
   .section-skills {
-    background: var(--section-skills);
+    background: transparent;
   }
 
   .section-how-think {
-    background: var(--section-how-think);
+    background: transparent;
   }
 
   .section-notes {
@@ -97,22 +97,29 @@ img {
 
   .skills-narrative-band {
     @apply relative overflow-hidden;
+    background: linear-gradient(180deg, #faf8f2 0%, #fbf8f0 48%, #faf8f2 100%);
   }
 
   .skills-band-shell {
     @apply rounded-xl border border-line/80 p-5 shadow-minimal backdrop-blur md:p-8 lg:p-10;
   }
 
-  .section-how-work .skills-band-shell {
-    background: rgba(250, 248, 242, 0.62);
+  .section-panel--how-work {
+    background:
+      radial-gradient(circle at 90% 10%, rgba(157, 196, 255, 0.16), transparent 34%),
+      var(--section-how-work);
   }
 
-  .section-skills .skills-band-shell {
-    background: rgba(255, 255, 255, 0.62);
+  .section-panel--skills {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.76), transparent 26%),
+      var(--section-skills);
   }
 
-  .section-how-think .skills-band-shell {
-    background: rgba(248, 251, 255, 0.7);
+  .section-panel--how-think {
+    background:
+      radial-gradient(circle at 88% 0%, rgba(157, 196, 255, 0.24), transparent 32%),
+      var(--section-how-think);
   }
 
   .btn-primary {

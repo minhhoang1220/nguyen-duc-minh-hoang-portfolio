@@ -34,7 +34,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
     <section id="skills" className="skills-narrative-band" aria-labelledby="skills-title">
       <div className="section-how-work section-padding">
         <div className="container-wide">
-          <div className="skills-band-shell">
+          <div className="skills-band-shell section-panel--how-work">
             <SectionHeader eyebrow={approach.header.eyebrow} titleId="skills-title" title={approach.header.title} wide />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {approach.items.map((item, index) => (
@@ -57,51 +57,51 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
 
       <div className="section-skills section-padding">
         <div className="container-wide">
-          <div className="skills-band-shell">
-          <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.groups.map((group) => (
-              <article
-                key={group.category}
-                className="skill-group-card flex flex-col gap-6 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
-              >
-                <h3 className="border-b border-line pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <span key={skill} className="badge">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
+          <div className="skills-band-shell section-panel--skills">
+            <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide />
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {skillGroups.groups.map((group) => (
+                <article
+                  key={group.category}
+                  className="skill-group-card flex flex-col gap-6 rounded-lg border border-line bg-card p-8 shadow-minimal transition-all duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+                >
+                  <h3 className="border-b border-line pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span key={skill} className="badge">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="section-how-think section-padding">
         <div className="container-wide">
-          <div className="skills-band-shell">
-          <SectionHeader eyebrow={process.header.eyebrow} titleId="process-title" title={process.header.title} wide />
-          <div className="mt-10 grid gap-4">
-            {process.rows.map((row, index) => (
-              <article
-                key={row.number}
-                className={`thinking-row ${thinkingRowClasses[index % thinkingRowClasses.length]}`}
-                style={{ transitionDelay: `${index * 70}ms` }}
-              >
-                <p
-                  className="bg-clip-text text-[44px] font-semibold leading-none text-transparent md:text-[76px]"
-                  style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}
+          <div className="skills-band-shell section-panel--how-think">
+            <SectionHeader eyebrow={process.header.eyebrow} titleId="process-title" title={process.header.title} wide />
+            <div className="mt-10 grid gap-4">
+              {process.rows.map((row, index) => (
+                <article
+                  key={row.number}
+                  className={`thinking-row ${thinkingRowClasses[index % thinkingRowClasses.length]}`}
+                  style={{ transitionDelay: `${index * 70}ms` }}
                 >
-                  {row.number}
-                </p>
-                <h3 className="text-2xl font-semibold leading-tight text-navy md:text-3xl">{row.title}</h3>
-                <p className="max-w-3xl text-base leading-8 text-muted md:text-lg">{row.description}</p>
-              </article>
-            ))}
-          </div>
+                  <p
+                    className="bg-clip-text text-[44px] font-semibold leading-none text-transparent md:text-[76px]"
+                    style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}
+                  >
+                    {row.number}
+                  </p>
+                  <h3 className="text-2xl font-semibold leading-tight text-navy md:text-3xl">{row.title}</h3>
+                  <p className="max-w-3xl text-base leading-8 text-muted md:text-lg">{row.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </div>
