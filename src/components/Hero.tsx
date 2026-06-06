@@ -95,6 +95,9 @@ function Hero({
             <HighlightedHeadline text={hero.headline} />
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
+
+          <HeroUspPanel usp={hero.usp} />
+
           <ul className="mt-5 max-w-2xl space-y-2 border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
             {hero.focusItems.map((item) => (
               <li key={item} className="flex gap-2">
@@ -161,6 +164,23 @@ function Hero({
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroUspPanel({ usp }: { usp: PortfolioContent["hero"]["usp"] }) {
+  return (
+    <div className="usp-panel mt-6 max-w-2xl">
+      <p className="trust-card-label">{usp.label}</p>
+      <p className="mt-4 text-lg font-semibold leading-7 text-navy md:text-xl md:leading-8">{usp.statement}</p>
+      <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted md:grid-cols-2">
+        {usp.signals.map((signal) => (
+          <li key={signal} className="flex gap-3">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
+            <span>{signal}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -239,11 +259,10 @@ function TimelineArtifact({ artifact }: { artifact: Extract<HeroArtifact, { type
 }
 
 function HighlightedHeadline({ text }: { text: string }) {
-  const target = text.includes("clear product flows")
-    ? "clear product flows"
-    : text.includes("product flow rõ ràng")
-      ? "product flow rõ ràng"
-      : "";
+  const target =
+    ["Game Product and Operations", "Game Product và Operations", "clear product flows", "product flow rõ ràng"].find((phrase) =>
+      text.includes(phrase),
+    ) ?? "";
 
   if (!target) {
     return <>{text}</>;

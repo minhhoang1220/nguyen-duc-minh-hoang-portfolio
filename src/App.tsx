@@ -15,6 +15,7 @@ import ProjectCard from "./components/ProjectCard";
 import Reveal from "./components/Reveal";
 import SectionHeader from "./components/SectionHeader";
 import SkillsMatrix from "./components/SkillsMatrix";
+import TrustProof from "./components/TrustProof";
 import { type AssetImage, type Language, portfolioContent } from "./data/portfolio";
 
 const getInitialLanguage = (): Language => {
@@ -67,6 +68,10 @@ function App() {
 
         <Reveal>
           <ProofStrip proof={portfolio.proof} />
+        </Reveal>
+
+        <Reveal>
+          <TrustProof content={portfolio.socialProof} />
         </Reveal>
 
         <Reveal>

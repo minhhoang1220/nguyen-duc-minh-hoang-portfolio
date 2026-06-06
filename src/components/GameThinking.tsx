@@ -18,6 +18,19 @@ function GameThinking({ content }: GameThinkingProps) {
           </div>
         </div>
 
+        <div className="mt-12">
+          <p className="section-kicker text-sky">{content.pillarsTitle}</p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {content.pillars.map((pillar, index) => (
+              <article key={pillar.title} className="game-pillar-card stagger-item" style={{ transitionDelay: `${index * 70}ms` }}>
+                <span className="game-pillar-index">0{index + 1}</span>
+                <h3 className="mt-5 text-xl font-semibold leading-tight text-cream">{pillar.title}</h3>
+                <p className="mt-4 text-sm leading-6 text-cream/74">{pillar.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.64fr_0.36fr]">
           <ListPanel title={content.genresTitle} items={content.genres} featured delay={0} />
           <ListPanel title={content.gamesTitle} items={content.games} delay={80} />

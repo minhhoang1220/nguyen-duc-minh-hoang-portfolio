@@ -39,6 +39,19 @@ export type ProofStat = {
   label: string;
 };
 
+export type HeroUsp = {
+  label: string;
+  statement: string;
+  signals: string[];
+};
+
+export type SocialProofCard = {
+  label: string;
+  title: string;
+  body: string;
+  evidence: string[];
+};
+
 export type CaseStudy = {
   title: string;
   summary: string;
@@ -100,6 +113,11 @@ export type SkillGroup = {
   skills: string[];
 };
 
+export type GameDirectionPillar = {
+  title: string;
+  body: string;
+};
+
 export type PortfolioContent = {
   navigation: NavItem[];
   personal: {
@@ -130,6 +148,7 @@ export type PortfolioContent = {
     roleLine: string;
     headline: string;
     intro: string;
+    usp: HeroUsp;
     focusItems: string[];
     artifactAria: string;
     ctas: {
@@ -188,8 +207,17 @@ export type PortfolioContent = {
     sanitized: string;
     matrixTitle: string;
     matrixMeta: string;
+    artifactPreview: string;
+    internalPreview: string;
+    whatItProves: string;
   };
   caseStudies: CaseStudy[];
+  socialProof: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    cards: SocialProofCard[];
+  };
   projectProof: {
     eyebrow: string;
     title: string;
@@ -229,8 +257,10 @@ export type PortfolioContent = {
     body: string;
     genresTitle: string;
     gamesTitle: string;
+    pillarsTitle: string;
     genres: string[];
     games: string[];
+    pillars: GameDirectionPillar[];
   };
   contact: {
     eyebrow: string;
@@ -309,10 +339,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Game Product / LiveOps-oriented Product/System BA — turning complex product logic into clear flows, artifacts, and decisions teams can build from.",
-      headline: "Turning ambiguity into clear product flows.",
+        "Combining structured BA/PM execution, product thinking, data mindset, stakeholder communication, and lived game/esports understanding.",
+      headline: "BA/PM product thinking, aimed at Game Product and Operations.",
       intro:
-        "I use Product/System BA experience across flow logic, documentation, backlog coordination, and QA-ready artifacts as a proof base for moving toward Game Product, LiveOps, and Game Operations.",
+        "I use real Product/System BA artifacts across flow logic, documentation, backlog coordination, mockups, and QA-ready checks as the proof base for moving toward Game Product, LiveOps, and Game Operations.",
+      usp: {
+        label: "Positioning",
+        statement:
+          "A BA/PM-oriented product thinker moving into Game Product, LiveOps, and Game Operations.",
+        signals: [
+          "BA/PM execution: mockups, BRD/FSD, feature research, and stakeholder alignment",
+          "Delivery proof: flow design, backlog coordination, UAT support, and bug tracking",
+          "Data mindset from Business Data Analytics",
+          "Game direction grounded in player behavior, progression, retention, and live-service systems",
+        ],
+      },
       focusItems: [
         "Primary direction: Game Product / LiveOps / Game Operations",
         "Proof base: Product / System BA experience",
@@ -460,6 +501,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       sanitized: "Sanitized",
       matrixTitle: "Role-permission matrix",
       matrixMeta: "21 roles / ~400 permissions",
+      artifactPreview: "Artifact preview",
+      internalPreview: "Internal project - visual details anonymized",
+      whatItProves: "What it proves",
     },
     caseStudies: [
       {
@@ -576,6 +620,46 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         skills: ["System thinking", "Permission design", "Operational logic", "Edge case analysis"],
       },
     ],
+    socialProof: {
+      eyebrow: "Trust signals",
+      title: "Credibility without inflated claims.",
+      description:
+        "A compact trust layer using official transferable-skills recognition and public case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
+      cards: [
+        {
+          label: "Official recommendation",
+          title: "British Council - transferable work skills",
+          body:
+            "Recognized in an official recommendation for professionalism, reliability, communication, teamwork, organization, English proficiency, and ability to manage multiple responsibilities.",
+          evidence: [
+            "Used only as transferable skills evidence",
+            "No logo, stamp, signature, direct quote, or PDF displayed without approval",
+          ],
+        },
+        {
+          label: "Product/System BA evidence",
+          title: "Sanitized artifacts from real product work",
+          body:
+            "The case studies show practical BA/Product evidence across flows, mockups, permission logic, backlog coordination, and QA/UAT preparation.",
+          evidence: [
+            "65+ screens / feature states across CDP modules",
+            "21 roles / around 400 permissions mapped",
+            "3-4 features and 8-10 tasks coordinated per sprint",
+          ],
+        },
+        {
+          label: "Proof boundary",
+          title: "Anonymized work policy",
+          body:
+            "Sensitive product work is presented through anonymized previews and clear labels so viewers can understand the process without exposing confidential screens.",
+          evidence: [
+            "Sanitized artifact previews",
+            "Internal project details labeled when visuals cannot be shown",
+            "Unsupported testimonials and outcome claims omitted",
+          ],
+        },
+      ],
+    },
     projectProof: {
       eyebrow: "Product UI Proof",
       title: "Real artifacts behind the product story.",
@@ -806,11 +890,30 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     gameDirection: {
       eyebrow: "Game direction",
-      title: "Games are the domain I want to move toward next.",
+      title: "Games are the career domain I am building toward.",
       body:
-        "I’m especially interested in how game systems create motivation, competition, progression, retention, and long-term engagement. My current BA/Product/System work gives me transferable practice in flow logic, edge cases, coordination, and delivery clarity.",
+        "I treat games as a product domain, not just a hobby: systems where motivation, competition, progression, retention, community behavior, and live operations all interact. My BA/Product/System work gives me a practical bridge into that domain through flow logic, edge cases, coordination, documentation, and delivery clarity.",
       genresTitle: "Genres and systems I want to understand deeper",
       gamesTitle: "Games I follow or play",
+      pillarsTitle: "How my current BA/PM base maps to game work",
+      pillars: [
+        {
+          title: "Product & LiveOps Thinking",
+          body: "Understanding how progression, events, rewards, and feature states shape long-term player engagement.",
+        },
+        {
+          title: "Player / Community Understanding",
+          body: "Reading player behavior, competitive motivation, meta shifts, and community feedback as product signals.",
+        },
+        {
+          title: "Data-informed Decision Making",
+          body: "Using a Business Data Analytics base to frame metrics, compare options, and explain tradeoffs clearly.",
+        },
+        {
+          title: "Delivery & Stakeholder Alignment",
+          body: "Turning ambiguous needs into flows, mockups, BRD/FSD artifacts, backlog items, and QA-ready checks.",
+        },
+      ],
       genres: [
         "MOBA",
         "FPS",
@@ -887,10 +990,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     hero: {
       roleLine:
-        "Product/System BA định hướng Game Product / LiveOps — biến logic sản phẩm phức tạp thành flow, artifact và quyết định đủ rõ để team triển khai.",
-      headline: "Biến yêu cầu mơ hồ thành product flow rõ ràng.",
+        "Kết hợp BA/PM execution có cấu trúc, product thinking, data mindset, giao tiếp stakeholder và hiểu biết game/esports từ trải nghiệm cá nhân.",
+      headline: "Tư duy BA/PM hướng tới Game Product và Operations.",
       intro:
-        "Tôi dùng kinh nghiệm Product/System BA về logic flow, documentation, backlog coordination và artifact hỗ trợ QA/UAT làm nền tảng để tiến gần hơn tới Game Product, LiveOps và Game Operations.",
+        "Tôi dùng artifact Product/System BA thật về flow logic, documentation, backlog coordination, mockup và QA-ready checks làm nền tảng để tiến gần hơn tới Game Product, LiveOps và Game Operations.",
+      usp: {
+        label: "Định vị",
+        statement:
+          "Một product thinker theo hướng BA/PM đang chuyển dịch sang Game Product, LiveOps và Game Operations.",
+        signals: [
+          "BA/PM execution: mockup, BRD/FSD, feature research và stakeholder alignment",
+          "Bằng chứng delivery: flow design, backlog coordination, UAT support và bug tracking",
+          "Data mindset từ nền tảng Business Data Analytics",
+          "Định hướng game gắn với player behavior, progression, retention và live-service systems",
+        ],
+      },
       focusItems: [
         "Định hướng chính: Game Product / LiveOps / Game Operations",
         "Nền tảng chứng minh: Kinh nghiệm Product / System BA",
@@ -1038,6 +1152,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       sanitized: "Đã làm sạch",
       matrixTitle: "Role-permission matrix",
       matrixMeta: "21 vai trò / ~400 quyền hạn",
+      artifactPreview: "Preview artifact",
+      internalPreview: "Dự án nội bộ - chi tiết visual đã được ẩn danh",
+      whatItProves: "Điều case này chứng minh",
     },
     caseStudies: [
       {
@@ -1155,6 +1272,46 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         skills: ["System thinking", "Permission design", "Operational logic", "Edge case analysis"],
       },
     ],
+    socialProof: {
+      eyebrow: "Tín hiệu tin cậy",
+      title: "Tạo credibility mà không phóng đại claim.",
+      description:
+        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
+      cards: [
+        {
+          label: "Recommendation chính thức",
+          title: "British Council - transferable work skills",
+          body:
+            "Được ghi nhận trong thư recommendation chính thức về professionalism, reliability, communication, teamwork, organization, English proficiency và khả năng quản lý nhiều trách nhiệm.",
+          evidence: [
+            "Chỉ dùng như bằng chứng transferable skills",
+            "Không dùng logo, con dấu, chữ ký, direct quote hoặc PDF nếu chưa được cho phép",
+          ],
+        },
+        {
+          label: "Bằng chứng Product/System BA",
+          title: "Artifact đã làm sạch từ product work thật",
+          body:
+            "Các case studies thể hiện bằng chứng BA/Product thực tế qua flow, mockup, permission logic, backlog coordination và chuẩn bị QA/UAT.",
+          evidence: [
+            "65+ screens / feature states trong các CDP modules",
+            "21 roles / khoảng 400 permissions đã được map",
+            "3-4 features và 8-10 tasks được điều phối mỗi sprint",
+          ],
+        },
+        {
+          label: "Ranh giới bằng chứng",
+          title: "Quy tắc ẩn danh project",
+          body:
+            "Các project nhạy cảm được trình bày bằng preview ẩn danh và label rõ ràng để người xem hiểu process mà không lộ màn hình bảo mật.",
+          evidence: [
+            "Artifact previews đã được làm sạch",
+            "Chi tiết project nội bộ được label rõ khi không thể show visual",
+            "Không dùng testimonial hoặc outcome claim chưa xác thực",
+          ],
+        },
+      ],
+    },
     projectProof: {
       eyebrow: "Product UI Proof",
       title: "Những artifact thật phía sau câu chuyện sản phẩm.",
@@ -1383,11 +1540,30 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     gameDirection: {
       eyebrow: "Định hướng game",
-      title: "Game là domain tôi muốn tiến gần hơn trong giai đoạn tiếp theo.",
+      title: "Game là domain nghề nghiệp tôi đang xây dựng hướng tới.",
       body:
-        "Tôi đặc biệt quan tâm đến cách game systems tạo động lực, cạnh tranh, progression, retention và gắn bó dài hạn. Nền tảng BA/Product/System hiện tại giúp tôi chuyển đổi tư duy về logic flow, edge case, coordination và delivery clarity sang game products.",
+        "Tôi nhìn game như một product domain, không chỉ là sở thích: nơi motivation, competition, progression, retention, community behavior và live operations cùng tác động lên trải nghiệm người chơi. Nền tảng BA/Product/System hiện tại là cầu nối thực tế qua flow logic, edge case, coordination, documentation và delivery clarity.",
       genresTitle: "Thể loại và hệ thống tôi muốn hiểu sâu hơn",
       gamesTitle: "Một số game tôi theo dõi hoặc chơi",
+      pillarsTitle: "Cách nền tảng BA/PM hiện tại kết nối với game work",
+      pillars: [
+        {
+          title: "Product & LiveOps Thinking",
+          body: "Hiểu progression, event, reward và feature state ảnh hưởng thế nào tới long-term player engagement.",
+        },
+        {
+          title: "Player / Community Understanding",
+          body: "Đọc player behavior, competitive motivation, meta shift và community feedback như tín hiệu sản phẩm.",
+        },
+        {
+          title: "Data-informed Decision Making",
+          body: "Dùng nền tảng Business Data Analytics để frame metric, so sánh lựa chọn và giải thích tradeoff rõ ràng.",
+        },
+        {
+          title: "Delivery & Stakeholder Alignment",
+          body: "Chuyển nhu cầu mơ hồ thành flow, mockup, BRD/FSD artifact, backlog item và QA-ready checks.",
+        },
+      ],
       genres: [
         "MOBA",
         "FPS",
