@@ -62,6 +62,10 @@ function App() {
         />
 
         <Reveal>
+          <GameThinking content={portfolio.gameDirection} />
+        </Reveal>
+
+        <Reveal>
           <ProofStrip proof={portfolio.proof} />
         </Reveal>
 
@@ -172,9 +176,6 @@ function App() {
         </Reveal>
         <Reveal>
           <ProductNotes content={portfolio.productNotes} />
-        </Reveal>
-        <Reveal>
-          <GameThinking content={portfolio.gameDirection} />
         </Reveal>
         <Reveal>
           <Contact

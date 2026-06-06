@@ -274,13 +274,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
   en: {
     navigation: [
       { label: "Home", href: "#home" },
+      { label: "Game Direction", href: "#game-direction" },
       { label: "About", href: "#about" },
       { label: "Case Studies", href: "#case-studies" },
       { label: "Projects", href: "#projects" },
       { label: "Experience", href: "#experience" },
       { label: "How I Think", href: "#skills" },
       { label: "Product Notes", href: "#product-notes" },
-      { label: "Game Direction", href: "#game-direction" },
       { label: "Contact", href: "#contact" },
     ],
     personal: {
@@ -852,13 +852,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
   vi: {
     navigation: [
       { label: "Trang chủ", href: "#home" },
+      { label: "Định hướng game", href: "#game-direction" },
       { label: "Giới thiệu", href: "#about" },
       { label: "Case Studies", href: "#case-studies" },
       { label: "Dự án", href: "#projects" },
       { label: "Kinh nghiệm", href: "#experience" },
       { label: "Cách tiếp cận", href: "#skills" },
       { label: "Ghi chú", href: "#product-notes" },
-      { label: "Định hướng game", href: "#game-direction" },
       { label: "Liên hệ", href: "#contact" },
     ],
     personal: {
