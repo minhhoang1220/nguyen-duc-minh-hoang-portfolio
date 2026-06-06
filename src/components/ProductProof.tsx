@@ -23,9 +23,18 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
         {proof.images.map((image, index) => (
           <figure
             key={image.src}
-            className="stagger-item group rounded-lg border border-line bg-cream p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40"
+            className="case-artifact-shell stagger-item group"
             style={{ transitionDelay: `${index * 70}ms` }}
           >
+            <div className="artifact-window-bar">
+              <span className="flex items-center gap-1.5" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              <span className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{image.title}</span>
+              {image.caption ? <span className="hidden min-w-0 truncate text-right text-[11px] font-semibold text-muted md:block">{image.caption}</span> : null}
+            </div>
             <button
               type="button"
               className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -34,7 +43,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
               onPointerEnter={() => preloadImage(image.src)}
               onFocus={() => preloadImage(image.src)}
             >
-              <span className="relative block h-[360px] overflow-hidden rounded-md bg-card md:h-[520px]">
+              <span className="case-visual-frame relative block h-[360px] overflow-hidden bg-card md:h-[520px]">
                 <img
                   src={image.previewSrc ?? image.src}
                   alt={image.alt}

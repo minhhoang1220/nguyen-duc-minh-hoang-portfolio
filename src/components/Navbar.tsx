@@ -68,7 +68,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
       return sectionTargets[sectionTargets.length - 1].href;
     }
 
-    const activeLine = window.scrollY + getHeaderOffset() + Math.round(window.innerHeight * 0.24);
+    const activeLine = window.scrollY + getHeaderOffset() + Math.round(window.innerHeight * 0.42);
     let currentHref = sectionTargets[0].href;
 
     for (const target of sectionTargets) {

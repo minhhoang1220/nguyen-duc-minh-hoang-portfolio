@@ -12,13 +12,22 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
     <article className="card-hover flex h-full min-w-0 flex-col overflow-hidden border border-line bg-card">
       <button
         type="button"
-        className="group block w-full bg-cream text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        className="group block w-full bg-cream p-3 text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
         aria-label={`${openArtifactLabel}: ${project.image.title}`}
         onClick={() => onImageOpen(project.image)}
         onPointerEnter={() => preloadImage(project.image.src)}
         onFocus={() => preloadImage(project.image.src)}
       >
-        <span className="relative block aspect-[16/10] overflow-hidden bg-cream">
+        <span className="artifact-window-bar mb-3">
+          <span className="flex items-center gap-1.5" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{project.image.title}</span>
+          <span className="hidden min-w-0 truncate text-right text-[11px] font-semibold text-muted md:block">{project.type}</span>
+        </span>
+        <span className="case-visual-frame relative block aspect-[16/10] overflow-hidden bg-cream">
           <img
             src={project.image.previewSrc ?? project.image.src}
             alt={project.image.alt}
