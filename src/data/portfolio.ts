@@ -45,6 +45,12 @@ export type HeroUsp = {
   signals: string[];
 };
 
+export type HeroJourneyStep = {
+  label: string;
+  title: string;
+  body: string;
+};
+
 export type SocialProofCard = {
   label: string;
   title: string;
@@ -150,9 +156,13 @@ export type PortfolioContent = {
     intro: string;
     usp: HeroUsp;
     focusItems: string[];
+    trustHint: string;
+    journey: HeroJourneyStep[];
     artifactAria: string;
     ctas: {
       caseStudies: string;
+      gameDirection: string;
+      contact: string;
       cv: string;
       linkedin: string;
     };
@@ -315,7 +325,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Game Product / LiveOps-oriented Product/System BA",
+      shortRole: "Product/System BA moving toward Game Product & LiveOps",
       location: "Hanoi, Vietnam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -338,18 +348,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       loadingArtifact: "Loading high-resolution artifact",
     },
     hero: {
-      roleLine:
-        "Combining structured BA/PM execution, product thinking, data mindset, stakeholder communication, and lived game/esports understanding.",
-      headline: "BA/PM product thinking, aimed at Game Product and Operations.",
+      roleLine: "BA/PM product thinking for Game Product, LiveOps, and Operations.",
+      headline: "From player signals to delivery-ready product artifacts.",
       intro:
-        "I use real Product/System BA artifacts across flow logic, documentation, backlog coordination, mockups, and QA-ready checks as the proof base for moving toward Game Product, LiveOps, and Game Operations.",
+        "I turn ambiguous product logic into flows, mockups, BRD/FSD-ready notes, backlog items, and QA/UAT checks, then connect that delivery discipline to player-facing product decisions.",
       usp: {
         label: "Positioning",
         statement:
-          "A BA/PM-oriented product thinker moving into Game Product, LiveOps, and Game Operations.",
+          "A Product/System BA building toward Game Product and LiveOps through delivery discipline, data mindset, stakeholder communication, and lived game/esports understanding.",
         signals: [
-          "BA/PM execution: mockups, BRD/FSD, feature research, and stakeholder alignment",
-          "Delivery proof: flow design, backlog coordination, UAT support, and bug tracking",
+          "BA/PM execution across mockups, BRD/FSD, feature research, and backlog coordination",
+          "Product thinking that maps behavior, states, edge cases, and operational constraints",
           "Data mindset from Business Data Analytics",
           "Game direction grounded in player behavior, progression, retention, and live-service systems",
         ],
@@ -359,9 +368,30 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Proof base: Product / System BA experience",
         "Fallback path: Associate PM / Product Operations",
       ],
+      trustHint:
+        "Trust hints: real sanitized product artifacts, official transferable-skills recommendation, and positive verbal feedback from senior product/technical stakeholders.",
+      journey: [
+        {
+          label: "Player signal",
+          title: "Read behavior",
+          body: "Frame player/community signals, progression, retention, and LiveOps context.",
+        },
+        {
+          label: "Product decision",
+          title: "Clarify logic",
+          body: "Turn ambiguity into feature states, flows, tradeoffs, and stakeholder alignment.",
+        },
+        {
+          label: "Delivery artifact",
+          title: "Make it build-ready",
+          body: "Shape BRD/FSD notes, mockups, backlog items, UAT checks, and bug-tracking support.",
+        },
+      ],
       artifactAria: "Selected product artifact previews",
       ctas: {
         caseStudies: "View Case Studies",
+        gameDirection: "Explore Game Direction",
+        contact: "Let's talk",
         cv: "Download CV",
         linkedin: "LinkedIn",
       },
@@ -376,7 +406,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             previewSrc: assetPreviews.cdpFlowStates,
             alt: "Sanitized CDP flow management state screens showing feature-state and operational logic",
             title: "CDP flow management states",
-            caption: "Main visual proof of feature-state clarity and operational logic.",
+            caption: "Sanitized artifact preview: feature-state clarity and operational logic; internal details anonymized.",
           },
         },
         {
@@ -520,14 +550,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           previewSrc: assetPreviews.cdpAutomationFlow,
           alt: "Sanitized CDP automation flow map showing trigger, segment, state, and notification logic",
           title: "CDP automation flow map",
-          caption: "Main flow preview",
+          caption: "Sanitized artifact preview - internal details anonymized",
         },
         detailPreview: {
           src: assets.cdpFlowStates,
           previewSrc: assetPreviews.cdpFlowStates,
           alt: "Sanitized CDP flow management state screens",
           title: "CDP flow management states",
-          caption: "Expanded state preview",
+          caption: "Sanitized workflow/state preview",
         },
         context:
           "CDP customer-service modules involving Automation Flow, App Push Notification, flow reporting, and feature-state management.",
@@ -624,7 +654,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Trust signals",
       title: "Credibility without inflated claims.",
       description:
-        "A compact trust layer using official transferable-skills recognition and public case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
+        "A compact trust layer using official transferable-skills recognition, public verbal leadership feedback, and case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
       cards: [
         {
           label: "Official recommendation",
@@ -633,7 +663,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Recognized in an official recommendation for professionalism, reliability, communication, teamwork, organization, English proficiency, and ability to manage multiple responsibilities.",
           evidence: [
             "Used only as transferable skills evidence",
-            "No logo, stamp, signature, direct quote, or PDF displayed without approval",
+            "No logo, stamp, signature, direct quote, or PDF displayed",
+          ],
+        },
+        {
+          label: "Public verbal feedback",
+          title: "Positive feedback from CTO / BA / PM leadership",
+          body:
+            "Used as a light trust signal for working style, product communication, and delivery discipline. No private quote, name, logo, or company claim is displayed here.",
+          evidence: [
+            "CTO / BA / PM leader feedback handled as public verbal proof",
+            "No direct quote added until a public-safe wording is approved",
           ],
         },
         {
@@ -966,7 +1006,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     ],
     personal: {
       name: "Nguyễn Đức Minh Hoàng",
-      shortRole: "Product/System BA định hướng Game Product / LiveOps",
+      shortRole: "Product/System BA đang chuyển hướng sang Game Product & LiveOps",
       location: "Hà Nội, Việt Nam",
       email: "hoang.nguyenducminh@gmail.com",
       linkedin: "https://www.linkedin.com/in/hoangnguyenducminh/",
@@ -989,18 +1029,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       loadingArtifact: "Đang tải artifact độ phân giải cao",
     },
     hero: {
-      roleLine:
-        "Kết hợp BA/PM execution có cấu trúc, product thinking, data mindset, giao tiếp stakeholder và hiểu biết game/esports từ trải nghiệm cá nhân.",
-      headline: "Tư duy BA/PM hướng tới Game Product và Operations.",
+      roleLine: "Tư duy BA/PM cho Game Product, LiveOps và Operations.",
+      headline: "Từ tín hiệu người chơi đến artifact sản phẩm sẵn sàng triển khai.",
       intro:
-        "Tôi dùng artifact Product/System BA thật về flow logic, documentation, backlog coordination, mockup và QA-ready checks làm nền tảng để tiến gần hơn tới Game Product, LiveOps và Game Operations.",
+        "Tôi chuyển logic sản phẩm còn mơ hồ thành flow, mockup, ghi chú BRD/FSD, backlog item và QA/UAT checks, rồi kết nối kỷ luật delivery đó với các quyết định sản phẩm hướng người chơi.",
       usp: {
         label: "Định vị",
         statement:
-          "Một product thinker theo hướng BA/PM đang chuyển dịch sang Game Product, LiveOps và Game Operations.",
+          "Một Product/System BA đang xây dựng hướng đi sang Game Product và LiveOps bằng kỷ luật delivery, data mindset, giao tiếp stakeholder và hiểu biết game/esports từ trải nghiệm cá nhân.",
         signals: [
-          "BA/PM execution: mockup, BRD/FSD, feature research và stakeholder alignment",
-          "Bằng chứng delivery: flow design, backlog coordination, UAT support và bug tracking",
+          "BA/PM execution qua mockup, BRD/FSD, feature research và backlog coordination",
+          "Product thinking qua hành vi, trạng thái, edge case và constraint vận hành",
           "Data mindset từ nền tảng Business Data Analytics",
           "Định hướng game gắn với player behavior, progression, retention và live-service systems",
         ],
@@ -1010,9 +1049,30 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Nền tảng chứng minh: Kinh nghiệm Product / System BA",
         "Hướng dự phòng: Associate PM / Product Operations",
       ],
+      trustHint:
+        "Tín hiệu tin cậy: artifact sản phẩm thật đã làm sạch, recommendation chính thức cho transferable skills, và public verbal feedback từ stakeholder cấp CTO/BA/PM.",
+      journey: [
+        {
+          label: "Tín hiệu người chơi",
+          title: "Đọc hành vi",
+          body: "Frame player/community signal, progression, retention và bối cảnh LiveOps.",
+        },
+        {
+          label: "Quyết định sản phẩm",
+          title: "Làm rõ logic",
+          body: "Chuyển mơ hồ thành feature state, flow, tradeoff và stakeholder alignment.",
+        },
+        {
+          label: "Artifact triển khai",
+          title: "Sẵn sàng bàn giao",
+          body: "Đóng gói BRD/FSD note, mockup, backlog item, UAT check và hỗ trợ bug tracking.",
+        },
+      ],
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
         caseStudies: "Xem Case Studies",
+        gameDirection: "Khám phá Game Direction",
+        contact: "Trao đổi",
         cv: "Tải CV",
         linkedin: "LinkedIn",
       },
@@ -1027,7 +1087,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             previewSrc: assetPreviews.cdpFlowStates,
             alt: "Các màn hình trạng thái CDP flow management đã được làm sạch, thể hiện feature-state và operational logic",
             title: "CDP flow management states",
-            caption: "Bằng chứng chính về feature-state clarity và operational logic.",
+            caption: "Preview artifact đã làm sạch: feature-state clarity và operational logic; chi tiết nội bộ đã ẩn danh.",
           },
         },
         {
@@ -1171,14 +1231,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           previewSrc: assetPreviews.cdpAutomationFlow,
           alt: "Sơ đồ CDP automation flow đã được làm sạch, thể hiện trigger, segment, state và notification logic",
           title: "CDP automation flow map",
-          caption: "Preview flow chính",
+          caption: "Preview artifact đã làm sạch - chi tiết nội bộ đã ẩn danh",
         },
         detailPreview: {
           src: assets.cdpFlowStates,
           previewSrc: assetPreviews.cdpFlowStates,
           alt: "Các màn hình trạng thái CDP flow management đã được làm sạch",
           title: "CDP flow management states",
-          caption: "Preview trạng thái mở rộng",
+          caption: "Preview workflow/state đã làm sạch",
         },
         context:
           "Các module CDP cho customer service liên quan đến Automation Flow, App Push Notification, báo cáo flow và quản lý trạng thái tính năng.",
@@ -1276,7 +1336,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Tín hiệu tin cậy",
       title: "Tạo credibility mà không phóng đại claim.",
       description:
-        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
+        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills, public verbal feedback từ leadership và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
       cards: [
         {
           label: "Recommendation chính thức",
@@ -1285,7 +1345,17 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Được ghi nhận trong thư recommendation chính thức về professionalism, reliability, communication, teamwork, organization, English proficiency và khả năng quản lý nhiều trách nhiệm.",
           evidence: [
             "Chỉ dùng như bằng chứng transferable skills",
-            "Không dùng logo, con dấu, chữ ký, direct quote hoặc PDF nếu chưa được cho phép",
+            "Không hiển thị logo, con dấu, chữ ký, direct quote hoặc PDF",
+          ],
+        },
+        {
+          label: "Public verbal feedback",
+          title: "Feedback tích cực từ leadership CTO / BA / PM",
+          body:
+            "Dùng như trust signal nhẹ về working style, giao tiếp sản phẩm và kỷ luật delivery. Không hiển thị quote riêng tư, tên riêng, logo hoặc claim công ty.",
+          evidence: [
+            "Feedback từ CTO / BA / PM leader được xử lý như public verbal proof",
+            "Không thêm direct quote cho đến khi wording public-safe được xác nhận",
           ],
         },
         {

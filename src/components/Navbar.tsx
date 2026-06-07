@@ -40,7 +40,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
 
   const getHeaderOffset = useCallback(() => {
     const header = document.querySelector<HTMLElement>(".nav-shell");
-    const revealBuffer = Math.min(64, Math.max(32, Math.round(window.innerHeight * 0.09)));
+    const revealBuffer = window.innerWidth < 768 ? 84 : 104;
     return (header?.getBoundingClientRect().height ?? 72) + revealBuffer;
   }, []);
 

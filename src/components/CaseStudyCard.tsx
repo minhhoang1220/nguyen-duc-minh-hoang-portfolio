@@ -22,7 +22,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           <p className="section-kicker text-muted">
             {labels.eyebrow} 0{index + 1}
           </p>
-          <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
+          <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px]">{caseStudy.title}</h3>
           <EmphasizedText className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
 
           <CaseSnapshot caseStudy={caseStudy} labels={labels} />

@@ -18,7 +18,7 @@ function TrustProof({ content }: TrustProofProps) {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {content.cards.map((card, index) => (
             <article key={card.title} className="trust-card stagger-item" style={{ transitionDelay: `${index * 80}ms` }}>
               <p className="trust-card-label">{card.label}</p>

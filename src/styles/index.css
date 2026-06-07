@@ -22,7 +22,11 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 128px;
+  scroll-padding-top: 176px;
+}
+
+section[id] {
+  scroll-margin-top: 176px;
 }
 
 body {
@@ -205,6 +209,243 @@ img {
     @apply inline-flex w-fit max-w-full rounded-sm border border-navy/15 bg-sky/30 px-3.5 py-2 text-[12px] font-extrabold uppercase tracking-[0.1em] text-navy;
   }
 
+  .hero-command-center {
+    --hero-shift-x: 0px;
+    --hero-shift-y: 0px;
+    --hero-tilt-x: 0deg;
+    --hero-tilt-y: 0deg;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 86% 18%, rgba(157, 196, 255, 0.28), transparent 32%),
+      linear-gradient(135deg, #fffdf8 0%, #faf8f2 44%, #edf3f7 100%);
+  }
+
+  .hero-command-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-command-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(27, 45, 115, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27, 45, 115, 0.055) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.72) 62%, transparent 100%);
+  }
+
+  .hero-command-backdrop::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -22%;
+    width: 24%;
+    background: linear-gradient(90deg, transparent, rgba(157, 196, 255, 0.2), transparent);
+    transform: skewX(-14deg);
+    animation: hero-command-scan 7.6s ease-in-out infinite;
+  }
+
+  .hero-command-layout {
+    position: relative;
+    z-index: 1;
+  }
+
+  .command-identity {
+    @apply mb-5 flex max-w-3xl items-center gap-4;
+  }
+
+  .command-monogram {
+    @apply inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-navy bg-navy text-sm font-bold text-cream shadow-card;
+  }
+
+  .command-role-line {
+    @apply mb-4 max-w-2xl text-sm font-bold leading-6 text-navy-accent md:text-base;
+  }
+
+  .command-secondary-links {
+    @apply mt-4 flex flex-wrap items-center gap-x-5 gap-y-2;
+  }
+
+  .command-text-link {
+    @apply text-sm font-semibold text-navy underline decoration-navy/30 decoration-2 underline-offset-4 transition-colors hover:text-navy-accent hover:decoration-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4;
+  }
+
+  .hero-signal-panel {
+    @apply relative overflow-hidden rounded-lg border border-navy/20 bg-card p-4 shadow-minimal md:p-5;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(237, 243, 247, 0.92) 58%, rgba(250, 248, 242, 0.98));
+  }
+
+  .hero-signal-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-top: 3px solid rgba(27, 45, 115, 0.86);
+  }
+
+  .hero-signal-head {
+    @apply relative z-[1] grid gap-3 md:grid-cols-[auto_1fr] md:items-start;
+  }
+
+  .command-module-grid {
+    @apply relative z-[1] grid gap-2 md:grid-cols-2;
+  }
+
+  .command-module-grid > li {
+    @apply rounded-md border border-line bg-cream px-3 py-2.5 text-sm font-semibold leading-6 text-navy;
+  }
+
+  .command-focus-chip {
+    @apply inline-flex max-w-full rounded-sm border border-navy/15 bg-sky/25 px-3 py-2 text-[12px] font-bold leading-5 text-navy;
+  }
+
+  .hero-command-visual {
+    @apply relative min-w-0 overflow-hidden rounded-lg border border-navy bg-navy p-4 shadow-card md:p-5;
+    background:
+      radial-gradient(circle at 78% 8%, rgba(157, 196, 255, 0.22), transparent 31%),
+      linear-gradient(135deg, #080e24 0%, #16265f 54%, #273a86 100%);
+    transform:
+      translate3d(var(--hero-shift-x), var(--hero-shift-y), 0)
+      rotateX(var(--hero-tilt-x))
+      rotateY(var(--hero-tilt-y))
+      translate3d(0, var(--hero-artifact-y, 0px), 0)
+      scale(var(--hero-artifact-scale, 1));
+    transform-style: preserve-3d;
+  }
+
+  .hero-command-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(157, 196, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(157, 196, 255, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 88%, transparent 100%);
+  }
+
+  .hero-command-visual::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    pointer-events: none;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(157, 196, 255, 0.22);
+  }
+
+  .hero-command-visual > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .command-visual-topline {
+    @apply grid min-h-10 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-md border border-cream/15 bg-cream/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-cream/70;
+  }
+
+  .command-visual-topline > span:first-child > span {
+    display: block;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: rgba(157, 196, 255, 0.7);
+  }
+
+  .command-visual-topline > span:first-child > span:nth-child(1) {
+    background: #d56f5d;
+  }
+
+  .command-visual-topline > span:first-child > span:nth-child(2) {
+    background: #d7aa4a;
+  }
+
+  .command-visual-topline > span:first-child > span:nth-child(3) {
+    background: #68a37d;
+  }
+
+  .command-profile-panel {
+    @apply mt-4 flex items-center gap-4 rounded-lg border border-cream/15 bg-cream/10 p-4;
+    backdrop-filter: blur(12px);
+    transform: translateZ(24px);
+  }
+
+  .command-profile-mark {
+    @apply inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-sky/60 bg-sky/15 text-sm font-bold text-sky;
+  }
+
+  .command-journey {
+    @apply mt-4 grid gap-3 md:grid-cols-3;
+  }
+
+  .command-journey-step {
+    @apply relative min-w-0 rounded-lg border border-cream/15 bg-cream/10 p-4;
+    backdrop-filter: blur(10px);
+    transform: translateZ(18px);
+  }
+
+  .command-step-index {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-md border border-sky/45 text-xs font-bold text-sky;
+  }
+
+  .command-step-line {
+    position: absolute;
+    top: 2.1rem;
+    right: -0.75rem;
+    width: 1.5rem;
+    height: 1px;
+    overflow: hidden;
+    background: rgba(157, 196, 255, 0.24);
+  }
+
+  .command-step-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #9dc4ff;
+    transform: translateX(-100%);
+    animation: command-line-draw 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  .command-journey-step:last-child .command-step-line {
+    display: none;
+  }
+
+  .command-artifact-zone {
+    @apply mt-4 grid gap-3 lg:grid-cols-[1.12fr_0.88fr];
+  }
+
+  .command-main-artifact {
+    transform: translateZ(34px);
+  }
+
+  .command-main-artifact .artifact-media {
+    @apply h-[260px] md:h-[310px] lg:h-[330px] xl:h-[360px];
+  }
+
+  .command-support-grid {
+    @apply grid gap-3;
+  }
+
+  .command-support-artifact,
+  .command-timeline-artifact {
+    transform: translateZ(18px);
+  }
+
+  .command-support-artifact .artifact-media {
+    @apply h-[108px] md:h-[128px] lg:h-[98px] xl:h-[110px];
+  }
+
+  .command-timeline-artifact {
+    @apply hidden 2xl:block;
+  }
+
   .usp-panel {
     @apply relative overflow-hidden rounded-lg border border-navy/20 bg-card p-5 shadow-minimal md:p-6;
     background:
@@ -271,6 +512,11 @@ img {
     line-height: 1.6;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+  }
+
+  .case-study-title {
+    color: #10235f;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.42);
   }
 
   .case-artifact-shell {
@@ -456,6 +702,34 @@ img {
     @apply min-w-0;
   }
 
+  .hero-command-visual .command-main-artifact .artifact-media {
+    height: 260px;
+  }
+
+  .hero-command-visual .command-support-artifact .artifact-media {
+    height: 96px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-command-visual .command-main-artifact .artifact-media {
+      height: 300px;
+    }
+
+    .hero-command-visual .command-support-artifact .artifact-media {
+      height: 108px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-command-visual .command-main-artifact .artifact-media {
+      height: 330px;
+    }
+
+    .hero-command-visual .command-support-artifact .artifact-media {
+      height: 110px;
+    }
+  }
+
   .artifact-image-frame {
     @apply h-40 overflow-hidden rounded-md border border-line bg-cream md:h-44;
   }
@@ -621,6 +895,39 @@ img {
   }
 }
 
+@keyframes hero-command-scan {
+  0%,
+  36% {
+    transform: translateX(0) skewX(-14deg);
+  }
+  78%,
+  100% {
+    transform: translateX(520%) skewX(-14deg);
+  }
+}
+
+@keyframes command-line-draw {
+  0%,
+  18% {
+    transform: translateX(-100%);
+  }
+  58%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes command-line-draw-y {
+  0%,
+  18% {
+    transform: translateY(-100%);
+  }
+  58%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 @keyframes game-scanline {
   0%,
   32% {
@@ -675,9 +982,78 @@ img {
 }
 
 @media (max-width: 767px) {
+  html {
+    scroll-padding-top: 144px;
+  }
+
+  section[id] {
+    scroll-margin-top: 144px;
+  }
+
   .section-padding {
     padding-top: 3.25rem;
     padding-bottom: 3.25rem;
+  }
+
+  .command-identity {
+    align-items: flex-start;
+  }
+
+  .command-secondary-links {
+    display: none;
+  }
+
+  .command-monogram {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-command-visual {
+    transform: translate3d(0, var(--hero-artifact-y, 0px), 0) scale(var(--hero-artifact-scale, 1));
+  }
+
+  .command-visual-topline {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .command-visual-topline > span:last-child {
+    display: none;
+  }
+
+  .command-journey {
+    grid-template-columns: 1fr;
+  }
+
+  .command-step-line {
+    top: auto;
+    right: auto;
+    bottom: -0.75rem;
+    left: 1.65rem;
+    width: 1px;
+    height: 1.5rem;
+  }
+
+  .command-step-line::after {
+    transform: translateY(-100%);
+    animation-name: command-line-draw-y;
+  }
+
+  .command-artifact-zone {
+    grid-template-columns: 1fr;
+  }
+
+  .command-main-artifact .artifact-media {
+    height: 250px;
+  }
+
+  .command-support-grid {
+    grid-template-columns: 1fr;
+    display: none;
+  }
+
+  .command-support-artifact .artifact-media {
+    height: 136px;
   }
 
   .hero-stage {
@@ -752,5 +1128,14 @@ img {
   .section-game::after {
     animation: none;
     opacity: 0;
+  }
+
+  .hero-command-backdrop::after,
+  .command-step-line::after {
+    animation: none;
+  }
+
+  .hero-command-visual {
+    transform: none;
   }
 }
