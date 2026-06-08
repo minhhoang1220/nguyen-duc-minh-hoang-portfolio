@@ -40,7 +40,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
 
   const getHeaderOffset = useCallback(() => {
     const header = document.querySelector<HTMLElement>(".nav-shell");
-    const revealBuffer = window.innerWidth < 768 ? 84 : 104;
+    const revealBuffer = window.innerWidth < 768 ? 24 : 32;
     return (header?.getBoundingClientRect().height ?? 72) + revealBuffer;
   }, []);
 
@@ -176,6 +176,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const targetTop = Math.max(0, section.getBoundingClientRect().top + window.scrollY - getHeaderOffset());
+      const initialScrollY = window.scrollY;
 
       activeLockRef.current = { href, expiresAt: performance.now() + 1600 };
       setActiveHref(href);
@@ -183,6 +184,19 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
       setIsOpen(false);
       window.history.pushState(null, "", href);
       window.scrollTo({ top: targetTop, behavior: reduceMotion ? "auto" : "smooth" });
+
+      window.setTimeout(
+        () => {
+          const scrollDidNotStart = Math.abs(window.scrollY - initialScrollY) < 2;
+          const targetStillFar = Math.abs(window.scrollY - targetTop) > 8;
+
+          if (scrollDidNotStart && targetStillFar) {
+            document.documentElement.scrollTop = targetTop;
+            document.body.scrollTop = targetTop;
+          }
+        },
+        reduceMotion ? 0 : 420,
+      );
     },
     [getHeaderOffset, getSectionId],
   );

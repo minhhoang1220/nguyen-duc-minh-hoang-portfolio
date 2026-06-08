@@ -5,13 +5,14 @@
 :root {
   color: #333333;
   background: #faf8f2;
-  --section-hero: linear-gradient(180deg, #fffdf8 0%, #faf8f2 55%, #f3ecdf 100%);
-  --section-cases: linear-gradient(180deg, #ffffff 0%, #fefdfb 100%);
-  --section-product-proof: linear-gradient(180deg, #fbf6ea 0%, #f8f3ea 48%, #fffdf8 100%);
-  --section-how-work: linear-gradient(180deg, #f4eadb 0%, #f8f0e2 100%);
-  --section-skills: linear-gradient(180deg, #edf3f7 0%, #e8f0f6 100%);
-  --section-how-think: linear-gradient(180deg, #edf3ff 0%, #e5ecfb 100%);
-  --section-notes: linear-gradient(180deg, #e5ecfb 0%, #f8fbff 100%);
+  --section-hero: linear-gradient(180deg, #fffdf8 0%, #faf8f2 70%, #f5efe4 100%);
+  --section-cases: linear-gradient(180deg, #fffdf8 0%, #faf8f2 100%);
+  --section-product-proof: linear-gradient(180deg, #faf8f2 0%, #fffdf8 100%);
+  --section-proof: linear-gradient(180deg, #fffdf8 0%, #f6f2e9 100%);
+  --section-how-work: linear-gradient(180deg, #faf8f2 0%, #fffdf8 100%);
+  --section-skills: linear-gradient(180deg, #fffdf8 0%, #f4f8fb 100%);
+  --section-how-think: linear-gradient(180deg, #f4f8fb 0%, #fffdf8 100%);
+  --section-notes: linear-gradient(180deg, #fffdf8 0%, #f6f9fc 100%);
   --section-game: linear-gradient(180deg, #080e24 0%, #1b2d73 100%);
   --section-contact: linear-gradient(180deg, #faf8f2 0%, #fffdf8 100%);
   font-synthesis: none;
@@ -22,11 +23,11 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 176px;
+  scroll-padding-top: 112px;
 }
 
 section[id] {
-  scroll-margin-top: 176px;
+  scroll-margin-top: 112px;
 }
 
 body {
@@ -59,14 +60,16 @@ img {
     background: var(--section-product-proof);
   }
 
+  .section-proof-snapshot {
+    background: var(--section-proof);
+  }
+
   .section-trust {
-    background: linear-gradient(180deg, #fffdf8 0%, #eef4f8 52%, #faf8f2 100%);
+    background: var(--section-proof);
   }
 
   .section-why-work {
-    background:
-      radial-gradient(circle at 10% 0%, rgba(157, 196, 255, 0.18), transparent 28%),
-      linear-gradient(180deg, #faf8f2 0%, #fffdf8 52%, #eef4f8 100%);
+    background: var(--section-how-work);
   }
 
   .section-how-work {
@@ -136,6 +139,10 @@ img {
     background: var(--section-contact);
   }
 
+  .section-experience {
+    background: linear-gradient(180deg, #fffdf8 0%, #f8f5ee 100%);
+  }
+
   .container-main {
     @apply mx-auto w-full max-w-[1200px] px-5 md:px-8 lg:px-12;
   }
@@ -149,7 +156,11 @@ img {
   }
 
   .section-padding {
-    @apply py-16 md:py-20 lg:py-28;
+    @apply py-14 md:py-16 lg:py-20;
+  }
+
+  .section-title {
+    @apply text-balance text-[32px] font-semibold leading-[1.06] md:text-[48px] lg:text-[60px];
   }
 
   .skills-narrative-band {
@@ -158,25 +169,22 @@ img {
   }
 
   .skills-band-shell {
-    @apply rounded-xl border border-line/80 p-5 shadow-minimal backdrop-blur md:p-8 lg:p-10;
+    @apply p-0;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
   }
 
   .section-panel--how-work {
-    background:
-      radial-gradient(circle at 90% 10%, rgba(157, 196, 255, 0.16), transparent 34%),
-      var(--section-how-work);
+    background: transparent;
   }
 
   .section-panel--skills {
-    background:
-      radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.76), transparent 26%),
-      var(--section-skills);
+    background: transparent;
   }
 
   .section-panel--how-think {
-    background:
-      radial-gradient(circle at 88% 0%, rgba(157, 196, 255, 0.24), transparent 32%),
-      var(--section-how-think);
+    background: transparent;
   }
 
   .btn-primary {
@@ -222,8 +230,8 @@ img {
     --hero-tilt-y: 0deg;
     isolation: isolate;
     background:
-      radial-gradient(circle at 86% 18%, rgba(157, 196, 255, 0.28), transparent 32%),
-      linear-gradient(135deg, #fffdf8 0%, #faf8f2 44%, #edf3f7 100%);
+      radial-gradient(circle at 88% 16%, rgba(157, 196, 255, 0.14), transparent 30%),
+      linear-gradient(135deg, #fffdf8 0%, #faf8f2 58%, #f3f6f8 100%);
   }
 
   .hero-command-backdrop {
@@ -242,7 +250,8 @@ img {
       linear-gradient(rgba(27, 45, 115, 0.055) 1px, transparent 1px),
       linear-gradient(90deg, rgba(27, 45, 115, 0.055) 1px, transparent 1px);
     background-size: 52px 52px;
-    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.72) 62%, transparent 100%);
+    opacity: 0.6;
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.48) 58%, transparent 100%);
   }
 
   .hero-command-backdrop::after {
@@ -252,9 +261,10 @@ img {
     bottom: 0;
     left: -22%;
     width: 24%;
-    background: linear-gradient(90deg, transparent, rgba(157, 196, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(157, 196, 255, 0.12), transparent);
+    opacity: 0.45;
     transform: skewX(-14deg);
-    animation: hero-command-scan 7.6s ease-in-out infinite;
+    animation: hero-command-scan 10s ease-in-out infinite;
   }
 
   .hero-command-layout {
@@ -263,11 +273,11 @@ img {
   }
 
   .command-identity {
-    @apply mb-5 flex max-w-3xl items-center gap-4;
+    @apply mb-4 flex max-w-3xl items-center gap-4;
   }
 
   .command-monogram {
-    @apply inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-navy bg-navy text-sm font-bold text-cream shadow-card;
+    @apply inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-navy bg-navy text-sm font-bold text-cream shadow-minimal md:h-16 md:w-16;
   }
 
   .command-role-line {
@@ -283,7 +293,7 @@ img {
   }
 
   .command-compact-trust {
-    @apply mt-5 max-w-2xl rounded-md border border-navy/15 bg-card px-4 py-3 text-sm font-semibold leading-6 text-navy shadow-minimal;
+    @apply mt-4 max-w-2xl border-l-2 border-sky pl-4 text-sm font-semibold leading-6 text-muted;
   }
 
   .hero-signal-panel {
@@ -317,10 +327,10 @@ img {
   }
 
   .hero-command-visual {
-    @apply relative min-w-0 overflow-hidden rounded-lg border border-navy bg-navy p-4 shadow-card md:p-5;
+    @apply relative min-w-0 overflow-hidden rounded-lg border border-navy bg-navy p-3 shadow-card md:p-4;
     background:
-      radial-gradient(circle at 78% 8%, rgba(157, 196, 255, 0.22), transparent 31%),
-      linear-gradient(135deg, #080e24 0%, #16265f 54%, #273a86 100%);
+      radial-gradient(circle at 78% 8%, rgba(157, 196, 255, 0.14), transparent 30%),
+      linear-gradient(135deg, #080e24 0%, #14245f 62%, #1b2d73 100%);
     transform:
       translate3d(var(--hero-shift-x), var(--hero-shift-y), 0)
       rotateX(var(--hero-tilt-x))
@@ -339,6 +349,7 @@ img {
       linear-gradient(rgba(157, 196, 255, 0.08) 1px, transparent 1px),
       linear-gradient(90deg, rgba(157, 196, 255, 0.08) 1px, transparent 1px);
     background-size: 36px 36px;
+    opacity: 0.62;
     mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 88%, transparent 100%);
   }
 
@@ -380,25 +391,8 @@ img {
     background: #68a37d;
   }
 
-  .command-status-strip {
-    @apply mt-4 grid gap-2 sm:grid-cols-4;
-  }
-
-  .command-status-strip > li {
-    @apply min-w-0 rounded-md border border-sky/35 bg-cream/10 px-3 py-2 text-cream;
-    box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.12);
-  }
-
-  .command-status-strip span {
-    @apply mr-2 text-[10px] font-extrabold text-sky;
-  }
-
-  .command-status-strip strong {
-    @apply text-[11px] font-extrabold uppercase tracking-[0.1em] text-cream;
-  }
-
   .command-center-grid {
-    @apply mt-4 grid gap-4 xl:grid-cols-[0.84fr_1.16fr];
+    @apply mt-3 grid gap-4 xl:grid-cols-[0.78fr_1.22fr];
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -415,21 +409,11 @@ img {
   .command-center-right {
     position: relative;
     z-index: 2;
-    margin-top: -5.75rem;
-  }
-
-  .command-profile-panel {
-    @apply mt-4 flex items-center gap-4 rounded-lg border border-cream/15 bg-cream/10 p-4;
-    backdrop-filter: blur(12px);
-    transform: translateZ(24px);
-  }
-
-  .command-profile-mark {
-    @apply inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-sky/60 bg-sky/15 text-sm font-bold text-sky;
+    margin-top: 0;
   }
 
   .command-journey {
-    @apply mt-4 grid gap-3 md:grid-cols-3;
+    @apply mt-0 grid gap-3 md:grid-cols-3;
   }
 
   .command-center-left .command-journey {
@@ -521,13 +505,13 @@ img {
   }
 
   .command-artifact-heading {
-    @apply mb-3 flex items-start justify-between gap-4 rounded-lg border border-sky/30 bg-cream/10 px-4 py-3;
+    @apply mb-3 flex items-start justify-between gap-4 rounded-md border border-sky/25 bg-cream/10 px-3 py-2.5;
     backdrop-filter: blur(10px);
-    margin-left: min(42%, 240px);
+    margin-left: 0;
   }
 
   .command-device-stage {
-    @apply relative min-h-[410px] overflow-hidden rounded-lg border border-sky/30 bg-navy-night/55 p-3 md:min-h-[430px] md:p-4 xl:min-h-[442px];
+    @apply relative min-h-[350px] overflow-hidden rounded-lg border border-sky/25 bg-navy-night/45 p-3 md:min-h-[372px] md:p-4 xl:min-h-[390px];
     box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.12);
   }
 
@@ -551,11 +535,11 @@ img {
 
   .command-device-desktop {
     @apply shadow-card;
-    width: min(78%, 520px);
+    width: min(84%, 560px);
   }
 
   .command-device-desktop .artifact-media {
-    @apply h-[230px] md:h-[270px] xl:h-[292px];
+    @apply h-[212px] md:h-[236px] xl:h-[252px];
   }
 
   .command-template-layer {
@@ -566,27 +550,24 @@ img {
     @apply absolute min-w-0 rounded-lg border border-sky/45 bg-cream p-3 text-navy shadow-card;
   }
 
-  .command-template-card p,
-  .mini-artifact p {
+  .command-template-card p {
     @apply text-[10px] font-extrabold uppercase tracking-[0.1em] text-navy-accent;
   }
 
-  .command-template-card strong,
-  .mini-artifact strong {
+  .command-template-card strong {
     @apply mt-1 block text-sm font-semibold leading-tight text-navy;
   }
 
-  .command-template-card span,
-  .mini-artifact span {
+  .command-template-card span {
     @apply mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-muted;
   }
 
   .command-phone-device {
-    right: 0.25rem;
-    top: 3.75rem;
-    width: 30%;
+    right: 0.5rem;
+    top: 4.2rem;
+    width: 28%;
     max-width: 178px;
-    min-height: 190px;
+    min-height: 168px;
     border-radius: 1.15rem;
     transform: translateZ(58px) rotate(4deg);
   }
@@ -606,53 +587,36 @@ img {
   }
 
   .phone-screen-lines i {
-    @apply block h-8 rounded-md border border-line bg-sky/20;
+    @apply block h-6 rounded-md border border-line bg-sky/20;
   }
 
   .phone-screen-lines i:nth-child(2) {
     @apply bg-beige;
   }
 
-  .command-tablet-device {
-    right: 1.25rem;
-    bottom: 3.25rem;
-    width: 38%;
-    min-height: 138px;
-    transform: translateZ(48px) rotate(-2deg);
-  }
-
-  .tablet-plan-grid {
-    @apply mt-4 grid grid-cols-4 gap-1.5;
-  }
-
-  .tablet-plan-grid i {
-    @apply block h-8 rounded-sm border border-line bg-sky/20;
-  }
-
-  .tablet-plan-grid i:nth-child(3n) {
-    background: rgba(213, 111, 93, 0.22);
-  }
-
-  .command-template-grid {
-    @apply absolute bottom-0 left-0 grid w-[58%] gap-2;
-    max-width: 330px;
-  }
-
-  .mini-artifact {
-    @apply rounded-md border border-sky/35 bg-cream px-3 py-2 text-navy shadow-minimal;
-    transform: translateZ(44px);
-  }
-
-  .mini-artifact-matrix {
-    border-left: 4px solid #68a37d;
-  }
-
-  .mini-artifact-note {
+  .command-note-overlay {
+    right: 1rem;
+    bottom: 1rem;
+    width: min(42%, 230px);
+    min-height: 118px;
     border-left: 4px solid #d7aa4a;
+    transform: translateZ(48px) rotate(-1.5deg);
   }
 
-  .mini-artifact-liveops {
-    border-left: 4px solid #d56f5d;
+  .note-screen-lines {
+    @apply mt-4 grid gap-2;
+  }
+
+  .note-screen-lines i {
+    @apply block h-2 rounded-full bg-sky/30;
+  }
+
+  .note-screen-lines i:nth-child(2) {
+    width: 78%;
+  }
+
+  .note-screen-lines i:nth-child(3) {
+    width: 58%;
   }
 
   .command-support-grid {
@@ -686,6 +650,57 @@ img {
     border-top: 3px solid rgba(27, 45, 115, 0.92);
   }
 
+  .proof-snapshot-shell {
+    @apply grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start;
+  }
+
+  .proof-snapshot-stats {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .proof-stat-card {
+    @apply grid rounded-lg border border-line bg-card p-4 shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-navy/25;
+  }
+
+  .proof-stat-card dt {
+    @apply mt-3 text-sm font-medium leading-6 text-muted;
+  }
+
+  .proof-stat-number {
+    @apply block text-[34px] font-semibold leading-none text-navy md:text-[42px];
+    letter-spacing: 0;
+    order: -1;
+    white-space: nowrap;
+  }
+
+  .proof-stat-number-wide {
+    @apply text-[30px] md:text-[38px];
+  }
+
+  .proof-trust-list {
+    @apply grid gap-3;
+  }
+
+  .proof-trust-card {
+    @apply rounded-lg border border-line bg-card p-5 shadow-minimal;
+  }
+
+  .proof-trust-card h3 {
+    @apply mt-4 text-xl font-semibold leading-tight text-navy md:text-2xl;
+  }
+
+  .proof-trust-card > p:not(.trust-card-label) {
+    @apply mt-3 text-sm leading-6 text-ink md:text-base md:leading-7;
+  }
+
+  .proof-trust-card ul {
+    @apply mt-4 grid gap-2;
+  }
+
+  .proof-trust-card li {
+    @apply border-l-2 border-sky pl-3 text-sm leading-6 text-muted;
+  }
+
   .trust-card {
     @apply relative min-w-0 overflow-hidden rounded-lg border border-line bg-card p-6 shadow-minimal transition duration-500 hover:-translate-y-1 hover:border-navy/35 hover:shadow-card md:p-7;
   }
@@ -717,8 +732,8 @@ img {
     @apply inline-flex h-10 w-10 items-center justify-center rounded-md border border-sky/50 text-sm font-bold text-sky;
   }
 
-  .case-snapshot-grid {
-    @apply grid gap-3 md:grid-cols-2;
+  .case-snapshot-list {
+    @apply overflow-hidden rounded-lg border border-line bg-card;
   }
 
   .case-bottom-line {
@@ -738,22 +753,25 @@ img {
   }
 
   .case-snapshot-item {
-    @apply min-w-0 rounded-lg border border-line bg-card p-4;
+    @apply grid min-w-0 gap-2 border-b border-line p-4 last:border-b-0 md:grid-cols-[136px_1fr] md:items-start;
   }
 
   .case-snapshot-label {
-    @apply text-[11px] font-extrabold uppercase tracking-[0.1em] text-navy;
+    @apply text-[11px] font-extrabold uppercase tracking-[0.1em] text-navy-accent;
   }
 
   .case-snapshot-text {
     display: -webkit-box;
-    margin-top: 0.65rem;
     overflow: hidden;
     color: #5f656b;
     font-size: 0.875rem;
     line-height: 1.6;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
+  }
+
+  .case-evidence-box {
+    @apply rounded-lg border border-line bg-cream p-5 shadow-minimal;
   }
 
   .case-study-title {
@@ -934,6 +952,32 @@ img {
     @apply grid gap-5 lg:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr];
   }
 
+  .why-work-editorial {
+    @apply grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start;
+  }
+
+  .why-work-lead {
+    @apply grid min-w-0 gap-5 rounded-lg border border-navy/20 bg-card p-6 shadow-minimal md:grid-cols-[72px_1fr] lg:sticky lg:top-28;
+  }
+
+  .why-work-lead h3,
+  .why-work-row h3 {
+    @apply text-xl font-semibold leading-tight text-navy md:text-2xl;
+  }
+
+  .why-work-lead p:not(.why-work-proof),
+  .why-work-row p:not(.why-work-proof) {
+    @apply mt-3 text-sm leading-6 text-ink md:text-base md:leading-7;
+  }
+
+  .why-work-list {
+    @apply grid gap-3;
+  }
+
+  .why-work-row {
+    @apply grid min-w-0 gap-4 rounded-lg border border-line bg-card p-5 shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-navy/25 md:grid-cols-[56px_1fr];
+  }
+
   .why-work-card {
     @apply relative grid min-w-0 gap-5 overflow-hidden rounded-lg border border-line bg-card p-5 shadow-minimal transition duration-500 hover:-translate-y-1 hover:border-navy/35 hover:shadow-card md:grid-cols-[72px_1fr] md:p-6;
   }
@@ -947,18 +991,18 @@ img {
   }
 
   .why-work-proof {
-    @apply rounded-md border border-navy/10 bg-cream px-3 py-2 text-sm font-semibold leading-6 text-navy;
+    @apply mt-4 rounded-md border border-navy/10 bg-cream px-3 py-2 text-sm font-semibold leading-6 text-navy;
   }
 
   .profile-placeholder-card {
-    @apply relative overflow-hidden rounded-lg border border-line bg-card p-6 shadow-minimal md:p-8;
+    @apply relative overflow-hidden rounded-lg border border-line bg-card p-5 shadow-minimal md:p-6;
     background:
       radial-gradient(circle at 80% 12%, rgba(157, 196, 255, 0.28), transparent 32%),
       linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(237, 243, 247, 0.9));
   }
 
   .profile-placeholder-window {
-    @apply relative mt-7 flex aspect-[4/5] min-h-[320px] items-center justify-center overflow-hidden rounded-lg border border-navy/15 bg-navy text-cream shadow-card;
+    @apply relative mt-6 flex aspect-[4/3] min-h-[220px] items-center justify-center overflow-hidden rounded-lg border border-navy/15 bg-navy text-cream shadow-card;
   }
 
   .profile-placeholder-window::before {
@@ -972,7 +1016,7 @@ img {
   }
 
   .profile-placeholder-window span {
-    @apply relative z-[1] text-[56px] font-semibold tracking-[0.08em] text-sky md:text-[72px];
+    @apply relative z-[1] text-[46px] font-semibold tracking-[0.08em] text-sky md:text-[58px];
   }
 
   .profile-placeholder-window i {
@@ -1315,11 +1359,11 @@ img {
 
 @media (max-width: 767px) {
   html {
-    scroll-padding-top: 144px;
+    scroll-padding-top: 96px;
   }
 
   section[id] {
-    scroll-margin-top: 144px;
+    scroll-margin-top: 96px;
   }
 
   .section-padding {
@@ -1384,10 +1428,6 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .command-status-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .command-artifact-heading {
     flex-direction: column;
     margin-left: 0;
@@ -1398,37 +1438,30 @@ img {
   }
 
   .command-device-stage {
-    min-height: 520px;
+    min-height: 360px;
   }
 
   .command-main-artifact .artifact-media {
-    height: 250px;
+    height: 220px;
   }
 
   .command-device-desktop {
-    width: 92%;
+    width: 88%;
   }
 
   .command-phone-device {
-    top: 8.2rem;
+    top: 8.4rem;
     right: 0;
-    width: 42%;
-    min-height: 205px;
+    width: 40%;
+    min-height: 162px;
   }
 
-  .command-tablet-device {
-    right: 0.25rem;
-    bottom: 4.25rem;
-    width: 55%;
-    min-height: 150px;
-  }
-
-  .command-template-grid {
-    width: 62%;
-  }
-
-  .mini-artifact {
-    padding: 0.5rem 0.65rem;
+  .command-note-overlay {
+    right: auto;
+    bottom: 0.75rem;
+    left: 0.5rem;
+    width: 52%;
+    min-height: 96px;
   }
 
   .command-support-grid {
@@ -1522,8 +1555,7 @@ img {
   .hero-command-visual,
   .command-main-artifact,
   .command-phone-device,
-  .command-tablet-device,
-  .mini-artifact {
+  .command-note-overlay {
     transform: none;
   }
 }

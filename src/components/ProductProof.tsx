@@ -14,7 +14,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
       <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
         <p className="section-kicker text-navy">{proof.eyebrow}</p>
         <div>
-          <h2 id={titleId} className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">{proof.title}</h2>
+          <h2 id={titleId} className="section-title max-w-5xl text-navy">{proof.title}</h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">{proof.description}</p>
         </div>
       </div>

@@ -32,12 +32,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
           <CaseSnapshot caseStudy={caseStudy} labels={labels} />
 
-          <div className="mt-6 rounded-lg border border-sky/45 border-l-4 border-l-navy bg-sky/15 p-5">
-            <p className="detail-label">{labels.role}</p>
-            <EmphasizedText className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7" text={caseStudy.role} />
-          </div>
-
-          <div className="mt-7 rounded-lg border border-line bg-cream p-5 shadow-minimal">
+          <div className="case-evidence-box mt-6">
             <p className="detail-label mb-4">{labels.evidence}</p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
@@ -137,14 +132,14 @@ function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Por
   ];
 
   return (
-    <div className="case-snapshot-grid mt-6">
+    <dl className="case-snapshot-list mt-6">
       {items.map((item) => (
         <div key={item.label} className="case-snapshot-item">
-          <p className="case-snapshot-label">{item.label}</p>
-          <p className="case-snapshot-text">{item.text}</p>
+          <dt className="case-snapshot-label">{item.label}</dt>
+          <dd className="case-snapshot-text">{item.text}</dd>
         </div>
       ))}
-    </div>
+    </dl>
   );
 }
 

@@ -158,9 +158,6 @@ function Hero({
             <a className="btn-secondary" href="#game-direction" aria-label={hero.ctas.gameDirection}>
               {hero.ctas.gameDirection}
             </a>
-            <a className="btn-ghost" href="#contact" aria-label={hero.ctas.contact}>
-              {hero.ctas.contact}
-            </a>
           </div>
 
           <div className="command-secondary-links">
@@ -195,21 +192,8 @@ function Hero({
             <span>{hero.visual.proofLabel}</span>
           </div>
 
-          <CommandStatusStrip items={hero.visual.statusStrip} />
-
           <div className="command-center-grid">
             <div className="command-center-left">
-              <div className="command-profile-panel">
-                <span className="command-profile-mark" aria-hidden="true">
-                  NDMH
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{hero.visual.profileLabel}</p>
-                  <p className="mt-1 text-base font-semibold text-cream">{personal.name}</p>
-                  <p className="mt-1 text-sm leading-6 text-cream/85">{personal.shortRole}</p>
-                </div>
-              </div>
-
               <CommandJourney journey={hero.journey} />
             </div>
 
@@ -240,19 +224,6 @@ function Hero({
 
       </div>
     </section>
-  );
-}
-
-function CommandStatusStrip({ items }: { items: string[] }) {
-  return (
-    <ol className="command-status-strip" aria-label="Command center stages">
-      {items.map((item, index) => (
-        <li key={item}>
-          <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-          <strong>{item}</strong>
-        </li>
-      ))}
-    </ol>
   );
 }
 
@@ -364,32 +335,16 @@ function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]
         </div>
       </div>
 
-      <div className="command-tablet-device command-template-card">
-        <p>{visual.tabletLabel}</p>
-        <strong>Event lifecycle</strong>
+      <div className="command-note-overlay command-template-card">
+        <p>{visual.noteLabel}</p>
+        <strong>Acceptance criteria</strong>
         <span>{visual.visualTemplateLabel}</span>
-        <div className="tablet-plan-grid" aria-hidden="true">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <i key={index} />
-          ))}
+        <div className="note-screen-lines" aria-hidden="true">
+          <i />
+          <i />
+          <i />
         </div>
       </div>
-
-      <div className="command-template-grid">
-        <MiniArtifact title={visual.matrixLabel} label="Roles / states" tone="matrix" />
-        <MiniArtifact title={visual.noteLabel} label="Acceptance criteria" tone="note" />
-        <MiniArtifact title={visual.liveOpsLabel} label="Signal -> reward loop" tone="liveops" />
-      </div>
-    </div>
-  );
-}
-
-function MiniArtifact({ title, label, tone }: { title: string; label: string; tone: "matrix" | "note" | "liveops" }) {
-  return (
-    <div className={`mini-artifact mini-artifact-${tone}`}>
-      <p>{title}</p>
-      <strong>{label}</strong>
-      <span>Visual template</span>
     </div>
   );
 }

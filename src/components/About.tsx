@@ -23,22 +23,22 @@ function About({ content }: AboutProps) {
             <p className="section-kicker text-navy">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.05] text-navy sm:text-[40px] md:text-[58px] lg:text-[68px]"
+              className="section-title max-w-5xl text-navy"
             >
               {content.title}
             </h2>
             <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9" text={content.body} />
 
-            <div className="mt-12 grid gap-4">
+            <div className="mt-9 grid gap-4">
               {content.points.map((point, index) => (
                 <article
                   key={point.title}
-                  className={`stagger-item grid gap-5 rounded-lg border p-5 md:grid-cols-[96px_1fr] md:p-6 ${pointTones[index % pointTones.length]}`}
+                  className={`stagger-item grid gap-4 rounded-lg border p-5 md:grid-cols-[72px_1fr] ${pointTones[index % pointTones.length]}`}
                   style={{ transitionDelay: `${index * 70}ms` }}
                 >
-                  <p className="text-[40px] font-semibold leading-none text-navy/25 md:text-[58px]">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="text-[34px] font-semibold leading-none text-navy/25 md:text-[44px]">{String(index + 1).padStart(2, "0")}</p>
                   <div>
-                    <h3 className="text-2xl font-semibold leading-tight text-navy">{point.title}</h3>
+                    <h3 className="text-xl font-semibold leading-tight text-navy md:text-2xl">{point.title}</h3>
                     <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-muted" text={point.description} />
                   </div>
                 </article>
@@ -61,7 +61,7 @@ function ProfileFallback({ content }: AboutProps) {
         <i />
         <i />
       </div>
-      <h3 className="mt-8 max-w-sm break-words text-[34px] font-semibold leading-[1.04] text-navy sm:text-[40px] md:text-[52px]">
+      <h3 className="mt-6 max-w-sm break-words text-[28px] font-semibold leading-[1.06] text-navy sm:text-[34px] md:text-[40px]">
         {content.abstractCard.title}
       </h3>
       <p className="mt-4 text-sm font-semibold leading-6 text-ink">{content.profileCard.subtitle}</p>
@@ -73,7 +73,7 @@ function ProfileFallback({ content }: AboutProps) {
           </span>
         ))}
       </div>
-      <div className="mt-10 grid gap-2">
+      <div className="mt-7 grid gap-2">
         {content.abstractCard.lines.map((line) => (
           <span key={line} className="border-t border-line pt-3 text-sm font-semibold text-muted">
             {line}

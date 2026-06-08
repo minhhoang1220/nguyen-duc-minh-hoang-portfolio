@@ -10,12 +10,11 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import ProductNotes from "./components/ProductNotes";
 import ProductProof from "./components/ProductProof";
-import ProofStrip from "./components/ProofStrip";
+import ProofSnapshot from "./components/ProofSnapshot";
 import ProjectCard from "./components/ProjectCard";
 import Reveal from "./components/Reveal";
 import SectionHeader from "./components/SectionHeader";
 import SkillsMatrix from "./components/SkillsMatrix";
-import TrustProof from "./components/TrustProof";
 import WhyWorkWithMe from "./components/WhyWorkWithMe";
 import { type AssetImage, type Language, portfolioContent } from "./data/portfolio";
 
@@ -68,11 +67,7 @@ function App() {
         </Reveal>
 
         <Reveal>
-          <ProofStrip proof={portfolio.proof} />
-        </Reveal>
-
-        <Reveal>
-          <TrustProof content={portfolio.socialProof} />
+          <ProofSnapshot proof={portfolio.proof} socialProof={portfolio.socialProof} />
         </Reveal>
 
         <Reveal>
@@ -126,7 +121,7 @@ function App() {
                 <div className="grid gap-6 lg:grid-cols-[0.28fr_0.72fr] lg:items-start">
                   <p className="section-kicker text-navy">{portfolio.sections.projects.eyebrow}</p>
                   <div>
-                    <h2 className="max-w-4xl text-balance text-[32px] font-semibold leading-[1.07] text-navy md:text-[48px] lg:text-[56px]">
+                    <h2 className="section-title max-w-4xl text-navy">
                       {portfolio.sections.projects.title}
                     </h2>
                     {portfolio.sections.projects.description ? (
@@ -152,7 +147,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="section-padding bg-navy text-cream" aria-labelledby="experience-title">
+        <section id="experience" className="section-experience section-padding" aria-labelledby="experience-title">
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -161,7 +156,6 @@ function App() {
                 title={portfolio.sections.experience.title}
                 description={portfolio.sections.experience.description}
                 wide
-                inverse
               />
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-6">
