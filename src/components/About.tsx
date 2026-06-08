@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { PortfolioContent } from "../data/portfolio";
 
 type AboutProps = {
@@ -6,8 +5,6 @@ type AboutProps = {
 };
 
 function About({ content }: AboutProps) {
-  const [portraitFailed, setPortraitFailed] = useState(false);
-  const showPortrait = Boolean(content.portrait && !portraitFailed);
   const pointTones = [
     "border-line bg-card",
     "border-sky/45 bg-sky/15",
@@ -19,29 +16,7 @@ function About({ content }: AboutProps) {
       <div className="container-wide">
         <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-start lg:gap-14">
           <div className="min-w-0">
-            {showPortrait && content.portrait ? (
-              <div>
-                <figure className="overflow-hidden rounded-lg border border-line bg-card p-3">
-                  <div className="aspect-[4/5] overflow-hidden rounded-md bg-beige">
-                    <img
-                      src={content.portrait.src}
-                      alt={content.portrait.alt}
-                      className="h-full w-full object-cover object-center"
-                      loading="lazy"
-                      decoding="async"
-                      onError={() => setPortraitFailed(true)}
-                    />
-                  </div>
-                  <figcaption className="mt-4 flex items-center justify-between gap-4 text-sm font-semibold text-navy">
-                    <span>{content.portrait.title}</span>
-                    {content.portrait.caption ? <span className="text-xs text-muted">{content.portrait.caption}</span> : null}
-                  </figcaption>
-                </figure>
-                <EducationBlock content={content} />
-              </div>
-            ) : (
-              <ProfileFallback content={content} />
-            )}
+            <ProfileFallback content={content} />
           </div>
 
           <div className="min-w-0">
@@ -78,16 +53,26 @@ function About({ content }: AboutProps) {
 
 function ProfileFallback({ content }: AboutProps) {
   return (
-    <aside className="relative overflow-hidden rounded-lg border border-line bg-card p-6 md:p-8" aria-label={content.abstractCard.eyebrow}>
-      <p className="section-kicker text-navy">{content.abstractCard.eyebrow}</p>
-      <div className="mt-7 grid grid-cols-4 gap-2" aria-hidden="true">
-        {Array.from({ length: 8 }).map((_, index) => (
-          <span key={index} className={`h-7 rounded border border-line ${index % 3 === 0 ? "bg-sky/55" : "bg-cream"}`} />
-        ))}
+    <aside className="profile-placeholder-card" aria-label={content.profileCard.label}>
+      <p className="section-kicker text-navy">{content.profileCard.label}</p>
+      <div className="profile-placeholder-window" aria-hidden="true">
+        <span>{content.profileCard.title}</span>
+        <i />
+        <i />
+        <i />
       </div>
       <h3 className="mt-8 max-w-sm break-words text-[34px] font-semibold leading-[1.04] text-navy sm:text-[40px] md:text-[52px]">
         {content.abstractCard.title}
       </h3>
+      <p className="mt-4 text-sm font-semibold leading-6 text-ink">{content.profileCard.subtitle}</p>
+      <p className="mt-3 text-xs font-bold uppercase tracking-[0.1em] text-muted">{content.profileCard.placeholder}</p>
+      <div className="mt-7 flex flex-wrap gap-2">
+        {content.profileCard.chips.map((chip) => (
+          <span key={chip} className="profile-chip">
+            {chip}
+          </span>
+        ))}
+      </div>
       <div className="mt-10 grid gap-2">
         {content.abstractCard.lines.map((line) => (
           <span key={line} className="border-t border-line pt-3 text-sm font-semibold text-muted">

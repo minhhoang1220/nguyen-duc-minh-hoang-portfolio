@@ -38,6 +38,7 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
           <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded-md border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
           </span>
+          <span className="artifact-device-label">Supporting artifact</span>
         </span>
       </button>
 

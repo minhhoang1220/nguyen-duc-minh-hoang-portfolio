@@ -23,7 +23,6 @@ function Hero({
   onImageOpen,
 }: HeroProps) {
   const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
-  const supportingArtifacts = hero.artifacts.filter((artifact) => artifact !== mainArtifact);
   const heroShellRef = useRef<HTMLElement | null>(null);
   const artifactStageRef = useRef<HTMLDivElement | null>(null);
 
@@ -178,8 +177,9 @@ function Hero({
               {hero.ctas.linkedin}
             </a>
           </div>
+          <p className="command-compact-trust">{hero.trustHint}</p>
 
-          <div className="hidden lg:block">
+          <div className="hidden 2xl:block">
             <HeroSignalPanel usp={hero.usp} focusItems={hero.focusItems} trustHint={hero.trustHint} />
           </div>
         </div>
@@ -191,65 +191,68 @@ function Hero({
               <span />
               <span />
             </span>
-            <span>Game Product Command Center</span>
-            <span>Sanitized proof</span>
+            <span>{hero.visual.topLabel}</span>
+            <span>{hero.visual.proofLabel}</span>
           </div>
 
-          <div className="command-profile-panel">
-            <span className="command-profile-mark" aria-hidden="true">
-              NDMH
-            </span>
-            <div className="min-w-0">
-              <p className="text-base font-semibold text-cream">{personal.name}</p>
-              <p className="mt-1 text-sm leading-6 text-cream/70">{personal.shortRole}</p>
+          <CommandStatusStrip items={hero.visual.statusStrip} />
+
+          <div className="command-center-grid">
+            <div className="command-center-left">
+              <div className="command-profile-panel">
+                <span className="command-profile-mark" aria-hidden="true">
+                  NDMH
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{hero.visual.profileLabel}</p>
+                  <p className="mt-1 text-base font-semibold text-cream">{personal.name}</p>
+                  <p className="mt-1 text-sm leading-6 text-cream/85">{personal.shortRole}</p>
+                </div>
+              </div>
+
+              <CommandJourney journey={hero.journey} />
             </div>
-          </div>
 
-          <CommandJourney journey={hero.journey} />
+            <div className="command-center-right">
+              <div className="command-artifact-heading">
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{hero.visual.artifactStackLabel}</p>
+                <p className="text-sm font-semibold leading-6 text-cream/85">{hero.visual.anonymizedLabel}</p>
+              </div>
 
-          <div className="command-artifact-zone">
-            {mainArtifact?.type === "image" ? (
-              <ArtifactImageButton
-                artifact={mainArtifact}
-                className="hero-main-artifact command-main-artifact"
-                imageClassName="object-cover object-top"
-                showCaption
-                openArtifactLabel={openArtifactLabel}
-                onImageOpen={onImageOpen}
-              />
-            ) : null}
+              <div className="command-device-stage">
+                {mainArtifact?.type === "image" ? (
+                  <ArtifactImageButton
+                    artifact={mainArtifact}
+                    className="hero-main-artifact command-main-artifact command-device-desktop"
+                    imageClassName="object-cover object-top"
+                    showCaption
+                    deviceLabel={hero.visual.desktopLabel}
+                    openArtifactLabel={openArtifactLabel}
+                    onImageOpen={onImageOpen}
+                  />
+                ) : null}
 
-            <div className="command-support-grid">
-              {supportingArtifacts.map((artifact) => {
-                if (artifact.type === "image") {
-                  const supportImageClass = artifact.image.src.includes("cdp-flow-report")
-                    ? "object-cover object-[center_18%]"
-                    : "object-cover object-top";
-
-                  return (
-                    <ArtifactImageButton
-                      key={artifact.title}
-                      artifact={artifact}
-                      className="hero-support-artifact command-support-artifact"
-                      imageClassName={supportImageClass}
-                      showCaption={false}
-                      openArtifactLabel={openArtifactLabel}
-                      onImageOpen={onImageOpen}
-                    />
-                  );
-                }
-
-                return <TimelineArtifact key={artifact.title} artifact={artifact} className="command-timeline-artifact" />;
-              })}
+                <CommandTemplateArtifacts visual={hero.visual} />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="lg:hidden">
-          <HeroSignalPanel usp={hero.usp} focusItems={hero.focusItems} trustHint={hero.trustHint} />
-        </div>
       </div>
     </section>
+  );
+}
+
+function CommandStatusStrip({ items }: { items: string[] }) {
+  return (
+    <ol className="command-status-strip" aria-label="Command center stages">
+      {items.map((item, index) => (
+        <li key={item}>
+          <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          <strong>{item}</strong>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -268,11 +271,6 @@ function HeroSignalPanel({
         <p className="trust-card-label">{usp.label}</p>
         <p className="text-sm font-semibold leading-6 text-navy md:text-base md:leading-7">{usp.statement}</p>
       </div>
-      <ul className="command-module-grid mt-5">
-        {usp.signals.map((signal) => (
-          <li key={signal}>{signal}</li>
-        ))}
-      </ul>
       <ul className="mt-5 flex flex-wrap gap-2">
         {focusItems.map((item) => (
           <li key={item} className="command-focus-chip">
@@ -295,7 +293,7 @@ function CommandJourney({ journey }: { journey: HeroJourneyStep[] }) {
           <div className="min-w-0">
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{step.label}</p>
             <h2 className="mt-1 text-base font-semibold leading-tight text-cream">{step.title}</h2>
-            <p className="mt-2 text-xs leading-5 text-cream/68">{step.body}</p>
+            <p className="command-step-body mt-2 text-xs leading-5">{step.body}</p>
           </div>
         </li>
       ))}
@@ -308,6 +306,7 @@ function ArtifactImageButton({
   className,
   imageClassName,
   showCaption = false,
+  deviceLabel,
   openArtifactLabel,
   onImageOpen,
 }: {
@@ -315,6 +314,7 @@ function ArtifactImageButton({
   className: string;
   imageClassName: string;
   showCaption?: boolean;
+  deviceLabel?: string;
   openArtifactLabel: string;
   onImageOpen: (image: AssetImage) => void;
 }) {
@@ -329,7 +329,7 @@ function ArtifactImageButton({
         onFocus={() => preloadImage(artifact.image.src)}
       >
         <span className="mb-3 flex items-center justify-between gap-4 border-b border-line pb-3">
-          <span className="artifact-label">{artifact.title}</span>
+          <span className="artifact-label">{deviceLabel ?? artifact.title}</span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{artifact.meta}</span>
         </span>
         <span className="artifact-media relative block overflow-hidden rounded-md bg-cream">
@@ -350,35 +350,46 @@ function ArtifactImageButton({
   );
 }
 
-function TimelineArtifact({
-  artifact,
-  className = "",
-}: {
-  artifact: Extract<HeroArtifact, { type: "timeline" }>;
-  className?: string;
-}) {
+function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]["visual"] }) {
   return (
-    <div className={`hero-support-artifact rounded-lg border border-line bg-card p-4 ${className}`}>
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <span className="artifact-label">{artifact.title}</span>
-        <span className="text-[11px] font-semibold text-muted">{artifact.meta}</span>
+    <div className="command-template-layer" aria-label={visual.visualTemplateLabel}>
+      <div className="command-phone-device command-template-card">
+        <p>{visual.mobileLabel}</p>
+        <strong>Push / event state</strong>
+        <span>{visual.visualTemplateLabel}</span>
+        <div className="phone-screen-lines" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </div>
       </div>
-      <div className="space-y-3">
-        {artifact.phases.map((phase, phaseIndex) => (
-          <div key={phase} className="grid grid-cols-[92px_1fr] items-center gap-3 text-[11px] font-semibold text-navy">
-            <span className="truncate text-muted">{phase}</span>
-            <span className="relative h-6 bg-cream">
-              <span
-                className="absolute top-1/2 h-2.5 -translate-y-1/2 bg-navy"
-                style={{
-                  left: `${Math.min(phaseIndex * 12, 66)}%`,
-                  width: `${phaseIndex % 2 === 0 ? 32 : 24}%`,
-                }}
-              />
-            </span>
-          </div>
-        ))}
+
+      <div className="command-tablet-device command-template-card">
+        <p>{visual.tabletLabel}</p>
+        <strong>Event lifecycle</strong>
+        <span>{visual.visualTemplateLabel}</span>
+        <div className="tablet-plan-grid" aria-hidden="true">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <i key={index} />
+          ))}
+        </div>
       </div>
+
+      <div className="command-template-grid">
+        <MiniArtifact title={visual.matrixLabel} label="Roles / states" tone="matrix" />
+        <MiniArtifact title={visual.noteLabel} label="Acceptance criteria" tone="note" />
+        <MiniArtifact title={visual.liveOpsLabel} label="Signal -> reward loop" tone="liveops" />
+      </div>
+    </div>
+  );
+}
+
+function MiniArtifact({ title, label, tone }: { title: string; label: string; tone: "matrix" | "note" | "liveops" }) {
+  return (
+    <div className={`mini-artifact mini-artifact-${tone}`}>
+      <p>{title}</p>
+      <strong>{label}</strong>
+      <span>Visual template</span>
     </div>
   );
 }

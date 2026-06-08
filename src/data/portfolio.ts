@@ -51,6 +51,22 @@ export type HeroJourneyStep = {
   body: string;
 };
 
+export type HeroVisualCopy = {
+  topLabel: string;
+  proofLabel: string;
+  profileLabel: string;
+  statusStrip: string[];
+  artifactStackLabel: string;
+  desktopLabel: string;
+  mobileLabel: string;
+  tabletLabel: string;
+  matrixLabel: string;
+  noteLabel: string;
+  liveOpsLabel: string;
+  visualTemplateLabel: string;
+  anonymizedLabel: string;
+};
+
 export type SocialProofCard = {
   label: string;
   title: string;
@@ -73,6 +89,7 @@ export type CaseStudy = {
   process: string[];
   delivered: string;
   artifacts: string[];
+  artifactTags?: string[];
   impact: string;
   skills: string[];
 };
@@ -124,6 +141,12 @@ export type GameDirectionPillar = {
   body: string;
 };
 
+export type WhyWorkPillar = {
+  title: string;
+  body: string;
+  proof: string;
+};
+
 export type PortfolioContent = {
   navigation: NavItem[];
   personal: {
@@ -158,6 +181,7 @@ export type PortfolioContent = {
     focusItems: string[];
     trustHint: string;
     journey: HeroJourneyStep[];
+    visual: HeroVisualCopy;
     artifactAria: string;
     ctas: {
       caseStudies: string;
@@ -186,6 +210,13 @@ export type PortfolioContent = {
       eyebrow: string;
       title: string;
       lines: string[];
+    };
+    profileCard: {
+      label: string;
+      title: string;
+      subtitle: string;
+      placeholder: string;
+      chips: string[];
     };
     educationLabel: string;
     education: {
@@ -220,8 +251,16 @@ export type PortfolioContent = {
     artifactPreview: string;
     internalPreview: string;
     whatItProves: string;
+    bottomLine: string;
+    artifactTags: string;
   };
   caseStudies: CaseStudy[];
+  whyWork: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    pillars: WhyWorkPillar[];
+  };
   socialProof: {
     eyebrow: string;
     title: string;
@@ -283,6 +322,8 @@ export type PortfolioContent = {
     location: string;
     techStack: string;
     vibeNote: string;
+    currentFocus: string;
+    linksLabel: string;
   };
 };
 
@@ -369,7 +410,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Fallback path: Associate PM / Product Operations",
       ],
       trustHint:
-        "Trust hints: real sanitized product artifacts, official transferable-skills recommendation, and positive verbal feedback from senior product/technical stakeholders.",
+        "Trust signals: sanitized product artifacts, an official transferable-skills recommendation, and stakeholder-facing delivery experience.",
       journey: [
         {
           label: "Player signal",
@@ -387,6 +428,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           body: "Shape BRD/FSD notes, mockups, backlog items, UAT checks, and bug-tracking support.",
         },
       ],
+      visual: {
+        topLabel: "Game Product Command Center",
+        proofLabel: "Sanitized proof + visual templates",
+        profileLabel: "Profile node",
+        statusStrip: ["Signals", "Logic", "Artifacts", "Delivery"],
+        artifactStackLabel: "Artifact ecosystem",
+        desktopLabel: "Desktop/browser artifact",
+        mobileLabel: "Mobile artifact",
+        tabletLabel: "LiveOps planning board",
+        matrixLabel: "Matrix/table artifact",
+        noteLabel: "BRD/FSD note",
+        liveOpsLabel: "Game/LiveOps artifact",
+        visualTemplateLabel: "Visual template",
+        anonymizedLabel: "Internal details anonymized",
+      },
       artifactAria: "Selected product artifact previews",
       ctas: {
         caseStudies: "View Case Studies",
@@ -486,6 +542,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "BA / Product / Systems",
         lines: ["Requirement clarity", "Flow mapping", "Permission logic", "Delivery readiness"],
       },
+      profileCard: {
+        label: "Future portrait placeholder",
+        title: "NDMH",
+        subtitle: "Profile photo can be added later with a public-safe headshot.",
+        placeholder: "Monogram profile card - no generated face used",
+        chips: ["Structured", "Product-minded", "Data-aware", "Stakeholder-facing", "Game-focused"],
+      },
       educationLabel: "Education",
       education: {
         school: "VNU International School, Vietnam National University, Hanoi",
@@ -534,6 +597,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       artifactPreview: "Artifact preview",
       internalPreview: "Internal project - visual details anonymized",
       whatItProves: "What it proves",
+      bottomLine: "Bottom line",
+      artifactTags: "Artifact types",
     },
     caseStudies: [
       {
@@ -580,6 +645,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         delivered:
           "End-to-end flows and mockups as part of 65+ screens/features across CDP modules.",
         artifacts: ["Automation flow map", "Feature-state screens", "Figma mockups", "Dev testing checklist"],
+        artifactTags: ["Flow", "Mockup", "BRD/FSD", "UAT", "QA", "LiveOps logic"],
         impact:
           "Helped clarify feature behavior, reduce handoff ambiguity, and create a more reliable basis for QA/UAT review.",
         skills: ["Product flow", "System logic", "CDP", "Automation", "Feature breakdown"],
@@ -614,6 +680,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         ],
         delivered: "Product backlog, user stories, functional requirements documentation, testing checklists, and release tracking.",
         artifacts: ["Functional requirements spec", "Sprint planning backlog", "Dev testing checklists", "Pre-UAT release tracker"],
+        artifactTags: ["BRD/FSD", "Backlog", "UAT", "QA", "Release tracker", "Process"],
         impact:
           "Improved delivery coordination, made handoff expectations clearer, and created a repeatable basis for testing before UAT.",
         skills: ["Backlog management", "Sprint coordination", "Requirements translation", "Testing & bug tracking", "Stakeholder alignment"],
@@ -646,15 +713,54 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         ],
         delivered: "Permission matrix for 21 roles and around 400 permissions.",
         artifacts: ["Role-permission matrix", "Permission logic notes", "Validation support"],
+        artifactTags: ["Matrix", "Permission logic", "System flow", "QA", "Governance"],
         impact: "Improved access-control clarity and system governance.",
         skills: ["System thinking", "Permission design", "Operational logic", "Edge case analysis"],
       },
     ],
+    whyWork: {
+      eyebrow: "Why work with me",
+      title: "A BA/PM profile built for product clarity, not just documentation.",
+      description:
+        "The practical value I bring is turning unclear product situations into artifacts that teams can review, challenge, build from, and test.",
+      pillars: [
+        {
+          title: "Translate ambiguity into structured artifacts",
+          body:
+            "I break vague needs into flows, states, edge cases, acceptance notes, and handoff-ready documents.",
+          proof: "Flows, mockups, BRD/FSD-ready notes, backlog items, UAT and QA checks.",
+        },
+        {
+          title: "Connect signals with delivery logic",
+          body:
+            "For game-facing work, I frame player or community signals as product decisions and operational constraints.",
+          proof: "Player Signal -> Product Decision -> Delivery Artifact is the core hero journey.",
+        },
+        {
+          title: "Understand stakeholders and user/player behavior",
+          body:
+            "I work between business, product, and technical conversations, then keep the user or player behavior visible in the artifact.",
+          proof: "Stakeholder-facing delivery experience and service-operations background.",
+        },
+        {
+          title: "Use data mindset without losing context",
+          body:
+            "My Business Data Analytics background helps me reason through metrics, tradeoffs, and uncertainty while staying grounded in product logic.",
+          proof: "KPI, dashboard, forecasting, and analytical decision-support projects.",
+        },
+        {
+          title: "Work across the delivery chain",
+          body:
+            "I can move from mockup and documentation into backlog coordination, UAT preparation, QA support, and stakeholder alignment.",
+          proof: "Product/System BA evidence across CDP modules, backlog work, and permission logic.",
+        },
+      ],
+    },
     socialProof: {
       eyebrow: "Trust signals",
       title: "Credibility without inflated claims.",
       description:
-        "A compact trust layer using official transferable-skills recognition, public verbal leadership feedback, and case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
+        "A compact trust layer using official transferable-skills recognition and case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
       cards: [
         {
           label: "Official recommendation",
@@ -664,16 +770,6 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           evidence: [
             "Used only as transferable skills evidence",
             "No logo, stamp, signature, direct quote, or PDF displayed",
-          ],
-        },
-        {
-          label: "Public verbal feedback",
-          title: "Positive feedback from CTO / BA / PM leadership",
-          body:
-            "Used as a light trust signal for working style, product communication, and delivery discipline. No private quote, name, logo, or company claim is displayed here.",
-          evidence: [
-            "CTO / BA / PM leader feedback handled as public verbal proof",
-            "No direct quote added until a public-safe wording is approved",
           ],
         },
         {
@@ -990,6 +1086,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       techStack: "Built with React, TypeScript, and Tailwind CSS",
       vibeNote:
         "Built through vibe coding — combining product thinking, AI-assisted development, and manual refinement.",
+      currentFocus: "Currently exploring Game Product / LiveOps / Game Operations.",
+      linksLabel: "Contact routes",
     },
   },
   vi: {
@@ -1050,7 +1148,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Hướng dự phòng: Associate PM / Product Operations",
       ],
       trustHint:
-        "Tín hiệu tin cậy: artifact sản phẩm thật đã làm sạch, recommendation chính thức cho transferable skills, và public verbal feedback từ stakeholder cấp CTO/BA/PM.",
+        "Tín hiệu tin cậy: artifact sản phẩm đã làm sạch, recommendation chính thức cho transferable skills và kinh nghiệm delivery giao tiếp với stakeholder.",
       journey: [
         {
           label: "Tín hiệu người chơi",
@@ -1068,6 +1166,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           body: "Đóng gói BRD/FSD note, mockup, backlog item, UAT check và hỗ trợ bug tracking.",
         },
       ],
+      visual: {
+        topLabel: "Game Product Command Center",
+        proofLabel: "Sanitized proof + visual templates",
+        profileLabel: "Profile node",
+        statusStrip: ["Signals", "Logic", "Artifacts", "Delivery"],
+        artifactStackLabel: "Artifact ecosystem",
+        desktopLabel: "Desktop/browser artifact",
+        mobileLabel: "Mobile artifact",
+        tabletLabel: "LiveOps planning board",
+        matrixLabel: "Matrix/table artifact",
+        noteLabel: "BRD/FSD note",
+        liveOpsLabel: "Game/LiveOps artifact",
+        visualTemplateLabel: "Visual template",
+        anonymizedLabel: "Internal details anonymized",
+      },
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
         caseStudies: "Xem Case Studies",
@@ -1167,6 +1280,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         title: "BA / Product / Systems",
         lines: ["Requirement clarity", "Flow mapping", "Permission logic", "Delivery readiness"],
       },
+      profileCard: {
+        label: "Placeholder cho portrait sau này",
+        title: "NDMH",
+        subtitle: "Có thể thêm ảnh chân dung public-safe sau khi bạn cung cấp asset.",
+        placeholder: "Monogram profile card - không dùng mặt generate",
+        chips: ["Structured", "Product-minded", "Data-aware", "Stakeholder-facing", "Game-focused"],
+      },
       educationLabel: "Học vấn",
       education: {
         school: "VNU International School, Vietnam National University, Hanoi",
@@ -1215,6 +1335,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       artifactPreview: "Preview artifact",
       internalPreview: "Dự án nội bộ - chi tiết visual đã được ẩn danh",
       whatItProves: "Điều case này chứng minh",
+      bottomLine: "Bottom line",
+      artifactTags: "Loại artifact",
     },
     caseStudies: [
       {
@@ -1332,11 +1454,49 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         skills: ["System thinking", "Permission design", "Operational logic", "Edge case analysis"],
       },
     ],
+    whyWork: {
+      eyebrow: "Vì sao nên làm việc với tôi",
+      title: "Một hồ sơ BA/PM tập trung vào product clarity, không chỉ viết tài liệu.",
+      description:
+        "Giá trị thực tế của tôi là chuyển tình huống sản phẩm còn mơ hồ thành artifact để team có thể review, phản biện, triển khai và kiểm thử.",
+      pillars: [
+        {
+          title: "Chuyển ambiguity thành artifact có cấu trúc",
+          body:
+            "Tôi tách nhu cầu chưa rõ thành flow, state, edge case, acceptance note và tài liệu sẵn sàng handoff.",
+          proof: "Flow, mockup, ghi chú BRD/FSD, backlog item, UAT và QA checks.",
+        },
+        {
+          title: "Kết nối signal với delivery logic",
+          body:
+            "Với hướng game-facing, tôi frame player/community signal thành quyết định sản phẩm và constraint vận hành.",
+          proof: "Player Signal -> Product Decision -> Delivery Artifact là journey chính của hero.",
+        },
+        {
+          title: "Hiểu stakeholder và user/player behavior",
+          body:
+            "Tôi làm việc giữa business, product và technical conversation, đồng thời giữ hành vi user/player hiện rõ trong artifact.",
+          proof: "Kinh nghiệm delivery giao tiếp với stakeholder và nền tảng service operations.",
+        },
+        {
+          title: "Có data mindset nhưng không mất product context",
+          body:
+            "Nền tảng Business Data Analytics giúp tôi lập luận bằng metric, tradeoff và uncertainty mà vẫn bám vào product logic.",
+          proof: "KPI, dashboard, forecasting và analytical decision-support projects.",
+        },
+        {
+          title: "Làm việc xuyên suốt delivery chain",
+          body:
+            "Tôi có thể đi từ mockup/documentation sang backlog coordination, UAT preparation, QA support và stakeholder alignment.",
+          proof: "Bằng chứng Product/System BA qua CDP modules, backlog work và permission logic.",
+        },
+      ],
+    },
     socialProof: {
       eyebrow: "Tín hiệu tin cậy",
       title: "Tạo credibility mà không phóng đại claim.",
       description:
-        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills, public verbal feedback từ leadership và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
+        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
       cards: [
         {
           label: "Recommendation chính thức",
@@ -1346,16 +1506,6 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           evidence: [
             "Chỉ dùng như bằng chứng transferable skills",
             "Không hiển thị logo, con dấu, chữ ký, direct quote hoặc PDF",
-          ],
-        },
-        {
-          label: "Public verbal feedback",
-          title: "Feedback tích cực từ leadership CTO / BA / PM",
-          body:
-            "Dùng như trust signal nhẹ về working style, giao tiếp sản phẩm và kỷ luật delivery. Không hiển thị quote riêng tư, tên riêng, logo hoặc claim công ty.",
-          evidence: [
-            "Feedback từ CTO / BA / PM leader được xử lý như public verbal proof",
-            "Không thêm direct quote cho đến khi wording public-safe được xác nhận",
           ],
         },
         {
@@ -1670,6 +1820,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       techStack: "Xây dựng bằng React, TypeScript và Tailwind CSS",
       vibeNote:
         "Được xây dựng bằng vibe coding — kết hợp tư duy sản phẩm, AI-assisted development và tinh chỉnh thủ công.",
+      currentFocus: "Hiện đang khám phá Game Product / LiveOps / Game Operations.",
+      linksLabel: "Kênh liên hệ",
     },
   },
 };

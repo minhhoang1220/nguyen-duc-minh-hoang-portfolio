@@ -23,7 +23,12 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             {labels.eyebrow} 0{index + 1}
           </p>
           <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px]">{caseStudy.title}</h3>
-          <EmphasizedText className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
+          <div className="case-bottom-line mt-5">
+            <p className="case-bottom-label">{labels.bottomLine}</p>
+            <EmphasizedText className="text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
+          </div>
+
+          {caseStudy.artifactTags?.length ? <CaseArtifactTags tags={caseStudy.artifactTags} label={labels.artifactTags} /> : null}
 
           <CaseSnapshot caseStudy={caseStudy} labels={labels} />
 
@@ -57,7 +62,13 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
         <div className="min-w-0">
           {caseStudy.mainPreview ? (
-            <ImagePreview image={caseStudy.mainPreview} labels={labels} openArtifactLabel={openArtifactLabel} onImageOpen={onImageOpen} />
+            <ImagePreview
+              image={caseStudy.mainPreview}
+              detailImage={caseStudy.detailPreview}
+              labels={labels}
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+            />
           ) : caseStudy.visualType === "timeline" ? (
             <TimelinePreview labels={labels} large />
           ) : (
@@ -107,6 +118,16 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   );
 }
 
+function CaseArtifactTags({ tags, label }: { tags: string[]; label: string }) {
+  return (
+    <div className="case-artifact-tags" aria-label={label}>
+      {tags.map((tag) => (
+        <span key={tag}>{tag}</span>
+      ))}
+    </div>
+  );
+}
+
 function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: PortfolioContent["caseStudyLabels"] }) {
   const items = [
     { label: labels.problem, text: caseStudy.problem },
@@ -129,12 +150,14 @@ function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Por
 
 function ImagePreview({
   image,
+  detailImage,
   labels,
   openArtifactLabel,
   onImageOpen,
   compact = false,
 }: {
   image: AssetImage;
+  detailImage?: AssetImage;
   labels: PortfolioContent["caseStudyLabels"];
   openArtifactLabel: string;
   onImageOpen: (image: AssetImage) => void;
@@ -159,6 +182,11 @@ function ImagePreview({
             loading="lazy"
             decoding="async"
           />
+          {detailImage ? (
+            <span className="case-detail-preview-layer" aria-hidden="true">
+              <img src={detailImage.previewSrc ?? detailImage.src} alt="" loading="lazy" decoding="async" />
+            </span>
+          ) : null}
           <span className="artifact-annotation">{image.caption ?? labels.sanitized}</span>
           <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
