@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nguyễn Đức Minh Hoàng — P0 Visual Prototypes Review</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF8F2;
+      color: #333333;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #080E24;
+      color: #FAF8F2;
+      padding: 40px 24px;
+      text-align: center;
+      border-bottom: 3px solid #1B2D73;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      margin: 8px 0 0 0;
+      font-size: 14px;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1B2D73;
+      border-bottom: 2px solid #DFE4E7;
+      padding-bottom: 8px;
+      margin-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    /* Comparison grid for Heros */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .preview-card {
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(8, 14, 36, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-img-container {
+      position: relative;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      cursor: zoom-in;
+    }
+
+    .preview-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .preview-img-container:hover img {
+      transform: scale(1.02);
+    }
+
+    .preview-info {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-navy {
+      background-color: rgba(27, 45, 115, 0.1);
+      color: #1B2D73;
+      border: 1px solid rgba(27, 45, 115, 0.2);
+    }
+
+    .badge-forest {
+      background-color: rgba(23, 61, 52, 0.1);
+      color: #173D34;
+      border: 1px solid rgba(23, 61, 52, 0.2);
+    }
+
+    .badge-real {
+      background-color: rgba(104, 163, 125, 0.15);
+      color: #68a37d;
+      border: 1px solid rgba(104, 163, 125, 0.3);
+    }
+
+    .badge-template {
+      background-color: rgba(215, 170, 74, 0.15);
+      color: #d7aa4a;
+      border: 1px solid rgba(215, 170, 74, 0.3);
+    }
+
+    .filename {
+      font-family: monospace;
+      font-size: 11px;
+      color: #646670;
+      background: #FAF8F2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #DFE4E7;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1B2D73;
+      margin: 0;
+    }
+
+    .description {
+      font-size: 13px;
+      color: #646670;
+      margin: 0;
+    }
+
+    .notes-box {
+      background-color: #FAF8F2;
+      border-left: 4px solid #1B2D73;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #333333;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .notes-box.forest-border {
+      border-left-color: #173D34;
+    }
+
+    .notes-box h4 {
+      margin: 0 0 6px 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .notes-box ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    /* Stacked Case Studies list */
+    .case-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .case-card {
+      display: grid;
+      grid-template-columns: 0.6fr 0.4fr;
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(8, 14, 36, 0.04);
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+      .case-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Nguyễn Đức Minh Hoàng — Portfolio Visual Prototypes</h1>
+    <p>Branch: visual/p0-prototype-assets-v1 · P0 Mockup Verification</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Section 1: Hero Command Center -->
+    <h2 class="section-title">1. Hero Command Center Prototypes</h2>
+    <div class="comparison-grid">
+      
+      <!-- Navy Hero -->
+      <div class="preview-card">
+        <div class="preview-img-container" onclick="window.open('assets/prototypes/hero-command-center-navy.png', '_blank')">
+          <img src="assets/prototypes/hero-command-center-navy.png" alt="Hero Navy Version" />
+        </div>
+        <div class="preview-info">
+          <div class="meta-row">
+            <span class="badge badge-navy">Navy-Night Mode</span>
+            <span class="badge badge-real">Sanitized Work</span>
+            <span class="filename">hero-command-center-navy.png</span>
+          </div>
+          <h3 class="card-title">Hero Command Center — Navy Version</h3>
+          <p class="description">Displays the game product command center in NDMH's default navy-night aesthetic. Integrates the sanitized event-state mockup and the Zalo chatbot flow.</p>
+          <div class="notes-box">
+            <h4>Hoàng's Review Focus & Future Upgrades</h4>
+            <ul>
+              <li>Check if the navy background matches the site-wide navbar and global theme.</li>
+              <li>Evaluate if the sky-blue accents feel technical and crisp.</li>
+              <li>Ready to be copied to production `/assets/hero-command-center.png` if approved.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forest Hero -->
+      <div class="preview-card">
+        <div class="preview-img-container" onclick="window.open('assets/prototypes/hero-command-center-forest.png', '_blank')">
+          <img src="assets/prototypes/hero-command-center-forest.png" alt="Hero Forest Version" />
+        </div>
+        <div class="preview-info">
+          <div class="meta-row">
+            <span class="badge badge-forest">Forest Green Mode</span>
+            <span class="badge badge-real">Sanitized Work</span>
+            <span class="filename">hero-command-center-forest.png</span>
+          </div>
+          <h3 class="card-title">Hero Command Center — Forest Version</h3>
+          <p class="description">Tests the dark forest green background (#173D34) with cream text. Intended to convey a mature, game operations and LiveOps command center identity.</p>
+          <div class="notes-box forest-border">
+            <h4>Hoàng's Review Focus & Future Upgrades</h4>
+            <ul>
+              <li>Evaluate whether the forest green background feels more premium and game-centric than the navy.</li>
+              <li>Observe the contrast of the cream text and sky highlights on the forest green surface.</li>
+              <li>Requires adding the forest green tokens to `tailwind.config.ts` if selected.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section 2: Case Studies -->
+    <h2 class="section-title">2. Case Study Thumbnail Prototypes</h2>
+    <div class="case-stack">
+
+      <!-- Case Study 1 -->
+      <div class="case-card">
+        <div class="preview-img-container" onclick="window.open('assets/prototypes/case-study-01-feature-logic.png', '_blank')">
+          <img src="assets/prototypes/case-study-01-feature-logic.png" alt="Case Study 1 Thumbnail" />
+        </div>
+        <div class="preview-info">
+          <div class="meta-row">
+            <span class="badge badge-forest">Forest Gradient</span>
+            <span class="badge badge-real">Sanitized Work</span>
+            <span class="filename">case-study-01-feature-logic.png</span>
+          </div>
+          <h3 class="card-title">Case Study 1: Feature Logic & Notification Flow</h3>
+          <p class="description">Combines a cropped portion of the dense cdp-automation-flow-map.png inside a browser frame, overlaid with an acceptance criteria card and a detail preview of cdp-flow-management-states.png.</p>
+          <div class="notes-box forest-border">
+            <h4>Replacement Checklist / Future Proof</h4>
+            <ul>
+              <li><strong>Verification:</strong> Replaces the raw, uncropped CDP flow maps.</li>
+              <li><strong>Aesthetic:</strong> Uses the forest-to-navy-night gradient to anchor the game-ops segment.</li>
+              <li><strong>Labeling:</strong> Displays "Sanitized product UI" to mark real project background.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2 -->
+      <div class="case-card">
+        <div class="preview-img-container" onclick="window.open('assets/prototypes/case-study-02-product-operations.png', '_blank')">
+          <img src="assets/prototypes/case-study-02-product-operations.png" alt="Case Study 2 Thumbnail" />
+        </div>
+        <div class="preview-info">
+          <div class="meta-row">
+            <span class="badge badge-navy">Cream Background</span>
+            <span class="badge badge-template">Visual Template</span>
+            <span class="filename">case-study-02-product-operations.png</span>
+          </div>
+          <h3 class="card-title">Case Study 2: Product Operations & Feature Delivery</h3>
+          <p class="description">Displays a clean sprint release/Gantt timeline inside a tablet frame on a cream background, overlaid with a floating Jira user story Kanban card.</p>
+          <div class="notes-box">
+            <h4>Replacement Checklist / Future Proof</h4>
+            <ul>
+              <li><strong>Verification:</strong> Replaces the abstract CSS-rendered timeline block.</li>
+              <li><strong>Aesthetic:</strong> Fits the light-cream style guide with clean, minimal layout.</li>
+              <li><strong>Labeling:</strong> Labeled "Visual template" since it represents operational process rather than client work.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3 -->
+      <div class="case-card">
+        <div class="preview-img-container" onclick="window.open('assets/prototypes/case-study-03-system-logic.png', '_blank')">
+          <img src="assets/prototypes/case-study-03-system-logic.png" alt="Case Study 3 Thumbnail" />
+        </div>
+        <div class="preview-info">
+          <div class="meta-row">
+            <span class="badge badge-navy">Cream-Sky Gradient</span>
+            <span class="badge badge-template">Visual Template</span>
+            <span class="filename">case-study-03-system-logic.png</span>
+          </div>
+          <h3 class="card-title">Case Study 3: System Logic & Access Matrix</h3>
+          <p class="description">Presents a structured, clean role-permission matrix inside a browser frame, accompanied by a small role hierarchy node tree card overlay.</p>
+          <div class="notes-box">
+            <h4>Replacement Checklist / Future Proof</h4>
+            <ul>
+              <li><strong>Verification:</strong> Replaces the dry CSS permission table in Case Study 3.</li>
+              <li><strong>Aesthetic:</strong> Uses the pale-blue gradient for a clean system-security vibe.</li>
+              <li><strong>Labeling:</strong> Labeled "Visual template" for anonymized role governance mapping.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

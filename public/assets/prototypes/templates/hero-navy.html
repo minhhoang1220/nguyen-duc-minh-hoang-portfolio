@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hero Command Center - Navy</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 1000px;
+      background-color: #080E24;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(157, 196, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 196, 255, 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+      pointer-events: none;
+    }
+
+    /* Glow overlays */
+    .glow-1 {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      left: 100px;
+      top: -100px;
+      background: radial-gradient(circle, rgba(27, 45, 115, 0.3) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .glow-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: 100px;
+      bottom: -100px;
+      background: radial-gradient(circle, rgba(157, 196, 255, 0.15) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Header Bar */
+    .header-bar {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      right: 24px;
+      height: 48px;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+      color: rgba(250, 248, 242, 0.85);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #d56f5d; }
+    .dot-yellow { background: #d7aa4a; }
+    .dot-green { background: #68a37d; }
+
+    /* Left Monogram / Journey Panel */
+    .left-panel {
+      position: absolute;
+      top: 100px;
+      left: 24px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Monogram Profile Node */
+    .monogram-card {
+      background: rgba(250, 248, 242, 0.03);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.05);
+    }
+    .monogram-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #1B2D73;
+      border: 1px solid #9DC4FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FAF8F2;
+      box-shadow: 0 2px 8px rgba(8, 14, 36, 0.2);
+    }
+    .monogram-info h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #FAF8F2;
+    }
+    .monogram-info p {
+      margin: 2px 0 0 0;
+      font-size: 11px;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Journey Map */
+    .journey-map {
+      background: rgba(250, 248, 242, 0.02);
+      border: 1px solid rgba(157, 196, 255, 0.12);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+    .journey-map::before {
+      content: "";
+      position: absolute;
+      left: 35px;
+      top: 40px;
+      bottom: 40px;
+      width: 1px;
+      background: rgba(157, 196, 255, 0.15);
+    }
+    .journey-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+      z-index: 2;
+    }
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid rgba(157, 196, 255, 0.35);
+      background: #080E24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #9DC4FF;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9DC4FF;
+    }
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #FAF8F2;
+      margin: 2px 0 0 0;
+    }
+
+    /* Visual Workspace */
+    .workspace {
+      position: absolute;
+      top: 100px;
+      right: 24px;
+      left: 368px;
+      bottom: 24px;
+      background: rgba(8, 14, 36, 0.45);
+      border: 1px solid rgba(157, 196, 255, 0.15);
+      border-radius: 16px;
+      box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.08);
+      position: relative;
+    }
+
+    /* Desktop Window */
+    .desktop-window {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      width: 700px;
+      height: 480px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #DFE4E7;
+      box-shadow: 0 12px 36px rgba(8, 14, 36, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .win-bar {
+      height: 36px;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+    }
+    .win-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2D73;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .win-meta {
+      font-size: 10px;
+      color: #646670;
+      font-weight: 600;
+    }
+    .win-content {
+      flex: 1;
+      position: relative;
+      background: #FAF8F2;
+    }
+    .win-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Phone Mockup */
+    .phone-mockup {
+      position: absolute;
+      top: 120px;
+      right: 40px;
+      width: 200px;
+      height: 380px;
+      background: #080E24;
+      border-radius: 20px;
+      border: 1px solid rgba(157, 196, 255, 0.35);
+      box-shadow: 0 16px 40px rgba(8, 14, 36, 0.35);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 6px;
+    }
+    .phone-inner {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #FAF8F2;
+      position: relative;
+      border: 1px solid rgba(157, 196, 255, 0.15);
+    }
+    .phone-notch {
+      width: 90px;
+      height: 14px;
+      background: #080E24;
+      border-radius: 0 0 10px 10px;
+      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .phone-content {
+      width: 100%;
+      height: 100%;
+    }
+    .phone-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Floating Card Spec */
+    .spec-card {
+      position: absolute;
+      bottom: 40px;
+      left: 100px;
+      width: 320px;
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-left: 4px solid #FAF8F2; /* Will override in specific styled tags */
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(8, 14, 36, 0.15);
+      border-left: 4px solid #273A86;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .spec-kicker {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #273A86;
+    }
+    .spec-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1B2D73;
+    }
+    .spec-desc {
+      font-size: 11px;
+      color: #646670;
+      line-height: 1.5;
+    }
+
+    /* Labels */
+    .tag-label {
+      position: absolute;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.15);
+    }
+    .tag-real {
+      background: rgba(157, 196, 255, 0.95);
+      border: 1px solid #9DC4FF;
+      color: #080E24;
+      bottom: 24px;
+      right: 24px;
+    }
+    .tag-device {
+      background: rgba(8, 14, 36, 0.85);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #FAF8F2;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    if (window.location.search.includes('preview')) {
+      const scale = 600 / 1400;
+      document.documentElement.style.transform = `scale(${scale})`;
+      document.documentElement.style.transformOrigin = 'top left';
+      document.documentElement.style.width = '1400px';
+      document.documentElement.style.height = '1000px';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  </script>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <!-- Header Bar -->
+  <div class="header-bar">
+    <div class="dots">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    <div>Nguyễn Đức Minh Hoàng — Game Product Workspace</div>
+    <div style="color: #9DC4FF;">Navy-Night Mode</div>
+  </div>
+
+  <!-- Left Column -->
+  <div class="left-panel">
+    <!-- Monogram Node -->
+    <div class="monogram-card">
+      <div class="monogram-badge">NDMH</div>
+      <div class="monogram-info">
+        <h3>Nguyễn Đức Minh Hoàng</h3>
+        <p>BA/PM · Game Product & LiveOps</p>
+      </div>
+    </div>
+
+    <!-- Journey Map -->
+    <div class="journey-map">
+      <div class="journey-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-label">Player Insights</div>
+          <div class="step-title">Analyze behaviors & meta shifts</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-label">Product Logic</div>
+          <div class="step-title">Clarify system rules & states</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-label">Buildable specs</div>
+          <div class="step-title">Deliver mockups & checklists</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Visual Workspace -->
+  <div class="workspace">
+    <!-- Desktop Mockup -->
+    <div class="desktop-window">
+      <div class="win-bar">
+        <div class="win-title">CDP flow management states</div>
+        <div class="win-meta">Anonymized UI Preview</div>
+      </div>
+      <div class="win-content">
+        <div class="tag-label tag-device">Desktop mockup</div>
+        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/cdp-flow-management-states.png" />
+      </div>
+    </div>
+
+    <!-- Phone Mockup -->
+    <div class="phone-mockup">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+        <div class="tag-label tag-device" style="top: 24px;">Mobile flow</div>
+        <div class="phone-content">
+          <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/chatbot-zalo-journey-flow.png" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Spec Card -->
+    <div class="spec-card">
+      <div class="spec-kicker">Acceptance Criteria</div>
+      <div class="spec-title">Push Triggers & Conditions</div>
+      <div class="spec-desc">Map system events (e.g. game event launch, level progress) directly to state conditions to trigger notification flows.</div>
+    </div>
+
+    <!-- Real Label -->
+    <div class="tag-label tag-real">Sanitized product UI</div>
+  </div>
+
+</body>
+</html>
