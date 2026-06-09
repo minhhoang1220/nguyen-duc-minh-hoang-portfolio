@@ -74,10 +74,6 @@ function App() {
           <WhyWorkWithMe content={portfolio.whyWork} />
         </Reveal>
 
-        <Reveal>
-          <About content={portfolio.about} />
-        </Reveal>
-
         <section id="case-studies" className="section-cases section-padding" aria-labelledby="case-studies-title">
           <div className="container-wide">
             <Reveal>
@@ -146,6 +142,10 @@ function App() {
             </div>
           </div>
         </section>
+
+        <Reveal>
+          <About content={portfolio.about} />
+        </Reveal>
 
         <section id="experience" className="section-experience section-padding" aria-labelledby="experience-title">
           <div className="container-wide">
