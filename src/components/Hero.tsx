@@ -122,7 +122,7 @@ function Hero({
       aria-labelledby="hero-title"
     >
       <div className="hero-command-backdrop" aria-hidden="true" />
-      <div className="container-wide hero-command-layout grid min-w-0 items-start gap-9 lg:grid-cols-[0.9fr_1.1fr] xl:gap-12">
+      <div className="container-wide hero-command-layout grid min-w-0 items-start gap-9 lg:grid-cols-[0.95fr_1.05fr] xl:gap-12">
         <div className="hero-copy-stack min-w-0 max-w-3xl">
           <div className="command-identity">
             <span className="command-monogram" aria-hidden="true">
@@ -163,6 +163,20 @@ function Hero({
             </a>
           </div>
 
+          {/* Metrics proof row */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6">
+            {[
+              { value: "65+", label: "Figma screens" },
+              { value: "21", label: "User roles" },
+              { value: "~400", label: "Permissions" },
+            ].map((metric) => (
+              <div key={metric.label} className="flex items-baseline gap-2">
+                <span className="text-[22px] font-semibold leading-none text-sky md:text-[26px]">{metric.value}</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{metric.label}</span>
+              </div>
+            ))}
+          </div>
+
           <div className="command-secondary-links">
             <CvLink
               className="command-text-link"
@@ -178,10 +192,6 @@ function Hero({
             </a>
           </div>
           <p className="command-compact-trust">{hero.trustHint}</p>
-
-          <div className="hidden 2xl:block">
-            <HeroSignalPanel usp={hero.usp} focusItems={hero.focusItems} trustHint={hero.trustHint} />
-          </div>
         </div>
 
         <div ref={artifactStageRef} className="hero-command-visual" aria-label={hero.artifactAria}>

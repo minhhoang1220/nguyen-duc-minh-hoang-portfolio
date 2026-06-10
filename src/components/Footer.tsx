@@ -7,7 +7,7 @@ type FooterProps = {
 
 function Footer({ personal, footer }: FooterProps) {
   return (
-    <footer className="footer-shell bg-navy-night py-10 text-cream">
+    <footer className="bg-[#060a18] py-10 text-cream">
       <div className="container-wide grid gap-8 text-sm font-medium lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
         <div>
           <p className="text-lg font-semibold">{personal.name}</p>

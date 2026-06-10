@@ -74,7 +74,7 @@ function App() {
           <WhyWorkWithMe content={portfolio.whyWork} />
         </Reveal>
 
-        <section id="case-studies" className="section-cases section-padding" aria-labelledby="case-studies-title">
+        <section id="case-studies" className="section-full section-padding" aria-labelledby="case-studies-title" style={{ background: 'linear-gradient(180deg, #0a0f1e 0%, #080E24 30%, #0c1635 70%, #0a0f1e 100%)' }}>
           <div className="container-wide">
             <Reveal>
               <SectionHeader
@@ -83,6 +83,7 @@ function App() {
                 title={portfolio.sections.caseStudies.title}
                 description={portfolio.sections.caseStudies.description}
                 wide
+                inverse
               />
             </Reveal>
             <div className="mt-10">

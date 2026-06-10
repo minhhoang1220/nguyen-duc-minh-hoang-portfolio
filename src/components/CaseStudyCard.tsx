@@ -15,33 +15,40 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   const detailId = useId();
   const isReversed = index % 2 === 1;
 
+  const darkThemes = [
+    'bg-gradient-to-br from-[#0c241c] to-[#070b1a] border-[#1d3f35]/50',
+    'bg-gradient-to-br from-[#071330] to-[#0a0f1d] border-[#152752]/50',
+    'bg-gradient-to-br from-[#070b1c] to-[#0a0f1e] border-[#131a38]/50',
+  ];
+  const theme = darkThemes[index % darkThemes.length];
+
   return (
-    <article className="case-study-card border-y border-line py-10 md:py-14">
+    <article className={`case-study-card rounded-2xl border ${theme} p-8 md:p-10 lg:p-12 mb-8 text-cream`}>
       <div className={`grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start ${isReversed ? "lg:[&>*:first-child]:order-2" : ""}`}>
         <div className="min-w-0">
           <div className="flex items-center gap-3 mb-2">
-            <p className="section-kicker text-muted mb-0">
+            <p className="section-kicker text-sky mb-0">
               {labels.eyebrow} 0{index + 1}
             </p>
             {caseStudy.logo && (
               <img src={caseStudy.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
             )}
           </div>
-          <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px]">{caseStudy.title}</h3>
-          <div className="case-bottom-line mt-5">
-            <p className="case-bottom-label">{labels.bottomLine}</p>
-            <EmphasizedText className="text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
+          <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px] !text-cream">{caseStudy.title}</h3>
+          <div className="case-bottom-line mt-5 !bg-black/20 !border-white/10">
+            <p className="case-bottom-label !text-sky">{labels.bottomLine}</p>
+            <EmphasizedText className="text-base leading-7 text-cream/85 md:text-lg md:leading-8" text={caseStudy.summary} />
           </div>
 
           {caseStudy.artifactTags?.length ? <CaseArtifactTags tags={caseStudy.artifactTags} label={labels.artifactTags} /> : null}
 
           <CaseSnapshot caseStudy={caseStudy} labels={labels} />
 
-          <div className="case-evidence-box mt-6">
-            <p className="detail-label mb-4">{labels.evidence}</p>
+          <div className="case-evidence-box mt-6 !bg-black/20 !border-white/10">
+            <p className="detail-label mb-4 !bg-sky/30 !border-sky/40 !text-cream">{labels.evidence}</p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
+                <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
@@ -51,7 +58,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
           <button
             type="button"
-            className="mt-8 min-h-11 rounded-md border border-navy px-5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-px hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+            className="mt-8 min-h-11 rounded-md border border-cream/30 px-5 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-px hover:bg-cream/15 hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-transparent"
             aria-controls={detailId}
             aria-expanded={isExpanded}
             onClick={() => setIsExpanded((current) => !current)}
@@ -98,30 +105,30 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         </div>
       </div>
 
-      <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-line pt-8`}>
+      <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-cream/15 pt-8`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.problem}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.problem} />
+            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.problem} />
           </DetailBlock>
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.outcomeLearning}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
+            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
           </DetailBlock>
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.impact}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.impact} />
+            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.impact} />
           </DetailBlock>
           <DetailBlock emphasis="medium">
             <p className="detail-label mb-3">{labels.context}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.context} />
+            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.context} />
           </DetailBlock>
           <DetailList emphasis="medium" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
           <DetailList emphasis="medium" title={labels.process} items={caseStudy.process} />
           <DetailList emphasis="low" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
           <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.delivered}</p>
-            <EmphasizedText className="text-sm leading-6 text-ink md:text-base md:leading-7" text={caseStudy.delivered} />
+            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.delivered} />
           </DetailBlock>
           <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.skills}</p>
@@ -137,7 +144,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           {index === 0 && (
             <DetailBlock emphasis="medium">
               <p className="detail-label mb-3">Supporting Visual Artifacts</p>
-              <p className="text-xs text-muted mb-4">Click to view high-resolution sanitized outputs:</p>
+              <p className="text-xs text-muted mb-4">Click to view high-resolution work samples:</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   {
@@ -221,11 +228,11 @@ function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Por
   ];
 
   return (
-    <dl className="case-snapshot-list mt-6">
+    <dl className="case-snapshot-list mt-6 !bg-black/20 !border-white/10">
       {items.map((item) => (
         <div key={item.label} className="case-snapshot-item">
-          <dt className="case-snapshot-label">{item.label}</dt>
-          <dd className="case-snapshot-text">{item.text}</dd>
+          <dt className="case-snapshot-label !text-sky">{item.label}</dt>
+          <dd className="case-snapshot-text !text-cream/80">{item.text}</dd>
         </div>
       ))}
     </dl>
@@ -356,12 +363,12 @@ function ArtifactWindowBar({ title, meta }: { title: string; meta: string }) {
 function DetailBlock({ children, emphasis = "low" }: { children: ReactNode; emphasis?: "high" | "medium" | "low" }) {
   const toneClass =
     emphasis === "high"
-      ? "border-sky/70 border-l-navy bg-[linear-gradient(135deg,rgba(157,196,255,0.34),rgba(250,248,242,0.95))] shadow-card"
+      ? "border-sky/40 border-l-sky bg-[linear-gradient(135deg,rgba(157,196,255,0.12),rgba(10,15,30,0.8))] shadow-[0_2px_12px_rgba(0,0,0,0.3)]"
       : emphasis === "medium"
-        ? "border-navy/15 border-l-sky bg-[linear-gradient(135deg,rgba(250,248,242,0.96),rgba(236,234,229,0.58))]"
-        : "border-line border-l-navy/20 bg-card";
+        ? "border-white/10 border-l-sky/50 bg-[linear-gradient(135deg,rgba(10,15,30,0.7),rgba(12,22,53,0.5))]"
+        : "border-white/10 border-l-white/20 bg-black/20";
 
-  return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-navy/35 ${toneClass}`}>{children}</div>;
+  return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-sky/40 ${toneClass}`}>{children}</div>;
 }
 
 function DetailList({ title, items, emphasis = "low" }: { title: string; items: string[]; emphasis?: "high" | "medium" | "low" }) {
@@ -370,7 +377,7 @@ function DetailList({ title, items, emphasis = "low" }: { title: string; items: 
       <p className="detail-label mb-3">{title}</p>
       <ul className="space-y-3.5">
         {items.map((item) => (
-          <li key={item} className="flex gap-3 text-sm leading-6 text-ink md:text-base md:leading-7">
+          <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
             <span>{item}</span>
           </li>
@@ -402,7 +409,7 @@ function EmphasizedText({ text, className }: { text: string; className: string }
   if (sentenceMatch) {
     return (
       <p className={className}>
-        <strong className="font-semibold text-ink">{sentenceMatch[1]}</strong> {sentenceMatch[2]}
+        <strong className="font-semibold text-cream">{sentenceMatch[1]}</strong> {sentenceMatch[2]}
       </p>
     );
   }
@@ -415,7 +422,7 @@ function EmphasizedText({ text, className }: { text: string; className: string }
 
   return (
     <p className={className}>
-      <strong className="font-semibold text-ink">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
+      <strong className="font-semibold text-cream">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
     </p>
   );
 }
@@ -497,7 +504,7 @@ function Case1Visual({
 
       {/* Badge label */}
       <div className="absolute bottom-4 right-4 bg-sky/90 border border-sky px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-[#080E24] shadow-sm pointer-events-none select-none z-20">
-        Sanitized product artifact
+        Product Work Evidence
       </div>
     </div>
   );
@@ -566,7 +573,7 @@ function Case2Visual({
 
       {/* Badge label */}
       <div className="absolute bottom-4 right-4 bg-navy-accent border border-navy-accent px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm pointer-events-none select-none z-20">
-        Visual template based on real PM/BA workflow
+        Process Evidence
       </div>
     </div>
   );
@@ -637,7 +644,7 @@ function Case3Visual({
 
       {/* Badge label */}
       <div className="absolute bottom-4 right-4 bg-navy-accent border border-navy-accent px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm pointer-events-none select-none z-20">
-        Visual template
+        System Logic Matrix
       </div>
     </div>
   );
