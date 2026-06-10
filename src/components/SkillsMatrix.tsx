@@ -40,14 +40,14 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {approach.items.map((item, index) => (
                 <article
                   key={item.title}
-                  className="stagger-item how-work-card group flex flex-col gap-4 rounded-lg border border-cream/10 bg-black/20 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-sky/40 hover:bg-black/35 hover:shadow-hover"
+                  className="stagger-item how-work-card group flex flex-col gap-4 rounded-lg border border-navy/15 bg-white p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:bg-[#FAF8F2] hover:shadow-hover text-navy"
                   style={{ transitionDelay: `${index * 70}ms` }}
                 >
                   <span className="sequence-badge" style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}>
                     0{index + 1}
                   </span>
-                  <h3 className="text-xl font-semibold leading-tight text-cream">{item.title}</h3>
-                  <p className="mt-auto text-sm leading-relaxed text-cream/80">{item.body}</p>
+                  <h3 className="text-xl font-semibold leading-tight text-navy">{item.title}</h3>
+                  <p className="mt-auto text-sm leading-relaxed text-ink/80">{item.body}</p>
                 </article>
               ))}
             </div>
@@ -63,13 +63,13 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {skillGroups.groups.map((group, index) => (
                 <article
                   key={group.category}
-                  className="stagger-item skill-group-card flex flex-col gap-6 rounded-lg border border-cream/10 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-sky/40 hover:shadow-hover"
+                  className="stagger-item flex flex-col gap-6 rounded-lg border border-navy/15 bg-white p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:shadow-hover text-navy"
                   style={{ transitionDelay: `${index * 70}ms` }}
                 >
-                  <h3 className="border-b border-cream/10 pb-3 text-lg font-semibold leading-tight text-cream">{group.category}</h3>
+                  <h3 className="border-b border-navy/10 pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
                   <div className="flex flex-wrap gap-2">
                     {group.skills.map((skill) => (
-                      <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-cream/10 bg-cream/10 px-3 py-1.5 text-xs font-semibold leading-5 text-cream hover:border-sky/40 hover:bg-cream/15 transition duration-300">
+                      <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-navy/10 bg-navy/5 px-3 py-1.5 text-xs font-semibold leading-5 text-navy hover:border-navy/30 hover:bg-navy/10 transition duration-300">
                         {skill}
                       </span>
                     ))}
@@ -89,9 +89,9 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {process.rows.map((row, index) => (
                 <article
                   key={row.number}
-                  className="thinking-row border border-cream/10 p-6 rounded-lg shadow-minimal hover:border-sky/40 hover:-translate-y-0.5 transition duration-300"
+                  className="thinking-row border border-navy/15 p-6 rounded-lg shadow-minimal hover:border-navy/35 hover:-translate-y-0.5 transition duration-300 text-navy"
                   style={{
-                    backgroundImage: thinkingRowBackgrounds[index % thinkingRowBackgrounds.length],
+                    backgroundImage: approachCardBackgrounds[index % approachCardBackgrounds.length],
                     transitionDelay: `${index * 70}ms`
                   }}
                 >
@@ -101,8 +101,8 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
                   >
                     {row.number}
                   </p>
-                  <h3 className="text-2xl font-semibold leading-tight text-cream md:text-3xl">{row.title}</h3>
-                  <p className="max-w-3xl text-base leading-8 text-cream/80 md:text-lg">{row.description}</p>
+                  <h3 className="text-2xl font-semibold leading-tight text-navy md:text-3xl">{row.title}</h3>
+                  <p className="max-w-none w-full text-base leading-8 text-ink/80 md:text-lg">{row.description}</p>
                 </article>
               ))}
             </div>

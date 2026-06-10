@@ -285,7 +285,7 @@ function ArtifactLightbox({
           </div>
         </div>
         <div
-          className={`relative min-h-0 h-[68vh] overflow-hidden bg-cream md:h-[72vh] ${
+          className={`relative min-h-0 h-[75vh] overflow-hidden bg-[#030712] md:h-[82vh] ${
             scale > minScale ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-default"
           }`}
           style={{ touchAction: scale > minScale ? "none" : "manipulation" }}
@@ -294,7 +294,7 @@ function ArtifactLightbox({
           onPointerUp={handlePointerEnd}
           onPointerCancel={handlePointerEnd}
         >
-          <div className="flex h-full w-full items-center justify-center p-3 md:p-6">
+          <div className="flex h-full w-full items-center justify-center p-1 md:p-2">
             {!isImageLoaded ? (
               <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
                 <span className="rounded-md border border-line bg-card px-4 py-2 text-sm font-semibold text-muted shadow-minimal">
@@ -306,7 +306,7 @@ function ArtifactLightbox({
               <img
                 src={previewSrc}
                 alt=""
-                className="absolute h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] select-none object-contain opacity-70 blur-[1px] md:h-[calc(100%-3rem)] md:w-[calc(100%-3rem)]"
+                className="absolute h-[calc(100%-0.5rem)] w-[calc(100%-0.5rem)] select-none object-contain opacity-70 blur-[1px] md:h-[calc(100%-1rem)] md:w-[calc(100%-1rem)]"
                 draggable={false}
                 decoding="async"
                 aria-hidden="true"

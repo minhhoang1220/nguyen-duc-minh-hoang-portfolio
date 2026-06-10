@@ -122,7 +122,7 @@ function App() {
                       {portfolio.sections.projects.title}
                     </h2>
                     {portfolio.sections.projects.description ? (
-                      <p className="mt-5 max-w-3xl text-base leading-7 text-muted md:text-lg md:leading-8 text-pretty">
+                      <p className="mt-5 max-w-none text-base leading-7 text-muted md:text-lg md:leading-8 text-pretty">
                         {portfolio.sections.projects.description}
                       </p>
                     ) : null}

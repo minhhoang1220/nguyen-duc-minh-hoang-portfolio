@@ -13,10 +13,10 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
         <div className="grid gap-7 pt-2 lg:grid-cols-[0.28fr_0.72fr] lg:gap-12 mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky">{proof.eyebrow}</p>
           <div>
-            <h2 id="proof-snapshot-title" className="section-title max-w-5xl text-cream m-0">
+            <h2 id="proof-snapshot-title" className="section-title max-w-none w-full text-cream m-0">
               {proof.title}
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-cream/80 md:text-lg">{socialProof.description}</p>
+            <p className="mt-5 lg:max-w-6xl xl:max-w-7xl text-base leading-8 text-cream/80 md:text-lg">{socialProof.description}</p>
           </div>
         </div>
 
@@ -33,9 +33,9 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
                   style={{ transitionDelay: `${index * 55}ms` }}
                 >
                   <CountUpStat value={stat.value} className={`text-[36px] font-bold leading-none text-sky md:text-[44px] ${isWideValue ? "tracking-tight" : ""}`} />
-                  <dt className="text-xs font-bold uppercase tracking-wider text-cream/90 mt-1">{stat.label}</dt>
+                  <dt className="text-[13px] sm:text-sm font-bold uppercase tracking-wider text-cream/90 mt-1">{stat.label}</dt>
                   {stat.subtitle && (
-                    <dd className="text-[11px] leading-relaxed text-cream/65 mt-auto">{stat.subtitle}</dd>
+                    <dd className="text-xs sm:text-[13px] leading-relaxed text-cream/70 mt-auto">{stat.subtitle}</dd>
                   )}
                 </div>
               );

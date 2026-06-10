@@ -23,11 +23,11 @@ function About({ content }: AboutProps) {
             <p className="section-kicker text-sky">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="section-title max-w-5xl text-cream text-balance"
+              className="section-title max-w-none w-full text-cream text-balance"
             >
               {content.title}
             </h2>
-            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-cream/80 md:text-lg md:leading-9 text-pretty text-left" text={content.body} />
+            <EmphasizedParagraph className="mt-7 lg:max-w-5xl xl:max-w-6xl text-base leading-8 text-cream/80 md:text-lg md:leading-9 text-pretty text-left" text={content.body} />
 
             <div className="mt-9 grid gap-4">
               {content.points.map((point, index) => (

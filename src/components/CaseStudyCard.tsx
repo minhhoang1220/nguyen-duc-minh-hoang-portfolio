@@ -10,6 +10,74 @@ type CaseStudyCardProps = {
   onImageOpen: (image: AssetImage) => void;
 };
 
+const getBlockIcon = (type: string, customClass?: string) => {
+  const baseClass = customClass ?? "w-4 h-4 text-cream inline-block shrink-0 align-text-bottom mr-1.5";
+  switch (type) {
+    case "problem":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      );
+    case "outcome":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      );
+    case "impact":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      );
+    case "context":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      );
+    case "decisions":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12a3 3 0 11-6 0 3 3 0 016 0zm0 0c0 1.657 1.007 3 2.25 3S13.5 13.657 13.5 12s-1.007-3-2.25-3S9 10.343 9 12zm0 0h12M9 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      );
+    case "process":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5" />
+        </svg>
+      );
+    case "delivered":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      );
+    case "skills":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      );
+    case "evidence":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.952 11.952 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      );
+    case "supporting":
+      return (
+        <svg className={baseClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpen }: CaseStudyCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const detailId = useId();
@@ -95,7 +163,10 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
           {/* Key Evidence block relocated directly below the main visual preview */}
           <div className="case-evidence-box bg-white border border-navy/15 rounded-lg p-5 shadow-minimal">
-            <p className="detail-label mb-4">{labels.evidence}</p>
+            <p className="detail-label mb-4 flex items-center gap-1.5">
+              {getBlockIcon("evidence")}
+              {labels.evidence}
+            </p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-6 text-navy/85 md:text-base md:leading-7">
@@ -111,30 +182,30 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
       <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-navy/15 pt-8`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <DetailBlock emphasis="high">
-            <p className="detail-label mb-3">{labels.problem}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("problem")}{labels.problem}</p>
             <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.problem} />
           </DetailBlock>
           <DetailBlock emphasis="high">
-            <p className="detail-label mb-3">{labels.outcomeLearning}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("outcome")}{labels.outcomeLearning}</p>
             <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
           </DetailBlock>
           <DetailBlock emphasis="high">
-            <p className="detail-label mb-3">{labels.impact}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("impact")}{labels.impact}</p>
             <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.impact} />
           </DetailBlock>
           <DetailBlock emphasis="medium">
-            <p className="detail-label mb-3">{labels.context}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("context")}{labels.context}</p>
             <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.context} />
           </DetailBlock>
-          <DetailList emphasis="medium" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
-          <DetailList emphasis="medium" title={labels.process} items={caseStudy.process} />
-          <DetailList emphasis="low" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
+          <DetailList emphasis="medium" title={labels.keyDecisions} items={caseStudy.keyDecisions} iconType="decisions" />
+          <DetailList emphasis="medium" title={labels.process} items={caseStudy.process} iconType="process" />
+          <DetailList emphasis="low" title={labels.deliveredArtifacts} items={caseStudy.artifacts} iconType="delivered" />
           <DetailBlock emphasis="low">
-            <p className="detail-label mb-3">{labels.delivered}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("delivered")}{labels.delivered}</p>
             <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.delivered} />
           </DetailBlock>
           <DetailBlock emphasis="low">
-            <p className="detail-label mb-3">{labels.skills}</p>
+            <p className="detail-label mb-3 flex items-center gap-1.5">{getBlockIcon("skills")}{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
                 <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-navy/10 bg-navy/5 px-3 py-1.5 text-xs font-semibold leading-5 text-navy hover:border-navy hover:bg-navy/10 transition duration-300 shrink-0">
@@ -148,7 +219,10 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         {/* Supporting Visual Artifacts section spans full available width */}
         {index === 0 && (
           <div className="mt-8 border-t border-navy/15 pt-8">
-            <h4 className="text-base font-bold uppercase tracking-[0.1em] text-navy mb-2">Supporting Visual Artifacts</h4>
+            <h4 className="text-base font-bold uppercase tracking-[0.1em] text-navy mb-2 flex items-center gap-1.5">
+              {getBlockIcon("supporting", "w-5 h-5 text-navy inline-block shrink-0 align-text-bottom mr-1.5")}
+              Supporting Visual Artifacts
+            </h4>
             <p className="text-xs text-ink/75 mb-6">Click to view high-resolution work samples:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
               {[
@@ -198,16 +272,37 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                     onPointerEnter={() => preloadImage(artifact.src)}
                     onFocus={() => preloadImage(artifact.src)}
                   >
-                    <div className={`relative w-full overflow-hidden bg-[#faf8f2] border-b border-navy/10 ${isPhone ? "aspect-[9/16]" : "aspect-[16/10]"}`}>
-                      <img
-                        src={artifact.previewSrc}
-                        alt={artifact.alt}
-                        className={`h-full w-full object-contain ${isPhone ? "p-2 bg-[#121620]" : "bg-[#f3f6f8]"}`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      {isPhone && (
-                        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#475569] rounded-full opacity-60 pointer-events-none" />
+                    <div className={`relative w-full overflow-hidden bg-[#faf8f2] border-b border-navy/10 flex flex-col ${isPhone ? "aspect-[9/19] p-1.5 bg-[#1a1a1a]" : "aspect-[16/10] bg-[#f8fafc]"}`}>
+                      {isPhone ? (
+                        <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-[#121620] border border-black/40">
+                          {/* Dynamic Island Notch */}
+                          <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-12 h-3.5 bg-black rounded-full z-20 pointer-events-none shadow-inner" />
+                          <img
+                            src={artifact.previewSrc}
+                            alt={artifact.alt}
+                            className="h-full w-full object-cover transition duration-700 group-hover/thumb:scale-[1.04]"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-full h-full flex flex-col">
+                          {/* Browser Window Bar */}
+                          <div className="h-6 bg-[#f1f5f9] border-b border-navy/10 flex items-center gap-1.5 px-2 shrink-0">
+                            <span className="w-2 h-2 rounded-full bg-[#d56f5d]" />
+                            <span className="w-2 h-2 rounded-full bg-[#d7aa4a]" />
+                            <span className="w-2 h-2 rounded-full bg-[#68a37d]" />
+                          </div>
+                          <div className="relative flex-1 overflow-hidden bg-[#f3f6f8]">
+                            <img
+                              src={artifact.previewSrc}
+                              alt={artifact.alt}
+                              className="h-full w-full object-cover transition duration-700 group-hover/thumb:scale-[1.04]"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                        </div>
                       )}
                     </div>
                     <div className="p-3 flex flex-col justify-between flex-1">
@@ -304,7 +399,7 @@ function ImagePreview({
             </span>
           ) : null}
           <span className="artifact-annotation">{image.caption ?? labels.sanitized}</span>
-          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
             {openArtifactLabel}
           </span>
         </span>
@@ -396,10 +491,13 @@ function DetailBlock({ children, emphasis = "low" }: { children: ReactNode; emph
   return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-navy ${toneClass}`}>{children}</div>;
 }
 
-function DetailList({ title, items, emphasis = "low" }: { title: string; items: string[]; emphasis?: "high" | "medium" | "low" }) {
+function DetailList({ title, items, emphasis = "low", iconType }: { title: string; items: string[]; emphasis?: "high" | "medium" | "low"; iconType?: string }) {
   return (
     <DetailBlock emphasis={emphasis}>
-      <p className="detail-label mb-3">{title}</p>
+      <p className="detail-label mb-3 flex items-center gap-1.5">
+        {iconType && getBlockIcon(iconType)}
+        {title}
+      </p>
       <ul className="space-y-3.5">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-6 text-ink/85 md:text-base md:leading-7">
@@ -506,7 +604,7 @@ function Case1Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
           {openArtifactLabel}
         </span>
       </button>
@@ -575,7 +673,7 @@ function Case2Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
           {openArtifactLabel}
         </span>
       </button>
@@ -646,7 +744,7 @@ function Case3Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
           {openArtifactLabel}
         </span>
       </button>

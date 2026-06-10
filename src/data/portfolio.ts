@@ -926,7 +926,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         ],
         relevance:
           "Highlights mathematical depth, structured logic, and model-based decision support, useful for game balance calculations.",
-        tags: ["Research Methods", "Model Benchmark", "Time-Series", "Machine Learning"],
+        tags: ["Research", "Benchmarking", "Time-Series", "ML"],
         logo: assets.vnuIsLogo,
       },
     ],
@@ -1685,7 +1685,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         ],
         relevance:
           "Thể hiện tư duy toán học, logic cấu trúc và hỗ trợ quyết định bằng mô hình, hỗ trợ tốt cho việc cân bằng chỉ số game.",
-        tags: ["Nghiên cứu khoa học", "Benchmark mô hình", "Chuỗi thời gian", "Học máy"],
+        tags: ["Nghiên cứu", "Benchmark", "Chuỗi thời gian", "Học máy"],
         logo: assets.vnuIsLogo,
       },
     ],

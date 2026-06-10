@@ -11,20 +11,20 @@ const options: Language[] = ["en", "vi"];
 function LanguageToggle({ language, onChange, ariaLabel }: LanguageToggleProps) {
   return (
     <div
-      className="inline-flex h-10 items-center rounded-md border border-cream/20 bg-black/30 text-xs font-semibold uppercase text-cream/90"
+      className="inline-flex h-9 items-center rounded-md border border-navy/15 bg-white p-0.5 text-xs font-bold uppercase text-[#080E24]"
       aria-label={ariaLabel}
       role="group"
     >
-      {options.map((option, index) => {
+      {options.map((option) => {
         const isActive = option === language;
 
         return (
           <button
             key={option}
             type="button"
-            className={`h-full px-3 transition duration-200 first:rounded-l-[5px] last:rounded-r-[5px] focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-2 focus:ring-offset-[#080e24] ${
-              isActive ? "bg-[#1b2d73] text-cream" : "bg-transparent text-cream/70 hover:bg-cream/10 hover:text-cream"
-            } ${index > 0 ? "border-l border-cream/20" : ""}`}
+            className={`h-full px-3 transition-colors duration-150 rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+              isActive ? "bg-[#080E24] text-white" : "bg-white text-[#080E24]/65 hover:bg-[#080E24]/5 hover:text-[#080E24]"
+            }`}
             aria-pressed={isActive}
             onClick={() => onChange(option)}
           >

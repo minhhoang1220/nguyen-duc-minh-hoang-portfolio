@@ -861,7 +861,7 @@ img {
   }
 
   .artifact-device-label {
-    @apply pointer-events-none absolute right-4 top-4 rounded border border-cream/70 bg-cream/90 px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.08em] text-navy shadow-minimal;
+    @apply pointer-events-none absolute right-4 top-4 rounded border border-transparent bg-[#080e24]/95 px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.08em] text-sky shadow-minimal;
   }
 
   .signature-card {
@@ -1887,4 +1887,27 @@ button:focus:not(:focus-visible),
 
 .text-wrap-pretty {
   text-wrap: pretty;
+}
+
+/* --- Typography Sizing Readability Pass --- */
+.text-sm {
+  font-size: 1rem !important; /* 16px */
+  line-height: 1.5rem !important;
+}
+
+.text-xs {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.25rem !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.8125rem !important; /* 13px */
+}
+
+.text-\[10px\] {
+  font-size: 0.75rem !important; /* 12px */
+}
+
+.text-\[9px\] {
+  font-size: 0.75rem !important; /* 12px */
 }

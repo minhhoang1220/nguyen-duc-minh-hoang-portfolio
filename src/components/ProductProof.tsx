@@ -15,7 +15,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{proof.eyebrow}</p>
         <div>
           <h2 id={titleId} className="section-title max-w-none w-full text-navy text-balance">{proof.title}</h2>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg text-pretty">{proof.description}</p>
+          <p className="mt-6 max-w-none text-base leading-8 text-muted md:text-lg text-pretty">{proof.description}</p>
         </div>
       </div>
 
