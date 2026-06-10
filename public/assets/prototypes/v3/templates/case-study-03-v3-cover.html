@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Case Study 3 V3 — Cover Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 900px;
+      background: linear-gradient(135deg, #0A1233 0%, #080E24 50%, #0D1A40 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay — heavier for matrix feel */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(157, 196, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 196, 255, 0.07) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* Ambient glow */
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: 100px;
+      top: 100px;
+      background: radial-gradient(circle, rgba(157, 196, 255, 0.08) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Cover Layout */
+    .cover-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 60px 80px;
+      z-index: 2;
+    }
+
+    /* Case badge */
+    .case-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .case-number {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9DC4FF;
+      background: rgba(157, 196, 255, 0.1);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .case-proof {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(250, 248, 242, 0.5);
+    }
+
+    /* Main Title */
+    .cover-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #FAF8F2;
+      text-align: center;
+      line-height: 1.15;
+      max-width: 900px;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    /* Subtitle */
+    .cover-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(250, 248, 242, 0.7);
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    /* Tags */
+    .tags-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 14px;
+      border-radius: 4px;
+      background: rgba(157, 196, 255, 0.12);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #9DC4FF;
+    }
+
+    /* Stats strip — the hero stat numbers */
+    .stats-strip {
+      display: flex;
+      gap: 32px;
+      margin-top: 8px;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #9DC4FF;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(250, 248, 242, 0.6);
+    }
+
+    /* Matrix visual hint — simplified grid pattern */
+    .matrix-hint {
+      display: grid;
+      grid-template-columns: 140px repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(157, 196, 255, 0.06);
+      border: 1px solid rgba(157, 196, 255, 0.12);
+      border-radius: 10px;
+      padding: 14px;
+      width: 580px;
+      margin-top: 4px;
+    }
+    .matrix-header {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(250, 248, 242, 0.5);
+      padding: 6px 8px;
+      text-align: center;
+    }
+    .matrix-header:first-child {
+      text-align: left;
+    }
+    .matrix-row-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(250, 248, 242, 0.75);
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+    }
+    .matrix-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+    .cell-allowed {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(104, 163, 125, 0.2);
+      border: 1px solid rgba(104, 163, 125, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #68a37d;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .cell-denied {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(213, 111, 93, 0.1);
+      border: 1px solid rgba(213, 111, 93, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d56f5d;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Bottom label */
+    .proof-label {
+      position: absolute;
+      bottom: 32px;
+      right: 40px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #1B2D73;
+      border: 1px solid #1B2D73;
+      color: #FAF8F2;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.15);
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <div class="cover-content">
+    <!-- Case Badge -->
+    <div class="case-badge">
+      <span class="case-number">Case Study 03</span>
+      <span class="case-proof">System governance — visual template</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="cover-title">System Logic &<br>Access Matrix</h1>
+
+    <!-- Subtitle -->
+    <p class="cover-subtitle">Designed a structured role-permission matrix to map system complexity and rule-based governance across organizational roles and access levels.</p>
+
+    <!-- Stats -->
+    <div class="stats-strip">
+      <div class="stat-item">
+        <span class="stat-value">21</span>
+        <span class="stat-label">Roles Mapped</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">~400</span>
+        <span class="stat-label">Permissions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">3</span>
+        <span class="stat-label">Inheritance Levels</span>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-row">
+      <span class="tag">System Logic</span>
+      <span class="tag">Access Control</span>
+      <span class="tag">Matrix Design</span>
+      <span class="tag">Governance</span>
+    </div>
+
+    <!-- Matrix Visual Hint -->
+    <div class="matrix-hint">
+      <div class="matrix-header">Permission</div>
+      <div class="matrix-header">Admin</div>
+      <div class="matrix-header">Manager</div>
+      <div class="matrix-header">Analyst</div>
+      <div class="matrix-header">Agent</div>
+
+      <div class="matrix-row-label">Modify API Config</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+
+      <div class="matrix-row-label">Approve Refunds</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+
+      <div class="matrix-row-label">Edit Campaign</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+
+      <div class="matrix-row-label">Export Reports</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+    </div>
+  </div>
+
+  <!-- Proof Label -->
+  <div class="proof-label">Visual template</div>
+
+</body>
+</html>

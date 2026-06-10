@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Case Study 1 V3 — Cover Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 900px;
+      background: linear-gradient(135deg, #173D34 0%, #080E24 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(157, 196, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 196, 255, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* Ambient glow */
+    .glow {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(157, 196, 255, 0.06) 0%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* Cover Layout — Centered, Bold */
+    .cover-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 60px 80px;
+      z-index: 2;
+    }
+
+    /* Case number badge */
+    .case-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .case-number {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9DC4FF;
+      background: rgba(157, 196, 255, 0.1);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .case-proof {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(250, 248, 242, 0.5);
+    }
+
+    /* Main Title */
+    .cover-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #FAF8F2;
+      text-align: center;
+      line-height: 1.15;
+      max-width: 900px;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    /* Subtitle */
+    .cover-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(250, 248, 242, 0.7);
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    /* Tags row */
+    .tags-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 14px;
+      border-radius: 4px;
+      background: rgba(157, 196, 255, 0.12);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #9DC4FF;
+    }
+
+    /* Artifact preview strip — simplified thumbnail */
+    .artifact-strip {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .artifact-thumb {
+      width: 320px;
+      height: 200px;
+      background: #FFFFFF;
+      border-radius: 10px;
+      border: 1px solid rgba(157, 196, 255, 0.3);
+      box-shadow: 0 12px 32px rgba(8, 14, 36, 0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .artifact-thumb-bar {
+      height: 24px;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .artifact-thumb-content {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .artifact-thumb-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 25%;
+    }
+
+    /* Spec hint card */
+    .spec-hint {
+      width: 220px;
+      background: rgba(250, 248, 242, 0.06);
+      border: 1px solid rgba(250, 248, 242, 0.12);
+      border-left: 3px solid #9DC4FF;
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+    .spec-hint-kicker {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9DC4FF;
+    }
+    .spec-hint-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #FAF8F2;
+    }
+    .spec-hint-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(250, 248, 242, 0.75);
+    }
+    .spec-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #68a37d;
+      flex-shrink: 0;
+    }
+
+    /* Bottom proof label */
+    .proof-label {
+      position: absolute;
+      bottom: 32px;
+      right: 40px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(157, 196, 255, 0.95);
+      border: 1px solid #9DC4FF;
+      color: #080E24;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.15);
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <div class="cover-content">
+    <!-- Case Badge -->
+    <div class="case-badge">
+      <span class="case-number">Case Study 01</span>
+      <span class="case-proof">Real product work — sanitized</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="cover-title">Feature Logic &<br>Notification Flow</h1>
+
+    <!-- Subtitle -->
+    <p class="cover-subtitle">Mapped event automation logic across triggers, segments, notification states, and edge cases — directly transferable to LiveOps and player event logic.</p>
+
+    <!-- Tags -->
+    <div class="tags-row">
+      <span class="tag">Flow Logic</span>
+      <span class="tag">LiveOps</span>
+      <span class="tag">Event Triggers</span>
+      <span class="tag">Edge Cases</span>
+    </div>
+
+    <!-- Artifact Preview Strip -->
+    <div class="artifact-strip">
+      <div class="artifact-thumb">
+        <div class="artifact-thumb-bar">
+          <div class="mini-dot" style="background: #d56f5d;"></div>
+          <div class="mini-dot" style="background: #d7aa4a;"></div>
+          <div class="mini-dot" style="background: #68a37d;"></div>
+        </div>
+        <div class="artifact-thumb-content">
+          <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/cdp-automation-flow-map.png" />
+        </div>
+      </div>
+
+      <div class="spec-hint">
+        <div class="spec-hint-kicker">Key Contributions</div>
+        <div class="spec-hint-title">Trigger & State Validation</div>
+        <div class="spec-hint-item">
+          <div class="spec-dot"></div>
+          <span>Event trigger routing logic</span>
+        </div>
+        <div class="spec-hint-item">
+          <div class="spec-dot"></div>
+          <span>Segment condition filters</span>
+        </div>
+        <div class="spec-hint-item">
+          <div class="spec-dot"></div>
+          <span>Failure path handling</span>
+        </div>
+        <div class="spec-hint-item">
+          <div class="spec-dot"></div>
+          <span>QA/UAT validation specs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proof Label -->
+  <div class="proof-label">Sanitized product UI</div>
+
+</body>
+</html>
