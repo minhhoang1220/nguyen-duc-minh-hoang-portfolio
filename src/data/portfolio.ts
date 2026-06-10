@@ -81,7 +81,7 @@ export type CaseStudy = {
   evidence: string[];
   mainPreview?: AssetImage;
   detailPreview?: AssetImage;
-  visualType?: "permission" | "timeline";
+  visualType?: "permission" | "timeline" | "matrix";
   context: string;
   problem: string;
   role: string;
