@@ -88,9 +88,14 @@ function ProfileFallback({ content }: AboutProps) {
 function EducationBlock({ content }: AboutProps) {
   return (
     <div className="mt-8 rounded-md border border-line bg-cream p-4">
-      <p className="detail-label">{content.educationLabel}</p>
-      <p className="mt-3 text-base font-semibold leading-6 text-navy">{content.education.school}</p>
-      <p className="mt-3 text-sm font-medium text-ink">{content.education.degree}</p>
+      <div className="flex items-center justify-between gap-2 border-b border-line pb-2 mb-3">
+        <p className="detail-label m-0">{content.educationLabel}</p>
+        {content.education.logo && (
+          <img src={content.education.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+        )}
+      </div>
+      <p className="text-base font-semibold leading-6 text-navy">{content.education.school}</p>
+      <p className="mt-2 text-sm font-medium text-ink">{content.education.degree}</p>
       <p className="mt-1 text-sm text-muted">{content.education.period}</p>
     </div>
   );

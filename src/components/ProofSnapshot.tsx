@@ -41,7 +41,12 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
           <div className="proof-trust-list" aria-label={socialProof.eyebrow}>
             {socialProof.cards.map((card, index) => (
               <article key={card.title} className="proof-trust-card stagger-item" style={{ transitionDelay: `${index * 70}ms` }}>
-                <p className="trust-card-label">{card.label}</p>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="trust-card-label">{card.label}</p>
+                  {card.logo && (
+                    <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+                  )}
+                </div>
                 <h3>{card.title}</h3>
                 <p>{card.body}</p>
                 <ul>

@@ -23,6 +23,9 @@ function Hero({
   onImageOpen,
 }: HeroProps) {
   const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
+  const detailsArtifact = hero.artifacts.find(
+    (artifact) => artifact.type === "image" && !artifact.priority && artifact.title.toLowerCase().includes("performance")
+  );
   const heroShellRef = useRef<HTMLElement | null>(null);
   const artifactStageRef = useRef<HTMLDivElement | null>(null);
 
@@ -203,7 +206,10 @@ function Hero({
                 <p className="text-sm font-semibold leading-6 text-cream/85">{hero.visual.anonymizedLabel}</p>
               </div>
 
-              <div className="command-device-stage">
+              <div className="command-device-stage relative overflow-hidden">
+                {/* Glow Overlay */}
+                <div className="parity-glow absolute -right-[20%] -top-[20%] opacity-50" />
+                
                 {mainArtifact?.type === "image" ? (
                   <ArtifactImageButton
                     artifact={mainArtifact}
@@ -216,7 +222,41 @@ function Hero({
                   />
                 ) : null}
 
+                {/* Layered Detail/Performance Card */}
+                {detailsArtifact?.type === "image" ? (
+                  <button
+                    type="button"
+                    className="command-detail-card group/detail text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+                    aria-label={`${openArtifactLabel}: ${detailsArtifact.image.title}`}
+                    onClick={() => onImageOpen(detailsArtifact.image)}
+                    onPointerEnter={() => preloadImage(detailsArtifact.image.src)}
+                    onFocus={() => preloadImage(detailsArtifact.image.src)}
+                  >
+                    <div className="flex h-6 items-center justify-between border-b border-line bg-cream px-2 text-[8px] font-bold uppercase tracking-wider text-navy">
+                      <span>{hero.visual.mobileLabel ?? "Performance & Drop-off"}</span>
+                      <span className="text-muted text-[7px]">CDP Flow Metrics</span>
+                    </div>
+                    <div className="relative flex-1 overflow-hidden bg-cream">
+                      <img
+                        src={detailsArtifact.image.previewSrc ?? detailsArtifact.image.src}
+                        alt={detailsArtifact.image.alt}
+                        className="h-full w-full object-cover object-top transition duration-700 group-hover/detail:scale-[1.04]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="pointer-events-none absolute inset-x-2 bottom-2 translate-y-1 rounded border border-cream/70 bg-navy/90 py-1 text-center text-[9px] font-semibold text-cream opacity-0 transition duration-300 group-hover/detail:translate-y-0 group-hover/detail:opacity-100">
+                        {openArtifactLabel}
+                      </span>
+                    </div>
+                  </button>
+                ) : null}
+
                 <CommandTemplateArtifacts visual={hero.visual} />
+
+                {/* Sanitized Badge inside the stage */}
+                <div className="absolute bottom-3 right-3 rounded bg-navy-accent/90 border border-sky/30 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm z-30 select-none pointer-events-none">
+                  {hero.visual.anonymizedLabel}
+                </div>
               </div>
             </div>
           </div>
@@ -322,16 +362,23 @@ function ArtifactImageButton({
 }
 
 function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]["visual"] }) {
+  const steps = ["Trigger", "Segment", "Message", "Drop-off"];
+
   return (
     <div className="command-template-layer" aria-label={visual.visualTemplateLabel}>
-      <div className="command-note-overlay command-template-card">
-        <p>{visual.noteLabel}</p>
-        <strong>Campaign Logic</strong>
-        <span>Trigger → Segment → Message → Drop-off</span>
-        <div className="note-screen-lines" aria-hidden="true">
-          <i />
-          <i />
-          <i />
+      <div className="command-note-overlay command-template-card flex flex-col gap-2 p-3 bg-card border border-line border-l-4 border-l-navy-accent rounded-lg shadow-minimal select-none">
+        <p className="text-[9px] font-bold uppercase tracking-wider text-navy-accent m-0">{visual.noteLabel}</p>
+        <div className="flex flex-wrap items-center gap-1 mt-1">
+          {steps.map((step, idx) => (
+            <span key={step} className="flex items-center gap-1 text-[10px] font-semibold text-navy">
+              <span className="bg-sky/20 border border-sky/35 px-1.5 py-0.5 rounded text-[10px]">
+                {step}
+              </span>
+              {idx < steps.length - 1 && (
+                <span className="text-muted text-[10px] font-normal">→</span>
+              )}
+            </span>
+          ))}
         </div>
       </div>
     </div>

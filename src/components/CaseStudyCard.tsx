@@ -61,7 +61,28 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
         </div>
 
         <div className="min-w-0">
-          {caseStudy.mainPreview ? (
+          {index === 0 && caseStudy.mainPreview ? (
+            <Case1Visual
+              mainPreview={caseStudy.mainPreview}
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+              labels={labels}
+            />
+          ) : index === 1 && caseStudy.mainPreview ? (
+            <Case2Visual
+              mainPreview={caseStudy.mainPreview}
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+              labels={labels}
+            />
+          ) : index === 2 && caseStudy.mainPreview ? (
+            <Case3Visual
+              mainPreview={caseStudy.mainPreview}
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+              labels={labels}
+            />
+          ) : caseStudy.mainPreview ? (
             <ImagePreview
               image={caseStudy.mainPreview}
               detailImage={caseStudy.detailPreview}
@@ -112,6 +133,69 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
               ))}
             </div>
           </DetailBlock>
+
+          {index === 0 && (
+            <DetailBlock emphasis="medium">
+              <p className="detail-label mb-3">Supporting Visual Artifacts</p>
+              <p className="text-xs text-muted mb-4">Click to view high-resolution sanitized outputs:</p>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  {
+                    title: "Flow Canvas",
+                    src: "/assets/case-studies/vega-canvas-flow.png",
+                    previewSrc: "/assets/previews/vega-canvas-flow-preview.png",
+                    alt: "Engagement flow canvas trigger flow layout",
+                  },
+                  {
+                    title: "Drop-off Analytics",
+                    src: "/assets/case-studies/vega-flow-details.png",
+                    previewSrc: "/assets/previews/vega-flow-details-preview.png",
+                    alt: "Funnel drop-off analytics metrics dashboard",
+                  },
+                  {
+                    title: "Messenger Output",
+                    src: "/assets/case-studies/vega-mess-chatbox.png",
+                    previewSrc: "/assets/previews/vega-mess-chatbox-preview.png",
+                    alt: "Messenger chatbox mockup output preview",
+                  },
+                  {
+                    title: "Facebook Segment",
+                    src: "/assets/case-studies/vega-facebook-profile.png",
+                    previewSrc: "/assets/previews/vega-facebook-profile-preview.png",
+                    alt: "Facebook connected target user profile",
+                  },
+                  {
+                    title: "Zalo Notification",
+                    src: "/assets/case-studies/vega-zalo.png",
+                    previewSrc: "/assets/previews/vega-zalo-preview.png",
+                    alt: "Zalo official account notification layout preview",
+                  },
+                ].map((artifact) => (
+                  <button
+                    key={artifact.title}
+                    type="button"
+                    className="flex flex-col text-left rounded border border-line bg-cream overflow-hidden hover:border-navy transition focus:outline-none focus:ring-2 focus:ring-navy"
+                    onClick={() => onImageOpen(artifact)}
+                    onPointerEnter={() => preloadImage(artifact.src)}
+                    onFocus={() => preloadImage(artifact.src)}
+                  >
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-white border-b border-line">
+                      <img
+                        src={artifact.previewSrc}
+                        alt={artifact.alt}
+                        className="h-full w-full object-cover object-top"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <span className="p-2 text-[10px] font-bold text-navy truncate block w-full">
+                      {artifact.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </DetailBlock>
+          )}
         </div>
       </div>
     </article>
@@ -333,6 +417,229 @@ function EmphasizedText({ text, className }: { text: string; className: string }
     <p className={className}>
       <strong className="font-semibold text-ink">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
     </p>
+  );
+}
+
+function Case1Visual({
+  mainPreview,
+  openArtifactLabel,
+  onImageOpen,
+  labels,
+}: {
+  mainPreview: AssetImage;
+  openArtifactLabel: string;
+  onImageOpen: (image: AssetImage) => void;
+  labels: any;
+}) {
+  return (
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#173D34] to-[#080E24] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+      <div className="parity-grid-bg" />
+      <div className="parity-glow" />
+      
+      <button
+        type="button"
+        className="relative z-10 w-full flex flex-col md:flex-row gap-6 items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        aria-label={`${openArtifactLabel}: ${mainPreview.title}`}
+        onClick={() => onImageOpen(mainPreview)}
+        onPointerEnter={() => preloadImage(mainPreview.src)}
+        onFocus={() => preloadImage(mainPreview.src)}
+      >
+        {/* Browser window */}
+        <div className="w-full md:w-[65%] bg-white rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
+          <div className="h-7 bg-[#FAF8F2] border-b border-line flex items-center justify-between px-3">
+            <div className="flex gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#d56f5d]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#d7aa4a]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#68a37d]" />
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-navy">
+              {labels.artifactPreview ?? "Engagement flow canvas"}
+            </span>
+          </div>
+          <div className="relative aspect-[16/10] overflow-hidden bg-cream">
+            <img
+              src={mainPreview.previewSrc ?? mainPreview.src}
+              alt={mainPreview.alt}
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        {/* Spec hint floating card */}
+        <div className="spec-hint shadow-hover transition duration-500 group-hover:-translate-y-1">
+          <div className="spec-hint-kicker">Key Contributions</div>
+          <div className="spec-hint-title">Trigger & State Validation</div>
+          <div className="spec-hint-item mt-1">
+            <div className="spec-dot" />
+            <span>Event trigger routing logic</span>
+          </div>
+          <div className="spec-hint-item">
+            <div className="spec-dot" />
+            <span>Segment condition filters</span>
+          </div>
+          <div className="spec-hint-item">
+            <div className="spec-dot" />
+            <span>Failure path handling</span>
+          </div>
+          <div className="spec-hint-item">
+            <div className="spec-dot" />
+            <span>QA/UAT validation specs</span>
+          </div>
+        </div>
+
+        {/* View Artifact Overlay inside browser card */}
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          {openArtifactLabel}
+        </span>
+      </button>
+
+      {/* Badge label */}
+      <div className="absolute bottom-4 right-4 bg-sky/90 border border-sky px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-[#080E24] shadow-sm pointer-events-none select-none z-20">
+        Sanitized product artifact
+      </div>
+    </div>
+  );
+}
+
+function Case2Visual({
+  mainPreview,
+  openArtifactLabel,
+  onImageOpen,
+  labels,
+}: {
+  mainPreview: AssetImage;
+  openArtifactLabel: string;
+  onImageOpen: (image: AssetImage) => void;
+  labels: any;
+}) {
+  const phases = [
+    { label: "Discovery", left: "0%", width: "30%", status: "Done", type: "done" },
+    { label: "Flow Mapping", left: "15%", width: "30%", status: "Done", type: "done" },
+    { label: "Interface Mockups", left: "30%", width: "30%", status: "Done", type: "done" },
+    { label: "Review", left: "50%", width: "20%", status: "Active", type: "progress" },
+    { label: "Dev Handoff", left: "65%", width: "18%", status: "Planned", type: "scheduled" },
+    { label: "QA / UAT", left: "80%", width: "18%", status: "Planned", type: "scheduled" },
+  ];
+
+  return (
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#080E24] to-[#14245F] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+      <div className="parity-grid-bg" />
+      <div className="parity-glow" />
+
+      <button
+        type="button"
+        className="relative z-10 w-full flex items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        aria-label={`${openArtifactLabel}: ${mainPreview.title}`}
+        onClick={() => onImageOpen(mainPreview)}
+        onPointerEnter={() => preloadImage(mainPreview.src)}
+        onFocus={() => preloadImage(mainPreview.src)}
+      >
+        <div className="gantt-hint transition duration-500 group-hover:-translate-y-1">
+          {phases.map((phase) => (
+            <div key={phase.label} className="gantt-row">
+              <span className="gantt-label">{phase.label}</span>
+              <div className="gantt-bar-track">
+                <div
+                  className={`gantt-bar-fill ${
+                    phase.type === "done"
+                      ? "bar-done"
+                      : phase.type === "progress"
+                      ? "bar-progress"
+                      : "bar-scheduled"
+                  }`}
+                  style={{ left: phase.left, width: phase.width }}
+                >
+                  <span className="gantt-bar-text">{phase.status}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* View Artifact Overlay inside browser card */}
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          {openArtifactLabel}
+        </span>
+      </button>
+
+      {/* Badge label */}
+      <div className="absolute bottom-4 right-4 bg-navy-accent border border-navy-accent px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm pointer-events-none select-none z-20">
+        Visual template based on real PM/BA workflow
+      </div>
+    </div>
+  );
+}
+
+function Case3Visual({
+  mainPreview,
+  openArtifactLabel,
+  onImageOpen,
+  labels,
+}: {
+  mainPreview: AssetImage;
+  openArtifactLabel: string;
+  onImageOpen: (image: AssetImage) => void;
+  labels: any;
+}) {
+  const headers = ["Permission", "Admin", "Manager", "Analyst", "Agent"];
+  const rows = [
+    { name: "Edit Event Config", cells: [true, false, false, false] },
+    { name: "Approve Campaign", cells: [true, true, false, false] },
+    { name: "Export Report", cells: [true, true, true, false] },
+    { name: "Manage User Role", cells: [true, false, false, false] },
+    { name: "View Activity Log", cells: [true, true, true, true] },
+    { name: "Update Segment Rule", cells: [true, true, false, false] },
+  ];
+
+  return (
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+      <div className="parity-grid-bg" />
+      <div className="parity-glow" />
+
+      <button
+        type="button"
+        className="relative z-10 w-full flex items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        aria-label={`${openArtifactLabel}: ${mainPreview.title}`}
+        onClick={() => onImageOpen(mainPreview)}
+        onPointerEnter={() => preloadImage(mainPreview.src)}
+        onFocus={() => preloadImage(mainPreview.src)}
+      >
+        <div className="matrix-hint transition duration-500 group-hover:-translate-y-1">
+          {headers.map((header) => (
+            <div key={header} className="matrix-header">
+              {header}
+            </div>
+          ))}
+
+          {rows.map((row) => (
+            <div key={row.name} className="contents">
+              <div className="matrix-row-label">{row.name}</div>
+              {row.cells.map((allowed, cellIdx) => (
+                <div key={cellIdx} className="matrix-cell">
+                  {allowed ? (
+                    <div className="cell-allowed">✓</div>
+                  ) : (
+                    <div className="cell-denied">-</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* View Artifact Overlay inside browser card */}
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          {openArtifactLabel}
+        </span>
+      </button>
+
+      {/* Badge label */}
+      <div className="absolute bottom-4 right-4 bg-navy-accent border border-navy-accent px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm pointer-events-none select-none z-20">
+        Visual template
+      </div>
+    </div>
   );
 }
 
