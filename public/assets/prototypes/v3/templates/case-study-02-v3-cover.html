@@ -125,11 +125,12 @@
       flex-direction: column;
       gap: 8px;
       width: 600px;
-      background: rgba(250, 248, 242, 0.04);
-      border: 1px solid rgba(157, 196, 255, 0.15);
+      background: #FAF8F2; /* Cream background */
+      border: 1px solid rgba(27, 45, 115, 0.2);
       border-radius: 12px;
       padding: 20px 24px;
       margin-top: 8px;
+      box-shadow: 0 12px 36px rgba(8, 14, 36, 0.3);
     }
     .gantt-row {
       display: flex;
@@ -138,8 +139,8 @@
     }
     .gantt-label {
       font-size: 11px;
-      font-weight: 600;
-      color: rgba(250, 248, 242, 0.85);
+      font-weight: 700;
+      color: #10235F; /* Dark navy text */
       width: 130px;
       flex-shrink: 0;
       text-align: right;
@@ -147,7 +148,7 @@
     .gantt-bar-track {
       flex: 1;
       height: 22px;
-      background: rgba(157, 196, 255, 0.06);
+      background: rgba(27, 45, 115, 0.06);
       border-radius: 4px;
       position: relative;
       overflow: hidden;
@@ -174,11 +175,11 @@
       background: linear-gradient(90deg, #273A86 0%, #9DC4FF 100%);
     }
     .bar-scheduled {
-      background: rgba(250, 248, 242, 0.1);
-      border: 1px dashed rgba(250, 248, 242, 0.2);
+      background: rgba(27, 45, 115, 0.03);
+      border: 1px dashed rgba(27, 45, 115, 0.25);
     }
     .bar-scheduled .gantt-bar-text {
-      color: rgba(250, 248, 242, 0.5);
+      color: rgba(27, 45, 115, 0.6);
     }
 
     /* Kanban hint */
@@ -260,6 +261,7 @@
     <!-- Case Badge -->
     <div class="case-badge">
       <span class="case-number">Case Study 02</span>
+      <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/logos/vega-fintech-logo.png" style="height: 14px; opacity: 0.8; vertical-align: middle;" alt="Vega Fintech" />
       <span class="case-proof">Vega Fintech — process evidence</span>
     </div>
 
@@ -331,7 +333,7 @@
   </div>
 
   <!-- Proof Label -->
-  <div class="proof-label">Visual template</div>
+  <div class="proof-label">Visual template based on real PM/BA workflow</div>
 
 </body>
 </html>

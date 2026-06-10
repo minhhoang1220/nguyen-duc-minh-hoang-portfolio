@@ -72,6 +72,7 @@ export type SocialProofCard = {
   title: string;
   body: string;
   evidence: string[];
+  logo?: string;
 };
 
 export type CaseStudy = {
@@ -92,6 +93,7 @@ export type CaseStudy = {
   artifactTags?: string[];
   impact: string;
   skills: string[];
+  logo?: string;
 };
 
 export type Experience = {
@@ -108,6 +110,7 @@ export type Experience = {
     label: string;
   }[];
   evidence: string[];
+  logo?: string;
 };
 
 export type Project = {
@@ -118,6 +121,7 @@ export type Project = {
   contributions: string[];
   relevance: string;
   tags: string[];
+  logo?: string;
 };
 
 export type ProcessRow = {
@@ -337,6 +341,18 @@ const assets = {
   immerseVietnamOverview: "/assets/immersevietnam-website-overview.png",
   thesisPortfolioOverview: "/assets/thesis-portfolio-optimization-overview.png",
   dashboardRevenueOverview: "/assets/dashboard-revenue-overview.png",
+
+  // Vega Case Study 1 assets
+  vegaCanvasFlow: "/assets/case-studies/vega-canvas-flow.png",
+  vegaFlowDetails: "/assets/case-studies/vega-flow-details.png",
+  vegaMessChatbox: "/assets/case-studies/vega-mess-chatbox.png",
+  vegaFacebookProfile: "/assets/case-studies/vega-facebook-profile.png",
+  vegaZalo: "/assets/case-studies/vega-zalo.png",
+
+  // Logos
+  vegaLogo: "/assets/logos/vega-fintech-logo.png",
+  britishCouncilLogo: "/assets/logos/british-council-logo.png",
+  vnuIsLogo: "/assets/logos/vnu-is-logo-landscape.png",
 };
 
 const assetPreviews = {
@@ -349,6 +365,13 @@ const assetPreviews = {
   immerseVietnamOverview: "/assets/previews/immersevietnam-website-overview-preview.jpg",
   thesisPortfolioOverview: "/assets/previews/thesis-portfolio-optimization-overview-preview.jpg",
   dashboardRevenueOverview: "/assets/previews/dashboard-revenue-overview-preview.jpg",
+
+  // Vega Case Study 1 previews
+  vegaCanvasFlow: "/assets/previews/vega-canvas-flow-preview.png",
+  vegaFlowDetails: "/assets/previews/vega-flow-details-preview.png",
+  vegaMessChatbox: "/assets/previews/vega-mess-chatbox-preview.png",
+  vegaFacebookProfile: "/assets/previews/vega-facebook-profile-preview.png",
+  vegaZalo: "/assets/previews/vega-zalo-preview.png",
 };
 
 export const portfolioContent: Record<Language, PortfolioContent> = {
@@ -602,7 +625,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     caseStudies: [
       {
-        title: "Feature Logic & Notification Flow",
+        title: "Engagement Flow & Notification Analytics",
         summary:
           "Mapped event automation logic across triggers, segments, notification states, and edge cases, directly transferring to LiveOps and player event logic.",
         evidence: [
@@ -611,18 +634,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Supported QA/UAT validation with clear, anonymized interaction flows",
         ],
         mainPreview: {
-          src: assets.cdpAutomationFlow,
-          previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sanitized automation flow map showing trigger, segment, state, and event logic",
-          title: "Automation event flow map",
-          caption: "Sanitized artifact: event-state clarity and operational logic.",
+          src: assets.vegaCanvasFlow,
+          previewSrc: assetPreviews.vegaCanvasFlow,
+          alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+          title: "Engagement flow canvas",
+          caption: "Sanitized product artifact: sensitive details anonymized.",
         },
         detailPreview: {
-          src: assets.cdpFlowStates,
-          previewSrc: assetPreviews.cdpFlowStates,
-          alt: "Sanitized event flow management state screens",
-          title: "Event flow management states",
-          caption: "Sanitized workflow/state preview",
+          src: assets.vegaFlowDetails,
+          previewSrc: assetPreviews.vegaFlowDetails,
+          alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+          title: "Flow execution detail analytics",
+          caption: "Sanitized detail view: sensitive details anonymized.",
         },
         context:
           "Automation and push notification logic involving user segment triggers, status checks, and messaging flows.",
@@ -649,6 +672,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Simplified complex trigger logic, reduced dev handoff ambiguity, and served as a clear source of truth for QA checks.",
         skills: ["Interaction logic", "System thinking", "Event flows", "Backlog specs", "Edge case analysis"],
+        logo: assets.vegaLogo,
       },
       {
         title: "Product Operations & Feature Delivery · Vega Fintech",
@@ -686,9 +710,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Aligned stakeholders on release timelines, improved cross-team delivery coordination, and set a structured testing basis.",
         skills: ["Backlog management", "Sprint planning", "Cross-team coordination", "UAT validation", "Product operations"],
+        logo: assets.vegaLogo,
       },
       {
-        title: "System Logic & Access Matrix Design",
+        title: "System Logic & Access Matrix",
         summary:
           "Designed a structured role-permission matrix to map system complexity and rule-based governance across 21 roles and 400 access levels.",
         evidence: [
@@ -770,6 +795,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Used only as transferable skills evidence",
             "No logo, stamp, signature, direct quote, or PDF displayed",
           ],
+          logo: assets.britishCouncilLogo,
         },
         {
           label: "Product/System BA evidence",
@@ -781,6 +807,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "21 roles / around 400 permissions mapped",
             "3-4 features and 8-10 tasks coordinated per sprint",
           ],
+          logo: assets.vegaLogo,
         },
         {
           label: "Proof boundary",
@@ -792,6 +819,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Internal project details labeled when visuals cannot be shown",
             "Unsupported testimonials and outcome claims omitted",
           ],
+          logo: assets.vegaLogo,
         },
       ],
     },
@@ -855,6 +883,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Demonstrates analytical thinking by turning raw operations data into clear metrics, similar to LiveOps dashboards.",
         tags: ["ETL Pipeline", "KPI design", "Data Modeling", "BI Analytics"],
+        logo: assets.vnuIsLogo,
       },
       {
         title: "Data-Informed Product Analysis · VNU Research",
@@ -877,6 +906,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Highlights mathematical depth, structured logic, and model-based decision support, useful for game balance calculations.",
         tags: ["Research Methods", "Model Benchmark", "Time-Series", "Machine Learning"],
+        logo: assets.vnuIsLogo,
       },
     ],
     experience: [
@@ -903,6 +933,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Managed backlog and sprint planning for 3-4 features per sprint, coordinating 8-10 developer tasks.",
           "Mapped a complex access matrix covering 21 user roles and ~400 permission points, and built feature verification checklists.",
         ],
+        logo: assets.vegaLogo,
       },
       {
         company: "CMC Technology & Solutions",
@@ -925,6 +956,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Handled practical service issues where customer experience and operational timing mattered.",
           "Built stakeholder communication habits and sensitivity to frontline execution constraints.",
         ],
+        logo: assets.britishCouncilLogo,
       },
     ],
     process: {
@@ -1339,7 +1371,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     caseStudies: [
       {
-        title: "Feature Logic & Notification Flow",
+        title: "Engagement Flow & Notification Analytics",
         summary:
           "Map logic automation phức tạp qua trigger, segment, trạng thái và edge case, trực tiếp chuyển đổi sang tư duy logic sự kiện LiveOps và tương tác người chơi.",
         evidence: [
@@ -1348,18 +1380,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Hỗ trợ kiểm thử QA/UAT với sơ đồ tương tác trực quan đã được ẩn danh",
         ],
         mainPreview: {
-          src: assets.cdpAutomationFlow,
-          previewSrc: assetPreviews.cdpAutomationFlow,
-          alt: "Sơ đồ automation flow đã được làm sạch, thể hiện trigger, segment, state và event logic",
-          title: "Automation event flow map",
-          caption: "Artifact đã làm sạch: trực quan hóa logic trạng thái và vận hành sự kiện.",
+          src: assets.vegaCanvasFlow,
+          previewSrc: assetPreviews.vegaCanvasFlow,
+          alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+          title: "Engagement flow canvas",
+          caption: "Sanitized product artifact: sensitive details anonymized.",
         },
         detailPreview: {
-          src: assets.cdpFlowStates,
-          previewSrc: assetPreviews.cdpFlowStates,
-          alt: "Các màn hình trạng thái quản lý flow đã được làm sạch",
-          title: "Event flow management states",
-          caption: "Preview trạng thái và quy trình tương tác",
+          src: assets.vegaFlowDetails,
+          previewSrc: assetPreviews.vegaFlowDetails,
+          alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+          title: "Flow execution detail analytics",
+          caption: "Sanitized detail view: sensitive details anonymized.",
         },
         context:
           "Hệ thống tự động hóa thông báo đẩy dựa trên phân khúc người dùng, điều kiện kích hoạt (trigger) và trạng thái tin nhắn.",
@@ -1386,6 +1418,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Đơn giản hóa logic kích hoạt sự kiện phức tạp, giảm thiểu sai sót khi bàn giao cho lập trình viên và làm single source of truth cho QA.",
         skills: ["Logic tương tác", "Tư duy hệ thống", "Event flows", "Đặc tả tính năng", "Phân tích edge case"],
+        logo: assets.vegaLogo,
       },
       {
         title: "Product Operations & Feature Delivery · Vega Fintech",
@@ -1409,7 +1442,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Thiết lập các tiêu chí kiểm thử trước UAT để đảm bảo tính chính xác của tính năng trước khi đưa ra môi trường thử nghiệm.",
         ],
         outcomeLearning:
-          "Xây dựng nhịp độ làm việc ổn định qua từng sprint, giảm thiểu khoảng cách thông tin giữa các bộ phận và chuẩn hóa quy trình xác thực tính năng.",
+          "Xây trì nhịp độ làm việc ổn định qua từng sprint, giảm thiểu khoảng cách thông tin giữa các bộ phận và chuẩn hóa quy trình xác thực tính năng.",
         process: [
           "Làm rõ yêu cầu sản phẩm với các bộ phận vận hành và kinh doanh.",
           "Khớp các tiêu chí đầu ra của thuật toán dự báo với đội ngũ kỹ thuật và AI team lead.",
@@ -1423,6 +1456,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Đồng bộ hóa kế hoạch phát hành giữa các phòng ban, nâng cao hiệu quả phối hợp và chuẩn hóa quy trình test trước bàn giao.",
         skills: ["Quản lý backlog", "Sprint planning", "Điều phối liên phòng ban", "Xác thực UAT", "Vận hành sản phẩm"],
+        logo: assets.vegaLogo,
       },
       {
         title: "System Logic & Access Matrix Design",
@@ -1507,6 +1541,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Chỉ dùng như bằng chứng transferable skills",
             "Không hiển thị logo, con dấu, chữ ký, direct quote hoặc PDF",
           ],
+          logo: assets.britishCouncilLogo,
         },
         {
           label: "Bằng chứng Product/System BA",
@@ -1518,6 +1553,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "21 roles / khoảng 400 permissions đã được map",
             "3-4 features và 8-10 tasks được điều phối mỗi sprint",
           ],
+          logo: assets.vegaLogo,
         },
         {
           label: "Ranh giới bằng chứng",
@@ -1529,6 +1565,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
             "Chi tiết project nội bộ được label rõ khi không thể show visual",
             "Không dùng testimonial hoặc outcome claim chưa xác thực",
           ],
+          logo: assets.vegaLogo,
         },
       ],
     },
@@ -1592,6 +1629,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Thể hiện tư duy phân tích bằng cách chuyển đổi dữ liệu thô thành chỉ số trực quan, tương tự dashboard theo dõi LiveOps.",
         tags: ["ETL Pipeline", "Thiết kế KPI", "Mô hình dữ liệu", "Phân tích BI"],
+        logo: assets.vnuIsLogo,
       },
       {
         title: "Phân tích sản phẩm dựa trên dữ liệu · VNU Research",
@@ -1614,6 +1652,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Thể hiện tư duy toán học, logic cấu trúc và hỗ trợ quyết định bằng mô hình, hỗ trợ tốt cho việc cân bằng chỉ số game.",
         tags: ["Nghiên cứu khoa học", "Benchmark mô hình", "Chuỗi thời gian", "Học máy"],
+        logo: assets.vnuIsLogo,
       },
     ],
     experience: [
@@ -1640,6 +1679,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Quản lý backlog và lập kế hoạch sprint cho 3-4 tính năng mỗi sprint, điều phối khoảng 8-10 nhiệm vụ lập trình.",
           "Xây dựng ma trận phân quyền chi tiết cho 21 vai trò người dùng / ~400 mục quyền truy cập và thiết lập danh sách kiểm thử trước phát hành.",
         ],
+        logo: assets.vegaLogo,
       },
       {
         company: "CMC Technology & Solutions",
@@ -1662,6 +1702,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Xử lý các vấn đề thực tế nơi customer experience và operational timing có ảnh hưởng trực tiếp.",
           "Xây dựng thói quen giao tiếp với các bên liên quan và hiểu constraint của vận hành tuyến đầu.",
         ],
+        logo: assets.britishCouncilLogo,
       },
     ],
     process: {

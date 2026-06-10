@@ -44,7 +44,12 @@ function ProjectCard({ project, openArtifactLabel, onImageOpen }: ProjectCardPro
 
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-7">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.1em] text-muted">{project.type}</p>
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">{project.type}</p>
+            {project.logo && (
+              <img src={project.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+            )}
+          </div>
           <h3 className="text-2xl font-semibold leading-tight text-navy">{project.title}</h3>
           <p className="mt-4 text-sm leading-6 text-ink">{project.positioning}</p>
         </div>

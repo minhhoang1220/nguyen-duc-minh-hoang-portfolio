@@ -147,66 +147,70 @@
     /* Matrix visual hint — simplified grid pattern */
     .matrix-hint {
       display: grid;
-      grid-template-columns: 140px repeat(4, 1fr);
+      grid-template-columns: 160px repeat(4, 1fr);
       gap: 2px;
-      background: rgba(157, 196, 255, 0.06);
-      border: 1px solid rgba(157, 196, 255, 0.12);
+      background: #FAF8F2; /* Cream background */
+      border: 1px solid rgba(27, 45, 115, 0.2);
       border-radius: 10px;
       padding: 14px;
       width: 580px;
       margin-top: 4px;
+      box-shadow: 0 12px 36px rgba(8, 14, 36, 0.3);
     }
     .matrix-header {
       font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: rgba(250, 248, 242, 0.5);
+      color: #10235F; /* Dark navy text */
       padding: 6px 8px;
       text-align: center;
+      border-bottom: 2px solid rgba(27, 45, 115, 0.1);
     }
     .matrix-header:first-child {
       text-align: left;
     }
     .matrix-row-label {
       font-size: 10px;
-      font-weight: 600;
-      color: rgba(250, 248, 242, 0.75);
+      font-weight: 700;
+      color: #1B2D73; /* Dark navy text */
       padding: 6px 8px;
       display: flex;
       align-items: center;
+      border-bottom: 1px solid rgba(27, 45, 115, 0.05);
     }
     .matrix-cell {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 6px;
+      border-bottom: 1px solid rgba(27, 45, 115, 0.05);
     }
     .cell-allowed {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: rgba(104, 163, 125, 0.2);
-      border: 1px solid rgba(104, 163, 125, 0.5);
+      background: rgba(104, 163, 125, 0.15);
+      border: 1px solid #68a37d;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #68a37d;
+      color: #2e6944; /* Readable green */
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
     }
     .cell-denied {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: rgba(213, 111, 93, 0.1);
-      border: 1px solid rgba(213, 111, 93, 0.25);
+      background: rgba(213, 111, 93, 0.08);
+      border: 1px solid #d56f5d;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #d56f5d;
+      color: #a83c2a; /* Readable red */
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     /* Bottom label */
@@ -278,28 +282,40 @@
       <div class="matrix-header">Analyst</div>
       <div class="matrix-header">Agent</div>
 
-      <div class="matrix-row-label">Modify API Config</div>
+      <div class="matrix-row-label">Edit Event Config</div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
 
-      <div class="matrix-row-label">Approve Refunds</div>
+      <div class="matrix-row-label">Approve Campaign</div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
 
-      <div class="matrix-row-label">Edit Campaign</div>
+      <div class="matrix-row-label">Export Report</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
+
+      <div class="matrix-row-label">Manage User Role</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
+
+      <div class="matrix-row-label">View Activity Log</div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
 
-      <div class="matrix-row-label">Export Reports</div>
+      <div class="matrix-row-label">Update Segment Rule</div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
       <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
-      <div class="matrix-cell"><div class="cell-allowed">✓</div></div>
+      <div class="matrix-cell"><div class="cell-denied">-</div></div>
       <div class="matrix-cell"><div class="cell-denied">-</div></div>
     </div>
   </div>

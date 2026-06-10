@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Đức Minh Hoàng — Final Portfolio Refinement Review</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #080E24;
+      color: #FAF8F2;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #080E24 0%, #14245F 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+      border-bottom: 2px solid rgba(157, 196, 255, 0.15);
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FAF8F2;
+    }
+    header p {
+      margin: 12px 0 0;
+      font-size: 14px;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+    .header-badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(104, 163, 125, 0.15);
+      border: 1px solid rgba(104, 163, 125, 0.3);
+      color: #68a37d;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Tabs/Sections Navigation */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(250, 248, 242, 0.02);
+      border-bottom: 1px solid rgba(157, 196, 255, 0.1);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(250, 248, 242, 0.6);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      color: #FAF8F2;
+      background: rgba(250, 248, 242, 0.04);
+    }
+    .nav-btn.active {
+      color: #9DC4FF;
+      background: rgba(157, 196, 255, 0.1);
+      border-color: rgba(157, 196, 255, 0.25);
+    }
+
+    /* Content Cards */
+    .card {
+      background: rgba(250, 248, 242, 0.03);
+      border: 1px solid rgba(157, 196, 255, 0.1);
+      border-radius: 14px;
+      padding: 32px;
+      margin: 40px 0;
+    }
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FAF8F2;
+      margin-top: 0;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(157, 196, 255, 0.15);
+      padding-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Alert Boxes */
+    .alert {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      border-left: 4px solid;
+    }
+    .alert-info {
+      background: rgba(157, 196, 255, 0.05);
+      border-color: #9DC4FF;
+      color: rgba(250, 248, 242, 0.85);
+    }
+    .alert-warning {
+      background: rgba(215, 170, 74, 0.06);
+      border-color: #d7aa4a;
+      color: rgba(250, 248, 242, 0.85);
+    }
+    .alert-success {
+      background: rgba(104, 163, 125, 0.06);
+      border-color: #68a37d;
+      color: rgba(250, 248, 242, 0.85);
+    }
+
+    /* Grid layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* Lists */
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+      color: rgba(250, 248, 242, 0.8);
+      font-size: 14px;
+    }
+
+    /* Image Preview Block */
+    .preview-block {
+      background: rgba(8, 14, 36, 0.4);
+      border: 1px solid rgba(157, 196, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .preview-header {
+      background: rgba(250, 248, 242, 0.03);
+      padding: 10px 16px;
+      font-size: 12px;
+      font-family: monospace;
+      color: rgba(250, 248, 242, 0.5);
+      border-bottom: 1px solid rgba(157, 196, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .preview-badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .badge-primary {
+      background: rgba(157, 196, 255, 0.15);
+      color: #9DC4FF;
+      border: 1px solid rgba(157, 196, 255, 0.3);
+    }
+    .badge-success {
+      background: rgba(104, 163, 125, 0.15);
+      color: #68a37d;
+      border: 1px solid rgba(104, 163, 125, 0.3);
+    }
+    .badge-warning {
+      background: rgba(215, 170, 74, 0.15);
+      color: #d7aa4a;
+      border: 1px solid rgba(215, 170, 74, 0.3);
+    }
+    .preview-media-container {
+      position: relative;
+      background: #0D142A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .preview-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .preview-block:hover .preview-img {
+      transform: scale(1.02);
+    }
+    .preview-footer {
+      padding: 16px;
+      background: rgba(8, 14, 36, 0.2);
+    }
+    .preview-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FAF8F2;
+      margin: 0 0 6px;
+    }
+    .preview-desc {
+      font-size: 12px;
+      color: rgba(250, 248, 242, 0.6);
+      margin: 0;
+    }
+
+    /* Simulation stage */
+    .sim-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .sim-btn {
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.15);
+      color: #FAF8F2;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .sim-btn:hover {
+      background: rgba(157, 196, 255, 0.08);
+      border-color: rgba(157, 196, 255, 0.3);
+    }
+    .sim-btn.active {
+      background: #9DC4FF;
+      color: #080E24;
+      border-color: #9DC4FF;
+      box-shadow: 0 4px 16px rgba(157, 196, 255, 0.25);
+    }
+    .sim-frame-container {
+      display: flex;
+      justify-content: center;
+      background: rgba(8, 14, 36, 0.6);
+      padding: 40px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(157, 196, 255, 0.1);
+      position: relative;
+    }
+    .sim-frame {
+      width: 100%;
+      max-width: 900px;
+      transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+    }
+    .sim-info-pill {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(8, 14, 36, 0.85);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 11px;
+      color: #9DC4FF;
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      z-index: 10;
+    }
+
+    /* Modal / Lightbox */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 14, 36, 0.9);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 1300px;
+      max-height: 90vh;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      border-radius: 16px;
+      overflow: auto;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(8, 14, 36, 0.6);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(250, 248, 242, 0.08);
+      border: 1px solid rgba(250, 248, 242, 0.15);
+      color: #FAF8F2;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s ease;
+    }
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: rgba(250, 248, 242, 0.15);
+    }
+    .modal-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .modal-iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+    .modal-info {
+      padding: 24px;
+      background: #080E24;
+      border-top: 1px solid rgba(157, 196, 255, 0.15);
+    }
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #FAF8F2;
+      margin: 0 0 8px;
+    }
+    .modal-desc {
+      font-size: 13px;
+      color: rgba(250, 248, 242, 0.7);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Logo Showcase list */
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(250, 248, 242, 0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .logo-badge img {
+      height: 16px;
+      object-fit: contain;
+    }
+
+    /* Footer styling */
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      border-top: 1px solid rgba(157, 196, 255, 0.1);
+      color: rgba(250, 248, 242, 0.4);
+      font-size: 12px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Final Portfolio Refinement Review</h1>
+    <p>Nguyễn Đức Minh Hoàng · Production Integration Verification</p>
+    <div class="header-badge">Review Draft V3 — Final Case Hierarchy & Logos</div>
+  </header>
+
+  <div class="nav-bar">
+    <button class="nav-btn active" onclick="switchSection('summary')">Summary</button>
+    <button class="nav-btn" onclick="switchSection('case1')">Case Study 1 Hierarchy</button>
+    <button class="nav-btn" onclick="switchSection('case2-3')">Case 2 & 3 Readability</button>
+    <button class="nav-btn" onclick="switchSection('logos')">Logo Placements</button>
+    <button class="nav-btn" onclick="switchSection('simulations')">Responsive Simulations</button>
+  </div>
+
+  <div class="container">
+
+    <!-- ======================================= -->
+    <!-- SECTION 1: SUMMARY -->
+    <!-- ======================================= -->
+    <div id="section-summary" class="card review-section">
+      <h2 class="card-title">Production Recommendation Summary</h2>
+      
+      <div class="alert alert-success">
+        <strong>Status: Build Verification Passed!</strong> Vite build compiles successfully with no broken references. Types check with <code>tsc --noEmit</code> has 0 errors. All assets are safely stored in active directories.
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3>Key Accomplishments</h3>
+          <ul>
+            <li><strong>Case Study 1 Consolidation</strong>: Refined under the title <em>"Engagement Flow & Notification Analytics"</em> to emphasize Braze/CleverTap-style orchestration logic over simple chatbot functions.</li>
+            <li><strong>Logo Integration</strong>: Mapped and linked organization logos contextually: Vega Fintech for Vega cases/experience, British Council for customer support roles, VNU-IS for education and research.</li>
+            <li><strong>High-Contrast Diagrams</strong>: Redeveloped Case Studies 2 and 3 covers with high-contrast light-surface elements (Gantt timeline board and permission matrices) nested on navy backgrounds.</li>
+            <li><strong>Responsive Readability</strong>: Validated layouts across simulated viewports (500px, 700px, 900px) to guarantee no truncation or microscopic text.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Branch Configuration</h3>
+          <ul>
+            <li><strong>Target Branch</strong>: <code>visual/final-case-logo-integration-v1</code></li>
+            <li><strong>Production Commit</strong>: Finalized with the message: <code>refine(portfolio): finalize case hierarchy, integrate logos, improve case readability</code></li>
+            <li><strong>Logo assets paths</strong>:
+              <ul>
+                <li>Vega: <code>/assets/logos/vega-fintech-logo.png</code></li>
+                <li>British Council: <code>/assets/logos/british-council-logo.png</code></li>
+                <li>VNU-IS: <code>/assets/logos/vnu-is-logo-landscape.png</code></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- SECTION 2: CASE STUDY 1 HIERARCHY -->
+    <!-- ======================================= -->
+    <div id="section-case1" class="card review-section" style="display:none;">
+      <h2 class="card-title">Case Study 1: Engagement Flow & Notification Analytics</h2>
+      <p>Case Study 1 serves as the top proof. It is structured around the main canvas flow with secondary details and channel outputs as child artifacts.</p>
+      
+      <div class="alert alert-info">
+        <strong>Public-Safe Warning:</strong> The Vega Fintech logo and campaign screenshots have sensitive client names sanitised. Alt tags and captions clearly state: <em>"Sanitized product artifact: sensitive details anonymized."</em>
+      </div>
+
+      <div class="grid-3" style="grid-template-columns: 1.2fr 1fr 0.8fr; gap: 20px;">
+        <!-- Cover image -->
+        <div class="preview-block">
+          <div class="preview-header">
+            <span>vega-canvas-flow.png</span>
+            <span class="preview-badge badge-primary">Cover Artifact</span>
+          </div>
+          <div class="preview-media-container" style="height: 220px; cursor: pointer;" onclick="openModal('assets/case-studies/vega-canvas-flow.png', 'Case Study 1 Cover Artifact', 'The primary canvas showing event routing rules, user conditions, branches, and notification nodes.')">
+            <img class="preview-img" src="assets/case-studies/vega-canvas-flow-preview.png" alt="Vega Canvas Flow">
+          </div>
+          <div class="preview-footer">
+            <h4 class="preview-title">Main Flow Canvas</h4>
+            <p class="preview-desc">Optimized preview of the campaign trigger flow. Labelled: <em>"Sanitized product artifact."</em></p>
+          </div>
+        </div>
+
+        <!-- Detail image -->
+        <div class="preview-block">
+          <div class="preview-header">
+            <span>vega-flow-details.png</span>
+            <span class="preview-badge badge-success">Detail View</span>
+          </div>
+          <div class="preview-media-container" style="height: 220px; cursor: pointer;" onclick="openModal('assets/case-studies/vega-flow-details.png', 'Case Study 1 Details', 'High-resolution detail view of event conditions and funnel drop-off metrics.')">
+            <img class="preview-img" src="assets/case-studies/vega-flow-details-preview.png" alt="Vega Flow Details">
+          </div>
+          <div class="preview-footer">
+            <h4 class="preview-title">Funnel & Drop-Off Analytics</h4>
+            <p class="preview-desc">Secondary metric dashboard. Reveals drop-off rates and message-state volumes.</p>
+          </div>
+        </div>
+
+        <!-- Supporting images list -->
+        <div>
+          <h4>Supporting Channel Surfaces</h4>
+          <p style="font-size: 13px; color: rgba(250, 248, 242, 0.6); margin-bottom: 16px;">These represent output layers of the flow, kept secondary:</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="logo-badge" style="cursor: pointer; justify-content: space-between;" onclick="openModal('assets/case-studies/vega-mess-chatbox.png', 'Vega Messenger Chatbox', 'Supporting output surface showing the messenger campaign delivery.')">
+              <span>💬 Vega Messenger</span>
+              <span class="preview-badge badge-warning" style="font-size: 8px;">View</span>
+            </div>
+            <div class="logo-badge" style="cursor: pointer; justify-content: space-between;" onclick="openModal('assets/case-studies/vega-facebook-profile.png', 'Vega Facebook Profile', 'Supporting user profile preview connected to target segments.')">
+              <span>👤 Vega Facebook Segment</span>
+              <span class="preview-badge badge-warning" style="font-size: 8px;">View</span>
+            </div>
+            <div class="logo-badge" style="cursor: pointer; justify-content: space-between;" onclick="openModal('assets/case-studies/vega-zalo.png', 'Vega Zalo OA Output', 'Zalo official account notification node response mockup.')">
+              <span>📱 Vega Zalo OA</span>
+              <span class="preview-badge badge-warning" style="font-size: 8px;">View</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- SECTION 3: CASE STUDY 2 & 3 READABILITY -->
+    <!-- ======================================= -->
+    <div id="section-case2-3" class="card review-section" style="display:none;">
+      <h2 class="card-title">Case Study 2 & 3 Light Board Readability</h2>
+      <p>Original templates were dark-on-dark, rendering the diagrams unreadable inside small container sizes. The Gantt chart and permission matrices are now high-contrast light-surface boards.</p>
+
+      <div class="grid-2">
+        <!-- CS2 -->
+        <div class="preview-block">
+          <div class="preview-header">
+            <span>case-study-02-v3-cover.png</span>
+            <span class="preview-badge badge-success">CS2 Contrast Fix</span>
+          </div>
+          <div class="preview-media-container" style="height: 340px; cursor: pointer;" onclick="openModal('assets/prototypes/v3/templates/case-study-02-v3-cover.html', 'Case Study 2 Live Preview', 'Gantt timeline flow styled on a readable cream card container.', true)">
+            <img class="preview-img" src="assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png" alt="Gantt Timeline Light Board" style="max-height: 100%; object-fit: contain;">
+          </div>
+          <div class="preview-footer">
+            <h4 class="preview-title">Case Study 2: Timeline Gantt Board</h4>
+            <p class="preview-desc">The Gantt card is rendered in a soft cream (#FAF8F2) with solid dark navy rows. Labelled: <em>"Visual template based on real PM/BA workflow."</em></p>
+          </div>
+        </div>
+
+        <!-- CS3 -->
+        <div class="preview-block">
+          <div class="preview-header">
+            <span>case-study-03-v3-cover.png</span>
+            <span class="preview-badge badge-success">CS3 Contrast Fix</span>
+          </div>
+          <div class="preview-media-container" style="height: 340px; cursor: pointer;" onclick="openModal('assets/prototypes/v3/templates/case-study-03-v3-cover.html', 'Case Study 3 Live Preview', 'Role-permission matrix grid styled on a readable cream card container with transferable row labels.', true)">
+            <img class="preview-img" src="assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png" alt="Matrix Table Light Board" style="max-height: 100%; object-fit: contain;">
+          </div>
+          <div class="preview-footer">
+            <h4 class="preview-title">Case Study 3: System Matrix Board</h4>
+            <p class="preview-desc">The matrix grid uses a cream background with solid borders, clear checkmarks, and transferable permission labels (e.g. <em>Edit Event Config</em>).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- SECTION 4: LOGO INTEGRATIONS -->
+    <!-- ======================================= -->
+    <div id="section-logos" class="card review-section" style="display:none;">
+      <h2 class="card-title">Subtle Brand Logo Placements</h2>
+      <p>Logos are utilized purely as subtle markers of credibility. They appear strictly on related context cards and sections.</p>
+
+      <div class="grid-3">
+        <!-- Vega -->
+        <div class="preview-block" style="padding: 20px; gap: 16px; background: rgba(250, 248, 242, 0.01);">
+          <div class="logo-badge" style="width: fit-content; margin: 0 auto 10px;">
+            <img src="assets/logos/vega-fintech-logo.png" alt="Vega Logo">
+            <span>Vega Fintech</span>
+          </div>
+          <p style="font-size: 13px; color: rgba(250, 248, 242, 0.75);"><strong>Assigned to:</strong></p>
+          <ul>
+            <li>Case Study 1 Card & Modal header</li>
+            <li>Case Study 2 Card & Modal header</li>
+            <li>Experience: <em>"Project Management Collaborator"</em></li>
+            <li>Vega-related Fintech projects</li>
+          </ul>
+        </div>
+
+        <!-- British Council -->
+        <div class="preview-block" style="padding: 20px; gap: 16px; background: rgba(250, 248, 242, 0.01);">
+          <div class="logo-badge" style="width: fit-content; margin: 0 auto 10px;">
+            <img src="assets/logos/british-council-logo.png" alt="British Council Logo">
+            <span>British Council</span>
+          </div>
+          <p style="font-size: 13px; color: rgba(250, 248, 242, 0.75);"><strong>Assigned to:</strong></p>
+          <ul>
+            <li>Experience: <em>"Multi-department Operations Support"</em></li>
+            <li>Trust / Proof strip association cards</li>
+            <li>Transferable skills references</li>
+          </ul>
+        </div>
+
+        <!-- VNU IS -->
+        <div class="preview-block" style="padding: 20px; gap: 16px; background: rgba(250, 248, 242, 0.01);">
+          <div class="logo-badge" style="width: fit-content; margin: 0 auto 10px;">
+            <img src="assets/logos/vnu-is-logo-landscape.png" alt="VNU-IS Logo">
+            <span>VNU-IS Academic</span>
+          </div>
+          <p style="font-size: 13px; color: rgba(250, 248, 242, 0.75);"><strong>Assigned to:</strong></p>
+          <ul>
+            <li>Education section entry</li>
+            <li>Academic thesis / Research projects</li>
+            <li>BI Dashboard & Portfolio Optimization cards</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- SECTION 5: RESPONSIVE SIMULATIONS -->
+    <!-- ======================================= -->
+    <div id="section-simulations" class="card review-section" style="display:none;">
+      <h2 class="card-title">Portfolio Card Size Simulations</h2>
+      <p>Test the legibility of the generated cover cards at common container sizes on the portfolio page. Select a width to simulate the viewport scale.</p>
+
+      <div class="sim-controls">
+        <button class="sim-btn" onclick="resizeSim(500, this)">
+          📱 Mobile Container (500px)
+        </button>
+        <button class="sim-btn active" onclick="resizeSim(700, this)">
+          💻 Tablet Container (700px)
+        </button>
+        <button class="sim-btn" onclick="resizeSim(900, this)">
+          🖥️ Desktop Container (900px)
+        </button>
+      </div>
+
+      <div class="sim-frame-container">
+        <div class="sim-info-pill" id="sim-width-indicator">Width: 700px</div>
+        
+        <div class="sim-frame" id="sim-frame" style="max-width: 700px;">
+          <!-- Embed review template -->
+          <iframe id="sim-iframe" src="assets/prototypes/v3/templates/case-study-02-v3-cover.html" style="width: 1400px; height: 900px; border: none; transform: scale(0.5); transform-origin: top left; display: block;"></iframe>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; display: flex; justify-content: center; gap: 16px;">
+        <button class="nav-btn" onclick="changeSimTemplate('case1')">Inspect Case 1 Cover</button>
+        <button class="nav-btn active" id="btn-t-cs2" onclick="changeSimTemplate('case2')">Inspect Case 2 Cover</button>
+        <button class="nav-btn" onclick="changeSimTemplate('case3')">Inspect Case 3 Cover</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Nguyễn Đức Minh Hoàng · Design Systems Integrity Draft. Confidential Internal Review Page.
+  </footer>
+
+  <!-- Modal overlay -->
+  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img class="modal-img" id="modalImg" src="" alt="" />
+      <iframe class="modal-iframe" id="modalIframe" style="display:none;" title="Template preview"></iframe>
+      <div class="modal-info">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-desc" id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchSection(sectionId) {
+      document.querySelectorAll('.review-section').forEach(sec => {
+        sec.style.display = 'none';
+      });
+      document.getElementById('section-' + sectionId).style.display = 'block';
+
+      // Update active nav button
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if(btn.getAttribute('onclick').includes(sectionId)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    /* Simulation Resizer */
+    function resizeSim(width, btnEl) {
+      const frame = document.getElementById('sim-frame');
+      const iframe = document.getElementById('sim-iframe');
+      const indicator = document.getElementById('sim-width-indicator');
+      
+      frame.style.max-width = width + 'px';
+      indicator.textContent = 'Width: ' + width + 'px';
+      
+      // Calculate scale factor: viewport-width / 1400px
+      const scale = width / 1400;
+      iframe.style.transform = `scale(${scale})`;
+      
+      // Calculate height relative to scaled iframe so container fits perfectly
+      frame.style.height = (900 * scale) + 'px';
+
+      document.querySelectorAll('.sim-controls .sim-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      btnEl.classList.add('active');
+    }
+
+    let currentSimTemplate = 'case2';
+    function changeSimTemplate(name) {
+      currentSimTemplate = name;
+      const iframe = document.getElementById('sim-iframe');
+      let url = '';
+      if(name === 'case1') url = 'assets/prototypes/v3/templates/case-study-01-v3-cover.html';
+      else if(name === 'case2') url = 'assets/prototypes/v3/templates/case-study-02-v3-cover.html';
+      else if(name === 'case3') url = 'assets/prototypes/v3/templates/case-study-03-v3-cover.html';
+      
+      iframe.src = url;
+
+      // Update active button classes
+      event.target.parentNode.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      // Trigger resize update
+      const activeSizeBtn = document.querySelector('.sim-controls .sim-btn.active');
+      activeSizeBtn.click();
+    }
+
+    // Initialize simulation frame dimensions
+    window.addEventListener('load', () => {
+      document.getElementById('btn-t-cs2').click();
+    });
+
+    /* Lightbox Modal */
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalIframe = document.getElementById('modalIframe');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+
+    function openModal(src, title, desc, isHtml) {
+      if (isHtml) {
+        modalImg.style.display = 'none';
+        modalIframe.style.display = 'block';
+        modalIframe.src = src;
+      } else {
+        modalIframe.style.display = 'none';
+        modalIframe.src = '';
+        modalImg.style.display = 'block';
+        modalImg.src = src;
+        modalImg.alt = title;
+      }
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modalImg.src = '';
+      modalIframe.src = '';
+    }
+
+    // Escape listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>

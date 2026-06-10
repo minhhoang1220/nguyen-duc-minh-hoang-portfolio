@@ -18,9 +18,14 @@ function ExperienceCard({ experience, featured = false }: ExperienceCardProps) {
               </span>
             ) : null}
           </div>
-          <h3 className={`${featured ? "mt-4 text-[34px] md:text-[48px]" : "mt-3 text-2xl"} font-semibold leading-tight text-navy`}>
-            {experience.company}
-          </h3>
+          <div className={`flex items-center gap-3 ${featured ? "mt-4" : "mt-3"}`}>
+            <h3 className={`${featured ? "text-[34px] md:text-[48px]" : "text-2xl"} font-semibold leading-tight text-navy`}>
+              {experience.company}
+            </h3>
+            {experience.logo && (
+              <img src={experience.logo} alt="" className="h-6 w-auto object-contain shrink-0" />
+            )}
+          </div>
           <p className={`${featured ? "mt-3 text-lg" : "mt-2 text-base"} font-medium text-ink`}>{experience.role}</p>
           <p className="mt-4 text-sm leading-6 text-muted md:text-base md:leading-7">{experience.context}</p>
         </div>

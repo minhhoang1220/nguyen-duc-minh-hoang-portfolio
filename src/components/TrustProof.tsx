@@ -21,7 +21,12 @@ function TrustProof({ content }: TrustProofProps) {
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {content.cards.map((card, index) => (
             <article key={card.title} className="trust-card stagger-item" style={{ transitionDelay: `${index * 80}ms` }}>
-              <p className="trust-card-label">{card.label}</p>
+              <div className="flex items-center justify-between gap-2">
+                <p className="trust-card-label">{card.label}</p>
+                {card.logo && (
+                  <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+                )}
+              </div>
               <h3 className="mt-5 text-2xl font-semibold leading-tight text-navy">{card.title}</h3>
               <p className="mt-4 text-sm leading-6 text-ink md:text-base md:leading-7">{card.body}</p>
               <ul className="mt-6 space-y-3">

@@ -19,9 +19,14 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
     <article className="case-study-card border-y border-line py-10 md:py-14">
       <div className={`grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start ${isReversed ? "lg:[&>*:first-child]:order-2" : ""}`}>
         <div className="min-w-0">
-          <p className="section-kicker text-muted">
-            {labels.eyebrow} 0{index + 1}
-          </p>
+          <div className="flex items-center gap-3 mb-2">
+            <p className="section-kicker text-muted mb-0">
+              {labels.eyebrow} 0{index + 1}
+            </p>
+            {caseStudy.logo && (
+              <img src={caseStudy.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+            )}
+          </div>
           <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px]">{caseStudy.title}</h3>
           <div className="case-bottom-line mt-5">
             <p className="case-bottom-label">{labels.bottomLine}</p>
