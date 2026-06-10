@@ -6,28 +6,28 @@ type AboutProps = {
 
 function About({ content }: AboutProps) {
   const pointTones = [
-    "border-line bg-card",
-    "border-sky/45 bg-sky/15",
-    "border-navy/10 bg-beige/75",
+    "border-navy/10 bg-[#FCFBF8] text-navy shadow-minimal",
+    "border-navy/10 bg-[#F4F7FA] text-navy shadow-minimal",
+    "border-navy/10 bg-[#FAF8F2] text-navy shadow-minimal",
   ];
 
   return (
-    <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #faf8f2 0%, #f0f4f9 40%, #e8eef6 60%, #faf8f2 100%)' }} aria-labelledby="about-title">
+    <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #080E24 0%, #060a18 100%)' }} aria-labelledby="about-title">
       <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[0.32fr_0.68fr] lg:items-start lg:gap-14">
+        <div className="grid gap-10 lg:grid-cols-[0.28fr_0.72fr] lg:items-start lg:gap-14">
           <div className="min-w-0">
             <ProfileFallback content={content} />
           </div>
 
           <div className="min-w-0">
-            <p className="section-kicker text-navy">{content.eyebrow}</p>
+            <p className="section-kicker text-sky">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="section-title max-w-5xl text-navy text-balance"
+              className="section-title max-w-5xl text-cream text-balance"
             >
               {content.title}
             </h2>
-            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9 text-pretty" text={content.body} />
+            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-cream/80 md:text-lg md:leading-9 text-pretty text-left" text={content.body} />
 
             <div className="mt-9 grid gap-4">
               {content.points.map((point, index) => (
@@ -36,10 +36,10 @@ function About({ content }: AboutProps) {
                   className={`stagger-item grid gap-4 rounded-lg border p-5 md:grid-cols-[72px_1fr] ${pointTones[index % pointTones.length]}`}
                   style={{ transitionDelay: `${index * 70}ms` }}
                 >
-                  <p className="text-[34px] font-semibold leading-none text-navy/25 md:text-[44px]">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="text-[34px] font-semibold leading-none text-navy/30 md:text-[44px]">{String(index + 1).padStart(2, "0")}</p>
                   <div>
                     <h3 className="text-xl font-semibold leading-tight text-navy md:text-2xl">{point.title}</h3>
-                    <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-muted" text={point.description} />
+                    <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-ink/80" text={point.description} />
                   </div>
                 </article>
               ))}
@@ -110,7 +110,7 @@ function EmphasizedParagraph({ text, className }: { text: string; className: str
 
   return (
     <p className={className}>
-      <strong className="font-semibold text-ink">{match[1]}</strong> {match[2]}
+      <strong className="font-semibold text-navy">{match[1]}</strong> {match[2]}
     </p>
   );
 }

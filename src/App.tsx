@@ -74,7 +74,7 @@ function App() {
           <WhyWorkWithMe content={portfolio.whyWork} />
         </Reveal>
 
-        <section id="case-studies" className="section-full section-padding" aria-labelledby="case-studies-title" style={{ background: 'linear-gradient(180deg, #0a0f1e 0%, #080E24 30%, #0c1635 70%, #0a0f1e 100%)' }}>
+        <section id="case-studies" className="section-full section-padding" aria-labelledby="case-studies-title" style={{ background: 'linear-gradient(180deg, #05140e 0%, #071f16 50%, #05140e 100%)' }}>
           <div className="container-wide">
             <Reveal>
               <SectionHeader

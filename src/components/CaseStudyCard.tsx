@@ -15,50 +15,40 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   const detailId = useId();
   const isReversed = index % 2 === 1;
 
-  const darkThemes = [
-    'bg-gradient-to-br from-[#0c241c] to-[#070b1a] border-[#1d3f35]/50',
-    'bg-gradient-to-br from-[#071330] to-[#0a0f1d] border-[#152752]/50',
-    'bg-gradient-to-br from-[#070b1c] to-[#0a0f1e] border-[#131a38]/50',
+  // Premium light cards with a subtle cream/green gradient, navy text, soft shadow, and dark-green accent borders
+  const lightThemes = [
+    "bg-gradient-to-br from-[#FCFBF8] to-[#f4f7f5] border-[#1d3f35]/25 text-navy hover:border-[#1d3f35]/40 shadow-minimal",
+    "bg-gradient-to-br from-[#FCFBF8] to-[#f2f6f8] border-[#152752]/25 text-navy hover:border-[#152752]/40 shadow-minimal",
+    "bg-gradient-to-br from-[#FCFBF8] to-[#f5f4f8] border-[#131a38]/25 text-navy hover:border-[#131a38]/40 shadow-minimal",
   ];
-  const theme = darkThemes[index % darkThemes.length];
+  const theme = lightThemes[index % lightThemes.length];
 
   return (
-    <article className={`case-study-card rounded-2xl border ${theme} p-8 md:p-10 lg:p-12 mb-8 text-cream`}>
+    <article className={`case-study-card rounded-2xl border ${theme} p-6 md:p-10 lg:p-12 mb-8 text-navy transition duration-300`}>
       <div className={`grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start ${isReversed ? "lg:[&>*:first-child]:order-2" : ""}`}>
         <div className="min-w-0">
           <div className="flex items-center gap-3 mb-2">
-            <p className="section-kicker text-sky mb-0">
+            <p className="section-kicker text-navy/70 mb-0">
               {labels.eyebrow} 0{index + 1}
             </p>
             {caseStudy.logo && (
               <img src={caseStudy.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
             )}
           </div>
-          <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px] !text-cream">{caseStudy.title}</h3>
-          <div className="case-bottom-line mt-5 !bg-black/20 !border-white/10">
-            <p className="case-bottom-label !text-sky">{labels.bottomLine}</p>
-            <EmphasizedText className="text-base leading-7 text-cream/85 md:text-lg md:leading-8" text={caseStudy.summary} />
+          <h3 className="case-study-title max-w-3xl text-wrap-balance text-[30px] font-bold leading-[1.08] md:text-[44px] text-navy">{caseStudy.title}</h3>
+
+          <div className="case-bottom-line mt-5 bg-navy/5 border border-navy/10 p-5 rounded-lg">
+            <p className="case-bottom-label text-navy-accent font-bold text-xs uppercase tracking-wider mb-2">{labels.bottomLine}</p>
+            <EmphasizedText className="text-base leading-7 text-ink/85 md:text-lg md:leading-8 text-wrap-pretty" text={caseStudy.summary} />
           </div>
 
           {caseStudy.artifactTags?.length ? <CaseArtifactTags tags={caseStudy.artifactTags} label={labels.artifactTags} /> : null}
 
           <CaseSnapshot caseStudy={caseStudy} labels={labels} />
 
-          <div className="case-evidence-box mt-6 !bg-black/20 !border-white/10">
-            <p className="detail-label mb-4 !bg-sky/30 !border-sky/40 !text-cream">{labels.evidence}</p>
-            <ul className="grid gap-3">
-              {caseStudy.evidence.slice(0, 3).map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <button
             type="button"
-            className="mt-8 min-h-11 rounded-md border border-cream/30 px-5 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-px hover:bg-cream/15 hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-transparent"
+            className="mt-8 min-h-11 rounded-md border border-navy/35 px-5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-px hover:bg-navy/10 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 focus:ring-offset-transparent"
             aria-controls={detailId}
             aria-expanded={isExpanded}
             onClick={() => setIsExpanded((current) => !current)}
@@ -67,7 +57,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           </button>
         </div>
 
-        <div className="min-w-0">
+        <div className="min-w-0 flex flex-col gap-6">
           {index === 0 && caseStudy.mainPreview ? (
             <Case1Visual
               mainPreview={caseStudy.mainPreview}
@@ -102,39 +92,52 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           ) : (
             <PermissionPreview labels={labels} />
           )}
+
+          {/* Key Evidence block relocated directly below the main visual preview */}
+          <div className="case-evidence-box bg-white border border-navy/15 rounded-lg p-5 shadow-minimal">
+            <p className="detail-label mb-4">{labels.evidence}</p>
+            <ul className="grid gap-3">
+              {caseStudy.evidence.slice(0, 3).map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-6 text-navy/85 md:text-base md:leading-7">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-cream/15 pt-8`}>
+      <div id={detailId} className={`${isExpanded ? "case-detail-panel block" : "hidden"} mt-8 border-t border-navy/15 pt-8`}>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.problem}</p>
-            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.problem} />
+            <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.problem} />
           </DetailBlock>
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.outcomeLearning}</p>
-            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
+            <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.outcomeLearning} />
           </DetailBlock>
           <DetailBlock emphasis="high">
             <p className="detail-label mb-3">{labels.impact}</p>
-            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.impact} />
+            <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.impact} />
           </DetailBlock>
           <DetailBlock emphasis="medium">
             <p className="detail-label mb-3">{labels.context}</p>
-            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.context} />
+            <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.context} />
           </DetailBlock>
           <DetailList emphasis="medium" title={labels.keyDecisions} items={caseStudy.keyDecisions} />
           <DetailList emphasis="medium" title={labels.process} items={caseStudy.process} />
           <DetailList emphasis="low" title={labels.deliveredArtifacts} items={caseStudy.artifacts} />
           <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.delivered}</p>
-            <EmphasizedText className="text-sm leading-6 text-cream/85 md:text-base md:leading-7" text={caseStudy.delivered} />
+            <EmphasizedText className="text-sm leading-6 text-ink/85 md:text-base md:leading-7" text={caseStudy.delivered} />
           </DetailBlock>
           <DetailBlock emphasis="low">
             <p className="detail-label mb-3">{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
-                <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-cream/10 bg-cream/10 px-3 py-1.5 text-xs font-semibold leading-5 text-cream hover:border-sky/40 hover:bg-cream/15 transition duration-300 shrink-0">
+                <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-navy/10 bg-navy/5 px-3 py-1.5 text-xs font-semibold leading-5 text-navy hover:border-navy hover:bg-navy/10 transition duration-300 shrink-0">
                   {skill}
                 </span>
               ))}
@@ -142,11 +145,12 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           </DetailBlock>
         </div>
 
+        {/* Supporting Visual Artifacts section spans full available width */}
         {index === 0 && (
-          <div className="mt-8 border-t border-cream/15 pt-8">
-            <h4 className="text-base font-bold uppercase tracking-[0.1em] text-sky mb-2">Supporting Visual Artifacts</h4>
-            <p className="text-xs text-cream/70 mb-6">Click to view high-resolution work samples:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="mt-8 border-t border-navy/15 pt-8">
+            <h4 className="text-base font-bold uppercase tracking-[0.1em] text-navy mb-2">Supporting Visual Artifacts</h4>
+            <p className="text-xs text-ink/75 mb-6">Click to view high-resolution work samples:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
               {[
                 {
                   title: "Flow Canvas",
@@ -183,34 +187,40 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                   alt: "Zalo official account notification layout preview",
                   caption: "Official Account message layout template specifications.",
                 },
-              ].map((artifact) => (
-                <button
-                  key={artifact.title}
-                  type="button"
-                  className="flex flex-col text-left rounded border border-cream/10 bg-black/20 overflow-hidden hover:border-sky/40 transition duration-300 focus:outline-none focus:ring-2 focus:ring-sky group/thumb"
-                  onClick={() => onImageOpen(artifact)}
-                  onPointerEnter={() => preloadImage(artifact.src)}
-                  onFocus={() => preloadImage(artifact.src)}
-                >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/30 border-b border-cream/10">
-                    <img
-                      src={artifact.previewSrc}
-                      alt={artifact.alt}
-                      className="h-full w-full object-contain bg-[#f3f6f8]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                  <div className="p-3 flex flex-col justify-between flex-1">
-                    <span className="text-xs font-bold text-cream truncate block w-full">
-                      {artifact.title}
-                    </span>
-                    <span className="text-[10px] text-cream/60 leading-normal mt-1 block">
-                      {artifact.caption}
-                    </span>
-                  </div>
-                </button>
-              ))}
+              ].map((artifact) => {
+                const isPhone = ["messenger", "facebook", "zalo"].some(term => artifact.title.toLowerCase().includes(term));
+                return (
+                  <button
+                    key={artifact.title}
+                    type="button"
+                    className={`flex flex-col text-left rounded-xl border border-navy/15 bg-white overflow-hidden hover:border-navy hover:shadow-hover transition duration-300 focus:outline-none focus:ring-2 focus:ring-navy group/thumb ${isPhone ? "max-w-[200px] mx-auto w-full" : "w-full"}`}
+                    onClick={() => onImageOpen(artifact)}
+                    onPointerEnter={() => preloadImage(artifact.src)}
+                    onFocus={() => preloadImage(artifact.src)}
+                  >
+                    <div className={`relative w-full overflow-hidden bg-[#faf8f2] border-b border-navy/10 ${isPhone ? "aspect-[9/16]" : "aspect-[16/10]"}`}>
+                      <img
+                        src={artifact.previewSrc}
+                        alt={artifact.alt}
+                        className={`h-full w-full object-contain ${isPhone ? "p-2 bg-[#121620]" : "bg-[#f3f6f8]"}`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {isPhone && (
+                        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#475569] rounded-full opacity-60 pointer-events-none" />
+                      )}
+                    </div>
+                    <div className="p-3 flex flex-col justify-between flex-1">
+                      <span className="text-xs font-bold text-navy truncate block w-full">
+                        {artifact.title}
+                      </span>
+                      <span className="text-[10px] text-ink/75 leading-normal mt-1 block">
+                        {artifact.caption}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
@@ -221,9 +231,14 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
 function CaseArtifactTags({ tags, label }: { tags: string[]; label: string }) {
   return (
-    <div className="case-artifact-tags" aria-label={label}>
+    <div className="flex flex-wrap gap-2 mt-5" aria-label={label}>
       {tags.map((tag) => (
-        <span key={tag}>{tag}</span>
+        <span
+          key={tag}
+          className="inline-flex max-w-full rounded-sm border border-navy/20 bg-navy/5 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.08em] text-navy transition duration-300 hover:border-navy hover:bg-navy/10"
+        >
+          {tag}
+        </span>
       ))}
     </div>
   );
@@ -238,11 +253,11 @@ function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Por
   ];
 
   return (
-    <dl className="case-snapshot-list mt-6 !bg-black/20 !border-white/10">
+    <dl className="case-snapshot-list mt-6 bg-navy/5 border border-navy/10 rounded-lg overflow-hidden">
       {items.map((item) => (
-        <div key={item.label} className="case-snapshot-item !border-white/10">
-          <dt className="case-snapshot-label !text-sky">{item.label}</dt>
-          <dd className="case-snapshot-text !text-cream/80">{item.text}</dd>
+        <div key={item.label} className="case-snapshot-item border-b border-navy/10 last:border-b-0">
+          <dt className="case-snapshot-label text-navy-accent font-bold">{item.label}</dt>
+          <dd className="case-snapshot-text text-ink/85">{item.text}</dd>
         </div>
       ))}
     </dl>
@@ -265,7 +280,7 @@ function ImagePreview({
   compact?: boolean;
 }) {
   return (
-    <figure className="case-artifact-shell group">
+    <figure className="case-artifact-shell group bg-white border border-navy/15 rounded-xl p-3 shadow-minimal">
       <ArtifactWindowBar title={labels.artifactPreview} meta={labels.sanitized} />
       <button
         type="button"
@@ -275,11 +290,11 @@ function ImagePreview({
         onPointerEnter={() => preloadImage(image.src)}
         onFocus={() => preloadImage(image.src)}
       >
-        <span className={`case-visual-frame relative block overflow-hidden bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
+        <span className={`case-visual-frame relative block overflow-hidden bg-cream w-full ${compact ? "h-[300px]" : "aspect-[16/10]"}`}>
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
-            className="h-full w-full transition duration-700 group-hover:scale-[1.04] object-contain bg-[#060a18]"
+            className="h-full w-full object-contain bg-[#f3f6f8] transition duration-700 group-hover:scale-[1.04]"
             loading="lazy"
             decoding="async"
           />
@@ -304,7 +319,7 @@ function ImagePreview({
 
 function PermissionPreview({ labels }: { labels: PortfolioContent["caseStudyLabels"] }) {
   return (
-    <div className="case-artifact-shell">
+    <div className="case-artifact-shell bg-white border border-navy/15 rounded-xl p-6">
       <ArtifactWindowBar title={labels.matrixTitle} meta={labels.matrixMeta} />
       <div className="mb-6 flex items-center justify-between gap-4">
         <span className="artifact-label">{labels.matrixTitle}</span>
@@ -334,7 +349,7 @@ function TimelinePreview({ labels, large = false }: { labels: PortfolioContent["
   const phases = ["Discovery", "Flow Mapping", "Mockup", "Review", "Dev Handoff", "QA"];
 
   return (
-    <div className={`case-artifact-shell ${large ? "lg:min-h-[420px]" : ""}`}>
+    <div className={`case-artifact-shell bg-white border border-navy/15 rounded-xl p-6 ${large ? "lg:min-h-[420px]" : ""}`}>
       <ArtifactWindowBar title={labels.artifactPreview} meta={labels.internalPreview} />
       <div className={`space-y-4 ${large ? "lg:pt-8" : ""}`}>
         {phases.map((phase, phaseIndex) => (
@@ -358,7 +373,7 @@ function TimelinePreview({ labels, large = false }: { labels: PortfolioContent["
 
 function ArtifactWindowBar({ title, meta }: { title: string; meta: string }) {
   return (
-    <div className="artifact-window-bar">
+    <div className="artifact-window-bar mb-4">
       <span className="flex items-center gap-1.5" aria-hidden="true">
         <span />
         <span />
@@ -373,12 +388,12 @@ function ArtifactWindowBar({ title, meta }: { title: string; meta: string }) {
 function DetailBlock({ children, emphasis = "low" }: { children: ReactNode; emphasis?: "high" | "medium" | "low" }) {
   const toneClass =
     emphasis === "high"
-      ? "border-sky/40 border-l-sky bg-[linear-gradient(135deg,rgba(157,196,255,0.12),rgba(10,15,30,0.8))] shadow-[0_2px_12px_rgba(0,0,0,0.3)]"
+      ? "border-navy/20 border-l-navy bg-gradient-to-br from-white to-[#f4f7f5] shadow-minimal"
       : emphasis === "medium"
-        ? "border-white/10 border-l-sky/50 bg-[linear-gradient(135deg,rgba(10,15,30,0.7),rgba(12,22,53,0.5))]"
-        : "border-white/10 border-l-white/20 bg-black/20";
+        ? "border-navy/10 border-l-navy/70 bg-gradient-to-br from-white to-[#faf8f2]"
+        : "border-navy/10 border-l-navy/40 bg-navy/5";
 
-  return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-sky/40 ${toneClass}`}>{children}</div>;
+  return <div className={`rounded-lg border border-l-4 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-navy ${toneClass}`}>{children}</div>;
 }
 
 function DetailList({ title, items, emphasis = "low" }: { title: string; items: string[]; emphasis?: "high" | "medium" | "low" }) {
@@ -387,8 +402,8 @@ function DetailList({ title, items, emphasis = "low" }: { title: string; items: 
       <p className="detail-label mb-3">{title}</p>
       <ul className="space-y-3.5">
         {items.map((item) => (
-          <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
-            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
+          <li key={item} className="flex gap-3 text-sm leading-6 text-ink/85 md:text-base md:leading-7">
+            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
             <span>{item}</span>
           </li>
         ))}
@@ -397,29 +412,13 @@ function DetailList({ title, items, emphasis = "low" }: { title: string; items: 
   );
 }
 
-function getPreviewImageClass(src: string) {
-  if (src.includes("cdp-automation-flow-map")) {
-    return "object-cover object-center";
-  }
-
-  if (src.includes("cdp-flow-management-states")) {
-    return "object-cover object-top";
-  }
-
-  if (src.includes("cdp-flow-report") || src.includes("cdp-campaign")) {
-    return "object-cover object-top";
-  }
-
-  return "object-cover object-center";
-}
-
 function EmphasizedText({ text, className }: { text: string; className: string }) {
   const sentenceMatch = text.match(/^(.{12,130}?[.!?])\s+(.*)$/);
 
   if (sentenceMatch) {
     return (
       <p className={className}>
-        <strong className="font-semibold text-cream">{sentenceMatch[1]}</strong> {sentenceMatch[2]}
+        <strong className="font-semibold text-navy">{sentenceMatch[1]}</strong> {sentenceMatch[2]}
       </p>
     );
   }
@@ -432,7 +431,7 @@ function EmphasizedText({ text, className }: { text: string; className: string }
 
   return (
     <p className={className}>
-      <strong className="font-semibold text-cream">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
+      <strong className="font-semibold text-navy">{words.slice(0, 6).join(" ")}</strong> {words.slice(6).join(" ")}
     </p>
   );
 }
@@ -449,7 +448,7 @@ function Case1Visual({
   labels: any;
 }) {
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#173D34] to-[#080E24] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#071f16] to-[#080e24] rounded-xl border border-[#1d3f35]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
       
@@ -462,7 +461,7 @@ function Case1Visual({
         onFocus={() => preloadImage(mainPreview.src)}
       >
         {/* Browser window */}
-        <div className="w-full md:w-[75%] lg:w-[80%] bg-[#faf8f2] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
+        <div className="w-full md:flex-1 bg-[#faf8f2] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
           <div className="h-7 bg-[#FAF8F2] border-b border-line flex items-center justify-between px-3">
             <div className="flex gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d56f5d]" />
@@ -485,7 +484,7 @@ function Case1Visual({
         </div>
 
         {/* Spec hint floating card */}
-        <div className="spec-hint shadow-hover transition duration-500 group-hover:-translate-y-1">
+        <div className="spec-hint shrink-0 shadow-hover transition duration-500 group-hover:-translate-y-1">
           <div className="spec-hint-kicker">Key Contributions</div>
           <div className="spec-hint-title">Trigger & State Validation</div>
           <div className="spec-hint-item mt-1">
@@ -532,16 +531,16 @@ function Case2Visual({
   labels: any;
 }) {
   const phases = [
-    { label: "Discovery", left: "0%", width: "30%", status: "Done", type: "done" },
-    { label: "Flow Mapping", left: "15%", width: "30%", status: "Done", type: "done" },
-    { label: "Interface Mockups", left: "30%", width: "30%", status: "Done", type: "done" },
+    { label: "Discovery", left: "15%", width: "30%", status: "Done", type: "done" },
+    { label: "Flow Mapping", left: "25%", width: "30%", status: "Done", type: "done" },
+    { label: "Interface Mockups", left: "35%", width: "30%", status: "Done", type: "done" },
     { label: "Review", left: "50%", width: "20%", status: "Active", type: "progress" },
     { label: "Dev Handoff", left: "65%", width: "18%", status: "Planned", type: "scheduled" },
     { label: "QA / UAT", left: "80%", width: "18%", status: "Planned", type: "scheduled" },
   ];
 
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#080E24] to-[#14245F] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#080E24] to-[#14245F] rounded-xl border border-[#152752]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
 
@@ -553,7 +552,7 @@ function Case2Visual({
         onPointerEnter={() => preloadImage(mainPreview.src)}
         onFocus={() => preloadImage(mainPreview.src)}
       >
-        <div className="gantt-hint transition duration-500 group-hover:-translate-y-1">
+        <div className="gantt-hint w-full max-w-full transition duration-500 group-hover:-translate-y-1">
           {phases.map((phase) => (
             <div key={phase.label} className="gantt-row">
               <span className="gantt-label">{phase.label}</span>
@@ -611,7 +610,7 @@ function Case3Visual({
   ];
 
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-line p-6 md:p-8 min-h-[380px] md:min-h-[500px] flex items-center justify-center select-none group">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-[#131a38]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
 
@@ -623,7 +622,7 @@ function Case3Visual({
         onPointerEnter={() => preloadImage(mainPreview.src)}
         onFocus={() => preloadImage(mainPreview.src)}
       >
-        <div className="matrix-hint transition duration-500 group-hover:-translate-y-1">
+        <div className="matrix-hint w-full max-w-full transition duration-500 group-hover:-translate-y-1">
           {headers.map((header) => (
             <div key={header} className="matrix-header">
               {header}

@@ -29,7 +29,7 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
               return (
                 <div
                   key={`${stat.value}-${stat.label}`}
-                  className="stagger-item flex flex-col gap-2 rounded-lg border border-cream/10 bg-black/10 p-5 hover:border-sky/30 transition duration-300"
+                  className="stagger-item flex flex-col gap-1.5 transition duration-300"
                   style={{ transitionDelay: `${index * 55}ms` }}
                 >
                   <CountUpStat value={stat.value} className={`text-[36px] font-bold leading-none text-sky md:text-[44px] ${isWideValue ? "tracking-tight" : ""}`} />
@@ -49,23 +49,23 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
             {socialProof.cards.map((card, index) => (
               <article
                 key={card.title}
-                className="stagger-item rounded-lg border border-cream/10 bg-black/20 p-6 md:p-8 hover:-translate-y-1 hover:border-sky/40 transition duration-300 flex flex-col justify-between"
+                className="stagger-item rounded-lg border border-navy/15 bg-[#FCFBF8] p-6 md:p-8 hover:-translate-y-1 hover:border-navy/35 hover:shadow-card transition duration-300 flex flex-col justify-between text-navy"
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 border-b border-cream/10 pb-3">
-                    <p className="text-[10px] font-extrabold uppercase tracking-wider text-sky">{card.label}</p>
+                  <div className="flex items-center justify-between gap-2 border-b border-navy/10 pb-3">
+                    <p className="text-[10px] font-extrabold uppercase tracking-wider text-navy-accent">{card.label}</p>
                     {card.logo && (
-                      <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0 opacity-80" />
+                      <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0 opacity-90" />
                     )}
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold leading-tight text-cream">{card.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-cream/80">{card.body}</p>
+                  <h3 className="mt-4 text-lg font-semibold leading-tight text-navy">{card.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/80">{card.body}</p>
                 </div>
-                <ul className="mt-6 flex flex-col gap-2 border-t border-cream/10 pt-4">
+                <ul className="mt-6 flex flex-col gap-2 border-t border-navy/10 pt-4">
                   {card.evidence.slice(0, 3).map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-cream/70">
-                      <span className="text-sky shrink-0">•</span>
+                    <li key={item} className="flex items-start gap-2 text-xs text-ink/80">
+                      <span className="text-navy-accent shrink-0">•</span>
                       <span>{item}</span>
                     </li>
                   ))}

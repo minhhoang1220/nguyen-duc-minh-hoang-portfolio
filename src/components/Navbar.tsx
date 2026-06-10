@@ -206,7 +206,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
       <nav className="container-wide flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
         <a
           href="#home"
-          className="text-base font-semibold text-navy transition-colors hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+          className="text-base font-semibold text-cream transition-colors hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24]"
           aria-label={labels.brandAria}
           aria-current={activeHref === "#home" ? "location" : undefined}
           onClick={(event) => handleNavClick(event, "#home")}
@@ -218,16 +218,16 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
           <LanguageToggle language={language} onChange={onLanguageChange} ariaLabel={labels.switchLanguageAria} />
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-line text-navy transition-colors hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-cream/20 text-cream transition-colors hover:border-sky hover:bg-cream/10 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24]"
             aria-label={labels.menuAria}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={handleMenuToggle}
           >
             <span aria-hidden="true" className="relative h-4 w-5">
-              <span className="absolute left-0 top-0 h-0.5 w-5 bg-navy" />
-              <span className="absolute left-0 top-[7px] h-0.5 w-5 bg-navy" />
-              <span className="absolute bottom-0 left-0 h-0.5 w-5 bg-navy" />
+              <span className="absolute left-0 top-0 h-0.5 w-5 bg-cream" />
+              <span className="absolute left-0 top-[7px] h-0.5 w-5 bg-cream" />
+              <span className="absolute bottom-0 left-0 h-0.5 w-5 bg-cream" />
             </span>
           </button>
         </div>
@@ -252,7 +252,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
       </nav>
 
       {isOpen ? (
-        <div id="mobile-navigation" className="absolute inset-x-0 top-full border-t border-line bg-navy shadow-modal xl:hidden">
+        <div id="mobile-navigation" className="absolute inset-x-0 top-full border-t border-cream/10 bg-[#080E24] shadow-modal xl:hidden">
           <ul className="container-wide py-3" aria-label={labels.mobileNavAria}>
             {items.map((item) => (
               <li key={item.href}>

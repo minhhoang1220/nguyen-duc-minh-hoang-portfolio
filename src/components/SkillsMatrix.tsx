@@ -22,12 +22,12 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
     "linear-gradient(135deg, rgba(246,249,252,0.98) 0%, rgba(207,222,246,0.76) 100%)",
     "linear-gradient(135deg, rgba(242,247,253,0.98) 0%, rgba(194,216,249,0.74) 100%)",
   ];
-  const thinkingRowClasses = [
-    "thinking-row-01",
-    "thinking-row-02",
-    "thinking-row-03",
-    "thinking-row-04",
-    "thinking-row-05",
+  const thinkingRowBackgrounds = [
+    "linear-gradient(135deg, rgba(13, 22, 58, 0.75) 0%, rgba(8, 14, 36, 0.85) 100%)",
+    "linear-gradient(135deg, rgba(20, 36, 95, 0.75) 0%, rgba(8, 14, 36, 0.85) 100%)",
+    "linear-gradient(135deg, rgba(39, 58, 134, 0.65) 0%, rgba(8, 14, 36, 0.85) 100%)",
+    "linear-gradient(135deg, rgba(47, 85, 168, 0.55) 0%, rgba(8, 14, 36, 0.85) 100%)",
+    "linear-gradient(135deg, rgba(61, 107, 200, 0.45) 0%, rgba(8, 14, 36, 0.85) 100%)",
   ];
 
   return (
@@ -63,7 +63,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {skillGroups.groups.map((group, index) => (
                 <article
                   key={group.category}
-                  className="stagger-item skill-group-card flex flex-col gap-6 rounded-lg border border-cream/10 bg-black/20 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-sky/40 hover:bg-black/35 hover:shadow-hover"
+                  className="stagger-item skill-group-card flex flex-col gap-6 rounded-lg border border-cream/10 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-sky/40 hover:shadow-hover"
                   style={{ transitionDelay: `${index * 70}ms` }}
                 >
                   <h3 className="border-b border-cream/10 pb-3 text-lg font-semibold leading-tight text-cream">{group.category}</h3>
@@ -89,8 +89,11 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {process.rows.map((row, index) => (
                 <article
                   key={row.number}
-                  className={`thinking-row ${thinkingRowClasses[index % thinkingRowClasses.length]} !border-cream/10 !bg-black/20 p-6 rounded-lg`}
-                  style={{ transitionDelay: `${index * 70}ms` }}
+                  className="thinking-row border border-cream/10 p-6 rounded-lg shadow-minimal hover:border-sky/40 hover:-translate-y-0.5 transition duration-300"
+                  style={{
+                    backgroundImage: thinkingRowBackgrounds[index % thinkingRowBackgrounds.length],
+                    transitionDelay: `${index * 70}ms`
+                  }}
                 >
                   <p
                     className="bg-clip-text text-[44px] font-semibold leading-none text-transparent md:text-[76px]"
