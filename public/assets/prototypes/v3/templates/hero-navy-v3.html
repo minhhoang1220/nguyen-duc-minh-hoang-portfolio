@@ -274,47 +274,27 @@
       object-position: top center;
     }
 
-    /* Phone Mockup — Positioned for balance */
-    .phone-mockup {
+    /* Detail Card — Layered */
+    .detail-card {
       position: absolute;
       top: 80px;
       right: 24px;
-      width: 220px;
-      height: 420px;
-      background: #080E24;
-      border-radius: 22px;
-      border: 1px solid rgba(157, 196, 255, 0.35);
+      width: 320px;
+      height: 240px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #DFE4E7;
       box-shadow: 0 20px 48px rgba(8, 14, 36, 0.4);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding: 6px;
+      z-index: 15;
     }
-    .phone-inner {
+    .detail-card .win-content {
       flex: 1;
-      border-radius: 18px;
-      overflow: hidden;
       background: #FAF8F2;
-      position: relative;
-      border: 1px solid rgba(157, 196, 255, 0.15);
     }
-    .phone-notch {
-      width: 80px;
-      height: 12px;
-      background: #080E24;
-      border-radius: 0 0 10px 10px;
-      margin: 0 auto;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-    .phone-content {
-      width: 100%;
-      height: 100%;
-    }
-    .phone-content img {
+    .detail-card .win-content img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -326,7 +306,7 @@
       position: absolute;
       bottom: 24px;
       left: 60px;
-      width: 340px;
+      width: 380px;
       background: #FFFFFF;
       border: 1px solid #DFE4E7;
       border-left: 4px solid #273A86;
@@ -335,24 +315,33 @@
       box-shadow: 0 12px 28px rgba(8, 14, 36, 0.18);
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 8px;
+      z-index: 20;
     }
-    .spec-kicker {
+    .logic-kicker {
       font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #273A86;
     }
-    .spec-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #1B2D73;
+    .logic-steps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .spec-desc {
+    .logic-step {
+      font-size: 11px;
+      font-weight: 600;
+      color: #1B2D73;
+      background: rgba(157, 196, 255, 0.08);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .logic-arrow {
       font-size: 11px;
       color: #646670;
-      line-height: 1.5;
     }
 
     /* Labels */
@@ -450,35 +439,43 @@
     <!-- Desktop Mockup — BIGGER -->
     <div class="desktop-window">
       <div class="win-bar">
-        <div class="win-title">CDP flow management states</div>
-        <div class="win-meta">Anonymized UI Preview</div>
+        <div class="win-title">Engagement Automation Canvas</div>
+        <div class="win-meta">Flow Orchestration Workspace</div>
       </div>
       <div class="win-content">
-        <div class="tag-label tag-device">Desktop mockup</div>
-        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/cdp-flow-management-states.png" />
+        <div class="tag-label tag-device">Engagement Automation Workspace</div>
+        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/case-studies/vega-canvas-flow.png" />
       </div>
     </div>
 
-    <!-- Phone Mockup -->
-    <div class="phone-mockup">
-      <div class="phone-inner">
-        <div class="phone-notch"></div>
-        <div class="tag-label tag-device" style="top: 20px;">Mobile flow</div>
-        <div class="phone-content">
-          <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/chatbot-zalo-journey-flow.png" />
-        </div>
+    <!-- Detail Card -->
+    <div class="detail-card">
+      <div class="win-bar">
+        <div class="win-title">Performance & Drop-off Analysis</div>
+        <div class="win-meta">CDP Flow Metrics</div>
+      </div>
+      <div class="win-content">
+        <div class="tag-label tag-device">Performance & Drop-off Analysis</div>
+        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/case-studies/vega-flow-details.png" />
       </div>
     </div>
 
-    <!-- Spec Card -->
+    <!-- Logic Card -->
     <div class="spec-card">
-      <div class="spec-kicker">Acceptance Criteria</div>
-      <div class="spec-title">Push Triggers & Conditions</div>
-      <div class="spec-desc">Map system events (e.g. game event launch, level progress) directly to state conditions to trigger notification flows.</div>
+      <div class="logic-kicker">Campaign Logic Flow</div>
+      <div class="logic-steps">
+        <span class="logic-step">Trigger</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Segment</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Message</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Drop-off</span>
+      </div>
     </div>
 
     <!-- Real Label -->
-    <div class="tag-label tag-real">Sanitized product UI</div>
+    <div class="tag-label tag-real">Sanitized product artifact</div>
   </div>
 
 </body>

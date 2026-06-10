@@ -324,21 +324,10 @@ function ArtifactImageButton({
 function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]["visual"] }) {
   return (
     <div className="command-template-layer" aria-label={visual.visualTemplateLabel}>
-      <div className="command-phone-device command-template-card">
-        <p>{visual.mobileLabel}</p>
-        <strong>Push / event state</strong>
-        <span>{visual.visualTemplateLabel}</span>
-        <div className="phone-screen-lines" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </div>
-      </div>
-
       <div className="command-note-overlay command-template-card">
         <p>{visual.noteLabel}</p>
-        <strong>Acceptance criteria</strong>
-        <span>{visual.visualTemplateLabel}</span>
+        <strong>Campaign Logic</strong>
+        <span>Trigger → Segment → Message → Drop-off</span>
         <div className="note-screen-lines" aria-hidden="true">
           <i />
           <i />
