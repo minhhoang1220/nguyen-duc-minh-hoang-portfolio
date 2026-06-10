@@ -115,14 +115,14 @@ function App() {
 
             <Reveal>
               <div className="mt-20 border-t border-line pt-12">
-                <div className="grid gap-6 lg:grid-cols-[0.2fr_0.8fr] lg:items-start">
+                <div className="grid gap-6 lg:grid-cols-[140px_1fr] lg:items-start">
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{portfolio.sections.projects.eyebrow}</p>
                   <div>
-                    <h2 className="section-title max-w-none w-full text-navy text-balance">
+                    <h2 className="section-title max-w-none w-full text-navy !text-wrap">
                       {portfolio.sections.projects.title}
                     </h2>
                     {portfolio.sections.projects.description ? (
-                      <p className="mt-5 max-w-none text-base leading-7 text-muted md:text-lg md:leading-8 text-pretty">
+                      <p className="mt-5 text-base leading-7 text-muted md:text-lg md:leading-8 !text-wrap max-w-none">
                         {portfolio.sections.projects.description}
                       </p>
                     ) : null}
@@ -135,6 +135,7 @@ function App() {
                 <Reveal key={project.title} delay={index * 100}>
                   <ProjectCard
                     project={project}
+                    index={index}
                     openArtifactLabel={portfolio.ui.openArtifact}
                     onImageOpen={setSelectedImage}
                   />

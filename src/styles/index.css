@@ -1218,7 +1218,7 @@ img {
   }
 
   .nav-link {
-    @apply relative inline-flex min-h-11 items-center px-2.5 text-sm font-medium text-cream/90 transition-colors duration-200 hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24];
+    @apply relative inline-flex min-h-11 items-center px-2.5 text-sm font-medium text-cream/90 transition-colors duration-200 hover:text-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-4 focus-visible:ring-offset-[#080e24];
   }
 
   .nav-link::after {
@@ -1245,7 +1245,7 @@ img {
   }
 
   .mobile-nav-link {
-    @apply relative block border-b border-white/10 py-4 pl-4 pr-3 text-base font-medium text-cream transition-colors hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-0;
+    @apply relative block border-b border-white/10 py-4 pl-4 pr-3 text-base font-medium text-cream transition-colors hover:text-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-0;
   }
 
   .mobile-nav-link::before {
@@ -1810,19 +1810,19 @@ img {
 
 /* --- Credibility Logos Utility Classes --- */
 .cred-logo-sm {
-  height: 24px !important;
+  height: 28px !important;
   width: auto !important;
   object-fit: contain !important;
 }
 
 .cred-logo-md {
-  height: 32px !important;
+  height: 38px !important;
   width: auto !important;
   object-fit: contain !important;
 }
 
 .cred-logo-lg {
-  height: 40px !important;
+  height: 48px !important;
   width: auto !important;
   object-fit: contain !important;
 }

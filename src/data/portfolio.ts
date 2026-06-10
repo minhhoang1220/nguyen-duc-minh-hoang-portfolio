@@ -359,6 +359,7 @@ const assets = {
   vegaLogo: "/assets/logos/vega-fintech-logo.png",
   britishCouncilLogo: "/assets/logos/british-council-logo.png",
   vnuIsLogo: "/assets/logos/vnu-is-logo-landscape.png",
+  cmctsLogo: "/assets/logos/cmcts-logo.png",
 };
 
 const assetPreviews = {
@@ -966,6 +967,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Created process maps, system analysis diagrams, and data flow charts.",
           "Practiced cross-team business and technical communication across banking, education, and construction contexts.",
         ],
+        logo: assets.cmctsLogo,
       },
       {
         company: "British Council Vietnam",
@@ -1118,9 +1120,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       games: [
         "Arena of Valor / Liên Quân Mobile",
         "League of Legends",
-        "Teamfight Tactics",
         "Valorant",
         "CS2",
+        "Teamfight Tactics",
+        "PUBG",
         "Other competitive and live-service titles",
       ],
     },
@@ -1685,7 +1688,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         ],
         relevance:
           "Thể hiện tư duy toán học, logic cấu trúc và hỗ trợ quyết định bằng mô hình, hỗ trợ tốt cho việc cân bằng chỉ số game.",
-        tags: ["Nghiên cứu", "Benchmark", "Chuỗi thời gian", "Học máy"],
+        tags: ["Research", "Benchmarking", "Time-Series", "ML"],
         logo: assets.vnuIsLogo,
       },
     ],
@@ -1725,6 +1728,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Thực hiện vẽ sơ đồ quy trình, phân tích hệ thống và lập luồng tích hợp dữ liệu.",
           "Rèn luyện kỹ năng giao tiếp nghiệp vụ và kỹ thuật giữa các bên trong bối cảnh ngân hàng, giáo dục và xây dựng.",
         ],
+        logo: assets.cmctsLogo,
       },
       {
         company: "British Council Vietnam",
@@ -1875,9 +1879,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       games: [
         "Liên Quân Mobile / Arena of Valor",
         "League of Legends",
-        "Teamfight Tactics",
         "Valorant",
         "CS2",
+        "Teamfight Tactics",
+        "PUBG",
         "Các tựa game competitive và live-service khác",
       ],
     },

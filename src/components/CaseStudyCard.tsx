@@ -231,35 +231,35 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                   src: "/assets/case-studies/vega-canvas-flow.png",
                   previewSrc: "/assets/previews/vega-canvas-flow-preview.png",
                   alt: "Engagement flow canvas trigger flow layout",
-                  caption: "Campaign builder workspace with trigger & routing blocks.",
+                  caption: "Mapped campaign trigger, routing, and state logic so stakeholders and developers could review the automation flow before handoff.",
                 },
                 {
                   title: "Drop-off Analytics",
                   src: "/assets/case-studies/vega-flow-details.png",
                   previewSrc: "/assets/previews/vega-flow-details-preview.png",
                   alt: "Funnel drop-off analytics metrics dashboard",
-                  caption: "Funnel drop-off analytics nodes showing event drop rates.",
+                  caption: "Visualized event drop-off and funnel behavior to support QA review, reporting alignment, and iteration decisions.",
                 },
                 {
                   title: "Messenger Output",
                   src: "/assets/case-studies/vega-mess-chatbox.png",
                   previewSrc: "/assets/previews/vega-mess-chatbox-preview.png",
                   alt: "Messenger chatbox mockup output preview",
-                  caption: "Interactive chatbox mockups for target user preview.",
+                  caption: "Previewed chatbot message output and user-facing states to validate the customer communication experience.",
                 },
                 {
                   title: "Facebook Segment",
                   src: "/assets/case-studies/vega-facebook-profile.png",
                   previewSrc: "/assets/previews/vega-facebook-profile-preview.png",
                   alt: "Facebook connected target user profile",
-                  caption: "Demographic profile parameters mapping segment rules.",
+                  caption: "Captured segment/profile conditions used to clarify targeting logic and campaign audience rules.",
                 },
                 {
                   title: "Zalo Notification",
                   src: "/assets/case-studies/vega-zalo.png",
                   previewSrc: "/assets/previews/vega-zalo-preview.png",
                   alt: "Zalo official account notification layout preview",
-                  caption: "Official Account message layout template specifications.",
+                  caption: "Previewed OA notification behavior and message layout to align channel-specific delivery expectations.",
                 },
               ].map((artifact) => {
                 const isPhone = ["messenger", "facebook", "zalo"].some(term => artifact.title.toLowerCase().includes(term));
@@ -267,15 +267,15 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                   <button
                     key={artifact.title}
                     type="button"
-                    className={`flex flex-col text-left rounded-xl border border-navy/15 bg-white overflow-hidden hover:border-navy hover:shadow-hover transition duration-300 focus:outline-none focus:ring-2 focus:ring-navy group/thumb ${isPhone ? "max-w-[200px] mx-auto w-full" : "w-full"}`}
+                    className={`flex flex-col text-left rounded-xl border border-navy/15 bg-white overflow-hidden hover:border-navy hover:shadow-hover transition duration-300 focus:outline-none focus:ring-2 focus:ring-navy group/thumb ${isPhone ? "max-w-[200px] mx-auto w-full text-center" : "w-full"}`}
                     onClick={() => onImageOpen(artifact)}
                     onPointerEnter={() => preloadImage(artifact.src)}
                     onFocus={() => preloadImage(artifact.src)}
                   >
-                    <div className={`relative w-full overflow-hidden bg-[#faf8f2] border-b border-navy/10 flex flex-col ${isPhone ? "aspect-[9/19] p-1.5 bg-[#1a1a1a]" : "aspect-[16/10] bg-[#f8fafc]"}`}>
+                    <div className={`relative w-full overflow-hidden flex flex-col justify-center bg-[#f8fafc] border-b border-navy/10 ${isPhone ? "aspect-[9/19] p-2 bg-[#080E24]" : "aspect-[16/10] p-2 bg-[#080E24]"}`}>
                       {isPhone ? (
-                        <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-[#121620] border border-black/40">
-                          {/* Dynamic Island Notch */}
+                        <div className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-[#121620] border border-black/80 flex flex-col">
+                          {/* iPhone Notch */}
                           <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-12 h-3.5 bg-black rounded-full z-20 pointer-events-none shadow-inner" />
                           <img
                             src={artifact.previewSrc}
@@ -286,18 +286,21 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                           />
                         </div>
                       ) : (
-                        <div className="w-full h-full flex flex-col">
+                        <div className="w-full h-full flex flex-col rounded-md overflow-hidden bg-[#faf8f2] border border-black/40">
                           {/* Browser Window Bar */}
-                          <div className="h-6 bg-[#f1f5f9] border-b border-navy/10 flex items-center gap-1.5 px-2 shrink-0">
-                            <span className="w-2 h-2 rounded-full bg-[#d56f5d]" />
-                            <span className="w-2 h-2 rounded-full bg-[#d7aa4a]" />
-                            <span className="w-2 h-2 rounded-full bg-[#68a37d]" />
+                          <div className="h-6 bg-[#fafafa] border-b border-navy/10 flex items-center gap-1.5 px-2 shrink-0 select-none">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d56f5d]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d7aa4a]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#68a37d]" />
+                            <div className="flex-1 max-w-[120px] mx-auto h-3.5 bg-black/5 rounded text-[8px] px-1 text-navy/40 flex items-center justify-center truncate">
+                              vega-cdp.io
+                            </div>
                           </div>
-                          <div className="relative flex-1 overflow-hidden bg-[#f3f6f8]">
+                          <div className="relative flex-1 overflow-hidden bg-[#faf8f2] flex items-center justify-center">
                             <img
                               src={artifact.previewSrc}
                               alt={artifact.alt}
-                              className="h-full w-full object-cover transition duration-700 group-hover/thumb:scale-[1.04]"
+                              className="h-full w-full object-contain transition duration-700 group-hover/thumb:scale-[1.04]"
                               loading="lazy"
                               decoding="async"
                             />
@@ -305,11 +308,11 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
                         </div>
                       )}
                     </div>
-                    <div className="p-3 flex flex-col justify-between flex-1">
-                      <span className="text-xs font-bold text-navy truncate block w-full">
+                    <div className="p-3 flex flex-col justify-between flex-1 bg-white">
+                      <span className="text-xs font-bold text-navy truncate block w-full text-left">
                         {artifact.title}
                       </span>
-                      <span className="text-[10px] text-ink/75 leading-normal mt-1 block">
+                      <span className="text-[10px] text-ink/75 leading-normal mt-1 block text-left">
                         {artifact.caption}
                       </span>
                     </div>
@@ -379,7 +382,7 @@ function ImagePreview({
       <ArtifactWindowBar title={labels.artifactPreview} meta={labels.sanitized} />
       <button
         type="button"
-        className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 animate-duration-150"
         aria-label={`${openArtifactLabel}: ${image.title}`}
         onClick={() => onImageOpen(image)}
         onPointerEnter={() => preloadImage(image.src)}
@@ -399,7 +402,7 @@ function ImagePreview({
             </span>
           ) : null}
           <span className="artifact-annotation">{image.caption ?? labels.sanitized}</span>
-          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
+          <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
             {openArtifactLabel}
           </span>
         </span>
@@ -560,7 +563,7 @@ function Case1Visual({
       >
         {/* Browser window */}
         <div className="w-full md:flex-[2.6] xl:flex-[2.9] bg-[#f8fafc] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
-          <div className="h-7 bg-[#f8fafc] border-b border-line flex items-center justify-between px-3">
+          <div className="h-7 bg-[#f8fafc] border-b border-line flex items-center justify-between px-3 select-none">
             <div className="flex gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d56f5d]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#d7aa4a]" />
@@ -604,7 +607,7 @@ function Case1Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>
       </button>
@@ -653,7 +656,7 @@ function Case2Visual({
         <div className="gantt-hint w-full max-w-full transition duration-500 group-hover:-translate-y-1">
           {phases.map((phase) => (
             <div key={phase.label} className="gantt-row">
-              <span className="gantt-label">{phase.label}</span>
+              <span className="gantt-label !text-cream font-bold w-[120px] sm:w-[140px] shrink-0 text-right pr-2 select-none">{phase.label}</span>
               <div className="gantt-bar-track">
                 <div
                   className={`gantt-bar-fill ${
@@ -673,7 +676,7 @@ function Case2Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>
       </button>
@@ -708,10 +711,8 @@ function Case3Visual({
   ];
 
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-[#131a38]/30 p-3 md:p-4 flex items-center justify-center select-none group w-full">
-      <div className="parity-grid-bg" />
-      <div className="parity-glow" />
-
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-white to-[#f4f7f5] rounded-xl border border-[#1d3f35]/25 p-3 md:p-4 flex items-center justify-center select-none group w-full shadow-minimal">
+      <div className="parity-grid-bg opacity-30" />
       <button
         type="button"
         className="relative z-10 w-full flex items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -720,22 +721,24 @@ function Case3Visual({
         onPointerEnter={() => preloadImage(mainPreview.src)}
         onFocus={() => preloadImage(mainPreview.src)}
       >
-        <div className="matrix-hint w-full max-w-full transition duration-500 group-hover:-translate-y-1">
+        <div className="w-full max-w-full transition duration-500 group-hover:-translate-y-1 grid grid-cols-[115px_repeat(4,1fr)] sm:grid-cols-[135px_repeat(4,1fr)] gap-1 bg-white border border-navy/15 rounded-lg p-3 sm:p-4 shadow-sm text-navy">
           {headers.map((header) => (
-            <div key={header} className="matrix-header">
+            <div key={header} className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-navy pb-2 border-b border-navy/15 text-center first:text-left">
               {header}
             </div>
           ))}
 
           {rows.map((row) => (
             <div key={row.name} className="contents">
-              <div className="matrix-row-label">{row.name}</div>
+              <div className="text-[9px] sm:text-xs font-semibold text-navy/90 py-1.5 border-b border-navy/5 flex items-center truncate">
+                {row.name}
+              </div>
               {row.cells.map((allowed, cellIdx) => (
-                <div key={cellIdx} className="matrix-cell">
+                <div key={cellIdx} className="flex items-center justify-center py-1.5 border-b border-navy/5">
                   {allowed ? (
-                    <div className="cell-allowed">✓</div>
+                    <div className="w-4 h-4 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#047857] text-[10px] font-bold select-none">✓</div>
                   ) : (
-                    <div className="cell-denied">-</div>
+                    <div className="text-navy/30 text-xs font-semibold select-none">-</div>
                   )}
                 </div>
               ))}
@@ -744,13 +747,13 @@ function Case3Visual({
         </div>
 
         {/* View Artifact Overlay inside browser card */}
-        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-20">
+        <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>
       </button>
 
       {/* Badge label */}
-      <div className="absolute bottom-4 right-4 bg-navy-accent border border-navy-accent px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-cream shadow-sm pointer-events-none select-none z-20">
+      <div className="absolute bottom-4 right-4 bg-navy text-cream border border-navy px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider shadow-sm pointer-events-none select-none z-20">
         System Logic Matrix
       </div>
     </div>

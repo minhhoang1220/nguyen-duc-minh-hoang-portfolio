@@ -14,7 +14,7 @@ function About({ content }: AboutProps) {
   return (
     <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #080E24 0%, #060a18 100%)' }} aria-labelledby="about-title">
       <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[0.28fr_0.72fr] lg:items-start lg:gap-14">
+        <div className="grid gap-10 lg:grid-cols-[340px_1fr] lg:items-start lg:gap-14">
           <div className="min-w-0">
             <ProfileFallback content={content} />
           </div>
@@ -23,11 +23,11 @@ function About({ content }: AboutProps) {
             <p className="section-kicker text-sky">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="section-title max-w-none w-full text-cream text-balance"
+              className="section-title max-w-none w-full text-cream !text-wrap"
             >
               {content.title}
             </h2>
-            <EmphasizedParagraph className="mt-7 lg:max-w-5xl xl:max-w-6xl text-base leading-8 text-cream/80 md:text-lg md:leading-9 text-pretty text-left" text={content.body} />
+            <EmphasizedParagraph className="mt-7 text-base leading-8 text-cream/80 md:text-lg md:leading-9 !text-wrap text-left max-w-none" text={content.body} darkBg />
 
             <div className="mt-9 grid gap-4">
               {content.points.map((point, index) => (
@@ -39,7 +39,7 @@ function About({ content }: AboutProps) {
                   <p className="text-[34px] font-semibold leading-none text-navy/30 md:text-[44px]">{String(index + 1).padStart(2, "0")}</p>
                   <div>
                     <h3 className="text-xl font-semibold leading-tight text-navy md:text-2xl">{point.title}</h3>
-                    <EmphasizedParagraph className="mt-3 max-w-2xl text-base leading-7 text-ink/80" text={point.description} />
+                    <EmphasizedParagraph className="mt-3 max-w-none text-base leading-7 text-ink/80" text={point.description} />
                   </div>
                 </article>
               ))}
@@ -91,7 +91,7 @@ function EducationBlock({ content }: AboutProps) {
       <div className="flex items-center justify-between gap-2 border-b border-line pb-2 mb-3">
         <p className="detail-label m-0">{content.educationLabel}</p>
         {content.education.logo && (
-          <img src={content.education.logo} alt="" className="cred-logo-md shrink-0" />
+          <img src={content.education.logo} alt="" className="cred-logo-md shrink-0 object-contain" style={{ height: '32px' }} />
         )}
       </div>
       <p className="text-base font-semibold leading-6 text-navy">{content.education.school}</p>
@@ -101,7 +101,7 @@ function EducationBlock({ content }: AboutProps) {
   );
 }
 
-function EmphasizedParagraph({ text, className }: { text: string; className: string }) {
+function EmphasizedParagraph({ text, className, darkBg = false }: { text: string; className: string; darkBg?: boolean }) {
   const match = text.match(/^(.{12,140}?[.!?])\s+(.*)$/);
 
   if (!match) {
@@ -110,7 +110,7 @@ function EmphasizedParagraph({ text, className }: { text: string; className: str
 
   return (
     <p className={className}>
-      <strong className="font-semibold text-navy">{match[1]}</strong> {match[2]}
+      <strong className={`font-semibold ${darkBg ? "text-sky" : "text-navy"}`}>{match[1]}</strong> {match[2]}
     </p>
   );
 }

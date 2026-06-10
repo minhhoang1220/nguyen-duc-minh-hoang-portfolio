@@ -40,8 +40,11 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {approach.items.map((item, index) => (
                 <article
                   key={item.title}
-                  className="stagger-item how-work-card group flex flex-col gap-4 rounded-lg border border-navy/15 bg-white p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:bg-[#FAF8F2] hover:shadow-hover text-navy"
-                  style={{ transitionDelay: `${index * 70}ms` }}
+                  className="stagger-item how-work-card group flex flex-col gap-4 rounded-lg border border-navy/15 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:shadow-hover text-navy"
+                  style={{
+                    backgroundImage: approachCardBackgrounds[index % approachCardBackgrounds.length],
+                    transitionDelay: `${index * 70}ms`
+                  }}
                 >
                   <span className="sequence-badge" style={{ backgroundImage: processNumberGradients[index % processNumberGradients.length] }}>
                     0{index + 1}
@@ -63,8 +66,11 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {skillGroups.groups.map((group, index) => (
                 <article
                   key={group.category}
-                  className="stagger-item flex flex-col gap-6 rounded-lg border border-navy/15 bg-white p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:shadow-hover text-navy"
-                  style={{ transitionDelay: `${index * 70}ms` }}
+                  className="stagger-item flex flex-col gap-6 rounded-lg border border-navy/15 p-8 shadow-minimal transition-all duration-300 hover:-translate-y-1 hover:border-navy/35 hover:shadow-hover text-navy"
+                  style={{
+                    backgroundImage: approachCardBackgrounds[(index + 2) % approachCardBackgrounds.length],
+                    transitionDelay: `${index * 70}ms`
+                  }}
                 >
                   <h3 className="border-b border-navy/10 pb-3 text-lg font-semibold leading-tight text-navy">{group.category}</h3>
                   <div className="flex flex-wrap gap-2">
@@ -89,7 +95,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
               {process.rows.map((row, index) => (
                 <article
                   key={row.number}
-                  className="thinking-row border border-navy/15 p-6 rounded-lg shadow-minimal hover:border-navy/35 hover:-translate-y-0.5 transition duration-300 text-navy"
+                  className="thinking-row md:!grid-cols-[100px_0.9fr_2.1fr] border border-navy/15 p-6 rounded-lg shadow-minimal hover:border-navy/35 hover:-translate-y-0.5 transition duration-300 text-navy"
                   style={{
                     backgroundImage: approachCardBackgrounds[index % approachCardBackgrounds.length],
                     transitionDelay: `${index * 70}ms`

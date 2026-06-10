@@ -6,10 +6,10 @@ type GameThinkingProps = {
 
 function GameThinking({ content }: GameThinkingProps) {
   const pillarGradients = [
-    "from-[#0c244c] to-[#070d22] border-sky/15 hover:border-sky/45",
-    "from-[#112d5e] to-[#070d22] border-sky/15 hover:border-sky/45",
-    "from-[#163670] to-[#080e24] border-sky/15 hover:border-sky/45",
-    "from-[#1c4082] to-[#080e24] border-sky/15 hover:border-sky/45",
+    "from-[#040817] to-[#080E24] border-sky/10 hover:border-sky/40",
+    "from-[#070e26] to-[#0c1840] border-sky/15 hover:border-sky/45",
+    "from-[#0a153b] to-[#12235c] border-sky/20 hover:border-sky/50",
+    "from-[#0e2056] to-[#1a337e] border-sky/25 hover:border-sky/55",
   ];
 
   return (
@@ -18,10 +18,10 @@ function GameThinking({ content }: GameThinkingProps) {
         <div className="grid gap-8 border-t border-navy/15 pt-8 lg:grid-cols-[0.22fr_0.78fr] lg:gap-12">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{content.eyebrow}</p>
           <div>
-            <h2 id="game-direction-title" className="max-w-5xl text-wrap-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">
+            <h2 id="game-direction-title" className="max-w-5xl !text-wrap text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">
               {content.title}
             </h2>
-            <p className="mt-7 lg:max-w-6xl xl:max-w-7xl text-base leading-8 text-ink/80 md:text-lg md:leading-9 text-wrap-pretty text-left">{content.body}</p>
+            <p className="mt-7 lg:max-w-6xl xl:max-w-7xl text-base leading-8 text-ink/80 md:text-lg md:leading-9 !text-wrap text-left">{content.body}</p>
           </div>
         </div>
 
@@ -56,11 +56,39 @@ function GameThinking({ content }: GameThinkingProps) {
   );
 }
 
+const gameIconMap: Record<string, string> = {
+  "Arena of Valor / Liên Quân Mobile": "/assets/logos/AoV-logo.png",
+  "Liên Quân Mobile / Arena of Valor": "/assets/logos/AoV-logo.png",
+  "League of Legends": "/assets/logos/league-of-legends-_-lol-logo.svg",
+  "Teamfight Tactics": "/assets/logos/tft-logos/TFT Logos/Logomark/TFT_Logomark_White.png",
+  "CS2": "/assets/logos/counter-strike-seeklogo.svg",
+  "PUBG": "/assets/logos/pubg-battlegrounds-logo.svg",
+  "VALORANT": "/assets/logos/valorant-logo.svg",
+  "Valorant": "/assets/logos/valorant-logo.svg",
+};
+
 function renderChipIcon(item: string) {
   const lowercase = item.toLowerCase();
 
+  // Check if item has a mapped logo
+  const matchedKey = Object.keys(gameIconMap).find((key) => {
+    const k = key.toLowerCase();
+    return lowercase.includes(k) || k.includes(lowercase);
+  });
+
+  if (matchedKey) {
+    const isTft = matchedKey.toLowerCase().includes("tactics");
+    return (
+      <img
+        src={gameIconMap[matchedKey]}
+        alt=""
+        className={`h-5 w-5 object-contain shrink-0 transition-all duration-150 ${isTft ? "invert group-hover:invert-0" : ""}`}
+      />
+    );
+  }
+
   // Crosshair icon for FPS shooters
-  if (lowercase.includes("cs2") || lowercase.includes("pubg") || lowercase.includes("valorant") || lowercase.includes("fps") || lowercase.includes("shooter")) {
+  if (lowercase.includes("fps") || lowercase.includes("shooter")) {
     return (
       <svg className="h-4 w-4 shrink-0 text-navy-accent group-hover:text-sky transition-colors duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
         <circle cx="12" cy="12" r="8" />
@@ -70,7 +98,7 @@ function renderChipIcon(item: string) {
   }
 
   // Trophy/Star icon for MOBA/Auto-Battlers
-  if (lowercase.includes("legends") || lowercase.includes("valor") || lowercase.includes("moba") || lowercase.includes("tft") || lowercase.includes("tactics") || lowercase.includes("liên quân")) {
+  if (lowercase.includes("moba") || lowercase.includes("autobattler")) {
     return (
       <svg className="h-4 w-4 shrink-0 text-navy-accent group-hover:text-sky transition-colors duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
@@ -108,7 +136,7 @@ function ListPanel({ title, items, featured = false, delay = 0 }: { title: strin
         {items.map((item, index) => (
           <li
             key={item}
-            className="stagger-item w-fit max-w-full rounded-md border border-navy/20 bg-white px-4 py-3 text-sm font-bold text-navy transition-all duration-150 hover:border-navy hover:bg-navy hover:text-cream hover:-translate-y-0.5 shadow-sm group flex items-center gap-2"
+            className="stagger-item w-fit max-w-full rounded-md border border-navy/20 bg-white px-4 py-3 text-sm font-bold text-navy transition-all duration-150 hover:border-navy hover:bg-navy hover:text-cream hover:-translate-y-0.5 shadow-sm group flex items-center gap-2 cursor-default"
             style={{ transitionDelay: `${delay + 120 + index * 45}ms` }}
           >
             {renderChipIcon(item)}

@@ -17,7 +17,7 @@ function SectionHeader({ eyebrow, title, description, inverse = false, titleId, 
         id={titleId}
         className={`section-title ${
           inverse ? "text-cream" : "text-navy"
-        }`}
+        } !text-wrap`}
       >
         {title}
       </h2>

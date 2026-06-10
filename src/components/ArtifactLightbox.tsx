@@ -35,6 +35,7 @@ function ArtifactLightbox({
   const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [imageAspect, setImageAspect] = useState<"portrait" | "landscape" | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<Element | null>(null);
   const dragStartRef = useRef<Point | null>(null);
@@ -65,9 +66,22 @@ function ArtifactLightbox({
     [],
   );
 
+  const handleImageLoad = useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = event.currentTarget;
+    if (img.naturalWidth && img.naturalHeight) {
+      if (img.naturalHeight > img.naturalWidth) {
+        setImageAspect("portrait");
+      } else {
+        setImageAspect("landscape");
+      }
+    }
+    setIsImageLoaded(true);
+  }, []);
+
   useEffect(() => {
     resetZoom();
     setIsImageLoaded(false);
+    setImageAspect(null);
   }, [image?.src, resetZoom]);
 
   useEffect(() => {
@@ -232,32 +246,32 @@ function ArtifactLightbox({
         }
       }}
     >
-      <div ref={dialogRef} className="relative flex max-h-[94vh] w-full max-w-[1500px] flex-col rounded-lg border border-cream/20 bg-card">
-        <div className="flex flex-col gap-4 border-b border-line p-4 md:flex-row md:items-start md:justify-between md:p-5">
+      <div ref={dialogRef} className="relative flex max-h-[94vh] w-full max-w-[1500px] flex-col rounded-lg border border-cream/20 bg-[#080E24] text-cream">
+        <div className="flex flex-col gap-4 border-b border-cream/15 p-4 md:flex-row md:items-start md:justify-between md:p-5">
           <div className="min-w-0">
-            <p id="artifact-lightbox-title" className="text-base font-semibold text-navy md:text-xl">
+            <p id="artifact-lightbox-title" className="text-base font-semibold text-cream md:text-xl">
               {image.title}
             </p>
-            {image.caption ? <p className="mt-1 max-w-3xl text-sm leading-6 text-muted">{image.caption}</p> : null}
+            {image.caption ? <p className="mt-1 max-w-3xl text-sm leading-6 text-cream/70">{image.caption}</p> : null}
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-2">
             <button
               type="button"
               data-lightbox-control="zoom-out"
-              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-cream/20 px-3 text-sm font-semibold text-cream transition hover:border-sky hover:bg-cream/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 disabled:opacity-40"
               aria-label={zoomOutLabel}
               onClick={() => zoomBy(-zoomStep)}
               disabled={scale <= minScale}
             >
               -
             </button>
-            <span className="min-w-14 text-center text-xs font-semibold text-muted" aria-live="polite">
+            <span className="min-w-14 text-center text-xs font-semibold text-cream/80 select-none" aria-live="polite">
               {zoomPercentage}
             </span>
             <button
               type="button"
               data-lightbox-control="zoom-in"
-              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-cream/20 px-3 text-sm font-semibold text-cream transition hover:border-sky hover:bg-cream/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 disabled:opacity-40"
               aria-label={zoomInLabel}
               onClick={() => zoomBy(zoomStep)}
               disabled={scale >= maxScale}
@@ -267,7 +281,7 @@ function ArtifactLightbox({
             <button
               type="button"
               data-lightbox-control="reset"
-              className="min-h-10 rounded-md border border-line px-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md border border-cream/20 px-3 text-sm font-semibold text-cream transition hover:border-sky hover:bg-cream/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2"
               aria-label={resetZoomLabel}
               onClick={resetZoom}
             >
@@ -276,7 +290,7 @@ function ArtifactLightbox({
             <button
               type="button"
               data-autofocus="true"
-              className="min-h-10 rounded-md border border-navy px-3 text-sm font-semibold text-navy transition hover:bg-navy hover:text-cream focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+              className="min-h-10 rounded-md bg-sky text-[#080E24] px-4 text-sm font-bold transition hover:bg-sky/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2"
               aria-label={closeLabel}
               onClick={onClose}
             >
@@ -297,7 +311,7 @@ function ArtifactLightbox({
           <div className="flex h-full w-full items-center justify-center p-1 md:p-2">
             {!isImageLoaded ? (
               <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-                <span className="rounded-md border border-line bg-card px-4 py-2 text-sm font-semibold text-muted shadow-minimal">
+                <span className="rounded-md border border-cream/20 bg-[#080E24] px-4 py-2 text-sm font-semibold text-cream shadow-minimal">
                   {loadingLabel}
                 </span>
               </div>
@@ -320,13 +334,17 @@ function ArtifactLightbox({
             <img
               src={image.src}
               alt={image.alt}
-              className={`max-h-full max-w-full select-none object-contain transition-opacity duration-200 ${
+              className={`select-none transition-opacity duration-200 ${
                 isImageLoaded ? "opacity-100" : "opacity-0"
+              } ${
+                imageAspect === "portrait"
+                  ? "max-h-full w-auto object-contain"
+                  : "w-full max-w-full h-auto object-contain md:max-h-full md:w-auto"
               }`}
               draggable={false}
               decoding="async"
-              onLoad={() => setIsImageLoaded(true)}
-              onError={() => setIsImageLoaded(true)}
+              onLoad={handleImageLoad}
+              onError={handleImageLoad}
               style={{
                 transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`,
                 transition: isDragging ? "none" : "transform 180ms ease-out",

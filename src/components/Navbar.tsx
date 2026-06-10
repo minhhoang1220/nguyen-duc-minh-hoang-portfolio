@@ -206,7 +206,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
       <nav className="container-wide flex min-h-[72px] items-center justify-between" aria-label={labels.navAria}>
         <a
           href="#home"
-          className="text-base font-semibold text-cream transition-colors hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24]"
+          className="text-base font-semibold text-cream transition-colors hover:text-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-4 focus-visible:ring-offset-[#080e24]"
           aria-label={labels.brandAria}
           aria-current={activeHref === "#home" ? "location" : undefined}
           onClick={(event) => handleNavClick(event, "#home")}
@@ -218,7 +218,7 @@ function Navbar({ items, language, labels, onLanguageChange }: NavbarProps) {
           <LanguageToggle language={language} onChange={onLanguageChange} ariaLabel={labels.switchLanguageAria} />
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-cream/20 text-cream transition-colors hover:border-sky hover:bg-cream/10 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24]"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-cream/20 text-cream transition-colors hover:border-sky hover:bg-cream/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-4 focus-visible:ring-offset-[#080e24]"
             aria-label={labels.menuAria}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"

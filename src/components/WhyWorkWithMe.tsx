@@ -15,13 +15,13 @@ function WhyWorkWithMe({ content }: WhyWorkWithMeProps) {
   return (
     <section className="section-padding bg-cream text-ink border-b border-line" aria-labelledby="why-work-title">
       <div className="container-wide">
-        <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[0.22fr_0.78fr] lg:gap-12">
+        <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[140px_1fr] lg:gap-12">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{content.eyebrow}</p>
           <div>
-            <h2 id="why-work-title" className="section-title max-w-none w-full text-navy m-0 text-wrap-balance">
+            <h2 id="why-work-title" className="section-title max-w-none w-full text-navy m-0 !text-wrap">
               {content.title}
             </h2>
-            <p className="mt-6 max-w-5xl text-base leading-8 text-muted md:text-lg text-wrap-pretty">{content.description}</p>
+            <p className="mt-6 text-base leading-8 text-muted md:text-lg !text-wrap max-w-none">{content.description}</p>
           </div>
         </div>
 

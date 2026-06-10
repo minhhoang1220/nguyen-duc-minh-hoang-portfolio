@@ -25,10 +25,10 @@ function ProductSamples({ content }: ProductSamplesProps) {
             </p>
           </div>
           <div>
-            <h3 className="text-balance text-[28px] font-semibold leading-[1.08] text-navy md:text-[38px] text-wrap">
+            <h3 className="text-[28px] font-semibold leading-[1.08] text-navy md:text-[38px] !text-wrap">
               {content.noteTitle}
             </h3>
-            <p className="mt-6 max-w-none text-base leading-8 text-muted md:text-lg text-pretty text-justify md:text-left">{content.notePreview}</p>
+            <p className="mt-6 max-w-none text-base leading-8 text-muted md:text-lg !text-wrap md:text-left">{content.notePreview}</p>
           </div>
         </article>
       </div>
