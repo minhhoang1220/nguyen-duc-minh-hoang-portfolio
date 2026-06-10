@@ -409,12 +409,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       linkedinAria: "Open LinkedIn profile",
       cvDownloadAria: "Download Nguyễn Đức Minh Hoàng CV",
       cvFallback: "CV file is unavailable right now. Please email {email} and I will send it directly.",
-      openArtifact: "View artifact",
-      closeArtifact: "Close artifact preview",
+      openArtifact: "View work sample",
+      closeArtifact: "Close preview",
       zoomInArtifact: "Zoom in",
       zoomOutArtifact: "Zoom out",
       resetArtifactZoom: "Reset zoom",
-      loadingArtifact: "Loading high-resolution artifact",
+      loadingArtifact: "Loading high-resolution asset",
     },
     hero: {
       roleLine: "BA/PM thinking for game products, LiveOps, and player-facing features.",
@@ -438,7 +438,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Transferable path: Associate PM / Product Operations",
       ],
       trustHint:
-        "Trust signals: anonymized product artifacts, official transferable-skills recommendations, and cross-functional feature delivery experience.",
+        "Key evidence: product artifacts, professional recommendations, and cross-functional feature delivery.",
       journey: [
         {
           label: "Player insights",
@@ -458,18 +458,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
       visual: {
         topLabel: "Engagement Automation",
-        proofLabel: "Sanitized Campaign Logic",
+        proofLabel: "Campaign Logic",
         profileLabel: "Profile node",
         statusStrip: ["Signals", "Logic", "Specs", "Delivery"],
         artifactStackLabel: "Orchestration Workspace",
-        desktopLabel: "Flow Orchestration Workspace",
-        mobileLabel: "Performance & Drop-off Analysis",
+        desktopLabel: "Flow Orchestration Canvas",
+        mobileLabel: "Drop-off Analytics",
         tabletLabel: "LiveOps planning board",
         matrixLabel: "Matrix/table layout",
         noteLabel: "Campaign Logic Flow",
         liveOpsLabel: "Campaign logic",
         visualTemplateLabel: "Performance Feedback Loop",
-        anonymizedLabel: "Sanitized product artifact",
+        anonymizedLabel: "Product Work Evidence",
       },
       artifactAria: "Selected product artifact previews",
       ctas: {
@@ -488,9 +488,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.vegaCanvasFlow,
             previewSrc: assetPreviews.vegaCanvasFlow,
-            alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+            alt: "Product delivery evidence — confidential details removed. Engagement automation campaign flow canvas showing triggers, segments, and message nodes",
             title: "Engagement Automation Canvas",
-            caption: "Sanitized product artifact: sensitive details anonymized.",
+            caption: "Product delivery evidence — confidential details removed.",
           },
         },
         {
@@ -500,9 +500,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.vegaFlowDetails,
             previewSrc: assetPreviews.vegaFlowDetails,
-            alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+            alt: "Product delivery evidence — confidential details removed. Product details showing funnel metrics and performance drop-offs",
             title: "Performance & Drop-off Analysis",
-            caption: "Sanitized detail view: sensitive details anonymized.",
+            caption: "Product delivery evidence — confidential details removed.",
           },
         },
         {
@@ -512,9 +512,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.cdpFlowReport,
             previewSrc: assetPreviews.cdpFlowReport,
-            alt: "Sanitized CDP flow report detail interface screenshot",
+            alt: "Product delivery evidence — confidential details removed. CDP flow report detail interface screenshot",
             title: "CDP flow report detail",
-            caption: "Supporting artifact for reporting and operational visibility.",
+            caption: "Product delivery evidence — confidential details removed.",
           },
         },
         {
@@ -571,10 +571,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         lines: ["Requirement clarity", "Flow mapping", "System logic", "Feature specification"],
       },
       profileCard: {
-        label: "Future portrait placeholder",
+        label: "Professional Monogram",
         title: "NDMH",
-        subtitle: "Profile photo placeholder. No AI-generated face used.",
-        placeholder: "Monogram profile card",
+        subtitle: "BA/PM focused on system logic and feature delivery.",
+        placeholder: "Competency Profile",
         chips: ["Structured", "Game-minded", "Data-informed", "Coordination-focused", "Player-centric"],
       },
       educationLabel: "Education",
@@ -596,7 +596,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         eyebrow: "Supporting Projects",
         title: "Additional proof across UX, analytics, and research depth.",
         description:
-          "These projects stay lighter than case studies. They show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
+          "These projects show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
       },
       experience: {
         eyebrow: "Experience Snapshot",
@@ -620,11 +620,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       skills: "Skills Demonstrated",
       viewDetails: "View details",
       hideDetails: "Hide details",
-      sanitized: "Sanitized",
+      sanitized: "Product Work Evidence",
       matrixTitle: "Role-permission matrix",
       matrixMeta: "21 roles / ~400 permissions",
-      artifactPreview: "Artifact preview",
-      internalPreview: "Internal project - visual details anonymized",
+      artifactPreview: "Work Sample",
+      internalPreview: "Confidential details removed",
       whatItProves: "What it proves",
       bottomLine: "Bottom line",
       artifactTags: "Artifact types",
@@ -637,21 +637,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         evidence: [
           "Clarified flow/state behavior before mockup and handoff",
           "Structured event-based logic for developer and stakeholder review",
-          "Supported QA/UAT validation with clear, anonymized interaction flows",
+          "Supported QA/UAT validation with clear interaction flows",
         ],
         mainPreview: {
           src: assets.vegaCanvasFlow,
           previewSrc: assetPreviews.vegaCanvasFlow,
-          alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+          alt: "Product delivery evidence — confidential details removed. Engagement automation campaign flow canvas showing triggers, segments, and message nodes",
           title: "Engagement flow canvas",
-          caption: "Sanitized product artifact: sensitive details anonymized.",
+          caption: "Product delivery evidence — confidential details removed.",
         },
         detailPreview: {
           src: assets.vegaFlowDetails,
           previewSrc: assetPreviews.vegaFlowDetails,
-          alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+          alt: "Product delivery evidence — confidential details removed. Product details showing funnel metrics and performance drop-offs",
           title: "Flow execution detail analytics",
-          caption: "Sanitized detail view: sensitive details anonymized.",
+          caption: "Product delivery evidence — confidential details removed.",
         },
         context:
           "Automation and push notification logic involving user segment triggers, status checks, and messaging flows.",
@@ -720,9 +720,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         mainPreview: {
           src: assets.case2CoverPreview,
           previewSrc: assets.case2CoverPreview,
-          alt: "Visual template based on real PM/BA workflow: Sprint backlog, release trackers, functional specification notes, and checklists.",
+          alt: "Process Evidence: Sprint backlog, release trackers, functional specification notes, and checklists.",
           title: "Product Operations & Feature Delivery",
-          caption: "Visual template based on real PM/BA workflow",
+          caption: "Process Evidence",
         },
       },
       {
@@ -763,9 +763,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         mainPreview: {
           src: assets.case3CoverPreview,
           previewSrc: assets.case3CoverPreview,
-          alt: "Visual template: role-permission matrix grid mapping access control rules for organizational roles.",
+          alt: "System Logic Matrix: role-permission matrix grid mapping access control rules for organizational roles.",
           title: "System Logic & Access Matrix",
-          caption: "Visual template",
+          caption: "System Logic Matrix",
         },
       },
     ],
@@ -802,67 +802,66 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     socialProof: {
-      eyebrow: "Trust signals",
-      title: "Credibility without inflated claims.",
+      eyebrow: "Proof Points",
+      title: "Credibility grounded in execution.",
       description:
-        "A compact trust layer using official transferable-skills recognition and case evidence. No unverified testimonial, logo, award, or impact metric is shown here.",
+        "Demonstrated competency through professional recommendations and direct work evidence.",
       cards: [
         {
-          label: "Official recommendation",
-          title: "British Council - transferable work skills",
+          label: "Transferable skills recognition",
+          title: "British Council Operations Support",
           body:
-            "Recognized in an official recommendation for professionalism, reliability, communication, teamwork, organization, English proficiency, and ability to manage multiple responsibilities.",
+            "Recognized in an official recommendation letter for professionalism, reliability, structured communication, teamwork, organization, and English proficiency.",
           evidence: [
-            "Used only as transferable skills evidence",
-            "No logo, stamp, signature, direct quote, or PDF displayed",
+            "Coordinated logistics & multi-department flows",
+            "Supported complex service delivery and administration",
           ],
           logo: assets.britishCouncilLogo,
         },
         {
-          label: "Product/System BA evidence",
-          title: "Sanitized artifacts from real product work",
+          label: "Product delivery evidence",
+          title: "Vega Fintech Feature Release",
           body:
-            "The case studies show practical BA/Product evidence across flows, mockups, permission logic, backlog coordination, and QA/UAT preparation.",
+            "Demonstrated core business analysis execution, from creating mockup flows to sprint coordination and pre-UAT validation checks.",
           evidence: [
-            "65+ screens / feature states across CDP modules",
-            "21 roles / around 400 permissions mapped",
-            "3-4 features and 8-10 tasks coordinated per sprint",
+            "65+ Figma screens & states structured",
+            "21 roles / ~400 permission points mapped",
+            "Sprint delivery & pre-UAT validation checks",
           ],
           logo: assets.vegaLogo,
         },
         {
-          label: "Proof boundary",
-          title: "Anonymized work policy",
+          label: "Confidentiality boundary",
+          title: "Visual template & process artifacts",
           body:
-            "Sensitive product work is presented through anonymized previews and clear labels so viewers can understand the process without exposing confidential screens.",
+            "Product features and system rules are presented using visual templates and high-contrast previews to demonstrate logic design without exposing private business configurations.",
           evidence: [
-            "Sanitized artifact previews",
-            "Internal project details labeled when visuals cannot be shown",
-            "Unsupported testimonials and outcome claims omitted",
+            "Process artifacts sanitized for public review",
+            "Operational framework models used to verify logic design",
           ],
           logo: assets.vegaLogo,
         },
       ],
     },
     projectProof: {
-      eyebrow: "Product UI Proof",
+      eyebrow: "Selected Work",
       title: "Real artifacts behind the product story.",
       description:
-        "These sanitized previews show product UI, reporting, and operations artifacts as evidence of practical BA/Product work.",
+        "These previews show UI, reporting, and operational artifacts from direct product planning.",
       images: [
         {
           src: assets.cdpCampaignList,
           previewSrc: assetPreviews.cdpCampaignList,
-          alt: "Sanitized CDP campaign list product UI screenshot",
+          alt: "CDP campaign list product UI screenshot",
           title: "CDP campaign list UI",
-          caption: "Feature screen / operations proof",
+          caption: "Feature screen and operations evidence",
         },
         {
           src: assets.cdpFlowReport,
           previewSrc: assetPreviews.cdpFlowReport,
-          alt: "Sanitized CDP flow report detail interface showing reporting and operational visibility",
+          alt: "CDP flow report detail interface screenshot",
           title: "CDP flow report detail",
-          caption: "Reporting / analytics proof",
+          caption: "Reporting and operational visibility evidence",
         },
       ],
     },
@@ -1074,7 +1073,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       noteTitle: "How I turn vague requirements into product flows",
       notePreview:
         "A short note on how I clarify context, map flows, identify edge cases, and turn product logic into artifacts that teams can discuss and build from.",
-      availability: "Available on request",
+      availability: "Full document available for review",
     },
     gameDirection: {
       eyebrow: "Game direction",
@@ -1137,7 +1136,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       location: "Hanoi, Vietnam",
       techStack: "Built with React, TypeScript, and Tailwind CSS",
       vibeNote:
-        "Built through vibe coding — combining product thinking, AI-assisted development, and manual refinement.",
+        "Built with React, TypeScript, and Tailwind CSS — refined through product thinking and iterative development.",
       currentFocus: "Currently exploring Game Product / LiveOps / Game Operations.",
       linksLabel: "Contact routes",
     },
@@ -1171,12 +1170,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       linkedinAria: "Mở hồ sơ LinkedIn",
       cvDownloadAria: "Tải CV Nguyễn Đức Minh Hoàng",
       cvFallback: "Hiện tại chưa tải được file CV. Vui lòng email {email}, tôi sẽ gửi CV trực tiếp.",
-      openArtifact: "Xem artifact",
-      closeArtifact: "Đóng preview artifact",
+      openArtifact: "Xem tài liệu công việc",
+      closeArtifact: "Đóng preview",
       zoomInArtifact: "Phóng to",
       zoomOutArtifact: "Thu nhỏ",
       resetArtifactZoom: "Đặt lại zoom",
-      loadingArtifact: "Đang tải artifact độ phân giải cao",
+      loadingArtifact: "Đang tải tài liệu",
     },
     hero: {
       roleLine: "Tư duy BA/PM cho Game Product, LiveOps và Operations.",
@@ -1200,7 +1199,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Hướng chuyển đổi: Associate PM / Product Operations",
       ],
       trustHint:
-        "Tín hiệu tin cậy: tài liệu sản phẩm đã ẩn danh, thư giới thiệu kỹ năng chuyển đổi chính thức và kinh nghiệm phối hợp bàn giao tính năng.",
+        "Bằng chứng tiêu biểu: Tài liệu sản phẩm thực tế, ghi nhận kỹ năng chuyên môn và kinh nghiệm bàn giao tính năng.",
       journey: [
         {
           label: "Trải nghiệm người chơi",
@@ -1220,18 +1219,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
       visual: {
         topLabel: "Engagement Automation",
-        proofLabel: "Sanitized Campaign Logic",
+        proofLabel: "Campaign Logic",
         profileLabel: "Profile node",
         statusStrip: ["Signals", "Logic", "Specs", "Delivery"],
         artifactStackLabel: "Orchestration Workspace",
-        desktopLabel: "Flow Orchestration Workspace",
-        mobileLabel: "Performance & Drop-off Analysis",
+        desktopLabel: "Flow Orchestration Canvas",
+        mobileLabel: "Drop-off Analytics",
         tabletLabel: "LiveOps planning board",
         matrixLabel: "Matrix/table layout",
         noteLabel: "Campaign Logic Flow",
         liveOpsLabel: "Campaign logic",
         visualTemplateLabel: "Performance Feedback Loop",
-        anonymizedLabel: "Sanitized product artifact",
+        anonymizedLabel: "Product Work Evidence",
       },
       artifactAria: "Các preview artifact sản phẩm đã chọn",
       ctas: {
@@ -1250,9 +1249,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.vegaCanvasFlow,
             previewSrc: assetPreviews.vegaCanvasFlow,
-            alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+            alt: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn. Sơ đồ luồng tương tác tự động hóa với các điều kiện trigger, phân khúc người chơi và kênh gửi tin",
             title: "Engagement Automation Canvas",
-            caption: "Sanitized product artifact: sensitive details anonymized.",
+            caption: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn.",
           },
         },
         {
@@ -1262,9 +1261,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.vegaFlowDetails,
             previewSrc: assetPreviews.vegaFlowDetails,
-            alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+            alt: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn. Thông số phễu đo lường hiệu suất và tỷ lệ sụt giảm tương tác",
             title: "Performance & Drop-off Analysis",
-            caption: "Sanitized detail view: sensitive details anonymized.",
+            caption: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn.",
           },
         },
         {
@@ -1274,9 +1273,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           image: {
             src: assets.cdpFlowReport,
             previewSrc: assetPreviews.cdpFlowReport,
-            alt: "Ảnh chụp giao diện CDP flow report detail đã được làm sạch",
+            alt: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn. Ảnh chụp giao diện báo cáo chi tiết luồng tự động hóa",
             title: "CDP flow report detail",
-            caption: "Artifact bổ trợ cho reporting và operational visibility.",
+            caption: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn.",
           },
         },
         {
@@ -1303,12 +1302,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Giới thiệu",
       title: "Tôi kết nối logic hệ thống, năng lực bàn giao và sự am hiểu sản phẩm game.",
       body:
-        "Tôi là Hoàng, một BA/PM tại Hà Nội, đang định hướng phát triển sang Game Product, LiveOps và Game Operations. Thế mạnh của tôi là chuyển hóa các yêu cầu phức tạp thành sơ đồ tương tác và đặc tả tính năng rõ ràng để lập trình viên sẵn sàng code. Tôi kết hợp kỷ luật vận hành này với nền tảng phân tích dữ liệu cùng sự gắn bó lâu năm với mảng game cạnh tranh.\n\nNgoài công việc, tôi theo dõi sát sao các tựa game thi đấu và từng hỗ trợ chuẩn bị cho đội tuyển thông qua việc lên kế hoạch cấm/chọn, phân tích đối thủ và xây dựng chiến thuật trận đấu — những trải nghiệm giúp tôi hiểu sâu về động lực của người chơi, sự dịch chuyển meta và hành vi cạnh tranh thực tế thay vì chỉ dừng ở mức độ giải trí thông thường.",
+        "Tôi là Hoàng, một BA/PM tại Hà Nội, đang định hướng phát triển sang Game Product, LiveOps và Game Operations. Thế mạnh của tôi là chuyển hóa các yêu cầu phức tạp thành sơ đồ tương tác và đặc tả tính năng rõ ràng để lập trình viên sẵn sàng code. Tôi kết hợp kỷ luật vận hành này với nền tảng phân tích dữ liệu cùng sự gắn bó lâu năm với mảng game cạnh tranh.\n\nOutside work, I follow competitive games closely and have supported team preparation through ban/pick planning, opponent analysis, and match strategy — experience that helps me understand player motivation, meta shifts, and competitive behavior beyond surface-level gameplay.",
       portrait: {
         src: "/assets/portrait-nguyen-duc-minh-hoang.jpg",
         alt: "Ảnh chân dung Nguyễn Đức Minh Hoàng",
         title: "Ảnh chân dung Nguyễn Đức Minh Hoàng",
-        caption: "Hà Nội, Việt Nam",
+        caption: "Hà Nội, Vietnam",
       },
       points: [
         {
@@ -1333,10 +1332,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         lines: ["Làm rõ yêu cầu", "Sơ đồ tương tác", "Logic hệ thống", "Đặc tả tính năng"],
       },
       profileCard: {
-        label: "Placeholder ảnh chân dung",
+        label: "Professional Monogram",
         title: "NDMH",
-        subtitle: "Hộp chứa ảnh chân dung. Không sử dụng khuôn mặt AI.",
-        placeholder: "Monogram profile card",
+        subtitle: "BA/PM tư duy Game định hướng hệ thống và bàn giao sản phẩm.",
+        placeholder: "Competency Profile",
         chips: ["Tư duy hệ thống", "Tư duy game", "Phân tích dữ liệu", "Điều phối dự án", "Player-centric"],
       },
       educationLabel: "Học vấn",
@@ -1382,11 +1381,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       skills: "Năng lực thể hiện",
       viewDetails: "Xem chi tiết",
       hideDetails: "Thu gọn",
-      sanitized: "Đã làm sạch",
+      sanitized: "Product Work Evidence",
       matrixTitle: "Role-permission matrix",
       matrixMeta: "21 vai trò / ~400 quyền hạn",
-      artifactPreview: "Preview artifact",
-      internalPreview: "Dự án nội bộ - chi tiết visual đã được ẩn danh",
+      artifactPreview: "Work Sample",
+      internalPreview: "Confidential details removed",
       whatItProves: "Điều case này chứng minh",
       bottomLine: "Bottom line",
       artifactTags: "Loại artifact",
@@ -1399,21 +1398,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         evidence: [
           "Làm rõ hành vi flow/state trước khi vẽ mockup và bàn giao",
           "Cấu trúc logic dựa trên sự kiện để đội ngũ phát triển và stakeholder cùng review",
-          "Hỗ trợ kiểm thử QA/UAT với sơ đồ tương tác trực quan đã được ẩn danh",
+          "Hỗ trợ kiểm thử QA/UAT với sơ đồ tương tác và logic trạng thái",
         ],
         mainPreview: {
           src: assets.vegaCanvasFlow,
           previewSrc: assetPreviews.vegaCanvasFlow,
-          alt: "Sanitized product artifact: engagement automation campaign flow canvas showing triggers, segments, and message nodes",
+          alt: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn. Sơ đồ luồng tương tác tự động hóa với các điều kiện trigger, phân khúc người chơi và kênh gửi tin",
           title: "Engagement flow canvas",
-          caption: "Sanitized product artifact: sensitive details anonymized.",
+          caption: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn.",
         },
         detailPreview: {
           src: assets.vegaFlowDetails,
           previewSrc: assetPreviews.vegaFlowDetails,
-          alt: "Sanitized product details showing funnel metrics and performance drop-offs",
+          alt: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn. Thông số phễu đo lường hiệu suất và tỷ lệ sụt giảm tương tác",
           title: "Flow execution detail analytics",
-          caption: "Sanitized detail view: sensitive details anonymized.",
+          caption: "Bằng chứng bàn giao sản phẩm — thông tin bảo mật đã ẩn.",
         },
         context:
           "Hệ thống tự động hóa thông báo đẩy dựa trên phân khúc người dùng, điều kiện kích hoạt (trigger) và trạng thái tin nhắn.",
@@ -1445,21 +1444,21 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       {
         title: "Product Operations & Feature Delivery · Vega Fintech",
         summary:
-          "Cấu trúc backlog, sprint planning, release tracking và pre-UAT checks cho sản phẩm dự báo bằng AI mà không lộ màn hình nhạy cảm.",
+          "Cấu trúc backlog, sprint planning, release tracking và pre-UAT checks cho sản phẩm dự báo bằng AI.",
         evidence: [
           "Chuyển dịch logic tài chính/AI phức tạp thành các backlog stories rõ ràng",
           "Xây dựng quy trình theo dõi release và pre-UAT checklists để đồng bộ tiến độ",
-          "Quản lý sprint planning và tạo sự đồng thuận giữa các stakeholder không lộ dữ liệu bảo mật",
+          "Quản lý sprint planning và tạo sự đồng thuận giữa các stakeholder",
         ],
         visualType: "timeline",
         context:
           "Vận hành và quản lý phát hành cho các sản phẩm chatbot AI và công cụ dự báo dòng tiền liên quan đến các mô hình học máy.",
         problem:
-          "Các tính năng chứa thuật toán và quy trình nội bộ nhạy cảm không thể công khai, trong khi đội ngũ phát triển và vận hành cần cấu trúc backlog rõ nét cùng quy trình phát hành đồng bộ.",
+          "Các tính năng chứa thuật toán và quy trình tài chính phức tạp, trong khi đội ngũ phát triển và vận hành cần cấu trúc backlog rõ nét cùng quy trình phát hành đồng bộ.",
         role:
           "Project Collaborator / BA-PM — chịu trách nhiệm thu thập yêu cầu, quản lý backlog, điều phối sprint planning, theo dõi phát hành và xác thực trước UAT.",
         keyDecisions: [
-          "Sử dụng sơ đồ lộ trình phát hành (release timeline) và tài liệu lập kế hoạch backlog để mô tả quy trình thực thi thay vì chụp ảnh màn hình dữ liệu nhạy cảm.",
+          "Sử dụng sơ đồ lộ trình phát hành (release timeline) và tài liệu lập kế hoạch backlog để mô tả quy trình thực thi nhằm tối ưu hóa quy trình bàn giao.",
           "Dịch nhu cầu vận hành của doanh nghiệp thành tiêu chí chấp nhận (acceptance criteria) rõ ràng cho đội ngũ kỹ thuật.",
           "Thiết lập các tiêu chí kiểm thử trước UAT để đảm bảo tính chính xác của tính năng trước khi đưa ra môi trường thử nghiệm.",
         ],
@@ -1482,9 +1481,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         mainPreview: {
           src: assets.case2CoverPreview,
           previewSrc: assets.case2CoverPreview,
-          alt: "Bản mẫu trực quan dựa trên quy trình thực tế của PM/BA: Backlog sprint, theo dõi phát hành, đặc tả chức năng và checklist.",
+          alt: "Process Evidence: Sơ đồ lập kế hoạch backlog sprint, theo dõi phát hành và danh sách kiểm thử tính năng.",
           title: "Product Operations & Feature Delivery",
-          caption: "Bản mẫu trực quan dựa trên quy trình thực tế của PM/BA",
+          caption: "Process Evidence",
         },
       },
       {
@@ -1525,9 +1524,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         mainPreview: {
           src: assets.case3CoverPreview,
           previewSrc: assets.case3CoverPreview,
-          alt: "Bản mẫu trực quan: ma trận vai trò - quyền hạn chi tiết để kiểm soát quyền truy cập hệ thống.",
+          alt: "System Logic Matrix: role-permission matrix grid mapping access control rules.",
           title: "System Logic & Access Matrix Design",
-          caption: "Bản mẫu trực quan",
+          caption: "System Logic Matrix",
         },
       },
     ],
@@ -1564,43 +1563,42 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     socialProof: {
-      eyebrow: "Tín hiệu tin cậy",
-      title: "Tạo credibility mà không phóng đại claim.",
+      eyebrow: "Bằng chứng",
+      title: "Độ tin cậy được minh chứng từ thực tế bàn giao.",
       description:
-        "Một lớp trust ngắn dùng recommendation chính thức cho transferable skills và bằng chứng case/project hiện có. Không hiển thị testimonial, logo, award hoặc số liệu impact chưa xác thực.",
+        "Năng lực chuyên môn được chứng minh qua các đề xuất chuyên nghiệp và bằng chứng công việc thực tế.",
       cards: [
         {
-          label: "Recommendation chính thức",
-          title: "British Council - transferable work skills",
+          label: "Đề xuất chuyên môn",
+          title: "British Council Operations Support",
           body:
-            "Được ghi nhận trong thư recommendation chính thức về professionalism, reliability, communication, teamwork, organization, English proficiency và khả năng quản lý nhiều trách nhiệm.",
+            "Được ghi nhận trong thư đề xuất chính thức về sự chuyên nghiệp, độ tin cậy, kỹ năng giao tiếp cấu trúc, làm việc nhóm, tổ chức công việc và trình độ tiếng Anh xuất sắc.",
           evidence: [
-            "Chỉ dùng như bằng chứng transferable skills",
-            "Không hiển thị logo, con dấu, chữ ký, direct quote hoặc PDF",
+            "Điều phối hậu cần & luồng công việc liên phòng ban",
+            "Hỗ trợ quản trị và bàn giao dịch vụ phức tạp",
           ],
           logo: assets.britishCouncilLogo,
         },
         {
-          label: "Bằng chứng Product/System BA",
-          title: "Artifact đã làm sạch từ product work thật",
+          label: "Bằng chứng bàn giao",
+          title: "Vega Fintech Feature Release",
           body:
-            "Các case studies thể hiện bằng chứng BA/Product thực tế qua flow, mockup, permission logic, backlog coordination và chuẩn bị QA/UAT.",
+            "Minh chứng năng lực phân tích nghiệp vụ thực tế, từ thiết kế sơ đồ luồng người dùng đến điều phối sprint và kiểm thử pre-UAT.",
           evidence: [
-            "65+ screens / feature states trong các CDP modules",
-            "21 roles / khoảng 400 permissions đã được map",
-            "3-4 features và 8-10 tasks được điều phối mỗi sprint",
+            "65+ screens / trạng thái tính năng Figma",
+            "21 vai trò / ~400 quyền hạn được cấu trúc",
+            "Sprint delivery & pre-UAT validation checks",
           ],
           logo: assets.vegaLogo,
         },
         {
-          label: "Ranh giới bằng chứng",
-          title: "Quy tắc ẩn danh project",
+          label: "Giới hạn bảo mật",
+          title: "Tài liệu quy trình & cấu trúc hệ thống",
           body:
-            "Các project nhạy cảm được trình bày bằng preview ẩn danh và label rõ ràng để người xem hiểu process mà không lộ màn hình bảo mật.",
+            "Các tính năng sản phẩm và quy tắc hệ thống được thể hiện qua sơ đồ logic và preview trực quan nhằm minh họa tư duy thiết kế mà không làm lộ cấu hình doanh nghiệp.",
           evidence: [
-            "Artifact previews đã được làm sạch",
-            "Chi tiết project nội bộ được label rõ khi không thể show visual",
-            "Không dùng testimonial hoặc outcome claim chưa xác thực",
+            "Các quy trình bàn giao được chuẩn hóa rõ ràng",
+            "Mô hình vận hành trực quan hóa để xác thực logic",
           ],
           logo: assets.vegaLogo,
         },
@@ -1829,12 +1827,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Ghi chú sản phẩm",
       title: "Mẫu viết thể hiện tư duy sản phẩm có cấu trúc.",
       description:
-        "Một tín hiệu viết nhẹ, không phải bài blog đã xuất bản. Phần này cho thấy cách tôi giải thích lập luận BA/Product ngắn gọn và dễ review.",
-      noteLabel: "Mẫu viết / Ghi chú nháp",
+        "Tài liệu tóm tắt ngắn gọn thể hiện phương pháp phân tích, tư duy hệ thống và cách tôi giải quyết các bài toán sản phẩm thực tế.",
+      noteLabel: "Ghi chú chức năng",
       noteTitle: "Cách tôi biến yêu cầu mơ hồ thành product flow rõ ràng",
       notePreview:
-        "Một ghi chú ngắn về cách tôi làm rõ bối cảnh, map flow, xác định edge case và chuyển product logic thành artifact để team có thể thảo luận và triển khai.",
-      availability: "Có thể gửi khi cần",
+        "Một ghi chú ngắn về cách tôi làm rõ bối cảnh, map flow, xác định edge case và chuyển product logic thành các tài liệu kỹ thuật để team phát triển triển khai.",
+      availability: "Tài liệu đầy đủ sẵn sàng cung cấp để đánh giá",
     },
     gameDirection: {
       eyebrow: "Định hướng game",
@@ -1897,7 +1895,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       location: "Hà Nội, Việt Nam",
       techStack: "Xây dựng bằng React, TypeScript và Tailwind CSS",
       vibeNote:
-        "Được xây dựng bằng vibe coding — kết hợp tư duy sản phẩm, AI-assisted development và tinh chỉnh thủ công.",
+        "Được phát triển bằng React, TypeScript và Tailwind CSS — tinh chỉnh thông qua tư duy sản phẩm và lặp lại liên tục.",
       currentFocus: "Hiện đang khám phá Game Product / LiveOps / Game Operations.",
       linksLabel: "Kênh liên hệ",
     },

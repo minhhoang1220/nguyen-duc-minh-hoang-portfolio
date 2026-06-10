@@ -12,7 +12,7 @@ function About({ content }: AboutProps) {
   ];
 
   return (
-    <section id="about" className="section-padding bg-cream" aria-labelledby="about-title">
+    <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #faf8f2 0%, #f0f4f9 40%, #e8eef6 60%, #faf8f2 100%)' }} aria-labelledby="about-title">
       <div className="container-wide">
         <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-start lg:gap-14">
           <div className="min-w-0">
