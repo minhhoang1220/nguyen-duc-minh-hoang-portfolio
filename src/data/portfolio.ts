@@ -81,7 +81,7 @@ export type CaseStudy = {
   evidence: string[];
   mainPreview?: AssetImage;
   detailPreview?: AssetImage;
-  visualType?: "permission" | "timeline";
+  visualType?: "permission" | "timeline" | "matrix";
   context: string;
   problem: string;
   role: string;
@@ -227,6 +227,7 @@ export type PortfolioContent = {
       school: string;
       degree: string;
       period: string;
+      logo?: string;
     };
   };
   sections: {
@@ -348,6 +349,10 @@ const assets = {
   vegaMessChatbox: "/assets/case-studies/vega-mess-chatbox.png",
   vegaFacebookProfile: "/assets/case-studies/vega-facebook-profile.png",
   vegaZalo: "/assets/case-studies/vega-zalo.png",
+
+  // Case Study 2 and 3 V3 previews
+  case2CoverPreview: "/assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png",
+  case3CoverPreview: "/assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png",
 
   // Logos
   vegaLogo: "/assets/logos/vega-fintech-logo.png",
@@ -577,6 +582,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         school: "VNU International School, Vietnam National University, Hanoi",
         degree: "Bachelor of Business Data Analytics",
         period: "2021-2025",
+        logo: assets.vnuIsLogo,
       },
     },
     sections: {
@@ -711,6 +717,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Aligned stakeholders on release timelines, improved cross-team delivery coordination, and set a structured testing basis.",
         skills: ["Backlog management", "Sprint planning", "Cross-team coordination", "UAT validation", "Product operations"],
         logo: assets.vegaLogo,
+        mainPreview: {
+          src: assets.case2CoverPreview,
+          previewSrc: assets.case2CoverPreview,
+          alt: "Visual template based on real PM/BA workflow: Sprint backlog, release trackers, functional specification notes, and checklists.",
+          title: "Product Operations & Feature Delivery",
+          caption: "Visual template based on real PM/BA workflow",
+        },
       },
       {
         title: "System Logic & Access Matrix",
@@ -746,6 +759,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Unified security rules, simplified access audits, and reduced dev errors in user-role configuration.",
         skills: ["System thinking", "Permission design", "Access control logic", "Edge case analysis", "Governance structure"],
+        visualType: "matrix",
+        mainPreview: {
+          src: assets.case3CoverPreview,
+          previewSrc: assets.case3CoverPreview,
+          alt: "Visual template: role-permission matrix grid mapping access control rules for organizational roles.",
+          title: "System Logic & Access Matrix",
+          caption: "Visual template",
+        },
       },
     ],
     whyWork: {
@@ -1323,6 +1344,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         school: "VNU International School, Vietnam National University, Hanoi",
         degree: "Bachelor of Business Data Analytics",
         period: "2021-2025",
+        logo: assets.vnuIsLogo,
       },
     },
     sections: {
@@ -1457,6 +1479,13 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Đồng bộ hóa kế hoạch phát hành giữa các phòng ban, nâng cao hiệu quả phối hợp và chuẩn hóa quy trình test trước bàn giao.",
         skills: ["Quản lý backlog", "Sprint planning", "Điều phối liên phòng ban", "Xác thực UAT", "Vận hành sản phẩm"],
         logo: assets.vegaLogo,
+        mainPreview: {
+          src: assets.case2CoverPreview,
+          previewSrc: assets.case2CoverPreview,
+          alt: "Bản mẫu trực quan dựa trên quy trình thực tế của PM/BA: Backlog sprint, theo dõi phát hành, đặc tả chức năng và checklist.",
+          title: "Product Operations & Feature Delivery",
+          caption: "Bản mẫu trực quan dựa trên quy trình thực tế của PM/BA",
+        },
       },
       {
         title: "System Logic & Access Matrix Design",
@@ -1492,6 +1521,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         impact:
           "Nhất quán hóa các quy tắc bảo mật hệ thống, đơn giản hóa kiểm thử và giảm thiểu sai sót cấu hình vai trò người dùng.",
         skills: ["Tư duy hệ thống", "Thiết kế phân quyền", "Logic truy cập", "Phân tích edge case", "Cấu trúc quản trị"],
+        visualType: "matrix",
+        mainPreview: {
+          src: assets.case3CoverPreview,
+          previewSrc: assets.case3CoverPreview,
+          alt: "Bản mẫu trực quan: ma trận vai trò - quyền hạn chi tiết để kiểm soát quyền truy cập hệ thống.",
+          title: "System Logic & Access Matrix Design",
+          caption: "Bản mẫu trực quan",
+        },
       },
     ],
     whyWork: {
