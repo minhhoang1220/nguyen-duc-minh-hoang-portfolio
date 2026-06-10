@@ -16,21 +16,28 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   const isReversed = index % 2 === 1;
 
   return (
-    <article className="border-y border-line py-10 md:py-14">
+    <article className="case-study-card border-y border-line py-10 md:py-14">
       <div className={`grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start ${isReversed ? "lg:[&>*:first-child]:order-2" : ""}`}>
         <div className="min-w-0">
-          <p className="section-kicker text-muted">
-            {labels.eyebrow} 0{index + 1}
-          </p>
-          <h3 className="max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] text-navy md:text-[44px]">{caseStudy.title}</h3>
-          <EmphasizedText className="mt-5 max-w-2xl text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
-
-          <div className="mt-6 rounded-lg border border-sky/45 border-l-4 border-l-navy bg-sky/15 p-5">
-            <p className="detail-label">{labels.role}</p>
-            <EmphasizedText className="mt-2 text-sm leading-6 text-muted md:text-base md:leading-7" text={caseStudy.role} />
+          <div className="flex items-center gap-3 mb-2">
+            <p className="section-kicker text-muted mb-0">
+              {labels.eyebrow} 0{index + 1}
+            </p>
+            {caseStudy.logo && (
+              <img src={caseStudy.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+            )}
+          </div>
+          <h3 className="case-study-title max-w-3xl text-balance text-[30px] font-semibold leading-[1.08] md:text-[44px]">{caseStudy.title}</h3>
+          <div className="case-bottom-line mt-5">
+            <p className="case-bottom-label">{labels.bottomLine}</p>
+            <EmphasizedText className="text-base leading-7 text-ink md:text-lg md:leading-8" text={caseStudy.summary} />
           </div>
 
-          <div className="mt-7 rounded-lg border border-line bg-cream p-5 shadow-minimal">
+          {caseStudy.artifactTags?.length ? <CaseArtifactTags tags={caseStudy.artifactTags} label={labels.artifactTags} /> : null}
+
+          <CaseSnapshot caseStudy={caseStudy} labels={labels} />
+
+          <div className="case-evidence-box mt-6">
             <p className="detail-label mb-4">{labels.evidence}</p>
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
@@ -55,9 +62,15 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
         <div className="min-w-0">
           {caseStudy.mainPreview ? (
-            <ImagePreview image={caseStudy.mainPreview} openArtifactLabel={openArtifactLabel} onImageOpen={onImageOpen} />
+            <ImagePreview
+              image={caseStudy.mainPreview}
+              detailImage={caseStudy.detailPreview}
+              labels={labels}
+              openArtifactLabel={openArtifactLabel}
+              onImageOpen={onImageOpen}
+            />
           ) : caseStudy.visualType === "timeline" ? (
-            <TimelinePreview large />
+            <TimelinePreview labels={labels} large />
           ) : (
             <PermissionPreview labels={labels} />
           )}
@@ -105,19 +118,54 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
   );
 }
 
+function CaseArtifactTags({ tags, label }: { tags: string[]; label: string }) {
+  return (
+    <div className="case-artifact-tags" aria-label={label}>
+      {tags.map((tag) => (
+        <span key={tag}>{tag}</span>
+      ))}
+    </div>
+  );
+}
+
+function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: PortfolioContent["caseStudyLabels"] }) {
+  const items = [
+    { label: labels.problem, text: caseStudy.problem },
+    { label: labels.role, text: caseStudy.role },
+    { label: labels.delivered, text: caseStudy.delivered },
+    { label: labels.whatItProves, text: caseStudy.impact },
+  ];
+
+  return (
+    <dl className="case-snapshot-list mt-6">
+      {items.map((item) => (
+        <div key={item.label} className="case-snapshot-item">
+          <dt className="case-snapshot-label">{item.label}</dt>
+          <dd className="case-snapshot-text">{item.text}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function ImagePreview({
   image,
+  detailImage,
+  labels,
   openArtifactLabel,
   onImageOpen,
   compact = false,
 }: {
   image: AssetImage;
+  detailImage?: AssetImage;
+  labels: PortfolioContent["caseStudyLabels"];
   openArtifactLabel: string;
   onImageOpen: (image: AssetImage) => void;
   compact?: boolean;
 }) {
   return (
-    <figure className="group rounded-lg border border-line bg-card p-3 transition duration-500 hover:-translate-y-1 hover:border-navy/40">
+    <figure className="case-artifact-shell group">
+      <ArtifactWindowBar title={labels.artifactPreview} meta={labels.sanitized} />
       <button
         type="button"
         className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
@@ -126,7 +174,7 @@ function ImagePreview({
         onPointerEnter={() => preloadImage(image.src)}
         onFocus={() => preloadImage(image.src)}
       >
-        <span className={`relative block overflow-hidden rounded-md bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
+        <span className={`case-visual-frame relative block overflow-hidden bg-cream ${compact ? "h-[300px]" : "h-[360px] md:h-[520px]"}`}>
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
@@ -134,6 +182,12 @@ function ImagePreview({
             loading="lazy"
             decoding="async"
           />
+          {detailImage ? (
+            <span className="case-detail-preview-layer" aria-hidden="true">
+              <img src={detailImage.previewSrc ?? detailImage.src} alt="" loading="lazy" decoding="async" />
+            </span>
+          ) : null}
+          <span className="artifact-annotation">{image.caption ?? labels.sanitized}</span>
           <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {openArtifactLabel}
           </span>
@@ -149,7 +203,8 @@ function ImagePreview({
 
 function PermissionPreview({ labels }: { labels: PortfolioContent["caseStudyLabels"] }) {
   return (
-    <div className="rounded-lg border border-line bg-card p-5 md:p-6">
+    <div className="case-artifact-shell">
+      <ArtifactWindowBar title={labels.matrixTitle} meta={labels.matrixMeta} />
       <div className="mb-6 flex items-center justify-between gap-4">
         <span className="artifact-label">{labels.matrixTitle}</span>
         <span className="text-xs font-semibold text-muted">{labels.matrixMeta}</span>
@@ -169,15 +224,17 @@ function PermissionPreview({ labels }: { labels: PortfolioContent["caseStudyLabe
           />
         ))}
       </div>
+      <p className="mt-4 text-sm leading-6 text-muted">{labels.internalPreview}</p>
     </div>
   );
 }
 
-function TimelinePreview({ large = false }: { large?: boolean }) {
+function TimelinePreview({ labels, large = false }: { labels: PortfolioContent["caseStudyLabels"]; large?: boolean }) {
   const phases = ["Discovery", "Flow Mapping", "Mockup", "Review", "Dev Handoff", "QA"];
 
   return (
-    <div className={`rounded-lg border border-line bg-card p-5 md:p-6 ${large ? "lg:min-h-[420px]" : ""}`}>
+    <div className={`case-artifact-shell ${large ? "lg:min-h-[420px]" : ""}`}>
+      <ArtifactWindowBar title={labels.artifactPreview} meta={labels.internalPreview} />
       <div className={`space-y-4 ${large ? "lg:pt-8" : ""}`}>
         {phases.map((phase, phaseIndex) => (
           <div key={phase} className="grid grid-cols-[minmax(88px,108px)_1fr] items-center gap-4 text-xs font-semibold text-navy">
@@ -194,6 +251,20 @@ function TimelinePreview({ large = false }: { large?: boolean }) {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function ArtifactWindowBar({ title, meta }: { title: string; meta: string }) {
+  return (
+    <div className="artifact-window-bar">
+      <span className="flex items-center gap-1.5" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </span>
+      <span className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{title}</span>
+      <span className="hidden min-w-0 truncate text-right text-[11px] font-semibold text-muted md:block">{meta}</span>
     </div>
   );
 }

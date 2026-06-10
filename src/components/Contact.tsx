@@ -16,19 +16,19 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
         <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
           <p className="section-kicker text-navy">{content.eyebrow}</p>
           <div>
-            <h2 id="contact-title" className="max-w-5xl text-balance text-[34px] font-semibold leading-[1.06] text-navy md:text-[56px] lg:text-[68px]">
+            <h2 id="contact-title" className="section-title max-w-5xl text-navy">
               {content.title}
             </h2>
 
             <a
-              className="mt-10 inline-flex max-w-full border-b border-navy pb-3 text-[30px] font-semibold leading-none text-navy transition duration-300 hover:-translate-y-1 hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 md:text-[52px]"
+              className="mt-9 inline-flex max-w-full border-b border-navy pb-3 text-[28px] font-semibold leading-none text-navy transition duration-300 hover:-translate-y-1 hover:text-navy-accent focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4 md:text-[44px]"
               href={`mailto:${personal.email}`}
               aria-label={content.emailLabel}
             >
               {content.emailLabel}
             </a>
 
-            <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 className="btn-secondary"
                 href={personal.linkedin}

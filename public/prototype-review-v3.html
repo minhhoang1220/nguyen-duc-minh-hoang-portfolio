@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>P0 Prototype Review — V1 vs V3 Comparison</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #080E24;
+      color: #FAF8F2;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #080E24 0%, #14245F 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+      border-bottom: 2px solid rgba(157, 196, 255, 0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FAF8F2;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    header .version-pills {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pill-v1 {
+      background: rgba(250, 248, 242, 0.08);
+      border: 1px solid rgba(250, 248, 242, 0.2);
+      color: rgba(250, 248, 242, 0.6);
+    }
+    .pill-v3 {
+      background: rgba(157, 196, 255, 0.15);
+      border: 1px solid rgba(157, 196, 255, 0.4);
+      color: #9DC4FF;
+    }
+
+    /* Main container */
+    .container {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FAF8F2;
+      border-bottom: 2px solid rgba(157, 196, 255, 0.15);
+      padding-bottom: 10px;
+      margin-top: 48px;
+      margin-bottom: 28px;
+    }
+    .section-description {
+      font-size: 14px;
+      color: rgba(250, 248, 242, 0.6);
+      margin-top: -16px;
+      margin-bottom: 28px;
+    }
+
+    /* Comparison grid */
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* Preview cards — interactive */
+    .preview-card {
+      background: rgba(250, 248, 242, 0.03);
+      border: 1px solid rgba(157, 196, 255, 0.12);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      outline: none;
+      position: relative;
+    }
+    .preview-card:hover,
+    .preview-card:focus-visible {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(157, 196, 255, 0.08);
+      border-color: rgba(157, 196, 255, 0.3);
+    }
+    .preview-card:focus-visible {
+      outline: 2px solid #9DC4FF;
+      outline-offset: 2px;
+    }
+
+    .version-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 5;
+    }
+
+    .preview-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .preview-card:hover .preview-img {
+      transform: scale(1.03);
+    }
+    .preview-card-overflow {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .preview-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .preview-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .badge-v1 {
+      background: rgba(250, 248, 242, 0.08);
+      color: rgba(250, 248, 242, 0.5);
+      border: 1px solid rgba(250, 248, 242, 0.15);
+    }
+    .badge-v3 {
+      background: rgba(157, 196, 255, 0.15);
+      color: #9DC4FF;
+      border: 1px solid rgba(157, 196, 255, 0.3);
+    }
+    .badge-improved {
+      background: rgba(104, 163, 125, 0.15);
+      color: #68a37d;
+      border: 1px solid rgba(104, 163, 125, 0.3);
+    }
+    .badge-real {
+      background: rgba(104, 163, 125, 0.12);
+      color: #68a37d;
+      border: 1px solid rgba(104, 163, 125, 0.25);
+    }
+    .badge-template {
+      background: rgba(215, 170, 74, 0.12);
+      color: #d7aa4a;
+      border: 1px solid rgba(215, 170, 74, 0.25);
+    }
+    .badge-forest {
+      background: rgba(23, 61, 52, 0.2);
+      color: #68a37d;
+      border: 1px solid rgba(23, 61, 52, 0.3);
+    }
+
+    .filename {
+      font-family: monospace;
+      font-size: 10px;
+      color: rgba(250, 248, 242, 0.4);
+      background: rgba(250, 248, 242, 0.04);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(250, 248, 242, 0.08);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #FAF8F2;
+      margin: 0;
+    }
+
+    .description {
+      font-size: 13px;
+      color: rgba(250, 248, 242, 0.6);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .changes-list {
+      margin: 0;
+      padding-left: 16px;
+    }
+    .changes-list li {
+      font-size: 12px;
+      color: rgba(250, 248, 242, 0.6);
+      margin-bottom: 4px;
+    }
+
+    /* Click hint */
+    .click-hint {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9DC4FF;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      padding: 8px;
+      background: rgba(157, 196, 255, 0.05);
+      border-top: 1px solid rgba(157, 196, 255, 0.1);
+    }
+    .preview-card:hover .click-hint,
+    .preview-card:focus-visible .click-hint {
+      opacity: 1;
+    }
+
+    /* MODAL / LIGHTBOX */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 14, 36, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 1300px;
+      max-height: 90vh;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      border-radius: 16px;
+      overflow: auto;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(8, 14, 36, 0.6);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(250, 248, 242, 0.08);
+      border: 1px solid rgba(250, 248, 242, 0.15);
+      color: #FAF8F2;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s ease;
+    }
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: rgba(250, 248, 242, 0.15);
+    }
+    .modal-close:focus-visible {
+      outline: 2px solid #9DC4FF;
+      outline-offset: 2px;
+    }
+    .modal-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px 16px 0 0;
+    }
+    .modal-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .modal-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FAF8F2;
+      margin: 0;
+    }
+    .modal-desc {
+      font-size: 14px;
+      color: rgba(250, 248, 242, 0.7);
+      line-height: 1.6;
+    }
+
+    /* Key for improvements */
+    .improvement-notes {
+      background: rgba(104, 163, 125, 0.06);
+      border: 1px solid rgba(104, 163, 125, 0.2);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+    .improvement-notes h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #68a37d;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+    }
+    .improvement-notes ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .improvement-notes li {
+      font-size: 13px;
+      color: rgba(250, 248, 242, 0.7);
+      margin-bottom: 6px;
+    }
+
+    /* Accessibility info */
+    .a11y-info {
+      background: rgba(157, 196, 255, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.12);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 48px;
+      margin-bottom: 40px;
+    }
+    .a11y-info h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 8px;
+    }
+    .a11y-info p {
+      font-size: 12px;
+      color: rgba(250, 248, 242, 0.5);
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .comparison-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>P0 Visual Prototypes — V1 vs V3 Comparison</h1>
+    <p>Nguyễn Đức Minh Hoàng · Interactive Prototype Review</p>
+    <div class="version-pills">
+      <span class="pill pill-v1">V1 — Original</span>
+      <span class="pill pill-v3">V3 — Interactive Cover Cards</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Improvement Summary -->
+    <div class="improvement-notes">
+      <h3>V3 Key Improvements</h3>
+      <ul>
+        <li><strong>Two-layer card system:</strong> Cover cards are now readable at 500–700px. Click any card to see the full-size detail view.</li>
+        <li><strong>Contrast fix:</strong> Case Study 2 & 3 now use navy-night backgrounds instead of cream, making them stand out on the portfolio page.</li>
+        <li><strong>Enlarged Hero workspace:</strong> Left panel reduced from 320px to 280px, workspace artifacts enlarged by ~12%.</li>
+        <li><strong>Bold typography:</strong> Cover cards lead with large, centered titles and simplified artifact hints.</li>
+        <li><strong>No new animation libraries:</strong> All hover/focus effects are pure CSS transitions.</li>
+      </ul>
+    </div>
+
+    <!-- ============================= -->
+    <!-- SECTION 1: HERO -->
+    <!-- ============================= -->
+    <h2 class="section-title">1. Hero Command Center</h2>
+    <p class="section-description">V3 enlarges the artifact workspace and tightens the left panel to give device mockups more room.</p>
+
+    <div class="comparison-row">
+      <!-- V1 Hero -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V1 Hero Navy full size"
+           onclick="openModal('assets/prototypes/hero-command-center-navy.png', 'Hero Command Center — V1 Navy', 'Original V1 layout: 320px left panel, 700×480px desktop window, standard spacing.')"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v1">V1</span></span>
+          <img class="preview-img" src="assets/prototypes/hero-command-center-navy.png" alt="Hero Navy V1" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v1">Version 1</span>
+            <span class="badge badge-real">Sanitized Work</span>
+            <span class="filename">hero-command-center-navy.png</span>
+          </div>
+          <h3 class="card-title">Hero Command Center — V1 Navy</h3>
+          <p class="description">Original layout with standard panel widths and artifact sizing.</p>
+        </div>
+        <div class="click-hint">Click to view full size →</div>
+      </div>
+
+      <!-- V3 Hero -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V3 Hero Navy full size"
+           onclick="openModal('assets/prototypes/v3/templates/hero-navy-v3.html', 'Hero Command Center — V3 Navy', 'V3 improvements: Compact left panel (280px), enlarged workspace, 780×540px desktop window, tighter padding.', true)"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v3">V3</span></span>
+          <img class="preview-img" src="assets/prototypes/v3/previews/hero-command-center-navy-v3-preview.png" alt="Hero Navy V3" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v3">Version 3</span>
+            <span class="badge badge-improved">Improved</span>
+            <span class="badge badge-real">Sanitized Work</span>
+          </div>
+          <h3 class="card-title">Hero Command Center — V3 Navy</h3>
+          <ul class="changes-list">
+            <li>Left panel narrowed from 320px → 280px</li>
+            <li>Desktop window enlarged: 700×480px → 780×540px</li>
+            <li>Status strip added below journey map</li>
+            <li>Reduced dead space, tighter padding</li>
+          </ul>
+        </div>
+        <div class="click-hint">Click to view live template →</div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- SECTION 2: CASE STUDY 1 -->
+    <!-- ============================= -->
+    <h2 class="section-title">2. Case Study 1 — Feature Logic & Notification Flow</h2>
+    <p class="section-description">V3 introduces a bold cover card format that's readable at portfolio card sizes (500–700px).</p>
+
+    <div class="comparison-row">
+      <!-- V1 CS1 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V1 Case Study 1 full size"
+           onclick="openModal('assets/prototypes/case-study-01-feature-logic.png', 'Case Study 1 — V1', 'Original V1: Full artifact composition with overlapping browser windows and spec card.')"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v1">V1</span></span>
+          <img class="preview-img" src="assets/prototypes/case-study-01-feature-logic.png" alt="Case Study 1 V1" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v1">Version 1</span>
+            <span class="badge badge-forest">Forest Gradient</span>
+            <span class="badge badge-real">Sanitized Work</span>
+          </div>
+          <h3 class="card-title">Feature Logic — V1 Full Composition</h3>
+          <p class="description">Layered browser windows with artifact screenshot and floating spec card. Unreadable at small sizes.</p>
+        </div>
+        <div class="click-hint">Click to view full size →</div>
+      </div>
+
+      <!-- V3 CS1 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V3 Case Study 1 cover card"
+           onclick="openModal('assets/prototypes/v3/templates/case-study-01-v3-cover.html', 'Case Study 1 — V3 Cover Card', 'V3 cover card: Bold centered title, simplified artifact strip, key contributions hint. Readable at 500–700px.', true)"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v3">V3</span></span>
+          <img class="preview-img" src="assets/prototypes/v3/previews/case-study-01-v3-cover-preview.png" alt="Case Study 1 V3 Cover" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v3">Version 3</span>
+            <span class="badge badge-improved">Cover Card</span>
+            <span class="badge badge-forest">Forest Gradient</span>
+          </div>
+          <h3 class="card-title">Feature Logic — V3 Cover Card</h3>
+          <ul class="changes-list">
+            <li>Bold centered title (42px), readable at any card size</li>
+            <li>Simplified artifact thumbnail strip</li>
+            <li>Key contributions hint card (replaces full spec)</li>
+            <li>Same forest-to-navy gradient background</li>
+          </ul>
+        </div>
+        <div class="click-hint">Click to view live template →</div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- SECTION 3: CASE STUDY 2 -->
+    <!-- ============================= -->
+    <h2 class="section-title">3. Case Study 2 — Product Operations & Feature Delivery</h2>
+    <p class="section-description">V3 switches from cream to navy-night background for high contrast on the portfolio page.</p>
+
+    <div class="comparison-row">
+      <!-- V1 CS2 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V1 Case Study 2 full size"
+           onclick="openModal('assets/prototypes/case-study-02-product-operations.png', 'Case Study 2 — V1', 'Original V1: Cream background with Gantt chart and floating Kanban card. Low contrast on portfolio.')"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v1">V1</span></span>
+          <img class="preview-img" src="assets/prototypes/case-study-02-product-operations.png" alt="Case Study 2 V1" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v1">Version 1</span>
+            <span class="badge badge-template">Visual Template</span>
+            <span class="filename">case-study-02-product-operations.png</span>
+          </div>
+          <h3 class="card-title">Product Operations — V1 Cream Background</h3>
+          <p class="description">Cream background blends into the portfolio page. Gantt is detailed but too small at card widths.</p>
+        </div>
+        <div class="click-hint">Click to view full size →</div>
+      </div>
+
+      <!-- V3 CS2 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V3 Case Study 2 cover card"
+           onclick="openModal('assets/prototypes/v3/templates/case-study-02-v3-cover.html', 'Case Study 2 — V3 Cover Card', 'V3 cover card: Navy-night background, bold title, simplified Gantt hint. High contrast.', true)"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v3">V3</span></span>
+          <img class="preview-img" src="assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png" alt="Case Study 2 V3 Cover" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v3">Version 3</span>
+            <span class="badge badge-improved">Contrast Fix</span>
+            <span class="badge badge-template">Visual Template</span>
+          </div>
+          <h3 class="card-title">Product Operations — V3 Cover Card</h3>
+          <ul class="changes-list">
+            <li>Navy-night background (was cream) — contrast fix</li>
+            <li>Bold centered title with simplified Gantt hint</li>
+            <li>Cream text on dark background</li>
+            <li>Readable at 500–700px card width</li>
+          </ul>
+        </div>
+        <div class="click-hint">Click to view live template →</div>
+      </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- SECTION 4: CASE STUDY 3 -->
+    <!-- ============================= -->
+    <h2 class="section-title">4. Case Study 3 — System Logic & Access Matrix</h2>
+    <p class="section-description">V3 uses a dark background with heavier grid overlay for a "system matrix" visual feel.</p>
+
+    <div class="comparison-row">
+      <!-- V1 CS3 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V1 Case Study 3 full size"
+           onclick="openModal('assets/prototypes/case-study-03-system-logic.png', 'Case Study 3 — V1', 'Original V1: Light cream-sky gradient with role-permission table and hierarchy card.')"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v1">V1</span></span>
+          <img class="preview-img" src="assets/prototypes/case-study-03-system-logic.png" alt="Case Study 3 V1" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v1">Version 1</span>
+            <span class="badge badge-template">Visual Template</span>
+            <span class="filename">case-study-03-system-logic.png</span>
+          </div>
+          <h3 class="card-title">System Logic — V1 Light Background</h3>
+          <p class="description">Light cream-sky gradient blends into portfolio. Permission table is detailed but unreadable small.</p>
+        </div>
+        <div class="click-hint">Click to view full size →</div>
+      </div>
+
+      <!-- V3 CS3 -->
+      <div class="preview-card" tabindex="0" role="button" aria-label="View V3 Case Study 3 cover card"
+           onclick="openModal('assets/prototypes/v3/templates/case-study-03-v3-cover.html', 'Case Study 3 — V3 Cover Card', 'V3 cover card: Navy-night with heavier grid, bold stat numbers (21 roles, ~400 perms), simplified matrix hint.', true)"
+           onkeydown="if(event.key==='Enter')this.click()">
+        <div class="preview-card-overflow">
+          <span class="version-label"><span class="badge badge-v3">V3</span></span>
+          <img class="preview-img" src="assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png" alt="Case Study 3 V3 Cover" />
+        </div>
+        <div class="preview-info">
+          <div class="preview-meta">
+            <span class="badge badge-v3">Version 3</span>
+            <span class="badge badge-improved">Contrast Fix</span>
+            <span class="badge badge-template">Visual Template</span>
+          </div>
+          <h3 class="card-title">System Logic — V3 Cover Card</h3>
+          <ul class="changes-list">
+            <li>Navy-night background (was cream-sky) — contrast fix</li>
+            <li>Bold stat numbers: 21 roles / ~400 permissions / 3 levels</li>
+            <li>Simplified matrix grid hint</li>
+            <li>Heavier grid overlay for "matrix" visual feel</li>
+          </ul>
+        </div>
+        <div class="click-hint">Click to view live template →</div>
+      </div>
+    </div>
+
+    <!-- Accessibility Notice -->
+    <div class="a11y-info">
+      <h3>Keyboard Accessibility</h3>
+      <p>All cards are focusable with <strong>Tab</strong>. Press <strong>Enter</strong> to open the detail view. Press <strong>Escape</strong> to close the modal. The close button is also keyboard-accessible.</p>
+    </div>
+
+  </div>
+
+  <!-- ============================= -->
+  <!-- MODAL -->
+  <!-- ============================= -->
+  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" id="modalClose" onclick="closeModal()" aria-label="Close modal" tabindex="0">✕</button>
+      <img class="modal-img" id="modalImg" src="" alt="" />
+      <iframe id="modalIframe" style="display:none; width:100%; height:700px; border:none; border-radius: 16px 16px 0 0;" title="Template preview"></iframe>
+      <div class="modal-info">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-desc" id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalIframe = document.getElementById('modalIframe');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalClose = document.getElementById('modalClose');
+    let lastFocusedEl = null;
+
+    function openModal(src, title, desc, isHtml) {
+      lastFocusedEl = document.activeElement;
+
+      if (isHtml) {
+        modalImg.style.display = 'none';
+        modalIframe.style.display = 'block';
+        modalIframe.src = src;
+      } else {
+        modalIframe.style.display = 'none';
+        modalIframe.src = '';
+        modalImg.style.display = 'block';
+        modalImg.src = src;
+        modalImg.alt = title;
+      }
+
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modal.classList.add('active');
+
+      // Focus close button for keyboard users
+      setTimeout(() => modalClose.focus(), 100);
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== modal && e.currentTarget === modal) return;
+      if (e && e.target === modal) {
+        // clicked overlay
+      }
+      modal.classList.remove('active');
+      modalImg.src = '';
+      modalIframe.src = '';
+      modalIframe.style.display = 'none';
+      modalImg.style.display = 'block';
+
+      // Restore focus
+      if (lastFocusedEl) lastFocusedEl.focus();
+    }
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>

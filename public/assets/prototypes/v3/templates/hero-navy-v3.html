@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hero Command Center - Navy V3</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 1000px;
+      background-color: #080E24;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(157, 196, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 196, 255, 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 55% 50%, black, transparent 85%);
+      pointer-events: none;
+    }
+
+    /* Glow overlays */
+    .glow-1 {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      left: 50px;
+      top: -150px;
+      background: radial-gradient(circle, rgba(27, 45, 115, 0.35) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .glow-2 {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: 50px;
+      bottom: -100px;
+      background: radial-gradient(circle, rgba(157, 196, 255, 0.12) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Header Bar */
+    .header-bar {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      height: 44px;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(157, 196, 255, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+      color: rgba(250, 248, 242, 0.85);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #d56f5d; }
+    .dot-yellow { background: #d7aa4a; }
+    .dot-green { background: #68a37d; }
+
+    /* Left Panel — Compact */
+    .left-panel {
+      position: absolute;
+      top: 80px;
+      left: 16px;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Monogram Profile Node */
+    .monogram-card {
+      background: rgba(250, 248, 242, 0.03);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.05);
+    }
+    .monogram-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: #1B2D73;
+      border: 1px solid #9DC4FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FAF8F2;
+      box-shadow: 0 2px 8px rgba(8, 14, 36, 0.2);
+    }
+    .monogram-info h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FAF8F2;
+    }
+    .monogram-info p {
+      margin: 2px 0 0 0;
+      font-size: 10px;
+      color: #9DC4FF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Journey Map — Compact */
+    .journey-map {
+      background: rgba(250, 248, 242, 0.02);
+      border: 1px solid rgba(157, 196, 255, 0.12);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+    .journey-map::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 30px;
+      bottom: 30px;
+      width: 1px;
+      background: rgba(157, 196, 255, 0.15);
+    }
+    .journey-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid rgba(157, 196, 255, 0.35);
+      background: #080E24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #9DC4FF;
+      flex-shrink: 0;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9DC4FF;
+    }
+    .step-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #FAF8F2;
+      margin: 2px 0 0 0;
+    }
+
+    /* Status Strip */
+    .status-strip {
+      display: flex;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(250, 248, 242, 0.02);
+      border: 1px solid rgba(157, 196, 255, 0.1);
+      border-radius: 8px;
+    }
+    .status-chip {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(157, 196, 255, 0.08);
+      border: 1px solid rgba(157, 196, 255, 0.2);
+      color: #9DC4FF;
+    }
+
+    /* Visual Workspace — ENLARGED */
+    .workspace {
+      position: absolute;
+      top: 80px;
+      right: 16px;
+      left: 312px;
+      bottom: 16px;
+      background: rgba(8, 14, 36, 0.45);
+      border: 1px solid rgba(157, 196, 255, 0.15);
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 rgba(250, 248, 242, 0.08);
+      overflow: hidden;
+    }
+
+    /* Desktop Window — ENLARGED */
+    .desktop-window {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 780px;
+      height: 540px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #DFE4E7;
+      box-shadow: 0 16px 40px rgba(8, 14, 36, 0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .win-bar {
+      height: 32px;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .win-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #1B2D73;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .win-meta {
+      font-size: 9px;
+      color: #646670;
+      font-weight: 600;
+    }
+    .win-content {
+      flex: 1;
+      position: relative;
+      background: #FAF8F2;
+    }
+    .win-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Detail Card — Layered */
+    .detail-card {
+      position: absolute;
+      top: 80px;
+      right: 24px;
+      width: 320px;
+      height: 240px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #DFE4E7;
+      box-shadow: 0 20px 48px rgba(8, 14, 36, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 15;
+    }
+    .detail-card .win-content {
+      flex: 1;
+      background: #FAF8F2;
+    }
+    .detail-card .win-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Spec Card — Floating */
+    .spec-card {
+      position: absolute;
+      bottom: 24px;
+      left: 60px;
+      width: 380px;
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-left: 4px solid #273A86;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 12px 28px rgba(8, 14, 36, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 20;
+    }
+    .logic-kicker {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #273A86;
+    }
+    .logic-steps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logic-step {
+      font-size: 11px;
+      font-weight: 600;
+      color: #1B2D73;
+      background: rgba(157, 196, 255, 0.08);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .logic-arrow {
+      font-size: 11px;
+      color: #646670;
+    }
+
+    /* Labels */
+    .tag-label {
+      position: absolute;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.15);
+    }
+    .tag-real {
+      background: rgba(157, 196, 255, 0.95);
+      border: 1px solid #9DC4FF;
+      color: #080E24;
+      bottom: 16px;
+      right: 16px;
+    }
+    .tag-device {
+      background: rgba(8, 14, 36, 0.85);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #FAF8F2;
+      top: 8px;
+      left: 8px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <!-- Header Bar -->
+  <div class="header-bar">
+    <div class="dots">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    <div>Nguyễn Đức Minh Hoàng — Game Product Workspace</div>
+    <div style="color: #9DC4FF;">Navy-Night Mode</div>
+  </div>
+
+  <!-- Left Column — Compact -->
+  <div class="left-panel">
+    <!-- Monogram Node -->
+    <div class="monogram-card">
+      <div class="monogram-badge">NDMH</div>
+      <div class="monogram-info">
+        <h3>Nguyễn Đức Minh Hoàng</h3>
+        <p>BA/PM · Game Product & LiveOps</p>
+      </div>
+    </div>
+
+    <!-- Journey Map -->
+    <div class="journey-map">
+      <div class="journey-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-label">Player Insights</div>
+          <div class="step-title">Analyze behaviors & meta shifts</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-label">Product Logic</div>
+          <div class="step-title">Clarify system rules & states</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-label">Buildable Specs</div>
+          <div class="step-title">Deliver mockups & checklists</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Strip -->
+    <div class="status-strip">
+      <span class="status-chip">Signals</span>
+      <span class="status-chip">Logic</span>
+      <span class="status-chip">Specs</span>
+      <span class="status-chip">Delivery</span>
+    </div>
+  </div>
+
+  <!-- Right Visual Workspace — ENLARGED -->
+  <div class="workspace">
+    <!-- Desktop Mockup — BIGGER -->
+    <div class="desktop-window">
+      <div class="win-bar">
+        <div class="win-title">Engagement Automation Canvas</div>
+        <div class="win-meta">Flow Orchestration Workspace</div>
+      </div>
+      <div class="win-content">
+        <div class="tag-label tag-device">Engagement Automation Workspace</div>
+        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/case-studies/vega-canvas-flow.png" />
+      </div>
+    </div>
+
+    <!-- Detail Card -->
+    <div class="detail-card">
+      <div class="win-bar">
+        <div class="win-title">Performance & Drop-off Analysis</div>
+        <div class="win-meta">CDP Flow Metrics</div>
+      </div>
+      <div class="win-content">
+        <div class="tag-label tag-device">Performance & Drop-off Analysis</div>
+        <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/case-studies/vega-flow-details.png" />
+      </div>
+    </div>
+
+    <!-- Logic Card -->
+    <div class="spec-card">
+      <div class="logic-kicker">Campaign Logic Flow</div>
+      <div class="logic-steps">
+        <span class="logic-step">Trigger</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Segment</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Message</span>
+        <span class="logic-arrow">→</span>
+        <span class="logic-step">Drop-off</span>
+      </div>
+    </div>
+
+    <!-- Real Label -->
+    <div class="tag-label tag-real">Sanitized product artifact</div>
+  </div>
+
+</body>
+</html>

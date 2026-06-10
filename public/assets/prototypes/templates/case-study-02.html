@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Case Study 2 - Product Operations & Feature Delivery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 900px;
+      background-color: #FAF8F2;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(27, 45, 115, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27, 45, 115, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 85%);
+      pointer-events: none;
+    }
+
+    /* Title Panel */
+    .title-panel {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-radius: 8px;
+      padding: 16px 24px;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 20px rgba(8, 14, 36, 0.04);
+    }
+    .kicker {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #1B2D73;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #1B2D73;
+    }
+    .tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #ECEAE5;
+      border: 1px solid #DFE4E7;
+      color: #646670;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    /* Main Tablet Frame Window */
+    .tablet-window {
+      position: absolute;
+      top: 150px;
+      left: 40px;
+      width: 900px;
+      height: 680px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid #DFE4E7;
+      box-shadow: 0 20px 50px rgba(8, 14, 36, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .win-bar {
+      height: 40px;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+    }
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #d56f5d; }
+    .dot-yellow { background: #d7aa4a; }
+    .dot-green { background: #68a37d; }
+    .win-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2D73;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .win-meta {
+      font-size: 10px;
+      color: #646670;
+      font-weight: 600;
+    }
+    
+    /* Gantt chart content */
+    .win-content {
+      flex: 1;
+      padding: 24px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .gantt-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid #DFE4E7;
+      padding-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #646670;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .gantt-timeline-ticks {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      text-align: center;
+    }
+
+    .gantt-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #FAF8F2;
+    }
+    .gantt-task-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .gantt-task-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1B2D73;
+    }
+    .gantt-task-owner {
+      font-size: 11px;
+      color: #646670;
+    }
+    .gantt-bar-area {
+      position: relative;
+      height: 24px;
+      background: #FAF8F2;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .gantt-bar {
+      position: absolute;
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1B2D73 0%, #273A86 100%);
+      box-shadow: 0 2px 4px rgba(27, 45, 115, 0.15);
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+      box-sizing: border-box;
+    }
+    .gantt-bar-text {
+      font-size: 10px;
+      font-weight: 700;
+      color: #FAF8F2;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .gantt-bar.in-progress {
+      background: linear-gradient(90deg, #273A86 0%, #9DC4FF 100%);
+    }
+    .gantt-bar.pending {
+      background: #ECEAE5;
+      border: 1px dashed #DFE4E7;
+    }
+    .gantt-bar.pending .gantt-bar-text {
+      color: #646670;
+    }
+
+    /* Floating Kanban Card */
+    .kanban-card {
+      position: absolute;
+      top: 220px;
+      right: 80px;
+      width: 280px;
+      background: #FFFFFF;
+      border: 1px solid #DFE4E7;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(8, 14, 36, 0.12);
+      border-top: 4px solid #1B2D73;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transform: rotate(2.5deg);
+      z-index: 10;
+    }
+    .kanban-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #DFE4E7;
+      padding-bottom: 8px;
+    }
+    .kanban-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2D73;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .kanban-status {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      background: #68a37d;
+      color: #FFFFFF;
+      border-radius: 3px;
+    }
+    .kanban-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: #FAF8F2;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #DFE4E7;
+    }
+    .kanban-item-id {
+      font-size: 9px;
+      font-weight: 700;
+      color: #646670;
+    }
+    .kanban-item-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    /* Labels */
+    .tag-label {
+      position: absolute;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.06);
+      z-index: 20;
+    }
+    .tag-template {
+      background: #1B2D73;
+      border: 1px solid #1B2D73;
+      color: #FAF8F2;
+      bottom: 40px;
+      right: 40px;
+    }
+    .tag-device {
+      background: rgba(8, 14, 36, 0.85);
+      border: 1px solid rgba(27, 45, 115, 0.15);
+      color: #FAF8F2;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    if (window.location.search.includes('preview')) {
+      const scale = 600 / 1400;
+      document.documentElement.style.transform = `scale(${scale})`;
+      document.documentElement.style.transformOrigin = 'top left';
+      document.documentElement.style.width = '1400px';
+      document.documentElement.style.height = '900px';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  </script>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+
+  <!-- Title Panel -->
+  <div class="title-panel">
+    <div class="kicker">CASE STUDY 02</div>
+    <h1 class="title">Product Operations & Feature Delivery</h1>
+    <div class="tags">
+      <span class="tag">Sprint Planning</span>
+      <span class="tag">UAT Support</span>
+    </div>
+  </div>
+
+  <!-- Main Tablet Frame Window -->
+  <div class="tablet-window">
+    <div class="win-bar">
+      <div class="dots">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="win-title">Product Delivery pipeline</div>
+      <div class="win-meta">Process Visualization</div>
+    </div>
+    <div class="win-content">
+      <div class="tag-label tag-device">Tablet Frame</div>
+      
+      <div class="gantt-header">
+        <div>Pipeline Phase</div>
+        <div class="gantt-timeline-ticks">
+          <span>Sprint 1</span>
+          <span>Sprint 2</span>
+          <span>Sprint 3</span>
+          <span>Sprint 4</span>
+          <span>Sprint 5</span>
+          <span>Sprint 6</span>
+        </div>
+      </div>
+
+      <!-- Discovery -->
+      <div class="gantt-row">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">01. Discovery</span>
+          <span class="gantt-task-owner">Requirements gathering</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar" style="left: 0%; width: 33.3%;">
+            <span class="gantt-bar-text">Completed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow Mapping -->
+      <div class="gantt-row">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">02. Flow Mapping</span>
+          <span class="gantt-task-owner">Logic & dependencies</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar" style="left: 16.6%; width: 33.3%;">
+            <span class="gantt-bar-text">Completed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup -->
+      <div class="gantt-row">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">03. Interface Mockups</span>
+          <span class="gantt-task-owner">Figma UX wireframing</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar" style="left: 33.3%; width: 33.3%;">
+            <span class="gantt-bar-text">Completed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review -->
+      <div class="gantt-row">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">04. Alignment Review</span>
+          <span class="gantt-task-owner">Stakeholder feedback</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar in-progress" style="left: 50%; width: 25%;">
+            <span class="gantt-bar-text">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dev Handoff -->
+      <div class="gantt-row">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">05. Dev Handoff</span>
+          <span class="gantt-task-owner">Backlog alignment & stories</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar pending" style="left: 66.6%; width: 20%;">
+            <span class="gantt-bar-text">Scheduled</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QA -->
+      <div class="gantt-row" style="border-bottom: none;">
+        <div class="gantt-task-info">
+          <span class="gantt-task-name">06. QA & UAT Checks</span>
+          <span class="gantt-task-owner">Acceptance verification</span>
+        </div>
+        <div class="gantt-bar-area">
+          <div class="gantt-bar pending" style="left: 83.3%; width: 16.6%;">
+            <span class="gantt-bar-text">Scheduled</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Supporting Overlay Kanban Card -->
+  <div class="kanban-card">
+    <div class="kanban-header">
+      <span class="kanban-title">Jira User Story</span>
+      <span class="kanban-status">UAT READY</span>
+    </div>
+    <div class="kanban-item">
+      <span class="kanban-item-id">VEGA-142</span>
+      <span class="kanban-item-text">As a Product Manager, I want to review notification trigger events before live release...</span>
+    </div>
+  </div>
+
+  <!-- Visual Template Label -->
+  <div class="tag-label tag-template">Visual template</div>
+
+</body>
+</html>

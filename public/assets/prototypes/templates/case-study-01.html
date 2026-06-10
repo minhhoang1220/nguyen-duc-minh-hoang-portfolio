@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Case Study 1 - Feature Logic & Notification Flow</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1400px;
+      height: 900px;
+      background: linear-gradient(135deg, #173D34 0%, #080E24 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Grid Overlay */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(157, 196, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 196, 255, 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 85%);
+      pointer-events: none;
+    }
+
+    /* Glow Accent */
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -100px;
+      top: -100px;
+      background: radial-gradient(circle, rgba(157, 196, 255, 0.1) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Title Panel */
+    .title-panel {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      background: rgba(250, 248, 242, 0.04);
+      border: 1px solid rgba(250, 248, 242, 0.15);
+      border-radius: 8px;
+      padding: 16px 24px;
+      color: #FAF8F2;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 20px rgba(8, 14, 36, 0.2);
+    }
+    .kicker {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9DC4FF;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #FAF8F2;
+    }
+    .tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .tag {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(157, 196, 255, 0.15);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #9DC4FF;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    /* Main Desktop Window */
+    .desktop-window {
+      position: absolute;
+      top: 150px;
+      left: 40px;
+      width: 900px;
+      height: 680px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid rgba(157, 196, 255, 0.3);
+      box-shadow: 0 20px 50px rgba(8, 14, 36, 0.35);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .win-bar {
+      height: 36px;
+      background: #FAF8F2;
+      border-bottom: 1px solid #DFE4E7;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+    }
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #d56f5d; }
+    .dot-yellow { background: #d7aa4a; }
+    .dot-green { background: #68a37d; }
+    .win-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2D73;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .win-meta {
+      font-size: 10px;
+      color: #646670;
+      font-weight: 600;
+    }
+    .win-content {
+      flex: 1;
+      position: relative;
+      background: #FAF8F2;
+      overflow: hidden;
+    }
+    .win-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 25%;
+      transform: scale(1.15);
+    }
+
+    /* Supporting Overlay Window */
+    .overlay-window {
+      position: absolute;
+      top: 360px;
+      right: 60px;
+      width: 360px;
+      height: 250px;
+      background: #FFFFFF;
+      border-radius: 10px;
+      border: 1px solid #DFE4E7;
+      box-shadow: 0 16px 40px rgba(8, 14, 36, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: rotate(-2deg);
+      z-index: 10;
+    }
+    .overlay-content {
+      flex: 1;
+      overflow: hidden;
+      background: #FAF8F2;
+    }
+    .overlay-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Spec Checklist Note Card */
+    .spec-card {
+      position: absolute;
+      top: 150px;
+      right: 60px;
+      width: 320px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #DFE4E7;
+      border-left: 4px solid #173D34;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(8, 14, 36, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+    }
+    .spec-kicker {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #173D34;
+    }
+    .spec-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1B2D73;
+    }
+    .spec-desc {
+      font-size: 11px;
+      color: #646670;
+      line-height: 1.5;
+    }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #333333;
+    }
+    .spec-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #68a37d;
+    }
+
+    /* Proof Labels */
+    .tag-label {
+      position: absolute;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(8,14,36,0.15);
+      z-index: 20;
+    }
+    .tag-real {
+      background: rgba(157, 196, 255, 0.95);
+      border: 1px solid #9DC4FF;
+      color: #080E24;
+      bottom: 40px;
+      right: 40px;
+    }
+    .tag-device {
+      background: rgba(8, 14, 36, 0.85);
+      border: 1px solid rgba(157, 196, 255, 0.25);
+      color: #FAF8F2;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    if (window.location.search.includes('preview')) {
+      const scale = 600 / 1400;
+      document.documentElement.style.transform = `scale(${scale})`;
+      document.documentElement.style.transformOrigin = 'top left';
+      document.documentElement.style.width = '1400px';
+      document.documentElement.style.height = '900px';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  </script>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <!-- Title Panel -->
+  <div class="title-panel">
+    <div class="kicker">CASE STUDY 01</div>
+    <h1 class="title">Feature Logic & Notification Flow</h1>
+    <div class="tags">
+      <span class="tag">Flow Logic</span>
+      <span class="tag">LiveOps</span>
+    </div>
+  </div>
+
+  <!-- Main Browser Window -->
+  <div class="desktop-window">
+    <div class="win-bar">
+      <div class="dots">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="win-title">cdp-automation-flow-map.png</div>
+      <div class="win-meta">Automation Flow Map</div>
+    </div>
+    <div class="win-content">
+      <div class="tag-label tag-device">Desktop Frame</div>
+      <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/cdp-automation-flow-map.png" />
+    </div>
+  </div>
+
+  <!-- Supporting Overlay Spec Card -->
+  <div class="spec-card">
+    <div class="spec-kicker">Acceptance Criteria</div>
+    <div class="spec-title">Trigger & State Validation</div>
+    <div class="spec-desc">Verify notification event routing:</div>
+    <div class="spec-item">
+      <div class="spec-dot"></div>
+      <span>Player action triggers event state check</span>
+    </div>
+    <div class="spec-item">
+      <div class="spec-dot"></div>
+      <span>Segment conditions filters audience</span>
+    </div>
+    <div class="spec-item">
+      <div class="spec-dot"></div>
+      <span>Failure paths handle push timeouts</span>
+    </div>
+  </div>
+
+  <!-- Supporting Overlay Window (States) -->
+  <div class="overlay-window">
+    <div class="win-bar" style="height: 28px; padding: 0 10px;">
+      <div class="dots">
+        <div class="dot dot-red" style="width:6px; height:6px;"></div>
+        <div class="dot dot-yellow" style="width:6px; height:6px;"></div>
+        <div class="dot dot-green" style="width:6px; height:6px;"></div>
+      </div>
+      <div class="win-title" style="font-size: 9px;">cdp-flow-management-states.png</div>
+    </div>
+    <div class="overlay-content">
+      <div class="tag-label tag-device" style="font-size:8px; padding:4px 6px;">Detail View</div>
+      <img src="file:///d:/Users/Desktop/Work/CV/Portfolio/public/assets/cdp-flow-management-states.png" />
+    </div>
+  </div>
+
+  <!-- Real Proof Label -->
+  <div class="tag-label tag-real">Sanitized product UI</div>
+
+</body>
+</html>

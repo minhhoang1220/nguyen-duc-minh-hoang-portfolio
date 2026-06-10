@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { AssetImage, HeroArtifact, PortfolioContent } from "../data/portfolio";
+import type { AssetImage, HeroArtifact, HeroJourneyStep, PortfolioContent } from "../data/portfolio";
 import { preloadImage } from "../utils/preloadImage";
 import CvLink from "./CvLink";
 
@@ -23,7 +23,7 @@ function Hero({
   onImageOpen,
 }: HeroProps) {
   const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
-  const supportingArtifacts = hero.artifacts.filter((artifact) => artifact !== mainArtifact);
+  const heroShellRef = useRef<HTMLElement | null>(null);
   const artifactStageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -36,8 +36,8 @@ function Hero({
     const updateArtifactMotion = () => {
       frame = 0;
       const progress = Math.min(Math.max(window.scrollY / 620, 0), 1);
-      node.style.setProperty("--hero-artifact-y", `${progress * 18}px`);
-      node.style.setProperty("--hero-artifact-scale", `${1 - progress * 0.025}`);
+      node.style.setProperty("--hero-artifact-y", `${progress * 16}px`);
+      node.style.setProperty("--hero-artifact-scale", `${1 - progress * 0.02}`);
     };
 
     const requestUpdate = () => {
@@ -61,55 +61,108 @@ function Hero({
     };
   }, []);
 
+  useEffect(() => {
+    const node = heroShellRef.current;
+    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    let frame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+
+    const updatePointerMotion = () => {
+      frame = 0;
+      node.style.setProperty("--hero-pointer-x", pointerX.toFixed(3));
+      node.style.setProperty("--hero-pointer-y", pointerY.toFixed(3));
+      node.style.setProperty("--hero-shift-x", `${pointerX * 8}px`);
+      node.style.setProperty("--hero-shift-y", `${pointerY * 5}px`);
+      node.style.setProperty("--hero-tilt-x", `${pointerY * -1.4}deg`);
+      node.style.setProperty("--hero-tilt-y", `${pointerX * 1.8}deg`);
+    };
+
+    const requestPointerUpdate = (event: PointerEvent) => {
+      const rect = node.getBoundingClientRect();
+      pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+
+      if (!frame) {
+        frame = window.requestAnimationFrame(updatePointerMotion);
+      }
+    };
+
+    const resetPointer = () => {
+      pointerX = 0;
+      pointerY = 0;
+      if (!frame) {
+        frame = window.requestAnimationFrame(updatePointerMotion);
+      }
+    };
+
+    node.addEventListener("pointermove", requestPointerUpdate, { passive: true });
+    node.addEventListener("pointerleave", resetPointer);
+
+    return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+      node.removeEventListener("pointermove", requestPointerUpdate);
+      node.removeEventListener("pointerleave", resetPointer);
+    };
+  }, []);
+
   return (
     <section
+      ref={heroShellRef}
       id="home"
-      className="section-hero relative overflow-hidden border-b border-line py-14 md:py-18 lg:min-h-[calc(100vh-72px)] lg:py-16"
+      className="section-hero hero-command-center relative overflow-hidden border-b border-line py-10 md:py-12 lg:min-h-[calc(100vh-72px)] lg:py-10"
       aria-labelledby="hero-title"
     >
-      <div className="container-wide grid min-w-0 items-center gap-12 lg:grid-cols-[0.88fr_1.12fr] xl:gap-16">
-        <div className="min-w-0 max-w-3xl">
-          <div className="signature-card">
-            <p
-              className="text-[23px] font-semibold leading-tight tracking-[0.01em] text-cream sm:text-[26px] md:text-[30px]"
-              aria-label={personal.name}
-            >
-              {personal.name.split(" ").map((word, index) => (
-                <span
-                  key={`${word}-${index}`}
-                  className="hero-name-word mr-[0.22em] last:mr-0"
-                  aria-hidden="true"
-                  style={{ animationDelay: `${180 + index * 70}ms` }}
-                >
-                  {word}
-                </span>
-              ))}
-            </p>
-            <p className="max-w-xl text-xs font-semibold uppercase tracking-[0.12em] text-sky md:text-sm">{personal.shortRole}</p>
+      <div className="hero-command-backdrop" aria-hidden="true" />
+      <div className="container-wide hero-command-layout grid min-w-0 items-start gap-9 lg:grid-cols-[0.9fr_1.1fr] xl:gap-12">
+        <div className="hero-copy-stack min-w-0 max-w-3xl">
+          <div className="command-identity">
+            <span className="command-monogram" aria-hidden="true">
+              NDMH
+            </span>
+            <div className="min-w-0">
+              <p className="text-[22px] font-semibold leading-tight text-navy sm:text-[26px] md:text-[30px]" aria-label={personal.name}>
+                {personal.name.split(" ").map((word, index) => (
+                  <span
+                    key={`${word}-${index}`}
+                    className="hero-name-word mr-[0.22em] last:mr-0"
+                    aria-hidden="true"
+                    style={{ animationDelay: `${160 + index * 65}ms` }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </p>
+              <p className="mt-2 max-w-xl text-xs font-bold uppercase tracking-[0.12em] text-navy-accent md:text-sm">{personal.shortRole}</p>
+            </div>
           </div>
-          <p className="mb-6 max-w-2xl text-base font-medium leading-7 text-muted md:text-lg">{hero.roleLine}</p>
+
+          <p className="command-role-line">{hero.roleLine}</p>
           <h1
             id="hero-title"
-            className="text-balance text-[clamp(2.1rem,5.2vw,3.65rem)] font-semibold leading-[1.06] text-navy"
+            className="text-balance text-[clamp(2.15rem,4.2vw,3.45rem)] font-semibold leading-[1.04] text-navy"
           >
             <HighlightedHeadline text={hero.headline} />
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
-          <ul className="mt-5 max-w-2xl space-y-2 border-l-2 border-navy pl-4 text-sm font-semibold leading-6 text-navy md:text-base">
-            {hero.focusItems.map((item) => (
-              <li key={item} className="flex gap-2">
-                <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a className="btn-primary" href="#case-studies" aria-label={hero.ctas.caseStudies}>
               {hero.ctas.caseStudies}
             </a>
+            <a className="btn-secondary" href="#game-direction" aria-label={hero.ctas.gameDirection}>
+              {hero.ctas.gameDirection}
+            </a>
+          </div>
+
+          <div className="command-secondary-links">
             <CvLink
-              className="btn-secondary"
+              className="command-text-link"
               href={personal.cv}
               email={personal.email}
               ariaLabel={cvDownloadAria}
@@ -117,50 +170,105 @@ function Hero({
             >
               {hero.ctas.cv}
             </CvLink>
-            <a className="btn-ghost" href={personal.linkedin} aria-label={linkedinAria} target="_blank" rel="noreferrer">
+            <a className="command-text-link" href={personal.linkedin} aria-label={linkedinAria} target="_blank" rel="noreferrer">
               {hero.ctas.linkedin}
             </a>
           </div>
+          <p className="command-compact-trust">{hero.trustHint}</p>
+
+          <div className="hidden 2xl:block">
+            <HeroSignalPanel usp={hero.usp} focusItems={hero.focusItems} trustHint={hero.trustHint} />
+          </div>
         </div>
 
-        <div ref={artifactStageRef} className="hero-stage hero-artifact-scroll" aria-label={hero.artifactAria}>
-          {mainArtifact?.type === "image" ? (
-            <ArtifactImageButton
-              artifact={mainArtifact}
-              className="hero-main-artifact"
-              imageClassName="object-cover object-top"
-              showCaption
-              openArtifactLabel={openArtifactLabel}
-              onImageOpen={onImageOpen}
-            />
-          ) : null}
+        <div ref={artifactStageRef} className="hero-command-visual" aria-label={hero.artifactAria}>
+          <div className="command-visual-topline">
+            <span className="flex items-center gap-1.5" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span>{hero.visual.topLabel}</span>
+            <span>{hero.visual.proofLabel}</span>
+          </div>
 
-          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-            {supportingArtifacts.map((artifact) => {
-              if (artifact.type === "image") {
-                const supportImageClass = artifact.image.src.includes("cdp-flow-report")
-                  ? "object-cover object-[center_18%]"
-                  : "object-cover object-top";
+          <div className="command-center-grid">
+            <div className="command-center-left">
+              <CommandJourney journey={hero.journey} />
+            </div>
 
-                return (
+            <div className="command-center-right">
+              <div className="command-artifact-heading">
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{hero.visual.artifactStackLabel}</p>
+                <p className="text-sm font-semibold leading-6 text-cream/85">{hero.visual.anonymizedLabel}</p>
+              </div>
+
+              <div className="command-device-stage">
+                {mainArtifact?.type === "image" ? (
                   <ArtifactImageButton
-                    key={artifact.title}
-                    artifact={artifact}
-                    className="hero-support-artifact"
-                    imageClassName={supportImageClass}
-                    showCaption={false}
+                    artifact={mainArtifact}
+                    className="hero-main-artifact command-main-artifact command-device-desktop"
+                    imageClassName="object-cover object-top"
+                    showCaption
+                    deviceLabel={hero.visual.desktopLabel}
                     openArtifactLabel={openArtifactLabel}
                     onImageOpen={onImageOpen}
                   />
-                );
-              }
+                ) : null}
 
-              return <TimelineArtifact key={artifact.title} artifact={artifact} />;
-            })}
+                <CommandTemplateArtifacts visual={hero.visual} />
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
+  );
+}
+
+function HeroSignalPanel({
+  usp,
+  focusItems,
+  trustHint,
+}: {
+  usp: PortfolioContent["hero"]["usp"];
+  focusItems: string[];
+  trustHint: string;
+}) {
+  return (
+    <div className="hero-signal-panel mt-7 max-w-2xl">
+      <div className="hero-signal-head">
+        <p className="trust-card-label">{usp.label}</p>
+        <p className="text-sm font-semibold leading-6 text-navy md:text-base md:leading-7">{usp.statement}</p>
+      </div>
+      <ul className="mt-5 flex flex-wrap gap-2">
+        {focusItems.map((item) => (
+          <li key={item} className="command-focus-chip">
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-5 text-sm font-medium leading-6 text-muted">{trustHint}</p>
+    </div>
+  );
+}
+
+function CommandJourney({ journey }: { journey: HeroJourneyStep[] }) {
+  return (
+    <ol className="command-journey" aria-label="Player signal to delivery artifact journey">
+      {journey.map((step, index) => (
+        <li key={step.label} className="command-journey-step">
+          <span className="command-step-index">0{index + 1}</span>
+          <span className="command-step-line" aria-hidden="true" />
+          <div className="min-w-0">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-sky">{step.label}</p>
+            <h2 className="mt-1 text-base font-semibold leading-tight text-cream">{step.title}</h2>
+            <p className="command-step-body mt-2 text-xs leading-5">{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -169,6 +277,7 @@ function ArtifactImageButton({
   className,
   imageClassName,
   showCaption = false,
+  deviceLabel,
   openArtifactLabel,
   onImageOpen,
 }: {
@@ -176,6 +285,7 @@ function ArtifactImageButton({
   className: string;
   imageClassName: string;
   showCaption?: boolean;
+  deviceLabel?: string;
   openArtifactLabel: string;
   onImageOpen: (image: AssetImage) => void;
 }) {
@@ -190,7 +300,7 @@ function ArtifactImageButton({
         onFocus={() => preloadImage(artifact.image.src)}
       >
         <span className="mb-3 flex items-center justify-between gap-4 border-b border-line pb-3">
-          <span className="artifact-label">{artifact.title}</span>
+          <span className="artifact-label">{deviceLabel ?? artifact.title}</span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">{artifact.meta}</span>
         </span>
         <span className="artifact-media relative block overflow-hidden rounded-md bg-cream">
@@ -211,39 +321,33 @@ function ArtifactImageButton({
   );
 }
 
-function TimelineArtifact({ artifact }: { artifact: Extract<HeroArtifact, { type: "timeline" }> }) {
+function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]["visual"] }) {
   return (
-    <div className="hero-support-artifact rounded-lg border border-line bg-card p-4">
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <span className="artifact-label">{artifact.title}</span>
-        <span className="text-[11px] font-semibold text-muted">{artifact.meta}</span>
-      </div>
-      <div className="space-y-3">
-        {artifact.phases.map((phase, phaseIndex) => (
-          <div key={phase} className="grid grid-cols-[92px_1fr] items-center gap-3 text-[11px] font-semibold text-navy">
-            <span className="truncate text-muted">{phase}</span>
-            <span className="relative h-6 bg-cream">
-              <span
-                className="absolute top-1/2 h-2.5 -translate-y-1/2 bg-navy"
-                style={{
-                  left: `${Math.min(phaseIndex * 12, 66)}%`,
-                  width: `${phaseIndex % 2 === 0 ? 32 : 24}%`,
-                }}
-              />
-            </span>
-          </div>
-        ))}
+    <div className="command-template-layer" aria-label={visual.visualTemplateLabel}>
+      <div className="command-note-overlay command-template-card">
+        <p>{visual.noteLabel}</p>
+        <strong>Campaign Logic</strong>
+        <span>Trigger → Segment → Message → Drop-off</span>
+        <div className="note-screen-lines" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </div>
       </div>
     </div>
   );
 }
 
 function HighlightedHeadline({ text }: { text: string }) {
-  const target = text.includes("clear product flows")
-    ? "clear product flows"
-    : text.includes("product flow rõ ràng")
-      ? "product flow rõ ràng"
-      : "";
+  const target =
+    [
+      "delivery-ready product artifacts",
+      "artifact sản phẩm sẵn sàng triển khai",
+      "Game Product and Operations",
+      "Game Product và Operations",
+      "clear product flows",
+      "product flow rõ ràng",
+    ].find((phrase) => text.includes(phrase)) ?? "";
 
   if (!target) {
     return <>{text}</>;
