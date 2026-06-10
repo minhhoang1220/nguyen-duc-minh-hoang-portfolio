@@ -16,17 +16,10 @@ function Footer({ personal, footer }: FooterProps) {
         </div>
 
         <div className="grid gap-5 lg:justify-items-end lg:text-right">
-          <nav className="footer-links" aria-label={footer.linksLabel}>
-            <a href={`mailto:${personal.email}`}>Email</a>
-            <a href={personal.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <a href={personal.cv}>Download CV</a>
-          </nav>
           <div className="flex max-w-xl flex-col gap-2 text-cream/75">
-          <p>{footer.location}</p>
-          <p>{footer.techStack}</p>
-          <p className="text-xs leading-5 text-cream/55">{footer.vibeNote}</p>
+            <p>{footer.location}</p>
+            <p>{footer.techStack}</p>
+            <p className="text-xs leading-5 text-cream/55">{footer.vibeNote}</p>
           </div>
         </div>
       </div>

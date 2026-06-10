@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import ProductNotes from "./components/ProductNotes";
+import ProductSamples from "./components/ProductSamples";
 import ProductProof from "./components/ProductProof";
 import ProofSnapshot from "./components/ProofSnapshot";
 import ProjectCard from "./components/ProjectCard";
@@ -115,14 +115,14 @@ function App() {
 
             <Reveal>
               <div className="mt-20 border-t border-line pt-12">
-                <div className="grid gap-6 lg:grid-cols-[0.28fr_0.72fr] lg:items-start">
-                  <p className="section-kicker text-navy">{portfolio.sections.projects.eyebrow}</p>
+                <div className="grid gap-6 lg:grid-cols-[0.2fr_0.8fr] lg:items-start">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{portfolio.sections.projects.eyebrow}</p>
                   <div>
-                    <h2 className="section-title max-w-4xl text-navy">
+                    <h2 className="section-title max-w-none w-full text-navy text-balance">
                       {portfolio.sections.projects.title}
                     </h2>
                     {portfolio.sections.projects.description ? (
-                      <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg md:leading-8">
+                      <p className="mt-5 max-w-3xl text-base leading-7 text-muted md:text-lg md:leading-8 text-pretty">
                         {portfolio.sections.projects.description}
                       </p>
                     ) : null}
@@ -180,7 +180,7 @@ function App() {
           <SkillsMatrix process={portfolio.process} approach={portfolio.approach} skillGroups={portfolio.skillGroups} />
         </Reveal>
         <Reveal>
-          <ProductNotes content={portfolio.productNotes} />
+          <ProductSamples content={portfolio.productNotes} />
         </Reveal>
         <Reveal>
           <Contact

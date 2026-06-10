@@ -37,6 +37,7 @@ export type HeroArtifact =
 export type ProofStat = {
   value: string;
   label: string;
+  subtitle?: string;
 };
 
 export type HeroUsp = {
@@ -383,13 +384,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
   en: {
     navigation: [
       { label: "Home", href: "#home" },
-      { label: "Game Direction", href: "#game-direction" },
       { label: "Case Studies", href: "#case-studies" },
-      { label: "Projects", href: "#projects" },
+      { label: "Selected Projects", href: "#projects" },
       { label: "About", href: "#about" },
       { label: "Experience", href: "#experience" },
-      { label: "How I Think", href: "#skills" },
-      { label: "Product Notes", href: "#product-notes" },
+      { label: "Mindset", href: "#mindset" },
+      { label: "Product Samples", href: "#product-samples" },
       { label: "Contact", href: "#contact" },
     ],
     personal: {
@@ -529,12 +529,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "In numbers",
       title: "Measured artifacts, not abstract traits.",
       stats: [
-        { value: "65+", label: "Figma screens / feature states across CDP modules" },
-        { value: "21", label: "Roles mapped in permission logic" },
-        { value: "~400", label: "Permissions structured for access control" },
-        { value: "3-4", label: "Features planned per sprint" },
-        { value: "8-10", label: "Tasks coordinated per sprint" },
-        { value: "~5", label: "Bugs found per sprint before UAT" },
+        { value: "65+", label: "Feature screens / product states", subtitle: "Structured across CDP and customer-service modules" },
+        { value: "21", label: "User roles", subtitle: "Mapped in permission and access-control logic" },
+        { value: "~400", label: "Permission points", subtitle: "Structured for system governance" },
+        { value: "3-4", label: "Features per sprint", subtitle: "Planned and coordinated in delivery cycles" },
+        { value: "8-10", label: "Tasks per sprint", subtitle: "Coordinated across developer handoff" },
+        { value: "~5", label: "Bugs before UAT", subtitle: "Detected and clarified before release validation" },
       ],
     },
     about: {
@@ -593,7 +593,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "These cases focus on interaction flows, system logic, access-control rules, and backlog readiness as evidence of structured feature delivery.",
       },
       projects: {
-        eyebrow: "Supporting Projects",
+        eyebrow: "Selected Projects",
         title: "Additional proof across UX, analytics, and research depth.",
         description:
           "These projects show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
@@ -822,22 +822,22 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           label: "Product delivery evidence",
           title: "Vega Fintech Feature Release",
           body:
-            "Demonstrated core business analysis execution, from creating mockup flows to sprint coordination and pre-UAT validation checks.",
+            "Demonstrated core business analysis execution, from mapping detailed user flows and defining mockups to coordinating sprint releases and performing pre-UAT validation checks.",
           evidence: [
-            "65+ Figma screens & states structured",
-            "21 roles / ~400 permission points mapped",
-            "Sprint delivery & pre-UAT validation checks",
+            "Sprint delivery coordination & tracking",
+            "Pre-UAT validation checklists",
+            "Functional spec mapping and reviews",
           ],
           logo: assets.vegaLogo,
         },
         {
-          label: "Confidentiality boundary",
-          title: "Visual template & process artifacts",
+          label: "Public Work Boundary",
+          title: "Logic design without system exposure",
           body:
             "Product features and system rules are presented using visual templates and high-contrast previews to demonstrate logic design without exposing private business configurations.",
           evidence: [
-            "Process artifacts sanitized for public review",
-            "Operational framework models used to verify logic design",
+            "Process artifacts prepared for public review",
+            "Operational framework models to verify logic",
           ],
           logo: assets.vegaLogo,
         },
@@ -886,6 +886,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Shows how user needs are mapped into clear screen structures, logical navigation, and interactive flows.",
         tags: ["Product Flow", "Mockups", "UX Logic", "Content Structure"],
+        logo: assets.vnuIsLogo,
       },
       {
         title: "Sales Performance Dashboard",
@@ -1065,11 +1066,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     productNotes: {
-      eyebrow: "Product Notes",
+      eyebrow: "Product Samples",
       title: "Writing sample for structured product thinking.",
       description:
-        "A lightweight note signal, not a published blog. It shows how I explain BA/Product reasoning in a concise, reviewable format.",
-      noteLabel: "Writing sample / Draft note",
+        "A lightweight product sample showing how I explain BA/Product reasoning in a concise, reviewable format.",
+      noteLabel: "Product Sample / Draft Note",
       noteTitle: "How I turn vague requirements into product flows",
       notePreview:
         "A short note on how I clarify context, map flows, identify edge cases, and turn product logic into artifacts that teams can discuss and build from.",
@@ -1106,10 +1107,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "FPS",
         "Battle royale",
         "Auto-battler",
-        "Card games",
         "Strategy games",
         "Competitive multiplayer systems",
-        "Ranked systems",
         "Live-service events",
         "Progression and reward loops",
         "Meta shifts",
@@ -1144,13 +1143,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
   vi: {
     navigation: [
       { label: "Trang chủ", href: "#home" },
-      { label: "Định hướng game", href: "#game-direction" },
       { label: "Case Studies", href: "#case-studies" },
-      { label: "Dự án", href: "#projects" },
+      { label: "Dự án tiêu biểu", href: "#projects" },
       { label: "Giới thiệu", href: "#about" },
       { label: "Kinh nghiệm", href: "#experience" },
-      { label: "Cách tiếp cận", href: "#skills" },
-      { label: "Ghi chú", href: "#product-notes" },
+      { label: "Tư duy", href: "#mindset" },
+      { label: "Sản phẩm mẫu", href: "#product-samples" },
       { label: "Liên hệ", href: "#contact" },
     ],
     personal: {
@@ -1290,12 +1288,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Số liệu nổi bật",
       title: "Bằng chứng cụ thể, không chỉ là mô tả năng lực.",
       stats: [
-        { value: "65+", label: "Màn hình / trạng thái tính năng Figma trong các module CDP" },
-        { value: "21", label: "Vai trò được mapping trong permission logic" },
-        { value: "~400", label: "Quyền hạn được cấu trúc cho access control" },
-        { value: "3-4", label: "Feature được lập kế hoạch mỗi sprint" },
-        { value: "8-10", label: "Task được điều phối mỗi sprint" },
-        { value: "~5", label: "Bug phát hiện mỗi sprint trước UAT" },
+        { value: "65+", label: "Màn hình tính năng / trạng thái", subtitle: "Cấu trúc qua các module CDP & chăm sóc khách hàng" },
+        { value: "21", label: "Vai trò người dùng", subtitle: "Thiết lập trong logic phân quyền & kiểm soát truy cập" },
+        { value: "~400", label: "Điểm quyền hạn", subtitle: "Cấu trúc chặt chẽ phục vụ quản trị hệ thống" },
+        { value: "3-4", label: "Tính năng mỗi sprint", subtitle: "Lập kế hoạch và điều phối trong các chu kỳ bàn giao" },
+        { value: "8-10", label: "Task mỗi sprint", subtitle: "Phân phối nhịp nhàng trong quy trình dev handoff" },
+        { value: "~5", label: "Lỗi trước UAT", subtitle: "Phát hiện và làm rõ trước khi nghiệm thu phát hành" },
       ],
     },
     about: {
@@ -1354,7 +1352,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Các case study này tập trung vào sơ đồ tương tác, logic hệ thống, quy tắc phân quyền và tính sẵn sàng bàn giao thay vì trình bày mang tính hình thức.",
       },
       projects: {
-        eyebrow: "Dự án hỗ trợ",
+        eyebrow: "Dự án tiêu biểu",
         title: "Bằng chứng bổ sung qua UX, analytics và chiều sâu nghiên cứu.",
         description:
           "Các dự án này nhẹ hơn case study chính. Chúng thể hiện kỹ năng có thể chuyển đổi: cấu trúc web/UX, KPI storytelling và analytical decision support.",
@@ -1583,22 +1581,22 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           label: "Bằng chứng bàn giao",
           title: "Vega Fintech Feature Release",
           body:
-            "Minh chứng năng lực phân tích nghiệp vụ thực tế, từ thiết kế sơ đồ luồng người dùng đến điều phối sprint và kiểm thử pre-UAT.",
+            "Minh chứng năng lực phân tích nghiệp vụ thực tế qua việc vẽ sơ đồ luồng người dùng chi tiết, mô phỏng giao diện, phối hợp sprint và thực hiện kiểm thử nghiệm thu pre-UAT.",
           evidence: [
-            "65+ screens / trạng thái tính năng Figma",
-            "21 vai trò / ~400 quyền hạn được cấu trúc",
-            "Sprint delivery & pre-UAT validation checks",
+            "Điều phối & theo sát sprint bàn giao",
+            "Xây dựng checklist kiểm thử pre-UAT",
+            "Mô tả tài liệu đặc tả chức năng",
           ],
           logo: assets.vegaLogo,
         },
         {
-          label: "Giới hạn bảo mật",
-          title: "Tài liệu quy trình & cấu trúc hệ thống",
+          label: "Giới hạn công việc công khai",
+          title: "Thiết kế logic không lộ hệ thống",
           body:
-            "Các tính năng sản phẩm và quy tắc hệ thống được thể hiện qua sơ đồ logic và preview trực quan nhằm minh họa tư duy thiết kế mà không làm lộ cấu hình doanh nghiệp.",
+            "Các tính năng và quy tắc nghiệp vụ được trình bày qua các mẫu trực quan nhằm minh họa tư duy thiết kế mà không làm lộ cấu hình doanh nghiệp.",
           evidence: [
-            "Các quy trình bàn giao được chuẩn hóa rõ ràng",
-            "Mô hình vận hành trực quan hóa để xác thực logic",
+            "Tài liệu quy trình chuẩn hóa công khai",
+            "Mô hình vận hành trực quan hóa logic",
           ],
           logo: assets.vegaLogo,
         },
@@ -1647,6 +1645,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         relevance:
           "Cho thấy cách nhu cầu người dùng có thể trở thành navigation, screen structure và content flow cụ thể.",
         tags: ["Product Flow", "Mockups", "UX Logic", "Cấu trúc nội dung"],
+        logo: assets.vnuIsLogo,
       },
       {
         title: "Sales Performance Dashboard",
@@ -1824,11 +1823,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     productNotes: {
-      eyebrow: "Ghi chú sản phẩm",
-      title: "Mẫu viết thể hiện tư duy sản phẩm có cấu trúc.",
+      eyebrow: "Sản phẩm mẫu",
+      title: "Tài liệu mẫu thể hiện tư duy sản phẩm có cấu trúc.",
       description:
-        "Tài liệu tóm tắt ngắn gọn thể hiện phương pháp phân tích, tư duy hệ thống và cách tôi giải quyết các bài toán sản phẩm thực tế.",
-      noteLabel: "Ghi chú chức năng",
+        "Tài liệu mẫu tóm tắt ngắn gọn thể hiện phương pháp phân tích, tư duy hệ thống và cách tôi giải quyết các bài toán sản phẩm thực tế.",
+      noteLabel: "Tài liệu mẫu / Ghi chú sản phẩm",
       noteTitle: "Cách tôi biến yêu cầu mơ hồ thành product flow rõ ràng",
       notePreview:
         "Một ghi chú ngắn về cách tôi làm rõ bối cảnh, map flow, xác định edge case và chuyển product logic thành các tài liệu kỹ thuật để team phát triển triển khai.",
@@ -1865,10 +1864,8 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "FPS",
         "Battle royale",
         "Auto-battler",
-        "Card games",
         "Strategy games",
         "Competitive multiplayer systems",
-        "Ranked systems",
         "Live-service events",
         "Progression và reward loops",
         "Meta shifts",

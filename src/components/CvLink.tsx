@@ -1,11 +1,10 @@
-import { useState } from "react";
-import type { MouseEvent } from "react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 
 type CvLinkProps = {
   href: string;
   email: string;
   className: string;
-  children: string;
+  children: ReactNode;
   ariaLabel?: string;
   fallbackMessage: string;
 };
@@ -36,7 +35,7 @@ function CvLink({ href, email, className, children, ariaLabel, fallbackMessage }
 
   return (
     <span className="block">
-      <a className={className} href={href} onClick={handleClick} aria-label={ariaLabel ?? children} download>
+      <a className={className} href={href} onClick={handleClick} aria-label={ariaLabel} download>
         {children}
       </a>
       {status ? (

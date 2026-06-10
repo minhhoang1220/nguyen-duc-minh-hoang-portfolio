@@ -266,9 +266,7 @@ img {
     --hero-tilt-x: 0deg;
     --hero-tilt-y: 0deg;
     isolation: isolate;
-    background:
-      radial-gradient(circle at 88% 16%, rgba(157, 196, 255, 0.14), transparent 30%),
-      linear-gradient(135deg, #fffdf8 0%, #faf8f2 58%, #f3f6f8 100%);
+    background: linear-gradient(180deg, #080e24 0%, #1b2d73 100%);
   }
 
   .hero-command-backdrop {
@@ -284,8 +282,8 @@ img {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(27, 45, 115, 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(27, 45, 115, 0.055) 1px, transparent 1px);
+      linear-gradient(rgba(157, 196, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(157, 196, 255, 0.07) 1px, transparent 1px);
     background-size: 52px 52px;
     opacity: 0.6;
     mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.48) 58%, transparent 100%);
@@ -786,7 +784,7 @@ img {
   }
 
   .case-artifact-tags span {
-    @apply inline-flex max-w-full rounded-sm border border-navy/15 bg-sky/25 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.08em] text-navy;
+    @apply inline-flex max-w-full rounded-sm border border-sky/30 bg-sky/15 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.08em] text-sky transition duration-300 hover:border-sky/60 hover:bg-sky/25;
   }
 
   .case-snapshot-item {

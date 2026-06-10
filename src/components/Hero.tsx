@@ -118,22 +118,22 @@ function Hero({
     <section
       ref={heroShellRef}
       id="home"
-      className="section-hero hero-command-center relative overflow-hidden border-b border-line py-10 md:py-12 lg:min-h-[calc(100vh-72px)] lg:py-10"
+      className="section-hero hero-command-center relative overflow-hidden border-b border-cream/15 py-10 md:py-12 lg:min-h-[calc(100vh-72px)] lg:py-10 text-cream"
       aria-labelledby="hero-title"
     >
       <div className="hero-command-backdrop" aria-hidden="true" />
       <div className="container-wide hero-command-layout grid min-w-0 items-start gap-9 lg:grid-cols-[0.95fr_1.05fr] xl:gap-12">
         <div className="hero-copy-stack min-w-0 max-w-3xl">
           <div className="command-identity">
-            <span className="command-monogram" aria-hidden="true">
+            <span className="command-monogram !border-sky/30 !bg-[#162758] !text-sky shadow-glow-blue" aria-hidden="true">
               NDMH
             </span>
             <div className="min-w-0">
-              <p className="text-[22px] font-semibold leading-tight text-navy sm:text-[26px] md:text-[30px]" aria-label={personal.name}>
+              <p className="text-[22px] font-semibold leading-tight text-cream sm:text-[26px] md:text-[30px]" aria-label={personal.name}>
                 {personal.name.split(" ").map((word, index) => (
                   <span
                     key={`${word}-${index}`}
-                    className="hero-name-word mr-[0.22em] last:mr-0"
+                    className="hero-name-word mr-[0.22em] last:mr-0 text-cream"
                     aria-hidden="true"
                     style={{ animationDelay: `${160 + index * 65}ms` }}
                   >
@@ -141,57 +141,76 @@ function Hero({
                   </span>
                 ))}
               </p>
-              <p className="mt-2 max-w-xl text-xs font-bold uppercase tracking-[0.12em] text-navy-accent md:text-sm">{personal.shortRole}</p>
+              <p className="mt-2 max-w-xl text-xs font-bold uppercase tracking-[0.12em] text-sky md:text-sm">{personal.shortRole}</p>
             </div>
           </div>
 
-          <p className="command-role-line">{hero.roleLine}</p>
+          <p className="command-role-line !text-sky/80">{hero.roleLine}</p>
           <h1
             id="hero-title"
-            className="text-balance text-[clamp(2.15rem,4.2vw,3.45rem)] font-semibold leading-[1.04] text-navy"
+            className="text-balance text-[clamp(2.15rem,4.2vw,3.45rem)] font-semibold leading-[1.04] text-cream"
           >
             <HighlightedHeadline text={hero.headline} />
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-ink md:text-lg">{hero.intro}</p>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-cream/80 md:text-lg">{hero.intro}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a className="btn-primary" href="#case-studies" aria-label={hero.ctas.caseStudies}>
+            <a className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-sky bg-sky px-6 py-3 text-base font-semibold text-[#080E24] shadow-md transition duration-300 hover:-translate-y-px hover:bg-sky/90 hover:border-sky/90 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080E24]" href="#case-studies" aria-label={hero.ctas.caseStudies}>
               {hero.ctas.caseStudies}
             </a>
-            <a className="btn-secondary" href="#game-direction" aria-label={hero.ctas.gameDirection}>
-              {hero.ctas.gameDirection}
+            <a className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-cream/30 bg-transparent px-6 py-3 text-base font-medium text-cream transition duration-300 hover:-translate-y-px hover:border-sky hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080E24]" href="#contact" aria-label={hero.ctas.contact}>
+              {hero.ctas.contact}
             </a>
           </div>
 
-          {/* Metrics proof row */}
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6">
-            {[
-              { value: "65+", label: "Figma screens" },
-              { value: "21", label: "User roles" },
-              { value: "~400", label: "Permissions" },
-            ].map((metric) => (
-              <div key={metric.label} className="flex items-baseline gap-2">
-                <span className="text-[22px] font-semibold leading-none text-sky md:text-[26px]">{metric.value}</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{metric.label}</span>
+          {/* Social/Contact block row */}
+          <div className="mt-8 flex flex-wrap gap-4 border-t border-cream/15 pt-6">
+            <a
+              href={personal.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-1 min-w-[140px] items-center gap-3 rounded-lg border border-cream/15 bg-cream/5 px-4 py-3 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-0.5 hover:border-sky/40 hover:bg-cream/10"
+            >
+              <svg className="h-5 w-5 fill-current text-sky shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-cream/55">LinkedIn</span>
+                <span className="text-xs text-cream/90">Connect</span>
               </div>
-            ))}
-          </div>
+            </a>
 
-          <div className="command-secondary-links">
             <CvLink
-              className="command-text-link"
+              className="flex flex-1 min-w-[140px] items-center gap-3 rounded-lg border border-cream/15 bg-cream/5 px-4 py-3 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-0.5 hover:border-sky/40 hover:bg-cream/10 focus:outline-none"
               href={personal.cv}
               email={personal.email}
               ariaLabel={cvDownloadAria}
               fallbackMessage={cvFallback}
             >
-              {hero.ctas.cv}
+              <svg className="h-5 w-5 fill-none stroke-current text-sky stroke-2 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-cream/55">Download CV</span>
+                <span className="text-xs text-cream/90">Resume PDF</span>
+              </div>
             </CvLink>
-            <a className="command-text-link" href={personal.linkedin} aria-label={linkedinAria} target="_blank" rel="noreferrer">
-              {hero.ctas.linkedin}
+
+            <a
+              href={`mailto:${personal.email}`}
+              className="flex flex-1 min-w-[140px] items-center gap-3 rounded-lg border border-cream/15 bg-cream/5 px-4 py-3 text-sm font-semibold text-cream transition duration-300 hover:-translate-y-0.5 hover:border-sky/40 hover:bg-cream/10"
+            >
+              <svg className="h-5 w-5 fill-none stroke-current text-sky stroke-2 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-cream/55">Email</span>
+                <span className="text-xs text-cream/90 truncate max-w-[130px]">{personal.email}</span>
+              </div>
             </a>
           </div>
-          <p className="command-compact-trust">{hero.trustHint}</p>
+
+          <p className="command-compact-trust !text-cream/60 !border-sky/50 mt-6">{hero.trustHint}</p>
         </div>
 
         <div ref={artifactStageRef} className="hero-command-visual" aria-label={hero.artifactAria}>

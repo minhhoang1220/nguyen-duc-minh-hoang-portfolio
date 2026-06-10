@@ -11,11 +11,11 @@ type ProductProofProps = {
 function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: ProductProofProps) {
   return (
     <div>
-      <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
-        <p className="section-kicker text-navy">{proof.eyebrow}</p>
+      <div className="grid gap-8 lg:grid-cols-[0.2fr_0.8fr] lg:gap-12">
+        <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{proof.eyebrow}</p>
         <div>
-          <h2 id={titleId} className="section-title max-w-5xl text-navy">{proof.title}</h2>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg">{proof.description}</p>
+          <h2 id={titleId} className="section-title max-w-none w-full text-navy text-balance">{proof.title}</h2>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-muted md:text-lg text-pretty">{proof.description}</p>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
                 <img
                   src={image.previewSrc ?? image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-contain bg-[#f3f6f8] transition duration-700 group-hover:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
                 />

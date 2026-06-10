@@ -14,7 +14,7 @@ function About({ content }: AboutProps) {
   return (
     <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #faf8f2 0%, #f0f4f9 40%, #e8eef6 60%, #faf8f2 100%)' }} aria-labelledby="about-title">
       <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-start lg:gap-14">
+        <div className="grid gap-10 lg:grid-cols-[0.32fr_0.68fr] lg:items-start lg:gap-14">
           <div className="min-w-0">
             <ProfileFallback content={content} />
           </div>
@@ -23,11 +23,11 @@ function About({ content }: AboutProps) {
             <p className="section-kicker text-navy">{content.eyebrow}</p>
             <h2
               id="about-title"
-              className="section-title max-w-5xl text-navy"
+              className="section-title max-w-5xl text-navy text-balance"
             >
               {content.title}
             </h2>
-            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9" text={content.body} />
+            <EmphasizedParagraph className="mt-7 max-w-3xl text-base leading-8 text-muted md:text-lg md:leading-9 text-pretty" text={content.body} />
 
             <div className="mt-9 grid gap-4">
               {content.points.map((point, index) => (

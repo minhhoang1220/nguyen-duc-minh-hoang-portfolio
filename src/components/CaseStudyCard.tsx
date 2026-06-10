@@ -49,7 +49,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             <ul className="grid gap-3">
               {caseStudy.evidence.slice(0, 3).map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -134,76 +134,86 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
             <p className="detail-label mb-3">{labels.skills}</p>
             <div className="flex flex-wrap items-start gap-2">
               {caseStudy.skills.map((skill) => (
-                <span key={skill} className="badge shrink-0">
+                <span key={skill} className="inline-flex w-fit max-w-full items-center rounded border border-cream/10 bg-cream/10 px-3 py-1.5 text-xs font-semibold leading-5 text-cream hover:border-sky/40 hover:bg-cream/15 transition duration-300 shrink-0">
                   {skill}
                 </span>
               ))}
             </div>
           </DetailBlock>
+        </div>
 
-          {index === 0 && (
-            <DetailBlock emphasis="medium">
-              <p className="detail-label mb-3">Supporting Visual Artifacts</p>
-              <p className="text-xs text-muted mb-4">Click to view high-resolution work samples:</p>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  {
-                    title: "Flow Canvas",
-                    src: "/assets/case-studies/vega-canvas-flow.png",
-                    previewSrc: "/assets/previews/vega-canvas-flow-preview.png",
-                    alt: "Engagement flow canvas trigger flow layout",
-                  },
-                  {
-                    title: "Drop-off Analytics",
-                    src: "/assets/case-studies/vega-flow-details.png",
-                    previewSrc: "/assets/previews/vega-flow-details-preview.png",
-                    alt: "Funnel drop-off analytics metrics dashboard",
-                  },
-                  {
-                    title: "Messenger Output",
-                    src: "/assets/case-studies/vega-mess-chatbox.png",
-                    previewSrc: "/assets/previews/vega-mess-chatbox-preview.png",
-                    alt: "Messenger chatbox mockup output preview",
-                  },
-                  {
-                    title: "Facebook Segment",
-                    src: "/assets/case-studies/vega-facebook-profile.png",
-                    previewSrc: "/assets/previews/vega-facebook-profile-preview.png",
-                    alt: "Facebook connected target user profile",
-                  },
-                  {
-                    title: "Zalo Notification",
-                    src: "/assets/case-studies/vega-zalo.png",
-                    previewSrc: "/assets/previews/vega-zalo-preview.png",
-                    alt: "Zalo official account notification layout preview",
-                  },
-                ].map((artifact) => (
-                  <button
-                    key={artifact.title}
-                    type="button"
-                    className="flex flex-col text-left rounded border border-line bg-cream overflow-hidden hover:border-navy transition focus:outline-none focus:ring-2 focus:ring-navy"
-                    onClick={() => onImageOpen(artifact)}
-                    onPointerEnter={() => preloadImage(artifact.src)}
-                    onFocus={() => preloadImage(artifact.src)}
-                  >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-white border-b border-line">
-                      <img
-                        src={artifact.previewSrc}
-                        alt={artifact.alt}
-                        className="h-full w-full object-cover object-top"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span className="p-2 text-[10px] font-bold text-navy truncate block w-full">
+        {index === 0 && (
+          <div className="mt-8 border-t border-cream/15 pt-8">
+            <h4 className="text-base font-bold uppercase tracking-[0.1em] text-sky mb-2">Supporting Visual Artifacts</h4>
+            <p className="text-xs text-cream/70 mb-6">Click to view high-resolution work samples:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                {
+                  title: "Flow Canvas",
+                  src: "/assets/case-studies/vega-canvas-flow.png",
+                  previewSrc: "/assets/previews/vega-canvas-flow-preview.png",
+                  alt: "Engagement flow canvas trigger flow layout",
+                  caption: "Campaign builder workspace with trigger & routing blocks.",
+                },
+                {
+                  title: "Drop-off Analytics",
+                  src: "/assets/case-studies/vega-flow-details.png",
+                  previewSrc: "/assets/previews/vega-flow-details-preview.png",
+                  alt: "Funnel drop-off analytics metrics dashboard",
+                  caption: "Funnel drop-off analytics nodes showing event drop rates.",
+                },
+                {
+                  title: "Messenger Output",
+                  src: "/assets/case-studies/vega-mess-chatbox.png",
+                  previewSrc: "/assets/previews/vega-mess-chatbox-preview.png",
+                  alt: "Messenger chatbox mockup output preview",
+                  caption: "Interactive chatbox mockups for target user preview.",
+                },
+                {
+                  title: "Facebook Segment",
+                  src: "/assets/case-studies/vega-facebook-profile.png",
+                  previewSrc: "/assets/previews/vega-facebook-profile-preview.png",
+                  alt: "Facebook connected target user profile",
+                  caption: "Demographic profile parameters mapping segment rules.",
+                },
+                {
+                  title: "Zalo Notification",
+                  src: "/assets/case-studies/vega-zalo.png",
+                  previewSrc: "/assets/previews/vega-zalo-preview.png",
+                  alt: "Zalo official account notification layout preview",
+                  caption: "Official Account message layout template specifications.",
+                },
+              ].map((artifact) => (
+                <button
+                  key={artifact.title}
+                  type="button"
+                  className="flex flex-col text-left rounded border border-cream/10 bg-black/20 overflow-hidden hover:border-sky/40 transition duration-300 focus:outline-none focus:ring-2 focus:ring-sky group/thumb"
+                  onClick={() => onImageOpen(artifact)}
+                  onPointerEnter={() => preloadImage(artifact.src)}
+                  onFocus={() => preloadImage(artifact.src)}
+                >
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/30 border-b border-cream/10">
+                    <img
+                      src={artifact.previewSrc}
+                      alt={artifact.alt}
+                      className="h-full w-full object-contain bg-[#f3f6f8]"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="p-3 flex flex-col justify-between flex-1">
+                    <span className="text-xs font-bold text-cream truncate block w-full">
                       {artifact.title}
                     </span>
-                  </button>
-                ))}
-              </div>
-            </DetailBlock>
-          )}
-        </div>
+                    <span className="text-[10px] text-cream/60 leading-normal mt-1 block">
+                      {artifact.caption}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -230,7 +240,7 @@ function CaseSnapshot({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Por
   return (
     <dl className="case-snapshot-list mt-6 !bg-black/20 !border-white/10">
       {items.map((item) => (
-        <div key={item.label} className="case-snapshot-item">
+        <div key={item.label} className="case-snapshot-item !border-white/10">
           <dt className="case-snapshot-label !text-sky">{item.label}</dt>
           <dd className="case-snapshot-text !text-cream/80">{item.text}</dd>
         </div>
@@ -269,7 +279,7 @@ function ImagePreview({
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
-            className={`h-full w-full transition duration-700 group-hover:scale-[1.04] ${getPreviewImageClass(image.src)}`}
+            className="h-full w-full transition duration-700 group-hover:scale-[1.04] object-contain bg-[#060a18]"
             loading="lazy"
             decoding="async"
           />
@@ -378,7 +388,7 @@ function DetailList({ title, items, emphasis = "low" }: { title: string; items: 
       <ul className="space-y-3.5">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-6 text-cream/85 md:text-base md:leading-7">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-navy" aria-hidden="true" />
+            <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
             <span>{item}</span>
           </li>
         ))}
@@ -452,7 +462,7 @@ function Case1Visual({
         onFocus={() => preloadImage(mainPreview.src)}
       >
         {/* Browser window */}
-        <div className="w-full md:w-[65%] bg-white rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
+        <div className="w-full md:w-[75%] lg:w-[80%] bg-[#faf8f2] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
           <div className="h-7 bg-[#FAF8F2] border-b border-line flex items-center justify-between px-3">
             <div className="flex gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d56f5d]" />
@@ -467,7 +477,7 @@ function Case1Visual({
             <img
               src={mainPreview.previewSrc ?? mainPreview.src}
               alt={mainPreview.alt}
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-contain bg-[#f3f6f8]"
               loading="lazy"
               decoding="async"
             />
