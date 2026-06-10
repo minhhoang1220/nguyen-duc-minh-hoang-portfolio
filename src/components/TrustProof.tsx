@@ -24,7 +24,7 @@ function TrustProof({ content }: TrustProofProps) {
               <div className="flex items-center justify-between gap-2">
                 <p className="trust-card-label">{card.label}</p>
                 {card.logo && (
-                  <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+                  <img src={card.logo} alt="" className="cred-logo-md shrink-0" />
                 )}
               </div>
               <h3 className="mt-5 text-2xl font-semibold leading-tight text-navy">{card.title}</h3>

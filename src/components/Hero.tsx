@@ -155,10 +155,10 @@ function Hero({
           <p className="mt-5 max-w-2xl text-base leading-8 text-cream/80 md:text-lg">{hero.intro}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a className="inline-flex min-h-12 w-fit items-center justify-center rounded-lg border-2 border-sky bg-sky px-6 py-3 text-base font-bold text-[#080E24] shadow-md transition duration-300 hover:-translate-y-px hover:bg-sky/90 hover:border-sky/90 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-2 focus:ring-offset-[#080E24]" href="#case-studies" aria-label={hero.ctas.caseStudies}>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg border-2 border-sky bg-sky px-5 py-2.5 text-sm md:text-base font-bold text-[#080E24] shadow-md transition duration-300 hover:-translate-y-px hover:bg-sky/90 hover:border-sky/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-[#080E24]" href="#case-studies" aria-label={hero.ctas.caseStudies}>
               {hero.ctas.caseStudies}
             </a>
-            <a className="inline-flex min-h-12 w-fit items-center justify-center rounded-lg border-2 border-cream/30 bg-transparent px-6 py-3 text-base font-bold text-cream transition duration-300 hover:-translate-y-px hover:border-sky hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-2 focus:ring-offset-[#080E24]" href="#contact" aria-label={hero.ctas.contact}>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg border-2 border-cream/30 bg-transparent px-5 py-2.5 text-sm md:text-base font-bold text-cream transition duration-300 hover:-translate-y-px hover:border-sky hover:text-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-[#080E24]" href="#contact" aria-label={hero.ctas.contact}>
               {hero.ctas.contact}
             </a>
           </div>
@@ -208,8 +208,8 @@ function Hero({
               </svg>
               <div className="flex flex-col text-left">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">Email</span>
-                <span className="text-xs text-navy hidden md:inline-block">{personal.email}</span>
-                <span className="text-xs text-navy inline-block md:hidden">Email me</span>
+                <span className="text-xs text-navy hidden lg:inline-block">{personal.email}</span>
+                <span className="text-xs text-navy inline-block lg:hidden">Email me</span>
               </div>
             </a>
           </div>

@@ -73,8 +73,8 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria }
                 </svg>
                 <div className="flex flex-col text-left">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">Email</span>
-                  <span className="text-xs text-navy hidden md:inline-block">{personal.email}</span>
-                  <span className="text-xs text-navy inline-block md:hidden">Email me</span>
+                  <span className="text-xs text-navy hidden lg:inline-block">{personal.email}</span>
+                  <span className="text-xs text-navy inline-block lg:hidden">Email me</span>
                 </div>
               </a>
             </div>

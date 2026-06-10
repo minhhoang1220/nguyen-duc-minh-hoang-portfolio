@@ -56,7 +56,7 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
                   <div className="flex items-center justify-between gap-2 border-b border-navy/10 pb-3">
                     <p className="text-[10px] font-extrabold uppercase tracking-wider text-navy-accent">{card.label}</p>
                     {card.logo && (
-                      <img src={card.logo} alt="" className="h-5 w-auto object-contain shrink-0 opacity-90" />
+                      <img src={card.logo} alt="" className="cred-logo-md shrink-0" />
                     )}
                   </div>
                   <h3 className="mt-4 text-lg font-semibold leading-tight text-navy">{card.title}</h3>

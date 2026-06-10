@@ -14,7 +14,7 @@ function GameThinking({ content }: GameThinkingProps) {
             <h2 id="game-direction-title" className="max-w-5xl text-wrap-balance text-[34px] font-semibold leading-[1.05] text-navy md:text-[56px] lg:text-[72px]">
               {content.title}
             </h2>
-            <p className="mt-7 max-w-5xl text-base leading-8 text-ink/80 md:text-lg md:leading-9 text-wrap-pretty text-left">{content.body}</p>
+            <p className="mt-7 lg:max-w-6xl xl:max-w-7xl text-base leading-8 text-ink/80 md:text-lg md:leading-9 text-wrap-pretty text-left">{content.body}</p>
           </div>
         </div>
 

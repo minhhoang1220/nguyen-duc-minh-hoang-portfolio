@@ -23,7 +23,9 @@ function ExperienceCard({ experience, featured = false }: ExperienceCardProps) {
               {experience.company}
             </h3>
             {experience.logo && (
-              <img src={experience.logo} alt="" className="h-6 w-auto object-contain shrink-0" />
+              <div className="logo-dark-bg-wrapper shrink-0">
+                <img src={experience.logo} alt="" className={featured ? "cred-logo-lg" : "cred-logo-md"} />
+              </div>
             )}
           </div>
           <p className={`${featured ? "mt-3 text-lg" : "mt-2 text-base"} font-medium text-cream/90`}>{experience.role}</p>

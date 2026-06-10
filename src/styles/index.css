@@ -1737,8 +1737,8 @@ img {
   display: grid;
   grid-template-columns: 140px repeat(4, 1fr);
   gap: 2px;
-  background: #FAF8F2;
-  border: 1px solid rgba(27, 45, 115, 0.2);
+  background: #0c1535;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   padding: 14px;
   width: 100%;
@@ -1777,7 +1777,7 @@ img {
   align-items: center;
   justify-content: center;
   padding: 6px;
-  border-bottom: 1px solid rgba(27, 45, 115, 0.05);
+  border-bottom: 1px solid rgba(250, 248, 242, 0.08);
 }
 
 .cell-allowed {
@@ -1789,7 +1789,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2e6944;
+  color: #a7f3d0;
   font-size: 10px;
   font-weight: 800;
 }
@@ -1803,9 +1803,37 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #a83c2a;
+  color: #fca5a5;
   font-size: 10px;
   font-weight: 800;
+}
+
+/* --- Credibility Logos Utility Classes --- */
+.cred-logo-sm {
+  height: 24px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+.cred-logo-md {
+  height: 32px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+.cred-logo-lg {
+  height: 40px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+.logo-dark-bg-wrapper {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 4px;
+  padding: 3px 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .command-detail-card {

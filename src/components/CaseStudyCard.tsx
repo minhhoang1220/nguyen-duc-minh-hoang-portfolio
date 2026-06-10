@@ -17,9 +17,9 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
 
   // Premium light cards with a subtle cream/green gradient, navy text, soft shadow, and dark-green accent borders
   const lightThemes = [
-    "bg-gradient-to-br from-[#FCFBF8] to-[#f4f7f5] border-[#1d3f35]/25 text-navy hover:border-[#1d3f35]/40 shadow-minimal",
-    "bg-gradient-to-br from-[#FCFBF8] to-[#f2f6f8] border-[#152752]/25 text-navy hover:border-[#152752]/40 shadow-minimal",
-    "bg-gradient-to-br from-[#FCFBF8] to-[#f5f4f8] border-[#131a38]/25 text-navy hover:border-[#131a38]/40 shadow-minimal",
+    "bg-gradient-to-br from-[#FCFBF8] via-[#f9faf7] to-[#ecf4ef] border-[#1d3f35]/20 text-navy hover:border-[#1d3f35]/45 shadow-sm",
+    "bg-gradient-to-br from-[#FCFBF8] via-[#f9faf7] to-[#ecf4ef] border-[#1d3f35]/20 text-navy hover:border-[#1d3f35]/45 shadow-sm",
+    "bg-gradient-to-br from-[#FCFBF8] via-[#f9faf7] to-[#ecf4ef] border-[#1d3f35]/20 text-navy hover:border-[#1d3f35]/45 shadow-sm",
   ];
   const theme = lightThemes[index % lightThemes.length];
 
@@ -32,7 +32,7 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
               {labels.eyebrow} 0{index + 1}
             </p>
             {caseStudy.logo && (
-              <img src={caseStudy.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+              <img src={caseStudy.logo} alt="" className="cred-logo-md shrink-0" />
             )}
           </div>
           <h3 className="case-study-title max-w-3xl text-wrap-balance text-[30px] font-bold leading-[1.08] md:text-[44px] text-navy">{caseStudy.title}</h3>
@@ -290,11 +290,11 @@ function ImagePreview({
         onPointerEnter={() => preloadImage(image.src)}
         onFocus={() => preloadImage(image.src)}
       >
-        <span className={`case-visual-frame relative block overflow-hidden bg-cream w-full ${compact ? "h-[300px]" : "aspect-[16/10]"}`}>
+        <span className={`case-visual-frame relative block overflow-hidden bg-[#f8fafc] w-full ${compact ? "h-[300px]" : "aspect-[16/10]"}`}>
           <img
             src={image.previewSrc ?? image.src}
             alt={image.alt}
-            className="h-full w-full object-contain bg-[#f3f6f8] transition duration-700 group-hover:scale-[1.04]"
+            className="h-full w-full object-contain bg-[#f8fafc] transition duration-700 group-hover:scale-[1.04]"
             loading="lazy"
             decoding="async"
           />
@@ -448,21 +448,21 @@ function Case1Visual({
   labels: any;
 }) {
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#071f16] to-[#080e24] rounded-xl border border-[#1d3f35]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#071f16] to-[#080e24] rounded-xl border border-[#1d3f35]/30 p-3 md:p-4 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
       
       <button
         type="button"
-        className="relative z-10 w-full flex flex-col md:flex-row gap-6 items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
+        className="relative z-10 w-full flex flex-col md:flex-row gap-5 items-center justify-center text-left focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-4"
         aria-label={`${openArtifactLabel}: ${mainPreview.title}`}
         onClick={() => onImageOpen(mainPreview)}
         onPointerEnter={() => preloadImage(mainPreview.src)}
         onFocus={() => preloadImage(mainPreview.src)}
       >
         {/* Browser window */}
-        <div className="w-full md:flex-1 bg-[#faf8f2] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
-          <div className="h-7 bg-[#FAF8F2] border-b border-line flex items-center justify-between px-3">
+        <div className="w-full md:flex-[2.6] xl:flex-[2.9] bg-[#f8fafc] rounded-lg border border-line shadow-hover overflow-hidden flex flex-col transition duration-500 group-hover:-translate-y-1">
+          <div className="h-7 bg-[#f8fafc] border-b border-line flex items-center justify-between px-3">
             <div className="flex gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d56f5d]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#d7aa4a]" />
@@ -472,11 +472,11 @@ function Case1Visual({
               {labels.artifactPreview ?? "Engagement flow canvas"}
             </span>
           </div>
-          <div className="relative aspect-[16/10] overflow-hidden bg-cream">
+          <div className="relative aspect-[16/10] overflow-hidden bg-[#f8fafc]">
             <img
               src={mainPreview.previewSrc ?? mainPreview.src}
               alt={mainPreview.alt}
-              className="h-full w-full object-contain bg-[#f3f6f8]"
+              className="h-full w-full object-contain bg-[#f8fafc]"
               loading="lazy"
               decoding="async"
             />
@@ -484,7 +484,7 @@ function Case1Visual({
         </div>
 
         {/* Spec hint floating card */}
-        <div className="spec-hint shrink-0 shadow-hover transition duration-500 group-hover:-translate-y-1">
+        <div className="spec-hint shrink-0 md:w-[190px] shadow-hover transition duration-500 group-hover:-translate-y-1">
           <div className="spec-hint-kicker">Key Contributions</div>
           <div className="spec-hint-title">Trigger & State Validation</div>
           <div className="spec-hint-item mt-1">
@@ -540,7 +540,7 @@ function Case2Visual({
   ];
 
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#080E24] to-[#14245F] rounded-xl border border-[#152752]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#080E24] to-[#14245F] rounded-xl border border-[#152752]/30 p-3 md:p-4 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
 
@@ -610,7 +610,7 @@ function Case3Visual({
   ];
 
   return (
-    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-[#131a38]/30 p-4 md:p-6 flex items-center justify-center select-none group w-full">
+    <div className="case-artifact-shell relative overflow-hidden bg-gradient-to-br from-[#0A1233] via-[#080E24] to-[#0D1A40] rounded-xl border border-[#131a38]/30 p-3 md:p-4 flex items-center justify-center select-none group w-full">
       <div className="parity-grid-bg" />
       <div className="parity-glow" />
 

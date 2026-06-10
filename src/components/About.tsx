@@ -91,7 +91,7 @@ function EducationBlock({ content }: AboutProps) {
       <div className="flex items-center justify-between gap-2 border-b border-line pb-2 mb-3">
         <p className="detail-label m-0">{content.educationLabel}</p>
         {content.education.logo && (
-          <img src={content.education.logo} alt="" className="h-5 w-auto object-contain shrink-0" />
+          <img src={content.education.logo} alt="" className="cred-logo-md shrink-0" />
         )}
       </div>
       <p className="text-base font-semibold leading-6 text-navy">{content.education.school}</p>
