@@ -10,7 +10,7 @@ type ProfessionalExperienceProps = {
 
 function ProfessionalExperience({ content, openSampleLabel, onImageOpen }: ProfessionalExperienceProps) {
   return (
-    <section id="experience" className="section-full section-padding text-cream" aria-labelledby="experience-title" style={{ background: "linear-gradient(180deg, #05140e 0%, #071f16 52%, #080e24 100%)" }}>
+    <section id="experience" className="section-full section-padding bg-[#FCFBF8] text-ink border-y border-line" aria-labelledby="experience-title">
       <div className="container-wide">
         <SectionHeader
           eyebrow={content.eyebrow}
@@ -18,10 +18,9 @@ function ProfessionalExperience({ content, openSampleLabel, onImageOpen }: Profe
           title={content.title}
           description={content.description}
           wide
-          inverse
         />
 
-        <article className="mt-10 rounded-lg border border-cream/15 bg-[#FCFBF8] p-5 text-navy shadow-minimal md:p-8 lg:p-10">
+        <article className="mt-10 rounded-lg border border-navy/10 bg-white p-5 text-navy shadow-minimal md:p-8 lg:p-10">
           <div className="grid gap-8 border-b border-navy/10 pb-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div>
               <div className="flex flex-wrap items-center gap-3">
@@ -48,6 +47,9 @@ function ProfessionalExperience({ content, openSampleLabel, onImageOpen }: Profe
                 labels={{
                   project: content.projectLabel,
                   scope: content.scopeLabel,
+                  contributions: content.contributionLabel,
+                  evidence: content.evidenceLabel,
+                  details: content.detailsLabel,
                   samples: content.sampleLabel,
                   openSample: openSampleLabel,
                 }}
@@ -56,31 +58,6 @@ function ProfessionalExperience({ content, openSampleLabel, onImageOpen }: Profe
             ))}
           </div>
         </article>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          {content.entries.map((entry) => (
-            <article key={entry.title} className="rounded-lg border border-cream/15 bg-gradient-to-br from-[#0c1635] to-[#080e24] p-6 text-cream shadow-minimal md:p-8">
-              <div className="flex items-start justify-between gap-4 border-b border-cream/10 pb-5">
-                <div>
-                  <h3 className="text-2xl font-semibold leading-tight text-cream">{entry.title}</h3>
-                  <p className="mt-3 text-sm font-semibold leading-6 text-sky">{entry.focus}</p>
-                </div>
-                {entry.logo ? (
-                  <span className="logo-dark-bg-wrapper shrink-0">
-                    <img src={entry.logo} alt="" className="cred-logo-md" />
-                  </span>
-                ) : null}
-              </div>
-              <p className="mt-5 text-sm leading-7 text-cream/80 md:text-base md:leading-8">{entry.summary}</p>
-            </article>
-          ))}
-        </div>
-
-        {content.additionalNote ? (
-          <p className="mt-6 max-w-5xl border-l-2 border-sky/50 pl-4 text-sm leading-7 text-cream/70">
-            {content.additionalNote}
-          </p>
-        ) : null}
       </div>
     </section>
   );
@@ -97,14 +74,19 @@ function SupportedProjectCard({
   labels: {
     project: string;
     scope: string;
+    contributions: string;
+    evidence: string;
+    details: string;
     samples: string;
     openSample: string;
   };
   onImageOpen: (image: AssetImage) => void;
 }) {
+  const [primarySample, ...supportingSamples] = project.samples;
+
   return (
-    <section className="border-t border-navy/10 pt-7 first:border-t-0 first:pt-0" aria-labelledby={`supported-project-${index + 1}`}>
-      <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr] xl:items-start">
+    <section className="border-t border-navy/10 pt-8 first:border-t-0 first:pt-0" aria-labelledby={`supported-project-${index + 1}`}>
+      <div className="grid gap-7 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.12em] text-navy-accent">
             {labels.project} 0{index + 1}
@@ -122,66 +104,121 @@ function SupportedProjectCard({
           </div>
         </div>
 
-        <div className="grid gap-5">
-          <div className="rounded-lg border border-navy/10 bg-[#f8fafc] p-4">
-            <p className="detail-label mb-4">{labels.scope}</p>
-            <ul className="grid gap-3">
-              {project.scope.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-6 text-ink/80 md:text-base md:leading-7">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {project.samples.length ? (
-            <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-navy-accent">{labels.samples}</p>
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {project.samples.map((sample) => (
-                  <button
-                    key={sample.src}
-                    type="button"
-                    className="group overflow-hidden rounded-lg border border-navy/10 bg-[#080e24] text-left shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-hover focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
-                    aria-label={`${labels.openSample}: ${sample.title}`}
-                    onClick={() => onImageOpen(sample)}
-                    onPointerEnter={() => preloadImage(sample.src)}
-                    onFocus={() => preloadImage(sample.src)}
-                  >
-                    <span className="artifact-window-bar !border-navy/10 !bg-cream px-3 py-2">
-                      <span className="flex items-center gap-1.5" aria-hidden="true">
-                        <span />
-                        <span />
-                        <span />
-                      </span>
-                      <span className="min-w-0 truncate text-[10px] font-bold uppercase tracking-[0.08em] text-navy">{sample.title}</span>
-                    </span>
-                    <span className="relative block aspect-[16/10] overflow-hidden bg-[#f3f6f8]">
-                      <img
-                        src={sample.previewSrc ?? sample.src}
-                        alt={sample.alt}
-                        className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                        {labels.openSample}
-                      </span>
-                    </span>
-                    {sample.caption ? (
-                      <span className="block border-t border-cream/10 bg-[#080e24] px-3 py-2 text-xs font-semibold text-cream/75">
-                        {sample.caption}
-                      </span>
-                    ) : null}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : null}
-        </div>
+        {primarySample ? (
+          <WorkSampleButton sample={primarySample} label={labels.openSample} onImageOpen={onImageOpen} featured />
+        ) : null}
       </div>
+
+      <div className="mt-6 grid gap-5 lg:grid-cols-3">
+        <EvidencePanel title={labels.scope} items={project.scope} />
+        <EvidencePanel title={labels.contributions} items={project.contributions} />
+        <EvidencePanel title={labels.evidence} items={project.evidence} />
+      </div>
+
+      {supportingSamples.length ? (
+        <div className="mt-6">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-navy-accent">{labels.samples}</p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {supportingSamples.map((sample) => (
+              <WorkSampleButton key={sample.src} sample={sample} label={labels.openSample} onImageOpen={onImageOpen} />
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {project.details.length ? (
+        <details className="mt-6 rounded-lg border border-navy/10 bg-[#f8fafc] p-4 md:p-5">
+          <summary className="cursor-pointer select-none text-sm font-bold uppercase tracking-[0.12em] text-navy-accent">
+            {labels.details}
+          </summary>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {project.details.map((detail) => (
+              <article key={detail.title} className="rounded-md border border-navy/10 bg-white p-4">
+                <h5 className="text-base font-semibold leading-tight text-navy">{detail.title}</h5>
+                {detail.body ? <p className="mt-3 text-sm leading-7 text-ink/78">{detail.body}</p> : null}
+                {detail.items?.length ? (
+                  <ul className="mt-3 grid gap-2">
+                    {detail.items.map((item) => (
+                      <li key={item} className="flex gap-2 text-sm leading-6 text-ink/78">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy-accent" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </article>
+            ))}
+          </div>
+        </details>
+      ) : null}
     </section>
+  );
+}
+
+function EvidencePanel({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-lg border border-navy/10 bg-[#f8fafc] p-4">
+      <p className="detail-label mb-4">{title}</p>
+      <ul className="grid gap-3">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3 text-sm leading-6 text-ink/80">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function WorkSampleButton({
+  sample,
+  label,
+  onImageOpen,
+  featured = false,
+}: {
+  sample: AssetImage;
+  label: string;
+  onImageOpen: (image: AssetImage) => void;
+  featured?: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      className="group overflow-hidden rounded-lg border border-navy/10 bg-[#080e24] text-left shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-hover focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+      aria-label={`${label}: ${sample.title}`}
+      onClick={() => onImageOpen(sample)}
+      onPointerEnter={() => preloadImage(sample.src)}
+      onFocus={() => preloadImage(sample.src)}
+    >
+      <span className="artifact-window-bar !h-auto !min-h-10 !border-navy/10 !bg-cream px-3 py-2">
+        <span className="flex items-center gap-1.5 shrink-0" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+        <span className="min-w-0 flex-1 break-words text-left text-[10px] font-bold uppercase leading-4 tracking-[0.08em] text-navy">
+          {sample.title}
+        </span>
+      </span>
+      <span className={`relative block overflow-hidden bg-[#f3f6f8] ${featured ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
+        <img
+          src={sample.previewSrc ?? sample.src}
+          alt={sample.alt}
+          className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="pointer-events-none absolute inset-x-3 bottom-3 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          {label}
+        </span>
+      </span>
+      {sample.caption ? (
+        <span className="block border-t border-cream/10 bg-[#080e24] px-3 py-2 text-xs font-semibold text-cream/75">
+          {sample.caption}
+        </span>
+      ) : null}
+    </button>
   );
 }
 

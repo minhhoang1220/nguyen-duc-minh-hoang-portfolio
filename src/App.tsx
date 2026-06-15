@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import About from "./components/About";
+import AcademicProjects from "./components/AcademicProjects";
+import AdditionalExperience from "./components/AdditionalExperience";
 import ArtifactLightbox from "./components/ArtifactLightbox";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import OrganizationsStrip from "./components/OrganizationsStrip";
@@ -11,6 +14,7 @@ import ProfessionalExperience from "./components/ProfessionalExperience";
 import ProofSnapshot from "./components/ProofSnapshot";
 import Reveal from "./components/Reveal";
 import SkillsMatrix from "./components/SkillsMatrix";
+import ToolsStrip from "./components/ToolsStrip";
 import WhyWorkWithMe from "./components/WhyWorkWithMe";
 import { type AssetImage, type Language, portfolioContent } from "./data/portfolio";
 
@@ -67,11 +71,19 @@ function App() {
         />
 
         <Reveal>
+          <GameThinking content={portfolio.gameDirection} />
+        </Reveal>
+
+        <Reveal>
           <About content={portfolio.about} />
         </Reveal>
 
         <Reveal>
           <OrganizationsStrip content={portfolio.organizations} />
+        </Reveal>
+
+        <Reveal>
+          <ToolsStrip content={portfolio.tools} />
         </Reveal>
 
         <Reveal>
@@ -90,6 +102,22 @@ function App() {
         <Reveal>
           <ProfessionalExperience
             content={portfolio.professionalExperience}
+            openSampleLabel={portfolio.ui.openArtifact}
+            onImageOpen={setSelectedImage}
+          />
+        </Reveal>
+
+        <Reveal>
+          <AdditionalExperience
+            content={portfolio.additionalExperience}
+            entries={portfolio.professionalExperience.entries}
+          />
+        </Reveal>
+
+        <Reveal>
+          <AcademicProjects
+            content={portfolio.sections.projects}
+            projects={portfolio.projects}
             openSampleLabel={portfolio.ui.openArtifact}
             onImageOpen={setSelectedImage}
           />

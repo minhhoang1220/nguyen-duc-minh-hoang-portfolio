@@ -20,22 +20,21 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
           </div>
         </div>
 
-        {/* Top Statistics Row */}
         <div className="border-t border-cream/10 pt-10">
-          <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
             {proof.stats.map((stat, index) => {
               const isWideValue = stat.value.length >= 4;
 
               return (
                 <div
                   key={`${stat.value}-${stat.label}`}
-                  className="stagger-item flex flex-col gap-1.5 transition duration-300"
+                  className="stagger-item flex min-h-[190px] flex-col rounded-lg border border-cream/12 bg-cream/5 p-5 shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-sky/35 hover:bg-cream/8"
                   style={{ transitionDelay: `${index * 55}ms` }}
                 >
-                  <CountUpStat value={stat.value} className={`text-[36px] font-bold leading-none text-sky md:text-[44px] ${isWideValue ? "tracking-tight" : ""}`} />
-                  <dt className="text-[14px] sm:text-base font-bold uppercase tracking-wider text-cream mt-1">{stat.label}</dt>
+                  <CountUpStat value={stat.value} className={`text-[38px] font-bold leading-none text-sky md:text-[46px] ${isWideValue ? "tracking-tight" : ""}`} />
+                  <dt className="mt-3 text-[12px] font-bold uppercase leading-5 tracking-[0.12em] text-cream">{stat.label}</dt>
                   {stat.subtitle && (
-                    <dd className="text-xs sm:text-sm leading-relaxed text-cream/70 mt-1">{stat.subtitle}</dd>
+                    <dd className="mt-auto pt-4 text-xs leading-relaxed text-cream/70">{stat.subtitle}</dd>
                   )}
                 </div>
               );
@@ -43,13 +42,12 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
           </dl>
         </div>
 
-        {/* Below Row: 3 evenly distributed proof blocks */}
         <div className="border-t border-cream/10 pt-10 mt-10">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4" aria-label={socialProof.eyebrow}>
+          <div className="grid gap-6 lg:grid-cols-3" aria-label={socialProof.eyebrow}>
             {socialProof.cards.map((card, index) => (
               <article
                 key={card.title}
-                className="stagger-item rounded-lg border border-navy/15 bg-[#FCFBF8] p-6 md:p-8 hover:-translate-y-1 hover:border-navy/35 hover:shadow-card transition duration-300 flex flex-col justify-between text-navy"
+                className="stagger-item rounded-lg border border-navy/15 bg-[#FCFBF8] p-6 md:p-7 hover:-translate-y-1 hover:border-navy/35 hover:shadow-card transition duration-300 flex flex-col justify-between text-navy"
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
                 <div>

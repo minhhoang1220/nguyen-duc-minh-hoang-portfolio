@@ -164,6 +164,13 @@ export type SupportedProject = {
   title: string;
   summary: string;
   scope: string[];
+  contributions: string[];
+  evidence: string[];
+  details: {
+    title: string;
+    body?: string;
+    items?: string[];
+  }[];
   samples: WorkSample[];
   tags: string[];
 };
@@ -182,6 +189,9 @@ export type ProfessionalExperienceContent = {
   sampleLabel: string;
   projectLabel: string;
   scopeLabel: string;
+  contributionLabel: string;
+  evidenceLabel: string;
+  detailsLabel: string;
   vega: {
     title: string;
     period: string;
@@ -284,6 +294,12 @@ export type PortfolioContent = {
     description?: string;
     items: Organization[];
   };
+  tools: {
+    eyebrow: string;
+    title: string;
+    description?: string;
+    items: string[];
+  };
   sections: {
     caseStudies: SectionCopy;
     projects: SectionCopy;
@@ -340,6 +356,13 @@ export type PortfolioContent = {
   projects: Project[];
   experience: Experience[];
   professionalExperience: ProfessionalExperienceContent;
+  additionalExperience: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    noteTitle: string;
+    note: string;
+  };
   mindset: SectionCopy;
   process: {
     header: SectionCopy;
@@ -592,23 +615,33 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       stats: [
         {
           value: "65+",
-          label: "Screens / Features",
-          subtitle: "UX mockups and feature screens for CDP workflows, customer management, automation states, and edge cases.",
+          label: "Feature Screens / Product States",
+          subtitle: "Structured across CDP and customer-service modules.",
         },
         {
-          value: "21 / ~400",
-          label: "Roles / Permissions",
-          subtitle: "Role and permission logic mapped for access control, approval flow, and internal product alignment.",
+          value: "21",
+          label: "User Roles",
+          subtitle: "Mapped in permission and access-control logic.",
         },
         {
-          value: "3",
-          label: "Sprint Cycles",
-          subtitle: "Supported planning, tracking, bug follow-up, and delivery alignment across product and ML-related features.",
+          value: "~400",
+          label: "Permission Points",
+          subtitle: "Structured for system governance.",
         },
         {
-          value: "4,000+",
-          label: "Hours Game Exposure",
-          subtitle: "Competitive game exposure translated into analysis of player behavior, meta shifts, live content, and system design.",
+          value: "3-4",
+          label: "Features per Sprint",
+          subtitle: "Planned and coordinated in delivery cycles.",
+        },
+        {
+          value: "8-10",
+          label: "Tasks per Sprint",
+          subtitle: "Coordinated across developer handoff.",
+        },
+        {
+          value: "~5",
+          label: "Bugs before UAT",
+          subtitle: "Detected and clarified before release validation.",
         },
       ],
     },
@@ -673,6 +706,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         { name: "Sonat", context: "Game design collaboration" },
       ],
     },
+    tools: {
+      eyebrow: "Toolset",
+      title: "Tools I Use",
+      description: "A compact view of tools and platforms used across BA/PM, product documentation, analytics, and integration work.",
+      items: ["Jira", "Confluence", "Figma", "SQL", "Power BI", "Draw.io", "Python", "Messenger API", "Zalo API", "Git / GitHub"],
+    },
     sections: {
       caseStudies: {
         eyebrow: "Supported Projects",
@@ -682,9 +721,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       projects: {
         eyebrow: "Supporting Evidence",
-        title: "Additional proof across UX, analytics, and research depth.",
+        title: "Academic & Portfolio Projects",
         description:
-          "These projects show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
+          "Supporting projects that show web/UX structure, KPI storytelling, analytical reasoning, and research depth.",
       },
       experience: {
         eyebrow: "Experience",
@@ -886,56 +925,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     socialProof: {
       eyebrow: "Proof signals",
-      title: "Concise work signals",
+      title: "Evidence behind the numbers",
       description:
-        "A quick look at concrete outputs, working scope, and product direction behind my BA/PM and game-product journey.",
+        "Concrete delivery signals from operations, fintech product work, and logic-heavy documentation.",
       cards: [
         {
-          label: "Documentation",
-          title: "Product Flow & Documentation",
-          body:
-            "Workflows, UX mockups, requirements, and handoff notes prepared for stakeholder review and development use.",
-          evidence: [
-            "Flow mapping",
-            "Requirements notes",
-            "QA/UAT checklists",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Coordination",
-          title: "Cross-functional Coordination",
-          body:
-            "Supported product, design, development, AI/data, and operations stakeholders through sprint follow-up and scope clarification.",
-          evidence: [
-            "Sprint tracking",
-            "Bug follow-up",
-            "Expected behavior clarification",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Direction",
-          title: "Game Product Direction",
-          body:
-            "Competitive game exposure is translated into product thinking around players, systems, live content, and engagement loops.",
-          evidence: [
-            "Player behavior",
-            "Meta shifts",
-            "Live-service loops",
-          ],
-        },
-        {
           label: "Operations",
-          title: "Operations Discipline",
+          title: "British Council Operations Support",
           body:
-            "Service operations experience supports reliability, process discipline, communication, and careful execution under pressure.",
+            "Service-facing operations work built habits around reliability, process discipline, communication, and careful execution under pressure.",
           evidence: [
+            "Exam and teaching-center support",
             "Frontline coordination",
-            "Service communication",
-            "Process discipline",
+            "Process-sensitive communication",
           ],
           logo: assets.britishCouncilLogo,
+        },
+        {
+          label: "Release",
+          title: "Vega Fintech Feature Release",
+          body:
+            "Product workflow support covered sprint planning, feature clarification, bug follow-up, and development handoff for internal product modules.",
+          evidence: [
+            "Feature delivery support",
+            "QA/UAT preparation",
+            "Stakeholder alignment",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Logic",
+          title: "Logic Design Without Direct System Exposure",
+          body:
+            "Sensitive or unavailable systems were translated into safe public evidence through flow maps, matrices, sanitized previews, and structured explanation.",
+          evidence: [
+            "Permission matrix",
+            "Sanitized work previews",
+            "Edge-case reasoning",
+          ],
+          logo: assets.vegaLogo,
         },
       ],
     },
@@ -1085,6 +1113,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       sampleLabel: "Supporting work samples",
       projectLabel: "Supported project",
       scopeLabel: "Scope covered",
+      contributionLabel: "Key contributions",
+      evidenceLabel: "Evidence highlights",
+      detailsLabel: "Expanded project story",
       vega: {
         title: "Vega Fintech — Project Management & Business Analyst Collaborator",
         period: "03/2026 - Present",
@@ -1100,6 +1131,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "Flow list, create/edit/duplicate/delete, pause/resume, and flow status handling",
               "Entry conditions, trigger conditions, customer segments, node/stage logic, action nodes, wait/delay, and condition splits",
               "Reporting/debug views, drop-off/conversion tracking, validation states, and edge cases",
+            ],
+            contributions: [
+              "Mapped journey-builder logic from entry conditions through node actions, wait states, and branching rules.",
+              "Documented flow status behavior, validation states, and reporting/debug views for development handoff.",
+              "Clarified drop-off and conversion-tracking expectations so teams could reason about flow performance.",
+            ],
+            evidence: [
+              "Journey builder and canvas flow previews",
+              "Flow management state screens",
+              "Reporting/debug view sample",
+            ],
+            details: [
+              {
+                title: "Problem",
+                body:
+                  "Automation-flow behavior could become ambiguous quickly because entry rules, trigger conditions, branching, delays, and status handling all affected downstream behavior.",
+              },
+              {
+                title: "Role & Responsibility",
+                body:
+                  "Clarified the logic, prepared UX/state notes, mapped edge cases, and converted the flow into work outputs that developers and stakeholders could review.",
+              },
+              {
+                title: "Key Decisions & Tradeoffs",
+                items: [
+                  "Separated flow creation, node logic, validation, and reporting/debug views instead of treating the flow as one flat feature.",
+                  "Kept edge cases visible in handoff materials so QA/UAT checks could cover paused, invalid, failed, and resumed states.",
+                  "Focused public samples on sanitized flow logic and reporting views without exposing internal customer or campaign data.",
+                ],
+              },
+              {
+                title: "Impact / Learning",
+                body:
+                  "The work strengthened system-thinking around automation products and created a clearer foundation for LiveOps-style event, condition, and conversion logic.",
+              },
+              {
+                title: "Skills Demonstrated",
+                items: ["Workflow mapping", "Functional specification", "Edge-case analysis", "QA/UAT support", "Developer handoff"],
+              },
             ],
             samples: [
               {
@@ -1135,6 +1205,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "Centralized conversation management, customer profile/context, message status, and channel-specific constraints",
               "Webhook/event handling, duplicate/out-of-order events, and session rating/feedback flow",
             ],
+            contributions: [
+              "Mapped channel-specific customer conversation flows for Zalo, Messenger, AI chatbot, and human support handoff.",
+              "Clarified how customer profile/context, message status, webhook events, and duplicate/out-of-order events should be handled.",
+              "Structured feedback and session-rating flows to support service-quality review after chatbot interactions.",
+            ],
+            evidence: [
+              "Zalo chatbot journey mapping",
+              "Messenger response mockup",
+              "Feedback/rating flow preview",
+            ],
+            details: [
+              {
+                title: "Problem",
+                body:
+                  "Customer conversations across channels needed a centralized logic model so chatbot response, human handoff, and customer context stayed consistent.",
+              },
+              {
+                title: "Context / Situation",
+                body:
+                  "The project focused on AI chatbot integration across Zalo, Messenger, and an internal customer management system, not CDP journey-builder automation.",
+              },
+              {
+                title: "Key Decisions & Tradeoffs",
+                items: [
+                  "Separated channel integration logic from CDP automation-flow logic to keep customer conversations and journey-builder behavior distinct.",
+                  "Included webhook and event-order handling because duplicated or delayed channel events could affect conversation state.",
+                  "Kept human handoff and feedback paths visible so operations teams could recover from chatbot limitations.",
+                ],
+              },
+              {
+                title: "Impact / Learning",
+                body:
+                  "The work strengthened understanding of omnichannel service operations, chatbot constraints, and the product logic needed to keep conversations reliable.",
+              },
+              {
+                title: "Skills Demonstrated",
+                items: ["Omnichannel flow mapping", "Integration logic", "Customer context modeling", "Webhook reasoning", "Service operations"],
+              },
+            ],
             samples: [
               {
                 src: assets.chatbotJourney,
@@ -1168,6 +1277,40 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "AI/data stakeholder coordination, sprint progress tracking, bug/issue follow-up, and expected behavior clarification",
               "Permission matrix, role mapping, approval logic, access rule clarification, and product/development alignment",
               "Release tracking, functional notes, validation checklists, and delivery support for ML-related features",
+            ],
+            contributions: [
+              "Supported sprint tracking, issue follow-up, and expected-behavior clarification for ML forecasting delivery.",
+              "Mapped permission matrix and role-based access logic to align product expectations with development implementation.",
+              "Prepared functional notes and validation checklists to support product/development alignment before UAT.",
+            ],
+            evidence: [
+              "Sprint backlog and release-tracking preview",
+              "Permission matrix and access-logic preview",
+              "Validation and delivery support notes",
+            ],
+            details: [
+              {
+                title: "Problem",
+                body:
+                  "ML-related work and access-control logic needed clear coordination because technical behavior, stakeholder expectations, and validation steps were easy to misalign.",
+              },
+              {
+                title: "Role & Responsibility",
+                body:
+                  "Supported delivery tracking, clarified expected behavior, followed up issues, and helped document permission and approval logic.",
+              },
+              {
+                title: "Key Decisions & Tradeoffs",
+                items: [
+                  "Kept ML forecasting support and RBAC logic together as product-support evidence rather than overstating either as a standalone public case study.",
+                  "Used sanitized backlog and matrix previews to show delivery and system logic without exposing internal data.",
+                  "Focused the story on coordination, clarification, and validation rather than claiming ownership of model development.",
+                ],
+              },
+              {
+                title: "Skills Demonstrated",
+                items: ["Sprint tracking", "AI/data coordination", "Permission logic", "Bug follow-up", "Product support"],
+              },
             ],
             samples: [
               {
@@ -1207,6 +1350,15 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
       additionalNote:
         "CMC TS remains represented in the organization strip as supporting BA/data exposure, without diluting the main Vega/CDP/Game Product direction.",
+    },
+    additionalExperience: {
+      eyebrow: "Additional background",
+      title: "Additional Experience & Background",
+      description:
+        "Supporting experience that reinforces operations discipline, data analysis, documentation habits, and exposure to transformation work.",
+      noteTitle: "CMC TS support note",
+      note:
+        "CMC TS remains secondary context: useful BA/data exposure and documentation practice, but intentionally not positioned as a major experience block.",
     },
     mindset: {
       eyebrow: "Mindset",
@@ -1354,10 +1506,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Player behavior",
       ],
       games: [
-        "Arena of Valor / Liên Quân Mobile",
         "League of Legends",
-        "Valorant",
+        "VALORANT",
         "CS2",
+        "Arena of Valor / Liên Quân Mobile",
         "Teamfight Tactics",
         "PUBG",
         "Other competitive and live-service titles",
@@ -1463,7 +1615,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         proofLabel: "Campaign Logic",
         profileLabel: "Profile node",
         statusStrip: ["Signals", "Logic", "Specs", "Delivery"],
-        artifactStackLabel: "Work Sample Stack",
+        artifactStackLabel: "Bộ mẫu công việc",
         desktopLabel: "Flow Orchestration Canvas",
         mobileLabel: "Drop-off Analytics",
         tabletLabel: "LiveOps planning board",
@@ -1533,23 +1685,33 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       stats: [
         {
           value: "65+",
-          label: "Screens / Features",
-          subtitle: "Mockup và màn hình tính năng cho CDP workflow, quản lý khách hàng, trạng thái automation và edge case.",
+          label: "Feature Screens / Product States",
+          subtitle: "Được cấu trúc qua các module CDP và customer-service.",
         },
         {
-          value: "21 / ~400",
-          label: "Roles / Permissions",
-          subtitle: "Mapping logic role và permission cho phân quyền, luồng phê duyệt và alignment nội bộ.",
+          value: "21",
+          label: "User Roles",
+          subtitle: "Được mapping trong logic permission và access-control.",
         },
         {
-          value: "3",
-          label: "Sprint Cycles",
-          subtitle: "Hỗ trợ planning, tracking, theo dõi bug và alignment triển khai qua các feature product/ML.",
+          value: "~400",
+          label: "Permission Points",
+          subtitle: "Được cấu trúc cho system governance.",
         },
         {
-          value: "4,000+",
-          label: "Hours Game Exposure",
-          subtitle: "Trải nghiệm game competitive được chuyển hóa thành góc nhìn về hành vi người chơi, meta, live content và system design.",
+          value: "3-4",
+          label: "Features per Sprint",
+          subtitle: "Được plan và điều phối trong các delivery cycle.",
+        },
+        {
+          value: "8-10",
+          label: "Tasks per Sprint",
+          subtitle: "Được điều phối trong quá trình handoff cho developer.",
+        },
+        {
+          value: "~5",
+          label: "Bugs before UAT",
+          subtitle: "Được phát hiện và làm rõ trước release validation.",
         },
       ],
     },
@@ -1614,6 +1776,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         { name: "Sonat", context: "Game design collaboration" },
       ],
     },
+    tools: {
+      eyebrow: "Toolset",
+      title: "Công cụ có thể sử dụng",
+      description: "Một nhóm công cụ gọn phục vụ BA/PM, documentation, analytics và integration work.",
+      items: ["Jira", "Confluence", "Figma", "SQL", "Power BI", "Draw.io", "Python", "Messenger API", "Zalo API", "Git / GitHub"],
+    },
     sections: {
       caseStudies: {
         eyebrow: "Dự án đã hỗ trợ",
@@ -1623,9 +1791,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       projects: {
         eyebrow: "Mẫu công việc hỗ trợ",
-        title: "Bằng chứng bổ sung qua UX, analytics và chiều sâu nghiên cứu.",
+        title: "Dự án học thuật & portfolio",
         description:
-          "Các dự án này nhẹ hơn case study chính. Chúng thể hiện kỹ năng có thể chuyển đổi: cấu trúc web/UX, KPI storytelling và analytical decision support.",
+          "Các dự án hỗ trợ thể hiện cấu trúc web/UX, KPI storytelling, tư duy phân tích và chiều sâu nghiên cứu.",
       },
       experience: {
         eyebrow: "Kinh nghiệm",
@@ -1652,7 +1820,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       sanitized: "Product Work Evidence",
       matrixTitle: "Role-permission matrix",
       matrixMeta: "21 vai trò / ~400 quyền hạn",
-      artifactPreview: "Work Sample",
+      artifactPreview: "Mẫu công việc",
       internalPreview: "Confidential details removed",
       whatItProves: "Điều case này chứng minh",
       bottomLine: "Bottom line",
@@ -1827,56 +1995,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     socialProof: {
       eyebrow: "Tín hiệu chứng minh",
-      title: "Các tín hiệu công việc ngắn gọn",
+      title: "Bằng chứng phía sau các con số",
       description:
-        "Một lát cắt ngắn về output thực tế, phạm vi công việc và định hướng product/game mà Hoàng đang xây dựng.",
+        "Tín hiệu thực tế từ vận hành dịch vụ, product work trong fintech và các tài liệu logic phức tạp.",
       cards: [
         {
-          label: "Documentation",
-          title: "Product Flow & Documentation",
-          body:
-            "Workflow, UX mockup, requirement và handoff note được chuẩn bị để stakeholder review và team phát triển sử dụng.",
-          evidence: [
-            "Flow mapping",
-            "Requirement notes",
-            "QA/UAT checklist",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Coordination",
-          title: "Cross-functional Coordination",
-          body:
-            "Hỗ trợ product, design, development, AI/data và operation stakeholder qua sprint follow-up và làm rõ scope.",
-          evidence: [
-            "Sprint tracking",
-            "Bug follow-up",
-            "Expected behavior clarification",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Direction",
-          title: "Game Product Direction",
-          body:
-            "Trải nghiệm game competitive được chuyển hóa thành product thinking về người chơi, hệ thống, live content và engagement loop.",
-          evidence: [
-            "Player behavior",
-            "Meta shifts",
-            "Live-service loops",
-          ],
-        },
-        {
           label: "Operations",
-          title: "Operations Discipline",
+          title: "British Council Operations Support",
           body:
-            "Kinh nghiệm service operations hỗ trợ sự đáng tin cậy, kỷ luật quy trình, giao tiếp rõ ràng và thực thi cẩn thận dưới áp lực.",
+            "Công việc operations trực tiếp giúp xây dựng sự đáng tin cậy, kỷ luật quy trình, giao tiếp rõ ràng và thực thi cẩn thận dưới áp lực.",
           evidence: [
+            "Hỗ trợ exam và teaching center",
             "Frontline coordination",
-            "Service communication",
-            "Process discipline",
+            "Giao tiếp trong quy trình nhạy thời gian",
           ],
           logo: assets.britishCouncilLogo,
+        },
+        {
+          label: "Release",
+          title: "Vega Fintech Feature Release",
+          body:
+            "Product workflow support bao gồm sprint planning, làm rõ tính năng, theo dõi bug và handoff cho các module product nội bộ.",
+          evidence: [
+            "Hỗ trợ feature delivery",
+            "Chuẩn bị QA/UAT",
+            "Stakeholder alignment",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Logic",
+          title: "Logic Design Without Direct System Exposure",
+          body:
+            "Các hệ thống nhạy cảm hoặc không thể public trực tiếp được chuyển thành bằng chứng an toàn qua flow map, matrix, preview đã làm sạch và giải thích có cấu trúc.",
+          evidence: [
+            "Permission matrix",
+            "Sanitized work previews",
+            "Edge-case reasoning",
+          ],
+          logo: assets.vegaLogo,
         },
       ],
     },
@@ -2026,6 +2183,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       sampleLabel: "Mẫu công việc hỗ trợ",
       projectLabel: "Dự án đã hỗ trợ",
       scopeLabel: "Phạm vi công việc",
+      contributionLabel: "Đóng góp chính",
+      evidenceLabel: "Bằng chứng nổi bật",
+      detailsLabel: "Câu chuyện dự án mở rộng",
       vega: {
         title: "Vega Fintech — Project Management & Business Analyst Collaborator",
         period: "03/2026 - Present",
@@ -2041,6 +2201,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "Flow list, tạo/sửa/duplicate/delete flow, pause/resume và trạng thái flow",
               "Điều kiện vào flow, trigger condition, customer segment, node/stage logic, action node, wait/delay và condition split",
               "Reporting/debug view, drop-off/conversion tracking, validation state và edge case",
+            ],
+            contributions: [
+              "Mapping logic journey builder từ điều kiện vào flow đến node action, wait state và branching rule.",
+              "Tài liệu hóa flow status, validation state và reporting/debug view để handoff cho team phát triển.",
+              "Làm rõ kỳ vọng về drop-off và conversion tracking để team có thể đánh giá hiệu quả flow.",
+            ],
+            evidence: [
+              "Preview journey builder và canvas flow",
+              "Màn hình trạng thái quản lý flow",
+              "Mẫu reporting/debug view",
+            ],
+            details: [
+              {
+                title: "Vấn đề",
+                body:
+                  "Automation-flow dễ trở nên mơ hồ vì entry rule, trigger condition, branching, delay và status handling đều ảnh hưởng đến hành vi downstream.",
+              },
+              {
+                title: "Vai trò & trách nhiệm",
+                body:
+                  "Làm rõ logic, chuẩn bị ghi chú UX/state, mapping edge case và chuyển flow thành sản phẩm công việc để developer và stakeholder cùng review.",
+              },
+              {
+                title: "Quyết định chính & đánh đổi",
+                items: [
+                  "Tách flow creation, node logic, validation và reporting/debug view thay vì xem flow như một tính năng phẳng.",
+                  "Giữ edge case trong tài liệu handoff để QA/UAT có thể kiểm tra trạng thái paused, invalid, failed và resumed.",
+                  "Chỉ public sample đã làm sạch về flow logic và reporting view, không lộ dữ liệu campaign hoặc khách hàng nội bộ.",
+                ],
+              },
+              {
+                title: "Tác động / bài học",
+                body:
+                  "Công việc này củng cố tư duy hệ thống với automation product và tạo nền tảng gần với logic event, condition và conversion trong LiveOps.",
+              },
+              {
+                title: "Năng lực thể hiện",
+                items: ["Workflow mapping", "Functional specification", "Edge-case analysis", "QA/UAT support", "Developer handoff"],
+              },
             ],
             samples: [
               {
@@ -2076,6 +2275,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "Centralized conversation management, customer profile/context, message status và constraint theo từng kênh",
               "Webhook/event handling, duplicate/out-of-order events và session rating/feedback flow",
             ],
+            contributions: [
+              "Mapping luồng hội thoại theo từng kênh cho Zalo, Messenger, AI chatbot và human support handoff.",
+              "Làm rõ customer profile/context, message status, webhook event và duplicate/out-of-order event handling.",
+              "Cấu trúc feedback và session-rating flow để hỗ trợ review chất lượng dịch vụ sau chatbot interaction.",
+            ],
+            evidence: [
+              "Mapping chatbot journey trên Zalo",
+              "Mockup response trên Messenger",
+              "Preview feedback/rating flow",
+            ],
+            details: [
+              {
+                title: "Vấn đề",
+                body:
+                  "Hội thoại khách hàng qua nhiều kênh cần một mô hình logic tập trung để chatbot response, human handoff và customer context giữ được tính nhất quán.",
+              },
+              {
+                title: "Bối cảnh",
+                body:
+                  "Dự án tập trung vào tích hợp chatbot AI với Zalo, Messenger và hệ thống quản lý khách hàng nội bộ, không phải CDP journey-builder automation.",
+              },
+              {
+                title: "Quyết định chính & đánh đổi",
+                items: [
+                  "Tách logic channel integration khỏi CDP automation-flow để giữ customer conversation và journey-builder behavior rõ ràng.",
+                  "Đưa webhook và event-order handling vào scope vì sự kiện trùng hoặc đến muộn có thể ảnh hưởng conversation state.",
+                  "Giữ human handoff và feedback path rõ ràng để operation team có thể xử lý khi chatbot gặp giới hạn.",
+                ],
+              },
+              {
+                title: "Tác động / bài học",
+                body:
+                  "Công việc này củng cố góc nhìn về omnichannel service operations, constraint của chatbot và product logic cần thiết để hội thoại vận hành ổn định.",
+              },
+              {
+                title: "Năng lực thể hiện",
+                items: ["Omnichannel flow mapping", "Integration logic", "Customer context modeling", "Webhook reasoning", "Service operations"],
+              },
+            ],
             samples: [
               {
                 src: assets.chatbotJourney,
@@ -2109,6 +2347,40 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
               "AI/data stakeholder coordination, sprint progress tracking, bug/issue follow-up và expected behavior clarification",
               "Permission matrix, role mapping, approval logic, access rule clarification và product/development alignment",
               "Release tracking, functional note, validation checklist và delivery support cho các feature liên quan ML",
+            ],
+            contributions: [
+              "Hỗ trợ sprint tracking, issue follow-up và làm rõ expected behavior cho delivery của ML Forecasting.",
+              "Mapping permission matrix và role-based access logic để alignment giữa kỳ vọng product và triển khai development.",
+              "Chuẩn bị functional note và validation checklist để hỗ trợ product/development alignment trước UAT.",
+            ],
+            evidence: [
+              "Preview sprint backlog và release tracking",
+              "Preview permission matrix và access logic",
+              "Ghi chú validation và delivery support",
+            ],
+            details: [
+              {
+                title: "Vấn đề",
+                body:
+                  "ML-related work và access-control logic cần coordination rõ ràng vì technical behavior, kỳ vọng stakeholder và bước validation dễ bị lệch nhau.",
+              },
+              {
+                title: "Vai trò & trách nhiệm",
+                body:
+                  "Hỗ trợ delivery tracking, làm rõ expected behavior, theo dõi issue và tham gia tài liệu hóa permission/approval logic.",
+              },
+              {
+                title: "Quyết định chính & đánh đổi",
+                items: [
+                  "Giữ ML Forecasting support và RBAC logic chung trong nhóm product-support evidence thay vì làm thành case study public quá lớn.",
+                  "Dùng preview backlog và matrix đã làm sạch để thể hiện delivery/system logic mà không lộ dữ liệu nội bộ.",
+                  "Tập trung câu chuyện vào coordination, clarification và validation thay vì nhận ownership về model development.",
+                ],
+              },
+              {
+                title: "Năng lực thể hiện",
+                items: ["Sprint tracking", "AI/data coordination", "Permission logic", "Bug follow-up", "Product support"],
+              },
             ],
             samples: [
               {
@@ -2148,6 +2420,15 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
       additionalNote:
         "CMC TS được giữ trong logo strip như một tín hiệu hỗ trợ về BA/data exposure, không làm loãng trọng tâm Vega/CDP/Game Product.",
+    },
+    additionalExperience: {
+      eyebrow: "Nền tảng bổ sung",
+      title: "Kinh nghiệm bổ sung & nền tảng liên quan",
+      description:
+        "Các kinh nghiệm hỗ trợ củng cố kỷ luật vận hành, phân tích dữ liệu, thói quen documentation và exposure với transformation work.",
+      noteTitle: "Ghi chú về CMC TS",
+      note:
+        "CMC TS được giữ như bối cảnh phụ: có giá trị về BA/data exposure và documentation practice, nhưng không được đặt thành experience block chính.",
     },
     mindset: {
       eyebrow: "Tư duy",
@@ -2293,10 +2574,10 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "Hành vi người chơi",
       ],
       games: [
-        "Liên Quân Mobile / Arena of Valor",
         "League of Legends",
-        "Valorant",
+        "VALORANT",
         "CS2",
+        "Liên Quân Mobile / Arena of Valor",
         "Teamfight Tactics",
         "PUBG",
         "Các tựa game competitive và live-service khác",

@@ -7,7 +7,7 @@ type OrganizationsStripProps = {
 
 function OrganizationsStrip({ content }: OrganizationsStripProps) {
   return (
-    <section className="section-organizations section-padding bg-cream text-ink border-b border-line" aria-labelledby="organizations-title">
+    <section className="section-organizations section-padding !pb-10 bg-cream text-ink border-b border-line md:!pb-12" aria-labelledby="organizations-title">
       <div className="container-wide">
         <div className="grid gap-7 border-t border-line pt-8 lg:grid-cols-[180px_1fr] lg:gap-12">
           <p className="section-kicker text-navy">{content.eyebrow}</p>
@@ -50,7 +50,9 @@ function OrganizationCard({ organization }: { organization: PortfolioContent["or
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <span className="text-lg font-semibold leading-tight text-navy">{organization.name}</span>
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-navy/10 bg-navy text-sm font-bold text-cream">
+            {getFallbackMark(organization.name)}
+          </span>
         )}
       </div>
       <div className="mt-4 border-t border-line pt-3">
@@ -59,6 +61,15 @@ function OrganizationCard({ organization }: { organization: PortfolioContent["or
       </div>
     </article>
   );
+}
+
+function getFallbackMark(name: string) {
+  return name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 export default OrganizationsStrip;

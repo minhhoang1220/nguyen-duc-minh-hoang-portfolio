@@ -19,7 +19,7 @@ type ContactProps = {
 
 function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria, socialLabels }: ContactProps) {
   return (
-    <section id="contact" className="bg-[#060a18] section-padding text-cream border-t border-cream/10" aria-labelledby="contact-title">
+    <section id="contact" className="section-padding text-cream border-t border-cream/10" aria-labelledby="contact-title" style={{ background: "linear-gradient(180deg, #080e24 0%, #071f16 100%)" }}>
       <div className="container-wide">
         <div className="grid gap-8 pt-2 lg:grid-cols-[0.22fr_0.78fr] lg:gap-12">
           <p className="section-kicker text-sky">{content.eyebrow}</p>
@@ -29,7 +29,7 @@ function Contact({ personal, content, cvFallback, linkedinAria, cvDownloadAria, 
             </h2>
 
             <a
-              className="mt-9 inline-flex max-w-full border-b border-sky pb-3 text-[28px] font-semibold leading-none text-cream transition duration-300 hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#060a18] md:text-[44px]"
+                className="mt-9 inline-flex max-w-full border-b border-sky pb-3 text-[28px] font-semibold leading-none text-cream transition duration-300 hover:text-sky focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-4 focus:ring-offset-[#080e24] md:text-[44px]"
               href={`mailto:${personal.email}`}
               aria-label={content.emailLabel}
             >
