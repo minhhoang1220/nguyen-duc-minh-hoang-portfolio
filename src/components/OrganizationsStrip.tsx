@@ -7,29 +7,53 @@ type OrganizationsStripProps = {
 
 function OrganizationsStrip({ content }: OrganizationsStripProps) {
   return (
-    <section className="section-organizations section-padding !pb-10 bg-cream text-ink border-b border-line md:!pb-12" aria-labelledby="organizations-title">
+    <section className="section-organizations section-padding !pb-8 bg-cream text-ink border-b border-line md:!pb-10" aria-labelledby="organizations-title">
       <div className="container-wide">
-        <div className="grid gap-7 border-t border-line pt-8 lg:grid-cols-[180px_1fr] lg:gap-12">
-          <p className="section-kicker text-navy">{content.eyebrow}</p>
+        <div className="grid gap-7 border-t border-line pt-8 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12">
+          <StripKicker>{content.eyebrow}</StripKicker>
           <div>
             <h2 id="organizations-title" className="text-[28px] font-semibold leading-[1.08] text-navy md:text-[40px]">
               {content.title}
             </h2>
             {content.description ? (
-              <p className="mt-4 max-w-4xl text-base leading-7 text-muted md:text-lg">
+              <p className="mt-4 max-w-[1120px] text-base leading-7 text-muted md:text-lg">
                 {content.description}
               </p>
             ) : null}
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {content.items.map((organization) => (
-            <OrganizationCard key={organization.name} organization={organization} />
-          ))}
+        <div className="strip-marquee strip-marquee-left mt-8" aria-label={content.title}>
+          <div className="strip-marquee-track">
+            <OrganizationTiles items={content.items} />
+            <OrganizationTiles items={content.items} duplicate />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function StripKicker({ children }: { children: string }) {
+  return (
+    <p className="section-kicker inline-flex items-center gap-2 text-navy">
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-navy/15 bg-navy/5 text-navy" aria-hidden="true">
+        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3" />
+        </svg>
+      </span>
+      {children}
+    </p>
+  );
+}
+
+function OrganizationTiles({ items, duplicate = false }: { items: PortfolioContent["organizations"]["items"]; duplicate?: boolean }) {
+  return (
+    <div className="strip-marquee-group" aria-hidden={duplicate}>
+      {items.map((organization) => (
+        <OrganizationCard key={`${duplicate ? "duplicate-" : ""}${organization.name}`} organization={organization} />
+      ))}
+    </div>
   );
 }
 
@@ -38,24 +62,24 @@ function OrganizationCard({ organization }: { organization: PortfolioContent["or
   const showLogo = Boolean(organization.logo && !imageFailed);
 
   return (
-    <article className="organization-card flex min-h-[132px] flex-col justify-between rounded-lg border border-line bg-[#FCFBF8] p-4 shadow-minimal transition duration-300 hover:-translate-y-0.5 hover:border-navy/25 hover:shadow-hover">
-      <div className="flex h-12 items-center">
+    <article className="organization-strip-item">
+      <div className="flex h-14 items-center justify-center">
         {showLogo ? (
           <img
             src={organization.logo}
             alt=""
-            className="max-h-10 max-w-full object-contain"
+            className="max-h-11 max-w-[150px] object-contain"
             loading="lazy"
             decoding="async"
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-navy/10 bg-navy text-sm font-bold text-cream">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-navy/10 bg-navy text-sm font-bold text-cream">
             {getFallbackMark(organization.name)}
           </span>
         )}
       </div>
-      <div className="mt-4 border-t border-line pt-3">
+      <div className="mt-3 text-center">
         <p className="text-sm font-semibold leading-tight text-navy">{organization.name}</p>
         <p className="mt-1 text-xs leading-5 text-muted">{organization.context}</p>
       </div>

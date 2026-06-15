@@ -1030,14 +1030,14 @@ img {
   }
 
   .profile-placeholder-card {
-    @apply relative overflow-hidden rounded-lg border border-line bg-card p-5 shadow-minimal md:p-6;
+    @apply relative overflow-hidden rounded-lg border border-line bg-card p-4 shadow-minimal md:p-5;
     background:
       radial-gradient(circle at 80% 12%, rgba(157, 196, 255, 0.28), transparent 32%),
       linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(237, 243, 247, 0.9));
   }
 
   .profile-placeholder-window {
-    @apply relative mt-6 flex aspect-[4/3] min-h-[220px] items-center justify-center overflow-hidden rounded-lg border border-navy/15 bg-navy text-cream shadow-card;
+    @apply relative mt-4 flex aspect-[16/10] min-h-[150px] items-center justify-center overflow-hidden rounded-lg border border-navy/15 bg-navy text-cream shadow-card md:min-h-[168px];
   }
 
   .profile-placeholder-window::before {
@@ -1051,7 +1051,7 @@ img {
   }
 
   .profile-placeholder-window span {
-    @apply relative z-[1] text-[46px] font-semibold tracking-[0.08em] text-sky md:text-[58px];
+    @apply relative z-[1] text-[40px] font-semibold tracking-[0.08em] text-sky md:text-[48px];
   }
 
   .profile-placeholder-window i {
@@ -1072,6 +1072,52 @@ img {
 
   .profile-chip {
     @apply inline-flex rounded-sm border border-navy/15 bg-cream px-3 py-1.5 text-xs font-bold text-navy;
+  }
+
+  .strip-marquee {
+    @apply relative overflow-hidden border-y border-navy/10 py-5;
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+
+  .strip-marquee::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(250, 248, 242, 0.96), transparent 12%, transparent 88%, rgba(250, 248, 242, 0.96));
+    z-index: 2;
+  }
+
+  .strip-marquee-track {
+    @apply flex w-max items-stretch gap-5;
+  }
+
+  .strip-marquee:hover .strip-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .strip-marquee-left .strip-marquee-track {
+    animation: marquee-left 34s linear infinite;
+  }
+
+  .strip-marquee-right .strip-marquee-track {
+    animation: marquee-right 34s linear infinite;
+  }
+
+  .strip-marquee-group {
+    @apply flex min-w-max items-stretch gap-5;
+  }
+
+  .organization-strip-item {
+    @apply flex min-h-[132px] w-[190px] shrink-0 flex-col items-center justify-center rounded-lg bg-white/45 px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:bg-white/70;
+  }
+
+  .tool-strip-item {
+    @apply inline-flex min-h-[64px] w-[170px] shrink-0 items-center justify-center gap-3 rounded-lg bg-white/45 px-4 py-3 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-0.5 hover:bg-white/70;
+  }
+
+  .tool-strip-icon {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy/10 bg-navy text-cream;
   }
 
   .footer-shell {
@@ -1373,6 +1419,24 @@ img {
   }
 }
 
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(calc(-50% - 10px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .case-detail-panel {
   animation: detail-panel-rise 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -1576,6 +1640,11 @@ img {
 
   .hero-artifact-scroll {
     transform: none;
+  }
+
+  .strip-marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 
   .section-game::after {

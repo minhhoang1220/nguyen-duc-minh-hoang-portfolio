@@ -22,7 +22,7 @@ function SectionHeader({ eyebrow, title, description, inverse = false, titleId, 
         {title}
       </h2>
       {description ? (
-        <p className={`mt-6 ${wide ? "max-w-5xl" : "max-w-3xl"} text-base leading-8 md:text-lg ${inverse ? "text-cream/80" : "text-muted"}`}>
+        <p className={`mt-6 ${wide ? "max-w-[1180px]" : "max-w-3xl"} text-base leading-8 md:text-lg ${inverse ? "text-cream/80" : "text-muted"}`}>
           {description}
         </p>
       ) : null}

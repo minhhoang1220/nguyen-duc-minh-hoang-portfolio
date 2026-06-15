@@ -14,7 +14,7 @@ function About({ content }: AboutProps) {
   return (
     <section id="about" className="section-padding" style={{ background: 'linear-gradient(180deg, #080E24 0%, #071f16 100%)' }} aria-labelledby="about-title">
       <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[340px_1fr] lg:items-start lg:gap-14">
+        <div className="grid gap-9 lg:grid-cols-[380px_minmax(0,1fr)] lg:items-start lg:gap-14 xl:grid-cols-[400px_minmax(0,1fr)]">
           <div className="min-w-0">
             <ProfileFallback content={content} />
           </div>
@@ -61,21 +61,21 @@ function ProfileFallback({ content }: AboutProps) {
         <i />
         <i />
       </div>
-      <h3 className="mt-6 max-w-sm break-words text-[28px] font-semibold leading-[1.06] text-navy sm:text-[34px] md:text-[40px]">
+      <h3 className="mt-5 max-w-sm break-words text-[26px] font-semibold leading-[1.06] text-navy sm:text-[30px] md:text-[34px]">
         {content.abstractCard.title}
       </h3>
-      <p className="mt-4 text-sm font-semibold leading-6 text-ink">{content.profileCard.subtitle}</p>
-      <p className="mt-3 text-xs font-bold uppercase tracking-[0.1em] text-muted">{content.profileCard.placeholder}</p>
-      <div className="mt-7 flex flex-wrap gap-2">
+      <p className="mt-3 text-sm font-semibold leading-6 text-ink">{content.profileCard.subtitle}</p>
+      <p className="mt-2 text-xs font-bold uppercase tracking-[0.1em] text-muted">{content.profileCard.placeholder}</p>
+      <div className="mt-5 flex flex-wrap gap-2">
         {content.profileCard.chips.map((chip) => (
           <span key={chip} className="profile-chip">
             {chip}
           </span>
         ))}
       </div>
-      <div className="mt-7 grid gap-2">
+      <div className="mt-5 grid gap-1.5">
         {content.abstractCard.lines.map((line) => (
-          <span key={line} className="border-t border-line pt-3 text-sm font-semibold text-muted">
+          <span key={line} className="border-t border-line pt-2.5 text-sm font-semibold text-muted">
             {line}
           </span>
         ))}
@@ -87,15 +87,15 @@ function ProfileFallback({ content }: AboutProps) {
 
 function EducationBlock({ content }: AboutProps) {
   return (
-    <div className="mt-8 rounded-md border border-line bg-cream p-4">
-      <div className="flex items-center justify-between gap-2 border-b border-line pb-2 mb-3">
+    <div className="mt-5 rounded-md border border-line bg-cream p-3.5">
+      <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-line pb-2">
         <p className="detail-label m-0">{content.educationLabel}</p>
         {content.education.logo && (
-          <img src={content.education.logo} alt="" className="cred-logo-md shrink-0 object-contain" style={{ height: '32px' }} />
+          <img src={content.education.logo} alt="" className="cred-logo-md shrink-0 object-contain" style={{ height: '28px' }} />
         )}
       </div>
-      <p className="text-base font-semibold leading-6 text-navy">{content.education.school}</p>
-      <p className="mt-2 text-sm font-medium text-ink">{content.education.degree}</p>
+      <p className="text-sm font-semibold leading-6 text-navy md:text-[15px]">{content.education.school}</p>
+      <p className="mt-1.5 text-sm font-medium text-ink">{content.education.degree}</p>
       <p className="mt-1 text-sm text-muted">{content.education.period}</p>
     </div>
   );
