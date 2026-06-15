@@ -2,12 +2,13 @@ import SectionHeader from "./SectionHeader";
 import type { PortfolioContent } from "../data/portfolio";
 
 type SkillsMatrixProps = {
+  mindset: PortfolioContent["mindset"];
   process: PortfolioContent["process"];
   approach: PortfolioContent["approach"];
   skillGroups: PortfolioContent["skillGroups"];
 };
 
-function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
+function SkillsMatrix({ mindset, process, approach, skillGroups }: SkillsMatrixProps) {
   const processNumberGradients = [
     "linear-gradient(135deg, #080E24 0%, #1B2D73 100%)",
     "linear-gradient(135deg, #14245F 0%, #273A86 100%)",
@@ -32,10 +33,13 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
 
   return (
     <section id="mindset" className="section-full bg-gradient-to-b from-[#080E24] to-[#0a0f1e] text-cream border-y border-cream/10" aria-labelledby="skills-title">
+      <div className="container-wide pt-14 md:pt-16 lg:pt-20">
+        <SectionHeader eyebrow={mindset.eyebrow} titleId="skills-title" title={mindset.title} description={mindset.description} wide inverse />
+      </div>
       <div className="section-how-work section-padding">
         <div className="container-wide">
           <div className="skills-band-shell section-panel--how-work">
-            <SectionHeader eyebrow={approach.header.eyebrow} titleId="skills-title" title={approach.header.title} wide inverse />
+            <SectionHeader eyebrow={approach.header.eyebrow} titleId="working-approach-title" title={approach.header.title} wide inverse />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {approach.items.map((item, index) => (
                 <article
@@ -62,7 +66,7 @@ function SkillsMatrix({ process, approach, skillGroups }: SkillsMatrixProps) {
         <div className="container-wide">
           <div className="skills-band-shell section-panel--skills">
             <SectionHeader eyebrow={skillGroups.header.eyebrow} titleId="capability-title" title={skillGroups.header.title} wide inverse />
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
               {skillGroups.groups.map((group, index) => (
                 <article
                   key={group.category}

@@ -7,11 +7,11 @@ type ProductSamplesProps = {
 
 function ProductSamples({ content }: ProductSamplesProps) {
   return (
-    <section id="product-samples" className="section-padding bg-cream text-ink border-b border-line" aria-labelledby="product-samples-title">
+    <section id="work-samples" className="section-padding bg-cream text-ink border-b border-line" aria-labelledby="work-samples-title">
       <div className="container-wide">
         <SectionHeader
           eyebrow={content.eyebrow}
-          titleId="product-samples-title"
+          titleId="work-samples-title"
           title={content.title}
           description={content.description}
           wide

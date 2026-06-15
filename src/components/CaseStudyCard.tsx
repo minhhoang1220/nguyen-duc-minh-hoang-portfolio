@@ -216,12 +216,12 @@ function CaseStudyCard({ caseStudy, labels, index, openArtifactLabel, onImageOpe
           </DetailBlock>
         </div>
 
-        {/* Supporting Visual Artifacts section spans full available width */}
+        {/* Supporting visual work samples section spans full available width */}
         {index === 0 && (
           <div className="mt-8 border-t border-navy/15 pt-8">
             <h4 className="text-base font-bold uppercase tracking-[0.1em] text-navy mb-2 flex items-center gap-1.5">
               {getBlockIcon("supporting", "w-5 h-5 text-navy inline-block shrink-0 align-text-bottom mr-1.5")}
-              Supporting Visual Artifacts
+              Supporting Visual Work Samples
             </h4>
             <p className="text-xs text-ink/75 mb-6">Click to view high-resolution work samples:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
@@ -606,7 +606,7 @@ function Case1Visual({
           </div>
         </div>
 
-        {/* View Artifact Overlay inside browser card */}
+        {/* View work sample overlay inside browser card */}
         <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>
@@ -675,7 +675,7 @@ function Case2Visual({
           ))}
         </div>
 
-        {/* View Artifact Overlay inside browser card */}
+        {/* View work sample overlay inside browser card */}
         <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>
@@ -746,7 +746,7 @@ function Case3Visual({
           ))}
         </div>
 
-        {/* View Artifact Overlay inside browser card */}
+        {/* View work sample overlay inside browser card */}
         <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
           {openArtifactLabel}
         </span>

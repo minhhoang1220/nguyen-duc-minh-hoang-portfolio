@@ -54,7 +54,7 @@ function ProductProof({ proof, titleId, openArtifactLabel, onImageOpen }: Produc
                 <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded border border-cream/70 bg-navy/90 px-3 py-2 text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   {openArtifactLabel}
                 </span>
-                <span className="artifact-device-label">Desktop/browser artifact</span>
+                <span className="artifact-device-label">Desktop/browser work sample</span>
               </span>
             </button>
             <figcaption className="mt-4 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">

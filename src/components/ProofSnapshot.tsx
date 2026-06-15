@@ -8,7 +8,7 @@ type ProofSnapshotProps = {
 
 function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
   return (
-    <section className="section-full section-padding bg-gradient-to-b from-[#0a0f1e] to-[#080E24] text-cream border-y border-cream/10" aria-labelledby="proof-snapshot-title">
+    <section id="snapshot" className="section-full section-padding bg-gradient-to-b from-[#0a0f1e] to-[#080E24] text-cream border-y border-cream/10" aria-labelledby="proof-snapshot-title">
       <div className="container-wide">
         <div className="grid gap-7 pt-2 lg:grid-cols-[140px_1fr] lg:gap-12 mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky">{proof.eyebrow}</p>
@@ -22,7 +22,7 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
 
         {/* Top Statistics Row */}
         <div className="border-t border-cream/10 pt-10">
-          <dl className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {proof.stats.map((stat, index) => {
               const isWideValue = stat.value.length >= 4;
 
@@ -45,7 +45,7 @@ function ProofSnapshot({ proof, socialProof }: ProofSnapshotProps) {
 
         {/* Below Row: 3 evenly distributed proof blocks */}
         <div className="border-t border-cream/10 pt-10 mt-10">
-          <div className="grid gap-6 md:grid-cols-3" aria-label={socialProof.eyebrow}>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4" aria-label={socialProof.eyebrow}>
             {socialProof.cards.map((card, index) => (
               <article
                 key={card.title}

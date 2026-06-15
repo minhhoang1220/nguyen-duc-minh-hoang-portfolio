@@ -48,7 +48,7 @@ function ProjectCard({ project, index, openArtifactLabel, onImageOpen }: Project
           <span className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-2 rounded-md border border-cream/70 bg-[#080e24]/95 px-3 py-2 text-center text-xs font-semibold text-cream opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 z-30">
             {openArtifactLabel}
           </span>
-          <span className="artifact-device-label bg-[#080e24]/95 text-sky z-20">Supporting artifact</span>
+          <span className="artifact-device-label bg-[#080e24]/95 text-sky z-20">Supporting work sample</span>
         </span>
       </button>
 

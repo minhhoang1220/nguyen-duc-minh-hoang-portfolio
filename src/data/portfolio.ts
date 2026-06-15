@@ -152,6 +152,47 @@ export type WhyWorkPillar = {
   proof: string;
 };
 
+export type Organization = {
+  name: string;
+  context: string;
+  logo?: string;
+};
+
+export type WorkSample = AssetImage;
+
+export type SupportedProject = {
+  title: string;
+  summary: string;
+  scope: string[];
+  samples: WorkSample[];
+  tags: string[];
+};
+
+export type ProfessionalEntry = {
+  title: string;
+  focus: string;
+  summary: string;
+  logo?: string;
+};
+
+export type ProfessionalExperienceContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  sampleLabel: string;
+  projectLabel: string;
+  scopeLabel: string;
+  vega: {
+    title: string;
+    period: string;
+    focus: string;
+    logo?: string;
+    projects: SupportedProject[];
+  };
+  entries: ProfessionalEntry[];
+  additionalNote?: string;
+};
+
 export type PortfolioContent = {
   navigation: NavItem[];
   personal: {
@@ -171,6 +212,12 @@ export type PortfolioContent = {
     linkedinAria: string;
     cvDownloadAria: string;
     cvFallback: string;
+    linkedinMicroLabel: string;
+    linkedinMicroText: string;
+    cvMicroLabel: string;
+    cvMicroText: string;
+    emailMicroLabel: string;
+    emailMicroText: string;
     openArtifact: string;
     closeArtifact: string;
     zoomInArtifact: string;
@@ -231,6 +278,12 @@ export type PortfolioContent = {
       logo?: string;
     };
   };
+  organizations: {
+    eyebrow: string;
+    title: string;
+    description?: string;
+    items: Organization[];
+  };
   sections: {
     caseStudies: SectionCopy;
     projects: SectionCopy;
@@ -265,6 +318,7 @@ export type PortfolioContent = {
     eyebrow: string;
     title: string;
     description: string;
+    proofLabel: string;
     pillars: WhyWorkPillar[];
   };
   socialProof: {
@@ -285,6 +339,8 @@ export type PortfolioContent = {
   };
   projects: Project[];
   experience: Experience[];
+  professionalExperience: ProfessionalExperienceContent;
+  mindset: SectionCopy;
   process: {
     header: SectionCopy;
     rows: ProcessRow[];
@@ -344,14 +400,14 @@ const assets = {
   thesisPortfolioOverview: "/assets/thesis-portfolio-optimization-overview.png",
   dashboardRevenueOverview: "/assets/dashboard-revenue-overview.png",
 
-  // Vega Case Study 1 assets
+  // Vega work sample assets
   vegaCanvasFlow: "/assets/case-studies/vega-canvas-flow.png",
   vegaFlowDetails: "/assets/case-studies/vega-flow-details.png",
   vegaMessChatbox: "/assets/case-studies/vega-mess-chatbox.png",
   vegaFacebookProfile: "/assets/case-studies/vega-facebook-profile.png",
   vegaZalo: "/assets/case-studies/vega-zalo.png",
 
-  // Case Study 2 and 3 V3 previews
+  // Process and access-control preview assets
   case2CoverPreview: "/assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png",
   case3CoverPreview: "/assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png",
 
@@ -373,7 +429,7 @@ const assetPreviews = {
   thesisPortfolioOverview: "/assets/previews/thesis-portfolio-optimization-overview-preview.jpg",
   dashboardRevenueOverview: "/assets/previews/dashboard-revenue-overview-preview.jpg",
 
-  // Vega Case Study 1 previews
+  // Vega work sample previews
   vegaCanvasFlow: "/assets/previews/vega-canvas-flow-preview.png",
   vegaFlowDetails: "/assets/previews/vega-flow-details-preview.png",
   vegaMessChatbox: "/assets/previews/vega-mess-chatbox-preview.png",
@@ -384,13 +440,11 @@ const assetPreviews = {
 export const portfolioContent: Record<Language, PortfolioContent> = {
   en: {
     navigation: [
-      { label: "Home", href: "#home" },
-      { label: "Case Studies", href: "#case-studies" },
-      { label: "Selected Projects", href: "#projects" },
       { label: "About", href: "#about" },
-      { label: "Experience", href: "#experience" },
       { label: "Mindset", href: "#mindset" },
-      { label: "Product Samples", href: "#product-samples" },
+      { label: "Snapshot", href: "#snapshot" },
+      { label: "Experience", href: "#experience" },
+      { label: "Value", href: "#value" },
       { label: "Contact", href: "#contact" },
     ],
     personal: {
@@ -410,6 +464,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       linkedinAria: "Open LinkedIn profile",
       cvDownloadAria: "Download Nguyễn Đức Minh Hoàng CV",
       cvFallback: "CV file is unavailable right now. Please email {email} and I will send it directly.",
+      linkedinMicroLabel: "LinkedIn",
+      linkedinMicroText: "Connect",
+      cvMicroLabel: "Download CV",
+      cvMicroText: "Resume PDF",
+      emailMicroLabel: "Email",
+      emailMicroText: "Email me",
       openArtifact: "View work sample",
       closeArtifact: "Close preview",
       zoomInArtifact: "Zoom in",
@@ -418,28 +478,28 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       loadingArtifact: "Loading high-resolution asset",
     },
     hero: {
-      roleLine: "BA/PM thinking for game products, LiveOps, and player-facing features.",
-      headline: "Game-focused BA/PM turning player insights into buildable features.",
+      roleLine: "BA/PM foundation for product workflow, documentation, and game-product direction.",
+      headline: "BA/PM-oriented product learner building toward Game Product, Game Operations, and LiveOps roles.",
       intro:
-        "I help cross-functional teams understand what to build by turning unclear requirements into structured user flows, mockups, and clear checklist specifications. I combine this delivery discipline with data thinking and a deep understanding of player behaviors.",
+        "I turn ambiguous product ideas into structured workflows, UX mockups, requirements, and handoff-ready documentation — with a long-term direction toward Game Product, Game Operations, and LiveOps.",
       usp: {
         label: "Positioning",
         statement:
-          "A BA/PM transitioning into Game Product and LiveOps through delivery discipline, data-informed thinking, and a competitive gaming foundation.",
+          "A product learner with BA/PM execution, Product Operations habits, data thinking, and a long-term game-domain direction.",
         signals: [
-          "BA/PM delivery across mockups, specs, feature research, and backlog alignment",
-          "Product thinking that maps player behavior, feature logic, states, and edge cases",
-          "Data-informed decisions backed by a Business Data Analytics background",
-          "Game direction grounded in player motivation, meta shifts, and live operations",
+          "BA/PM delivery across workflows, mockups, requirements, and handoff notes",
+          "Product workflow thinking that maps states, constraints, and edge cases",
+          "Data-informed reasoning from a Business Data Analytics background",
+          "Game Product / Operations / LiveOps direction grounded in competitive game exposure",
         ],
       },
       focusItems: [
-        "Primary direction: Game Product / LiveOps / Game Operations",
-        "Proof base: BA / PM feature delivery experience",
-        "Transferable path: Associate PM / Product Operations",
+        "BA/PM foundation: workflow, documentation, mockups, QA/UAT",
+        "Product direction: Game Product / Game Operations / LiveOps",
+        "Transferable base: Product Operations and cross-functional delivery",
       ],
       trustHint:
-        "Key evidence: product artifacts, professional recommendations, and cross-functional feature delivery.",
+        "Key evidence: work samples, professional recommendations, and cross-functional feature delivery.",
       journey: [
         {
           label: "Player insights",
@@ -462,7 +522,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         proofLabel: "Campaign Logic",
         profileLabel: "Profile node",
         statusStrip: ["Signals", "Logic", "Specs", "Delivery"],
-        artifactStackLabel: "Orchestration Workspace",
+        artifactStackLabel: "Work Sample Stack",
         desktopLabel: "Flow Orchestration Canvas",
         mobileLabel: "Drop-off Analytics",
         tabletLabel: "LiveOps planning board",
@@ -470,12 +530,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         noteLabel: "Campaign Logic Flow",
         liveOpsLabel: "Campaign logic",
         visualTemplateLabel: "Performance Feedback Loop",
-        anonymizedLabel: "Product Work Evidence",
+        anonymizedLabel: "Product Work Samples",
       },
-      artifactAria: "Selected product artifact previews",
+      artifactAria: "Selected product work sample previews",
       ctas: {
-        caseStudies: "View Case Studies",
-        gameDirection: "Explore Game Direction",
+        caseStudies: "View experience",
+        gameDirection: "Explore mindset",
         contact: "Let's talk",
         cv: "Download CV",
         linkedin: "LinkedIn",
@@ -527,22 +587,36 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     proof: {
-      eyebrow: "In numbers",
-      title: "Measured artifacts, not abstract traits.",
+      eyebrow: "Snapshot",
+      title: "A Snapshot of My Work",
       stats: [
-        { value: "65+", label: "Feature screens / product states", subtitle: "Structured across CDP and customer-service modules" },
-        { value: "21", label: "User roles", subtitle: "Mapped in permission and access-control logic" },
-        { value: "~400", label: "Permission points", subtitle: "Structured for system governance" },
-        { value: "3-4", label: "Features per sprint", subtitle: "Planned and coordinated in delivery cycles" },
-        { value: "8-10", label: "Tasks per sprint", subtitle: "Coordinated across developer handoff" },
-        { value: "~5", label: "Bugs before UAT", subtitle: "Detected and clarified before release validation" },
+        {
+          value: "65+",
+          label: "Screens / Features",
+          subtitle: "UX mockups and feature screens for CDP workflows, customer management, automation states, and edge cases.",
+        },
+        {
+          value: "21 / ~400",
+          label: "Roles / Permissions",
+          subtitle: "Role and permission logic mapped for access control, approval flow, and internal product alignment.",
+        },
+        {
+          value: "3",
+          label: "Sprint Cycles",
+          subtitle: "Supported planning, tracking, bug follow-up, and delivery alignment across product and ML-related features.",
+        },
+        {
+          value: "4,000+",
+          label: "Hours Game Exposure",
+          subtitle: "Competitive game exposure translated into analysis of player behavior, meta shifts, live content, and system design.",
+        },
       ],
     },
     about: {
       eyebrow: "About Me",
-      title: "Bridging system logic, delivery execution, and a deep understanding of game systems.",
+      title: "Business Data Analytics background, BA/PM execution, and a product path toward games.",
       body:
-        "I’m Hoàng, a BA/PM based in Hanoi, focusing on transitioning into Game Product, LiveOps, and Game Operations. I specialize in turning complex feature concepts into structured, development-ready flows and specifications. I connect this operational discipline with a quantitative data analytics background and a lifelong engagement in competitive gaming.\n\nOutside work, I follow competitive games closely and have supported team preparation through ban/pick planning, opponent analysis, and match strategy — experience that helps me understand player motivation, meta shifts, and competitive behavior beyond surface-level gameplay.",
+        "Hoàng is a Business Data Analytics graduate building his career around Business Analysis, Project Management, and Product Operations. His work focuses on turning ambiguous product ideas into structured workflows, UX mockups, requirements, and documentation that development teams can use.\n\nHis next direction is Game Product, Game Operations, and LiveOps — where BA/PM execution, data thinking, and long-term exposure to competitive games can be translated into player behavior analysis, feature planning, content operations, and product improvement.",
       portrait: {
         src: "/assets/portrait-nguyen-duc-minh-hoang.jpg",
         alt: "Portrait of Nguyễn Đức Minh Hoàng",
@@ -551,19 +625,19 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       points: [
         {
-          title: "Logic & System-First Thinking",
+          title: "BA/PM and Product Operations Base",
           description:
-            "I analyze system dependencies, user actions, states, and edge cases to ensure new features align with the overall system structure before development starts.",
+            "Hands-on experience with product workflow clarification, UX mockups, requirements, documentation, stakeholder coordination, sprint tracking, and QA/UAT support.",
         },
         {
-          title: "Bridging Teams with Clear Specs",
+          title: "Data-informed Product Thinking",
           description:
-            "I translate ideas into detailed user flows, mockups, user stories, and acceptance checklists that developers can build and stakeholders can review easily.",
+            "Business Data Analytics training supports structured analysis, model comparison, metric thinking, and clearer product tradeoff discussions.",
         },
         {
-          title: "Competitive Game Understanding",
+          title: "Games as a Product Domain",
           description:
-            "I analyze meta changes, player loops, and competitive behaviors, using esports preparation experience to bring structured system insights to game operations.",
+            "Competitive game exposure is treated as product-domain learning: player motivation, meta shifts, progression, content loops, and live-service operations.",
         },
       ],
       abstractCard: {
@@ -574,9 +648,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       profileCard: {
         label: "Professional Monogram",
         title: "NDMH",
-        subtitle: "BA/PM focused on system logic and feature delivery.",
+        subtitle: "BA/PM focused on workflow clarity, product delivery, and game-domain growth.",
         placeholder: "Competency Profile",
-        chips: ["Structured", "Game-minded", "Data-informed", "Coordination-focused", "Player-centric"],
+        chips: ["Structured", "BA/PM", "Data-informed", "Product Ops", "Game-domain"],
       },
       educationLabel: "Education",
       education: {
@@ -586,21 +660,34 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         logo: assets.vnuIsLogo,
       },
     },
+    organizations: {
+      eyebrow: "Organizations",
+      title: "Organizations I’ve Worked With",
+      description: "A lightweight view of the work and learning environments behind the portfolio evidence.",
+      items: [
+        { name: "Vega Fintech", context: "Product workflow / BA-PM", logo: assets.vegaLogo },
+        { name: "British Council", context: "Operations / service coordination", logo: assets.britishCouncilLogo },
+        { name: "CMC TS", context: "Data & Business Analyst internship", logo: assets.cmctsLogo },
+        { name: "VNU-IS", context: "Business Data Analytics", logo: assets.vnuIsLogo },
+        { name: "TalentNet", context: "Professional exposure" },
+        { name: "Sonat", context: "Game design collaboration" },
+      ],
+    },
     sections: {
       caseStudies: {
-        eyebrow: "Featured Case Studies",
-        title: "Requirement clarity shown through real product artifacts.",
+        eyebrow: "Supported Projects",
+        title: "Requirement clarity shown through real product work outputs.",
         description:
           "These cases focus on interaction flows, system logic, access-control rules, and backlog readiness as evidence of structured feature delivery.",
       },
       projects: {
-        eyebrow: "Selected Projects",
+        eyebrow: "Supporting Evidence",
         title: "Additional proof across UX, analytics, and research depth.",
         description:
           "These projects show transferable skills: web/UX structure, KPI storytelling, and analytical decision support.",
       },
       experience: {
-        eyebrow: "Experience Snapshot",
+        eyebrow: "Experience",
         title: "Practical BA/PM evidence across fintech, transformation, and operations.",
         description:
           "This is the proof base behind the game direction: user flows, backlogs, system rules, feature checks, and team coordination in complex products.",
@@ -615,7 +702,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       outcomeLearning: "Outcome / Learning",
       evidence: "Key evidence",
       process: "Process",
-      deliveredArtifacts: "Delivered Artifacts",
+      deliveredArtifacts: "Delivered work outputs",
       delivered: "Delivered",
       impact: "Product/System Impact",
       skills: "Skills Demonstrated",
@@ -628,7 +715,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       internalPreview: "Confidential details removed",
       whatItProves: "What it proves",
       bottomLine: "Bottom line",
-      artifactTags: "Artifact types",
+      artifactTags: "Work output types",
     },
     caseStudies: [
       {
@@ -698,7 +785,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         role:
           "Project Collaborator / BA-PM — responsible for requirements gathering, backlog management, sprint planning coordination, release tracking, and pre-UAT validation.",
         keyDecisions: [
-          "Used release tracking timelines and backlog planning artifacts to represent execution process without exposing sensitive forecasting data.",
+          "Used release tracking timelines and backlog planning materials to represent execution process without exposing sensitive forecasting data.",
           "Translated high-level business requirements into functional criteria and developer-ready backlog tasks.",
           "Structured sprint planning and pre-UAT checklists to ensure cross-functional teams could validate feature logic before releases.",
         ],
@@ -771,84 +858,92 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
     ],
     whyWork: {
-      eyebrow: "Why work with me",
-      title: "A game-minded BA/PM who ensures teams know exactly what to build.",
+      eyebrow: "Value",
+      title: "What I Can Bring to Your Team",
       description:
-        "I bridge the gap between player experience and structured development by translating product complexity into clear, development-ready specs.",
+        "Practical BA/PM execution, product thinking, and game-domain awareness for teams that need clarity, structure, and delivery support.",
+      proofLabel: "Evidence",
       pillars: [
         {
-          title: "Deep Game Domain Understanding",
+          title: "Structured BA/PM Execution",
           body:
-            "As a competitive player across Arena of Valor, League of Legends, TFT, Valorant, and CS2, I analyze player behaviors, meta balance shifts, and progression systems from a product perspective.",
-          proof: "Esports tournament planning, strategy support, and competitive match analysis.",
+            "Turn unclear ideas into user flows, requirements, mockups, acceptance criteria, and handoff-ready documentation.",
+          proof: "Workflow mapping, requirements, mockups, and QA/UAT checklists.",
         },
         {
-          title: "Structured BA/PM Feature Delivery",
+          title: "Product & Game-domain Thinking",
           body:
-            "I help teams turn unclear feature ideas into structured user flows, mockups, backlog items, and functional specs. Experienced in Jira sprint planning and testing support.",
-          proof: "Product specs, interaction mockups, backlog management, and release checks.",
+            "Understand products and games through user behavior, player motivation, progression, UX friction, content loops, and product metrics.",
+          proof: "Competitive game exposure, product-system analysis, and data-informed reasoning.",
         },
         {
-          title: "Data-Informed Decision Making",
+          title: "Cross-functional Delivery Support",
           body:
-            "Leveraging a Business Data Analytics degree and data engineering experience to analyze performance metrics, model forecasting, and compare tradeoffs to support product choices.",
-          proof: "Time-series forecasting platforms, ETL pipelines, and performance dashboards.",
-        },
-        {
-          title: "Cross-Functional Coordination",
-          body:
-            "Operations support background at British Council Vietnam. Proven ability to coordinate multiple stakeholders, resolve operational issues, and maintain clear communications under pressure.",
-          proof: "Multi-department operational support and recommendation-backed communication skills.",
+            "Work with product, design, development, AI/data, and operation teams to clarify scope, follow up delivery, and turn new domain knowledge into practical outputs.",
+          proof: "Sprint follow-up, stakeholder alignment, bug tracking, and service-operations discipline.",
         },
       ],
     },
     socialProof: {
-      eyebrow: "Proof Points",
-      title: "Credibility grounded in execution.",
+      eyebrow: "Proof signals",
+      title: "Concise work signals",
       description:
-        "Demonstrated competency through professional recommendations and direct work evidence.",
+        "A quick look at concrete outputs, working scope, and product direction behind my BA/PM and game-product journey.",
       cards: [
         {
-          label: "Transferable skills recognition",
-          title: "British Council Operations Support",
+          label: "Documentation",
+          title: "Product Flow & Documentation",
           body:
-            "Recognized in an official recommendation letter for professionalism, reliability, structured communication, teamwork, organization, and English proficiency.",
+            "Workflows, UX mockups, requirements, and handoff notes prepared for stakeholder review and development use.",
           evidence: [
-            "Coordinated logistics & multi-department flows",
-            "Supported complex service delivery and administration",
+            "Flow mapping",
+            "Requirements notes",
+            "QA/UAT checklists",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Coordination",
+          title: "Cross-functional Coordination",
+          body:
+            "Supported product, design, development, AI/data, and operations stakeholders through sprint follow-up and scope clarification.",
+          evidence: [
+            "Sprint tracking",
+            "Bug follow-up",
+            "Expected behavior clarification",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Direction",
+          title: "Game Product Direction",
+          body:
+            "Competitive game exposure is translated into product thinking around players, systems, live content, and engagement loops.",
+          evidence: [
+            "Player behavior",
+            "Meta shifts",
+            "Live-service loops",
+          ],
+        },
+        {
+          label: "Operations",
+          title: "Operations Discipline",
+          body:
+            "Service operations experience supports reliability, process discipline, communication, and careful execution under pressure.",
+          evidence: [
+            "Frontline coordination",
+            "Service communication",
+            "Process discipline",
           ],
           logo: assets.britishCouncilLogo,
-        },
-        {
-          label: "Product delivery evidence",
-          title: "Vega Fintech Feature Release",
-          body:
-            "Demonstrated core business analysis execution, from mapping detailed user flows and defining mockups to coordinating sprint releases and performing pre-UAT validation checks.",
-          evidence: [
-            "Sprint delivery coordination & tracking",
-            "Pre-UAT validation checklists",
-            "Functional spec mapping and reviews",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Public Work Boundary",
-          title: "Logic design without system exposure",
-          body:
-            "Product features and system rules are presented using visual templates and high-contrast previews to demonstrate logic design without exposing private business configurations.",
-          evidence: [
-            "Process artifacts prepared for public review",
-            "Operational framework models to verify logic",
-          ],
-          logo: assets.vegaLogo,
         },
       ],
     },
     projectProof: {
-      eyebrow: "Selected Work",
-      title: "Real artifacts behind the product story.",
+      eyebrow: "Supporting Work Samples",
+      title: "Real work samples behind the product story.",
       description:
-        "These previews show UI, reporting, and operational artifacts from direct product planning.",
+        "These previews show UI, reporting, and operational work samples from direct product planning.",
       images: [
         {
           src: assets.cdpCampaignList,
@@ -982,10 +1077,147 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         logo: assets.britishCouncilLogo,
       },
     ],
+    professionalExperience: {
+      eyebrow: "Experience",
+      title: "Professional Experience & Supported Projects",
+      description:
+        "Practical work experience and supported projects across product workflow, automation systems, documentation, stakeholder coordination, and operations.",
+      sampleLabel: "Supporting work samples",
+      projectLabel: "Supported project",
+      scopeLabel: "Scope covered",
+      vega: {
+        title: "Vega Fintech — Project Management & Business Analyst Collaborator",
+        period: "03/2026 - Present",
+        focus:
+          "Product workflow, BA documentation, UX mockup, stakeholder coordination, sprint tracking, QA/UAT support.",
+        logo: assets.vegaLogo,
+        projects: [
+          {
+            title: "CDP Automation Flow & Journey Builder Logic",
+            summary:
+              "Designed and documented CDP automation flow logic, including flow creation, node actions, entry conditions, trigger rules, status handling, reporting/debug views, and edge cases for development handoff.",
+            scope: [
+              "Flow list, create/edit/duplicate/delete, pause/resume, and flow status handling",
+              "Entry conditions, trigger conditions, customer segments, node/stage logic, action nodes, wait/delay, and condition splits",
+              "Reporting/debug views, drop-off/conversion tracking, validation states, and edge cases",
+            ],
+            samples: [
+              {
+                src: assets.cdpAutomationFlow,
+                previewSrc: assetPreviews.cdpAutomationFlow,
+                alt: "CDP automation flow map showing journey builder logic",
+                title: "CDP automation flow map",
+                caption: "Journey builder logic",
+              },
+              {
+                src: assets.cdpFlowStates,
+                previewSrc: assetPreviews.cdpFlowStates,
+                alt: "CDP flow management states screen",
+                title: "CDP flow management states",
+                caption: "Flow status handling",
+              },
+              {
+                src: assets.cdpFlowReport,
+                previewSrc: assetPreviews.cdpFlowReport,
+                alt: "CDP flow report detail screen",
+                title: "CDP flow report detail",
+                caption: "Reporting and debug view",
+              },
+            ],
+            tags: ["CDP", "Journey Builder", "Workflow", "Edge Cases", "QA/UAT"],
+          },
+          {
+            title: "Omnichannel Customer Engagement & AI Chatbot Integration",
+            summary:
+              "Researched and mapped omnichannel customer engagement flows for AI chatbot integration across Zalo, Messenger, and the company’s internal customer management system.",
+            scope: [
+              "Zalo and Messenger integration, AI chatbot response flow, and human support handoff",
+              "Centralized conversation management, customer profile/context, message status, and channel-specific constraints",
+              "Webhook/event handling, duplicate/out-of-order events, and session rating/feedback flow",
+            ],
+            samples: [
+              {
+                src: assets.chatbotJourney,
+                previewSrc: assetPreviews.chatbotJourney,
+                alt: "Chatbot Zalo journey flow showing customer engagement steps",
+                title: "Chatbot Zalo journey flow",
+                caption: "Omnichannel flow mapping",
+              },
+              {
+                src: assets.vegaMessChatbox,
+                previewSrc: assetPreviews.vegaMessChatbox,
+                alt: "Messenger chatbot response mockup",
+                title: "Messenger chatbot response",
+                caption: "Customer conversation state",
+              },
+              {
+                src: assets.chatbotFeedback,
+                previewSrc: assetPreviews.chatbotFeedback,
+                alt: "Chatbot feedback rating flow",
+                title: "Session rating and feedback flow",
+                caption: "Feedback loop",
+              },
+            ],
+            tags: ["Omnichannel", "AI Chatbot", "Zalo", "Messenger", "Webhook"],
+          },
+          {
+            title: "ML Forecasting & Product Support",
+            summary:
+              "Supported delivery tracking for an internal ML forecasting initiative while also contributing to product documentation and logic mapping for permission matrix and role-based access control.",
+            scope: [
+              "AI/data stakeholder coordination, sprint progress tracking, bug/issue follow-up, and expected behavior clarification",
+              "Permission matrix, role mapping, approval logic, access rule clarification, and product/development alignment",
+              "Release tracking, functional notes, validation checklists, and delivery support for ML-related features",
+            ],
+            samples: [
+              {
+                src: assets.case2CoverPreview,
+                previewSrc: assets.case2CoverPreview,
+                alt: "Process evidence preview for sprint backlog and release tracking",
+                title: "Sprint backlog and release tracking",
+                caption: "Delivery support",
+              },
+              {
+                src: assets.case3CoverPreview,
+                previewSrc: assets.case3CoverPreview,
+                alt: "Role-permission matrix preview for access control logic",
+                title: "Permission matrix and access logic",
+                caption: "Product support",
+              },
+            ],
+            tags: ["ML Forecasting", "Sprint Tracking", "Permission Matrix", "RBAC", "Product Support"],
+          },
+        ],
+      },
+      entries: [
+        {
+          title: "British Council — Exams Admin Supporter / Teaching Center Helper",
+          focus: "Operations support, user-facing coordination, process discipline, communication.",
+          summary:
+            "Supported exam and teaching center operations in structured, high-pressure environments, working with internal teams, candidates, students, and parents while building reliability, attention to detail, and service communication habits.",
+          logo: assets.britishCouncilLogo,
+        },
+        {
+          title: "Academic Research — Machine Learning & Portfolio Optimization",
+          focus: "Data analysis, machine learning, research documentation, model comparison.",
+          summary:
+            "Built a structured research pipeline for market trend forecasting and portfolio optimization, comparing machine learning models and presenting findings through report, visualization, and demo.",
+          logo: assets.vnuIsLogo,
+        },
+      ],
+      additionalNote:
+        "CMC TS remains represented in the organization strip as supporting BA/data exposure, without diluting the main Vega/CDP/Game Product direction.",
+    },
+    mindset: {
+      eyebrow: "Mindset",
+      title: "Mindset",
+      description:
+        "How ambiguous product problems are clarified, structured, visualized, and turned into practical work outputs.",
+    },
     process: {
       header: {
-        eyebrow: "How I Think",
-        title: "How I approach ambiguous product problems",
+        eyebrow: "Product Thinking Process",
+        title: "Approach to Ambiguous Product Problems",
       },
       rows: [
         {
@@ -1007,7 +1239,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         },
         {
           number: "04",
-          title: "Translate into artifacts",
+          title: "Translate into work outputs",
           description:
             "Convert logic into functional documents, mockups, acceptance criteria, checklists, and backlog-ready items.",
         },
@@ -1015,14 +1247,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           number: "05",
           title: "Align and iterate",
           description:
-            "Use artifacts to align stakeholders, support dev handoff, and refine through review or QA feedback.",
+            "Use work outputs to align stakeholders, support dev handoff, and refine through review or QA feedback.",
         },
       ],
     },
     approach: {
       header: {
-        eyebrow: "How I Work",
-        title: "Core approaches to problem solving",
+        eyebrow: "Working Approach",
+        title: "Core Approaches to Problem Solving",
       },
       items: [
         {
@@ -1045,41 +1277,45 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     skillGroups: {
       header: {
-        eyebrow: "Skills Matrix",
-        title: "Capability groups & toolsets",
+        eyebrow: "Capability Groups & Toolsets",
+        title: "Capability Groups & Toolsets",
       },
       groups: [
         {
-          category: "System & Integration",
-          skills: ["API Integration", "OAuth 2.0", "Webhooks", "Permission Design", "Role-Matrix Logic", "Event-Driven Flows"],
-        },
-        {
-          category: "Business Analysis & PM",
-          skills: ["Requirement Gathering", "BRD/SRS Documentation", "User Stories", "Sprint Planning", "Backlog Management", "Jira/Confluence"],
+          category: "BA/PM Execution",
+          skills: ["Requirement Gathering", "BRD/SRS Documentation", "User Stories", "Sprint Planning", "Backlog Management", "QA/UAT Support"],
         },
         {
           category: "Product & UX Design",
           skills: ["Figma Mockups", "User Journey Mapping", "Interaction Logic", "Edge Case Analysis", "Product Wireframes"],
         },
         {
+          category: "System & Integration",
+          skills: ["API Integration", "OAuth 2.0", "Webhooks", "Permission Design", "Role-Matrix Logic", "Event-Driven Flows"],
+        },
+        {
           category: "Data & Machine Learning",
           skills: ["Python (Pandas, NumPy)", "SQL", "Time-Series Forecasting", "Machine Learning Models", "Portfolio Optimization"],
+        },
+        {
+          category: "Game Product Direction",
+          skills: ["Player Behavior", "Game Economy Basics", "LiveOps Awareness", "Retention / Engagement / Monetization", "Competitive Meta Analysis", "Event / Content Loop"],
         },
       ],
     },
     productNotes: {
-      eyebrow: "Product Samples",
-      title: "Writing sample for structured product thinking.",
+      eyebrow: "Supporting Work Samples",
+      title: "Supporting Work Samples",
       description:
-        "A lightweight product sample showing how I explain BA/Product reasoning in a concise, reviewable format.",
-      noteLabel: "Product Sample / Draft Note",
+        "Optional supporting materials for recruiters who want to review additional product thinking and writing samples.",
+      noteLabel: "Product writing sample",
       noteTitle: "How I turn vague requirements into product flows",
       notePreview:
-        "A short note on how I clarify context, map flows, identify edge cases, and turn product logic into artifacts that teams can discuss and build from.",
+        "A short note on how I clarify context, map flows, identify edge cases, and turn product logic into work outputs that teams can discuss and build from.",
       availability: "Full document available for review",
     },
     gameDirection: {
-      eyebrow: "Game direction",
+      eyebrow: "Game Product Direction",
       title: "Games are the career domain I am building toward.",
       body:
         "I treat games as a product domain, not just a hobby: systems where motivation, competition, progression, retention, community behavior, and live operations all interact. My BA/Product/System work gives me a practical bridge into that domain through flow logic, edge cases, coordination, documentation, and delivery clarity.",
@@ -1101,7 +1337,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         },
         {
           title: "Delivery & Stakeholder Alignment",
-          body: "Turning ambiguous needs into flows, mockups, BRD/FSD artifacts, backlog items, and QA-ready checks.",
+          body: "Turning ambiguous needs into flows, mockups, BRD/FSD deliverables, backlog items, and QA-ready checks.",
         },
       ],
       genres: [
@@ -1129,7 +1365,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Let’s talk about game products, LiveOps, or player-facing features.",
+      title: "Open to BA/PM, Game Product, Game Operations, and LiveOps opportunities where structured product thinking and hands-on delivery support are valued.",
       emailLabel: "Send an email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Download CV",
@@ -1145,13 +1381,11 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
   },
   vi: {
     navigation: [
-      { label: "Trang chủ", href: "#home" },
-      { label: "Case Studies", href: "#case-studies" },
-      { label: "Dự án tiêu biểu", href: "#projects" },
       { label: "Giới thiệu", href: "#about" },
-      { label: "Kinh nghiệm", href: "#experience" },
       { label: "Tư duy", href: "#mindset" },
-      { label: "Sản phẩm mẫu", href: "#product-samples" },
+      { label: "Điểm nổi bật", href: "#snapshot" },
+      { label: "Kinh nghiệm", href: "#experience" },
+      { label: "Giá trị", href: "#value" },
       { label: "Liên hệ", href: "#contact" },
     ],
     personal: {
@@ -1170,8 +1404,14 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       switchLanguageAria: "Chuyển ngôn ngữ",
       linkedinAria: "Mở hồ sơ LinkedIn",
       cvDownloadAria: "Tải CV Nguyễn Đức Minh Hoàng",
-      cvFallback: "Hiện tại chưa tải được file CV. Vui lòng email {email}, tôi sẽ gửi CV trực tiếp.",
-      openArtifact: "Xem tài liệu công việc",
+      cvFallback: "Hiện tại chưa tải được file CV. Vui lòng email {email}, Hoàng sẽ gửi CV trực tiếp.",
+      linkedinMicroLabel: "LinkedIn",
+      linkedinMicroText: "Kết nối",
+      cvMicroLabel: "Tải CV",
+      cvMicroText: "PDF hồ sơ",
+      emailMicroLabel: "Email",
+      emailMicroText: "Gửi email",
+      openArtifact: "Xem mẫu công việc",
       closeArtifact: "Đóng preview",
       zoomInArtifact: "Phóng to",
       zoomOutArtifact: "Thu nhỏ",
@@ -1179,28 +1419,28 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       loadingArtifact: "Đang tải tài liệu",
     },
     hero: {
-      roleLine: "Tư duy BA/PM cho Game Product, LiveOps và Operations.",
-      headline: "Game-focused BA/PM giúp chuyển dịch trải nghiệm người chơi thành tính năng hoàn chỉnh.",
+      roleLine: "Nền tảng BA/PM cho product workflow, documentation và định hướng game-product.",
+      headline: "Product learner có nền tảng BA/PM, phát triển theo hướng Game Product, Game Operations và LiveOps.",
       intro:
-        "Tôi giúp đội ngũ phát triển định hình rõ sản phẩm cần xây dựng bằng cách chuyển các ý tưởng sơ khai thành sơ đồ tương tác, bản vẽ phác thảo (mockup) và đặc tả chi tiết. Tôi kết hợp kỷ luật vận hành này với tư duy phân tích dữ liệu và sự am hiểu sâu sắc về hành vi người chơi.",
+        "Biến các ý tưởng sản phẩm còn mơ hồ thành workflow, UX mockup, requirement và tài liệu đủ rõ để handoff — với định hướng phát triển sang Game Product, Game Operations và LiveOps.",
       usp: {
         label: "Định vị",
         statement:
-          "Một BA/PM đang chuyển hướng sang Game Product và LiveOps bằng kỷ luật vận hành, tư duy phân tích dữ liệu và nền tảng am hiểu game cạnh tranh.",
+          "Một product learner có nền tảng BA/PM, thói quen Product Operations, tư duy dữ liệu và định hướng phát triển dài hạn trong game-domain.",
         signals: [
-          "Điều phối và phát triển BA/PM qua mockup, đặc tả tính năng, nghiên cứu và quản lý backlog",
-          "Tư duy sản phẩm xây dựng từ hành vi người chơi, logic tính năng, trạng thái và các trường hợp biên",
-          "Ra quyết định dựa trên dữ liệu từ nền tảng Business Data Analytics",
-          "Định hướng game gắn liền với động lực người chơi, sự dịch chuyển meta và vận hành trực tiếp",
+          "BA/PM execution qua workflow, mockup, requirement và tài liệu handoff",
+          "Tư duy product workflow qua state, constraint và edge case",
+          "Tư duy dữ liệu từ nền tảng Business Data Analytics",
+          "Định hướng Game Product / Operations / LiveOps từ trải nghiệm theo dõi game competitive",
         ],
       },
       focusItems: [
-        "Định hướng chính: Game Product / LiveOps / Game Operations",
-        "Nền tảng chứng minh: Kinh nghiệm bàn giao tính năng BA/PM",
-        "Hướng chuyển đổi: Associate PM / Product Operations",
+        "Nền tảng BA/PM: workflow, documentation, mockup, QA/UAT",
+        "Định hướng product: Game Product / Game Operations / LiveOps",
+        "Nền tảng chuyển đổi: Product Operations và cross-functional delivery",
       ],
       trustHint:
-        "Bằng chứng tiêu biểu: Tài liệu sản phẩm thực tế, ghi nhận kỹ năng chuyên môn và kinh nghiệm bàn giao tính năng.",
+        "Bằng chứng tiêu biểu: mẫu công việc, ghi nhận chuyên môn và kinh nghiệm bàn giao tính năng.",
       journey: [
         {
           label: "Trải nghiệm người chơi",
@@ -1223,7 +1463,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         proofLabel: "Campaign Logic",
         profileLabel: "Profile node",
         statusStrip: ["Signals", "Logic", "Specs", "Delivery"],
-        artifactStackLabel: "Orchestration Workspace",
+        artifactStackLabel: "Work Sample Stack",
         desktopLabel: "Flow Orchestration Canvas",
         mobileLabel: "Drop-off Analytics",
         tabletLabel: "LiveOps planning board",
@@ -1231,12 +1471,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         noteLabel: "Campaign Logic Flow",
         liveOpsLabel: "Campaign logic",
         visualTemplateLabel: "Performance Feedback Loop",
-        anonymizedLabel: "Product Work Evidence",
+        anonymizedLabel: "Mẫu công việc product",
       },
-      artifactAria: "Các preview artifact sản phẩm đã chọn",
+      artifactAria: "Các preview mẫu công việc product đã chọn",
       ctas: {
-        caseStudies: "Xem Case Studies",
-        gameDirection: "Khám phá Game Direction",
+        caseStudies: "Xem kinh nghiệm",
+        gameDirection: "Khám phá tư duy",
         contact: "Trao đổi",
         cv: "Tải CV",
         linkedin: "LinkedIn",
@@ -1288,22 +1528,36 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       ],
     },
     proof: {
-      eyebrow: "Số liệu nổi bật",
-      title: "Bằng chứng cụ thể, không chỉ là mô tả năng lực.",
+      eyebrow: "Điểm nổi bật",
+      title: "Điểm nổi bật trong công việc",
       stats: [
-        { value: "65+", label: "Màn hình tính năng / trạng thái", subtitle: "Cấu trúc qua các module CDP & chăm sóc khách hàng" },
-        { value: "21", label: "Vai trò người dùng", subtitle: "Thiết lập trong logic phân quyền & kiểm soát truy cập" },
-        { value: "~400", label: "Điểm quyền hạn", subtitle: "Cấu trúc chặt chẽ phục vụ quản trị hệ thống" },
-        { value: "3-4", label: "Tính năng mỗi sprint", subtitle: "Lập kế hoạch và điều phối trong các chu kỳ bàn giao" },
-        { value: "8-10", label: "Task mỗi sprint", subtitle: "Phân phối nhịp nhàng trong quy trình dev handoff" },
-        { value: "~5", label: "Lỗi trước UAT", subtitle: "Phát hiện và làm rõ trước khi nghiệm thu phát hành" },
+        {
+          value: "65+",
+          label: "Screens / Features",
+          subtitle: "Mockup và màn hình tính năng cho CDP workflow, quản lý khách hàng, trạng thái automation và edge case.",
+        },
+        {
+          value: "21 / ~400",
+          label: "Roles / Permissions",
+          subtitle: "Mapping logic role và permission cho phân quyền, luồng phê duyệt và alignment nội bộ.",
+        },
+        {
+          value: "3",
+          label: "Sprint Cycles",
+          subtitle: "Hỗ trợ planning, tracking, theo dõi bug và alignment triển khai qua các feature product/ML.",
+        },
+        {
+          value: "4,000+",
+          label: "Hours Game Exposure",
+          subtitle: "Trải nghiệm game competitive được chuyển hóa thành góc nhìn về hành vi người chơi, meta, live content và system design.",
+        },
       ],
     },
     about: {
       eyebrow: "Giới thiệu",
-      title: "Tôi kết nối logic hệ thống, năng lực bàn giao và sự am hiểu sản phẩm game.",
+      title: "Nền tảng Business Data Analytics, năng lực BA/PM và định hướng product trong game.",
       body:
-        "Tôi là Hoàng, một BA/PM tại Hà Nội, đang định hướng phát triển sang Game Product, LiveOps và Game Operations. Thế mạnh của tôi là chuyển hóa các yêu cầu phức tạp thành sơ đồ tương tác và đặc tả tính năng rõ ràng để lập trình viên sẵn sàng code. Tôi kết hợp kỷ luật vận hành này với nền tảng phân tích dữ liệu cùng sự gắn bó lâu năm với mảng game cạnh tranh.\n\nOutside work, I follow competitive games closely and have supported team preparation through ban/pick planning, opponent analysis, and match strategy — experience that helps me understand player motivation, meta shifts, and competitive behavior beyond surface-level gameplay.",
+        "Hoàng có nền tảng Business Data Analytics và đang phát triển theo hướng Business Analysis, Project Management và Product Operations. Trọng tâm công việc là biến các ý tưởng sản phẩm còn mơ hồ thành workflow, UX mockup, requirement và tài liệu đủ rõ để team phát triển có thể triển khai.\n\nĐịnh hướng tiếp theo là Game Product, Game Operations và LiveOps — nơi nền tảng BA/PM, tư duy dữ liệu và trải nghiệm theo dõi game competitive lâu dài có thể được chuyển hóa thành góc nhìn về hành vi người chơi, feature planning, vận hành nội dung và cải thiện sản phẩm.",
       portrait: {
         src: "/assets/portrait-nguyen-duc-minh-hoang.jpg",
         alt: "Ảnh chân dung Nguyễn Đức Minh Hoàng",
@@ -1312,19 +1566,19 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
       points: [
         {
-          title: "Tư duy logic & hệ thống",
+          title: "Nền tảng BA/PM và Product Operations",
           description:
-            "Tôi bóc tách các tính năng phức tạp thành sơ đồ luồng dữ liệu, trạng thái và các trường hợp biên để đảm bảo tính nhất quán trước khi viết code.",
+            "Kinh nghiệm thực tế về làm rõ product workflow, UX mockup, requirement, documentation, stakeholder coordination, sprint tracking và QA/UAT support.",
         },
         {
-          title: "Làm rõ yêu cầu & bản vẽ kỹ thuật",
+          title: "Tư duy product dựa trên dữ liệu",
           description:
-            "Tôi chuyển dịch ý tưởng thành sơ đồ luồng người dùng (user flow), mockup giao diện, user story và danh sách kiểm thử giúp lập trình viên triển khai chính xác.",
+            "Nền tảng Business Data Analytics hỗ trợ phân tích có cấu trúc, so sánh mô hình, tư duy metric và thảo luận product tradeoff rõ ràng hơn.",
         },
         {
-          title: "Am hiểu sâu sắc game cạnh tranh",
+          title: "Game như một product domain",
           description:
-            "Tôi phân tích dòng chảy meta, vòng lặp người chơi và hành vi cạnh tranh từ thực tế chuẩn bị chiến thuật Esports để mang đến những góc nhìn giá trị cho vận hành game.",
+            "Trải nghiệm theo dõi game competitive được nhìn như quá trình học domain: player motivation, meta shift, progression, content loop và live-service operation.",
         },
       ],
       abstractCard: {
@@ -1335,9 +1589,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       profileCard: {
         label: "Professional Monogram",
         title: "NDMH",
-        subtitle: "BA/PM tư duy Game định hướng hệ thống và bàn giao sản phẩm.",
+        subtitle: "BA/PM tập trung vào workflow clarity, product delivery và phát triển game-domain.",
         placeholder: "Competency Profile",
-        chips: ["Tư duy hệ thống", "Tư duy game", "Phân tích dữ liệu", "Điều phối dự án", "Player-centric"],
+        chips: ["Có cấu trúc", "BA/PM", "Data-informed", "Product Ops", "Game-domain"],
       },
       educationLabel: "Học vấn",
       education: {
@@ -1347,21 +1601,34 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         logo: assets.vnuIsLogo,
       },
     },
+    organizations: {
+      eyebrow: "Môi trường",
+      title: "Các môi trường Hoàng từng làm việc và học tập",
+      description: "Một lát cắt gọn về các môi trường tạo nên nền tảng công việc và học tập hiện tại.",
+      items: [
+        { name: "Vega Fintech", context: "Product workflow / BA-PM", logo: assets.vegaLogo },
+        { name: "British Council", context: "Operations / service coordination", logo: assets.britishCouncilLogo },
+        { name: "CMC TS", context: "Data & Business Analyst internship", logo: assets.cmctsLogo },
+        { name: "VNU-IS", context: "Business Data Analytics", logo: assets.vnuIsLogo },
+        { name: "TalentNet", context: "Professional exposure" },
+        { name: "Sonat", context: "Game design collaboration" },
+      ],
+    },
     sections: {
       caseStudies: {
-        eyebrow: "Case Studies nổi bật",
-        title: "Requirement clarity được thể hiện qua artifact sản phẩm thật.",
+        eyebrow: "Dự án đã hỗ trợ",
+        title: "Requirement clarity được thể hiện qua sản phẩm công việc thật.",
         description:
           "Các case study này tập trung vào sơ đồ tương tác, logic hệ thống, quy tắc phân quyền và tính sẵn sàng bàn giao thay vì trình bày mang tính hình thức.",
       },
       projects: {
-        eyebrow: "Dự án tiêu biểu",
+        eyebrow: "Mẫu công việc hỗ trợ",
         title: "Bằng chứng bổ sung qua UX, analytics và chiều sâu nghiên cứu.",
         description:
           "Các dự án này nhẹ hơn case study chính. Chúng thể hiện kỹ năng có thể chuyển đổi: cấu trúc web/UX, KPI storytelling và analytical decision support.",
       },
       experience: {
-        eyebrow: "Kinh nghiệm tiêu biểu",
+        eyebrow: "Kinh nghiệm",
         title: "Bằng chứng BA/PM thực tế qua fintech, chuyển đổi số và vận hành.",
         description:
           "Đây là nền tảng chứng minh cho định hướng game: sơ đồ tương tác, tài liệu, quản lý backlog, logic phân quyền, kiểm thử tính năng và điều phối các bộ phận.",
@@ -1371,12 +1638,12 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       eyebrow: "Case Study",
       context: "Bối cảnh",
       problem: "Vấn đề",
-      role: "Vai trò của tôi",
+      role: "Vai trò",
       keyDecisions: "Quyết định chính / đánh đổi",
       outcomeLearning: "Kết quả / Bài học",
       evidence: "Bằng chứng chính",
       process: "Cách triển khai",
-      deliveredArtifacts: "Artifact đã bàn giao",
+      deliveredArtifacts: "Sản phẩm công việc đã bàn giao",
       delivered: "Kết quả bàn giao",
       impact: "Tác động đến sản phẩm / hệ thống",
       skills: "Năng lực thể hiện",
@@ -1389,7 +1656,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       internalPreview: "Confidential details removed",
       whatItProves: "Điều case này chứng minh",
       bottomLine: "Bottom line",
-      artifactTags: "Loại artifact",
+      artifactTags: "Loại sản phẩm công việc",
     },
     caseStudies: [
       {
@@ -1464,7 +1731,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           "Thiết lập các tiêu chí kiểm thử trước UAT để đảm bảo tính chính xác của tính năng trước khi đưa ra môi trường thử nghiệm.",
         ],
         outcomeLearning:
-          "Xây trì nhịp độ làm việc ổn định qua từng sprint, giảm thiểu khoảng cách thông tin giữa các bộ phận và chuẩn hóa quy trình xác thực tính năng.",
+          "Duy trì nhịp độ làm việc ổn định qua từng sprint, giảm thiểu khoảng cách thông tin giữa các bộ phận và chuẩn hóa quy trình xác thực tính năng.",
         process: [
           "Làm rõ yêu cầu sản phẩm với các bộ phận vận hành và kinh doanh.",
           "Khớp các tiêu chí đầu ra của thuật toán dự báo với đội ngũ kỹ thuật và AI team lead.",
@@ -1532,84 +1799,92 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       },
     ],
     whyWork: {
-      eyebrow: "Vì sao nên chọn tôi",
-      title: "Một BA/PM tư duy game giúp đội ngũ phát triển định hình rõ sản phẩm.",
+      eyebrow: "Giá trị",
+      title: "Giá trị có thể mang đến cho team",
       description:
-        "Tôi kết nối nhu cầu trải nghiệm người chơi với quy trình phát triển kỹ thuật bằng cách chuyển đổi logic phức tạp thành đặc tả dễ hiểu.",
+        "Năng lực BA/PM thực tế, tư duy product và hiểu biết game-domain cho những team cần sự rõ ràng, cấu trúc và hỗ trợ triển khai.",
+      proofLabel: "Bằng chứng",
       pillars: [
         {
-          title: "Am hiểu sâu sắc về sản phẩm Game",
+          title: "Structured BA/PM Execution",
           body:
-            "Là người chơi cạnh tranh trong Liên Quân Mobile, League of Legends, TFT, Valorant và CS2, tôi phân tích động lực người chơi, cân bằng meta và hệ thống tiến trình game dưới góc nhìn sản phẩm.",
-          proof: "Lập kế hoạch giải đấu Esports, hỗ trợ chiến thuật ban/pick và phân tích trận đấu.",
+            "Biến yêu cầu chưa rõ thành user flow, requirement, mockup, acceptance criteria và tài liệu đủ rõ để handoff.",
+          proof: "Workflow mapping, requirement, mockup và QA/UAT checklist.",
         },
         {
-          title: "Bàn giao tính năng BA/PM có cấu trúc",
+          title: "Product & Game-domain Thinking",
           body:
-            "Tôi giúp team chuyển hóa ý tưởng mơ hồ thành sơ đồ tương tác, mockup, backlog item và tài liệu chức năng. Kinh nghiệm quản lý sprint trên Jira và điều phối kiểm thử tính năng.",
-          proof: "Đặc tả tính năng, mockup tương tác, quản lý backlog và release checklist.",
+            "Nhìn sản phẩm và game qua hành vi người dùng/người chơi, motivation, progression, UX friction, content loop và các chỉ số sản phẩm.",
+          proof: "Game exposure, phân tích hệ thống product và tư duy dựa trên dữ liệu.",
         },
         {
-          title: "Tư duy phân tích dữ liệu thực tế",
+          title: "Cross-functional Delivery Support",
           body:
-            "Tốt nghiệp ngành Business Data Analytics kết hợp thực tập data engineering để phân tích chỉ số vận hành, dự báo xu hướng và so sánh các phương án đánh đổi để tối ưu hóa quyết định sản phẩm.",
-          proof: "Nền tảng dự báo time-series, ETL pipeline và dashboard theo dõi chỉ số hiệu suất.",
-        },
-        {
-          title: "Điều phối liên phòng ban hiệu quả",
-          body:
-            "Kinh nghiệm hỗ trợ vận hành đa bộ phận tại British Council Vietnam. Khả năng kết nối nhiều stakeholder, giải quyết các vấn đề phát sinh và giao tiếp hiệu quả dưới áp lực.",
-          proof: "Hỗ trợ vận hành đa phòng ban và thư giới thiệu kỹ năng giao tiếp chuyển đổi.",
+            "Phối hợp với product, design, development, AI/data và operation team để làm rõ scope, theo dõi triển khai và chuyển kiến thức domain mới thành output thực tế.",
+          proof: "Sprint follow-up, stakeholder alignment, bug tracking và kỷ luật service operations.",
         },
       ],
     },
     socialProof: {
-      eyebrow: "Bằng chứng",
-      title: "Độ tin cậy được minh chứng từ thực tế bàn giao.",
+      eyebrow: "Tín hiệu chứng minh",
+      title: "Các tín hiệu công việc ngắn gọn",
       description:
-        "Năng lực chuyên môn được chứng minh qua các đề xuất chuyên nghiệp và bằng chứng công việc thực tế.",
+        "Một lát cắt ngắn về output thực tế, phạm vi công việc và định hướng product/game mà Hoàng đang xây dựng.",
       cards: [
         {
-          label: "Đề xuất chuyên môn",
-          title: "British Council Operations Support",
+          label: "Documentation",
+          title: "Product Flow & Documentation",
           body:
-            "Được ghi nhận trong thư đề xuất chính thức về sự chuyên nghiệp, độ tin cậy, kỹ năng giao tiếp cấu trúc, làm việc nhóm, tổ chức công việc và trình độ tiếng Anh xuất sắc.",
+            "Workflow, UX mockup, requirement và handoff note được chuẩn bị để stakeholder review và team phát triển sử dụng.",
           evidence: [
-            "Điều phối hậu cần & luồng công việc liên phòng ban",
-            "Hỗ trợ quản trị và bàn giao dịch vụ phức tạp",
+            "Flow mapping",
+            "Requirement notes",
+            "QA/UAT checklist",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Coordination",
+          title: "Cross-functional Coordination",
+          body:
+            "Hỗ trợ product, design, development, AI/data và operation stakeholder qua sprint follow-up và làm rõ scope.",
+          evidence: [
+            "Sprint tracking",
+            "Bug follow-up",
+            "Expected behavior clarification",
+          ],
+          logo: assets.vegaLogo,
+        },
+        {
+          label: "Direction",
+          title: "Game Product Direction",
+          body:
+            "Trải nghiệm game competitive được chuyển hóa thành product thinking về người chơi, hệ thống, live content và engagement loop.",
+          evidence: [
+            "Player behavior",
+            "Meta shifts",
+            "Live-service loops",
+          ],
+        },
+        {
+          label: "Operations",
+          title: "Operations Discipline",
+          body:
+            "Kinh nghiệm service operations hỗ trợ sự đáng tin cậy, kỷ luật quy trình, giao tiếp rõ ràng và thực thi cẩn thận dưới áp lực.",
+          evidence: [
+            "Frontline coordination",
+            "Service communication",
+            "Process discipline",
           ],
           logo: assets.britishCouncilLogo,
-        },
-        {
-          label: "Bằng chứng bàn giao",
-          title: "Vega Fintech Feature Release",
-          body:
-            "Minh chứng năng lực phân tích nghiệp vụ thực tế qua việc vẽ sơ đồ luồng người dùng chi tiết, mô phỏng giao diện, phối hợp sprint và thực hiện kiểm thử nghiệm thu pre-UAT.",
-          evidence: [
-            "Điều phối & theo sát sprint bàn giao",
-            "Xây dựng checklist kiểm thử pre-UAT",
-            "Mô tả tài liệu đặc tả chức năng",
-          ],
-          logo: assets.vegaLogo,
-        },
-        {
-          label: "Giới hạn công việc công khai",
-          title: "Thiết kế logic không lộ hệ thống",
-          body:
-            "Các tính năng và quy tắc nghiệp vụ được trình bày qua các mẫu trực quan nhằm minh họa tư duy thiết kế mà không làm lộ cấu hình doanh nghiệp.",
-          evidence: [
-            "Tài liệu quy trình chuẩn hóa công khai",
-            "Mô hình vận hành trực quan hóa logic",
-          ],
-          logo: assets.vegaLogo,
         },
       ],
     },
     projectProof: {
-      eyebrow: "Product UI Proof",
-      title: "Những artifact thật phía sau câu chuyện sản phẩm.",
+      eyebrow: "Mẫu công việc hỗ trợ",
+      title: "Những mẫu công việc thật phía sau câu chuyện sản phẩm.",
       description:
-        "Các preview đã được làm sạch này thể hiện product UI, báo cáo và artifact vận hành như bằng chứng của BA/Product work thực tế.",
+        "Các preview đã được làm sạch này thể hiện product UI, báo cáo và mẫu vận hành như bằng chứng của BA/Product work thực tế.",
       images: [
         {
           src: assets.cdpCampaignList,
@@ -1743,10 +2018,147 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         logo: assets.britishCouncilLogo,
       },
     ],
+    professionalExperience: {
+      eyebrow: "Kinh nghiệm",
+      title: "Kinh nghiệm chuyên môn & dự án đã hỗ trợ",
+      description:
+        "Kinh nghiệm làm việc và các dự án đã hỗ trợ trong product workflow, automation system, documentation, stakeholder coordination và operation.",
+      sampleLabel: "Mẫu công việc hỗ trợ",
+      projectLabel: "Dự án đã hỗ trợ",
+      scopeLabel: "Phạm vi công việc",
+      vega: {
+        title: "Vega Fintech — Project Management & Business Analyst Collaborator",
+        period: "03/2026 - Present",
+        focus:
+          "Product workflow, BA documentation, UX mockup, stakeholder coordination, sprint tracking, QA/UAT support.",
+        logo: assets.vegaLogo,
+        projects: [
+          {
+            title: "CDP Automation Flow & Journey Builder Logic",
+            summary:
+              "Thiết kế và mô tả logic CDP Automation Flow, bao gồm tạo flow, node action, điều kiện vào flow, trigger, trạng thái flow, reporting/debug view và edge case để handoff cho team phát triển.",
+            scope: [
+              "Flow list, tạo/sửa/duplicate/delete flow, pause/resume và trạng thái flow",
+              "Điều kiện vào flow, trigger condition, customer segment, node/stage logic, action node, wait/delay và condition split",
+              "Reporting/debug view, drop-off/conversion tracking, validation state và edge case",
+            ],
+            samples: [
+              {
+                src: assets.cdpAutomationFlow,
+                previewSrc: assetPreviews.cdpAutomationFlow,
+                alt: "Sơ đồ CDP automation flow thể hiện logic journey builder",
+                title: "CDP automation flow map",
+                caption: "Journey builder logic",
+              },
+              {
+                src: assets.cdpFlowStates,
+                previewSrc: assetPreviews.cdpFlowStates,
+                alt: "Màn hình trạng thái quản lý CDP flow",
+                title: "CDP flow management states",
+                caption: "Flow status handling",
+              },
+              {
+                src: assets.cdpFlowReport,
+                previewSrc: assetPreviews.cdpFlowReport,
+                alt: "Màn hình chi tiết báo cáo CDP flow",
+                title: "CDP flow report detail",
+                caption: "Reporting and debug view",
+              },
+            ],
+            tags: ["CDP", "Journey Builder", "Workflow", "Edge Cases", "QA/UAT"],
+          },
+          {
+            title: "Omnichannel Customer Engagement & AI Chatbot Integration",
+            summary:
+              "Nghiên cứu và mapping luồng Omnichannel Customer Engagement, tập trung vào tích hợp chatbot AI với Zalo, Messenger và hệ thống nội bộ để quản lý, phản hồi và giao tiếp khách hàng tập trung qua nhiều kênh.",
+            scope: [
+              "Zalo/Messenger integration, AI chatbot response flow và human support handoff",
+              "Centralized conversation management, customer profile/context, message status và constraint theo từng kênh",
+              "Webhook/event handling, duplicate/out-of-order events và session rating/feedback flow",
+            ],
+            samples: [
+              {
+                src: assets.chatbotJourney,
+                previewSrc: assetPreviews.chatbotJourney,
+                alt: "Luồng chatbot Zalo thể hiện các bước customer engagement",
+                title: "Chatbot Zalo journey flow",
+                caption: "Omnichannel flow mapping",
+              },
+              {
+                src: assets.vegaMessChatbox,
+                previewSrc: assetPreviews.vegaMessChatbox,
+                alt: "Mockup phản hồi chatbot trên Messenger",
+                title: "Messenger chatbot response",
+                caption: "Customer conversation state",
+              },
+              {
+                src: assets.chatbotFeedback,
+                previewSrc: assetPreviews.chatbotFeedback,
+                alt: "Luồng rating và feedback sau phiên chatbot",
+                title: "Session rating and feedback flow",
+                caption: "Feedback loop",
+              },
+            ],
+            tags: ["Omnichannel", "AI Chatbot", "Zalo", "Messenger", "Webhook"],
+          },
+          {
+            title: "ML Forecasting & Product Support",
+            summary:
+              "Hỗ trợ theo dõi tiến độ cho dự án ML Forecasting nội bộ, đồng thời tham gia tài liệu hóa và mapping logic cho permission matrix và phân quyền theo role.",
+            scope: [
+              "AI/data stakeholder coordination, sprint progress tracking, bug/issue follow-up và expected behavior clarification",
+              "Permission matrix, role mapping, approval logic, access rule clarification và product/development alignment",
+              "Release tracking, functional note, validation checklist và delivery support cho các feature liên quan ML",
+            ],
+            samples: [
+              {
+                src: assets.case2CoverPreview,
+                previewSrc: assets.case2CoverPreview,
+                alt: "Preview sprint backlog và release tracking",
+                title: "Sprint backlog and release tracking",
+                caption: "Delivery support",
+              },
+              {
+                src: assets.case3CoverPreview,
+                previewSrc: assets.case3CoverPreview,
+                alt: "Preview ma trận phân quyền và logic truy cập",
+                title: "Permission matrix and access logic",
+                caption: "Product support",
+              },
+            ],
+            tags: ["ML Forecasting", "Sprint Tracking", "Permission Matrix", "RBAC", "Product Support"],
+          },
+        ],
+      },
+      entries: [
+        {
+          title: "British Council — Exams Admin Supporter / Teaching Center Helper",
+          focus: "Operations support, user-facing coordination, process discipline, communication.",
+          summary:
+            "Hỗ trợ vận hành kỳ thi và trung tâm giảng dạy trong môi trường có quy trình rõ ràng, áp lực cao; thường xuyên làm việc với team nội bộ, thí sinh, học sinh và phụ huynh, từ đó xây dựng sự cẩn thận, đáng tin cậy và khả năng giao tiếp dịch vụ.",
+          logo: assets.britishCouncilLogo,
+        },
+        {
+          title: "Academic Research — Machine Learning & Portfolio Optimization",
+          focus: "Data analysis, machine learning, research documentation, model comparison.",
+          summary:
+            "Xây dựng pipeline nghiên cứu cho bài toán dự báo xu hướng thị trường và tối ưu danh mục, so sánh các mô hình machine learning và trình bày kết quả qua báo cáo, visualization và demo.",
+          logo: assets.vnuIsLogo,
+        },
+      ],
+      additionalNote:
+        "CMC TS được giữ trong logo strip như một tín hiệu hỗ trợ về BA/data exposure, không làm loãng trọng tâm Vega/CDP/Game Product.",
+    },
+    mindset: {
+      eyebrow: "Tư duy",
+      title: "Tư duy",
+      description:
+        "Cách các bài toán sản phẩm mơ hồ được làm rõ, cấu trúc hóa, trực quan hóa và chuyển thành sản phẩm công việc có thể sử dụng.",
+    },
     process: {
       header: {
-        eyebrow: "Cách tôi nghĩ",
-        title: "Cách tôi tiếp cận những bài toán sản phẩm còn mơ hồ",
+        eyebrow: "Product Thinking Process",
+        title: "Approach to Ambiguous Product Problems",
       },
       rows: [
         {
@@ -1766,7 +2178,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         },
         {
           number: "04",
-          title: "Chuyển thành artifact",
+          title: "Translate into Work Outputs",
           description:
             "Chuyển logic thành tài liệu chức năng, mockup, acceptance criteria, checklist và backlog-ready item.",
         },
@@ -1774,76 +2186,80 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
           number: "05",
           title: "Đồng thuận và lặp lại",
           description:
-            "Dùng artifact để tạo alignment với các bên liên quan, hỗ trợ dev handoff và tinh chỉnh qua review hoặc QA feedback.",
+            "Dùng sản phẩm công việc để tạo alignment với các bên liên quan, hỗ trợ dev handoff và tinh chỉnh qua review hoặc QA feedback.",
         },
       ],
     },
     approach: {
       header: {
-        eyebrow: "Cách tôi làm việc",
-        title: "Cách tôi tiếp cận các bài toán sản phẩm",
+        eyebrow: "Working Approach",
+        title: "Core Approaches to Problem Solving",
       },
       items: [
         {
           title: "Tư duy hệ thống",
-          body: "Tôi luôn phân tích sự phụ thuộc (dependency), trạng thái và các trường hợp biên (edge case) trước khi đi vào giải pháp.",
+          body: "Phân tích dependency, trạng thái và edge case trước khi đi vào giải pháp để tránh thiếu logic khi triển khai.",
         },
         {
-          title: "Dịch thuật Business ↔ Technical",
-          body: "Tôi đọc tài liệu kỹ thuật, API và hiểu giới hạn hệ thống để chuyển mục tiêu kinh doanh thành đặc tả rõ ràng cho dev.",
+          title: "Kết nối Business ↔ Technical",
+          body: "Đọc tài liệu kỹ thuật, API và constraint hệ thống để chuyển mục tiêu business thành đặc tả rõ ràng cho dev.",
         },
         {
           title: "Quyết định dựa trên dữ liệu",
-          body: "Tôi sử dụng dữ liệu, tư duy phân tích có cấu trúc và so sánh định lượng để bảo vệ định hướng sản phẩm.",
+          body: "Sử dụng dữ liệu, tư duy phân tích có cấu trúc và so sánh định lượng để hỗ trợ định hướng product.",
         },
         {
           title: "Đồng thuận các bên liên quan",
-          body: "Tôi tạo flow trực quan, mockup và checklist chi tiết để kết nối và thống nhất ý kiến giữa các bên.",
+          body: "Tạo flow trực quan, mockup và checklist chi tiết để kết nối và thống nhất kỳ vọng giữa các bên.",
         },
       ],
     },
     skillGroups: {
       header: {
-        eyebrow: "Ma trận kỹ năng",
-        title: "Các nhóm năng lực & công cụ",
+        eyebrow: "Capability Groups & Toolsets",
+        title: "Capability Groups & Toolsets",
       },
       groups: [
         {
-          category: "Hệ thống & Tích hợp",
-          skills: ["API Tích hợp", "OAuth 2.0", "Webhooks", "Thiết kế phân quyền", "Ma trận vai trò", "Event-Driven Flows"],
+          category: "BA/PM Execution",
+          skills: ["Thu thập yêu cầu", "Tài liệu BRD/SRS", "User Stories", "Sprint Planning", "Backlog Management", "QA/UAT Support"],
         },
         {
-          category: "BA & Quản lý dự án (BA/PM)",
-          skills: ["Thu thập yêu cầu", "Tài liệu BRD/SRS", "User Stories", "Sprint Planning", "Quản lý Backlog", "Jira/Confluence"],
+          category: "Product & UX Design",
+          skills: ["Figma Mockups", "User Journey Mapping", "Logic tương tác", "Phân tích edge case", "Product Wireframes"],
         },
         {
-          category: "Product & Thiết kế UX",
-          skills: ["Figma Mockups", "User Journey Mapping", "Logic tương tác", "Phân tích trường hợp biên", "Product Wireframes"],
+          category: "System & Integration",
+          skills: ["API Integration", "OAuth 2.0", "Webhooks", "Thiết kế phân quyền", "Ma trận vai trò", "Event-Driven Flows"],
         },
         {
           category: "Dữ liệu & Học máy",
           skills: ["Python (Pandas, NumPy)", "SQL", "Dự báo Time-Series", "Mô hình Machine Learning", "Tối ưu hóa danh mục"],
         },
+        {
+          category: "Game Product Direction",
+          skills: ["Player Behavior", "Game Economy Basics", "LiveOps Awareness", "Retention / Engagement / Monetization", "Competitive Meta Analysis", "Event / Content Loop"],
+        },
       ],
     },
     productNotes: {
-      eyebrow: "Sản phẩm mẫu",
-      title: "Tài liệu mẫu thể hiện tư duy sản phẩm có cấu trúc.",
+      eyebrow: "Mẫu công việc bổ sung",
+      title: "Mẫu công việc bổ sung",
       description:
-        "Tài liệu mẫu tóm tắt ngắn gọn thể hiện phương pháp phân tích, tư duy hệ thống và cách tôi giải quyết các bài toán sản phẩm thực tế.",
-      noteLabel: "Tài liệu mẫu / Ghi chú sản phẩm",
-      noteTitle: "Cách tôi biến yêu cầu mơ hồ thành product flow rõ ràng",
+        "Phần hỗ trợ dành cho recruiter muốn xem thêm mẫu tư duy product và cách trình bày tài liệu.",
+      noteLabel: "Product writing sample",
+      noteTitle: "Cách biến yêu cầu mơ hồ thành product flow rõ ràng",
       notePreview:
-        "Một ghi chú ngắn về cách tôi làm rõ bối cảnh, map flow, xác định edge case và chuyển product logic thành các tài liệu kỹ thuật để team phát triển triển khai.",
-      availability: "Tài liệu đầy đủ sẵn sàng cung cấp để đánh giá",
+        "Một ghi chú ngắn về cách làm rõ bối cảnh, map flow, xác định edge case và chuyển product logic thành sản phẩm công việc để team có thể trao đổi và triển khai.",
+      availability: "Tài liệu đầy đủ sẵn sàng cung cấp khi cần",
     },
     gameDirection: {
       eyebrow: "Định hướng game",
-      title: "Game là domain nghề nghiệp tôi đang xây dựng hướng tới.",
+      title: "Game là domain nghề nghiệp Hoàng đang xây dựng hướng tới.",
       body:
-        "Tôi nhìn game như một product domain, không chỉ là sở thích: nơi motivation, competition, progression, retention, community behavior và live operations cùng tác động lên trải nghiệm người chơi. Nền tảng BA/Product/System hiện tại là cầu nối thực tế qua flow logic, edge case, coordination, documentation và delivery clarity.",
-      genresTitle: "Thể loại và hệ thống tôi muốn hiểu sâu hơn",
-      gamesTitle: "Một số game tôi theo dõi hoặc chơi",
+        "Game được nhìn như một product domain, không chỉ là sở thích: nơi motivation, competition, progression, retention, community behavior và live operations cùng tác động lên trải nghiệm người chơi. Nền tảng BA/Product/System hiện tại là cầu nối thực tế qua flow logic, edge case, coordination, documentation và delivery clarity.",
+      genresTitle: "Thể loại và hệ thống cần hiểu sâu hơn",
+      gamesTitle: "Một số game đang theo dõi hoặc chơi",
       pillarsTitle: "Cách nền tảng BA/PM hiện tại kết nối với game work",
       pillars: [
         {
@@ -1860,7 +2276,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         },
         {
           title: "Delivery & Stakeholder Alignment",
-          body: "Chuyển nhu cầu mơ hồ thành flow, mockup, BRD/FSD artifact, backlog item và QA-ready checks.",
+          body: "Chuyển nhu cầu mơ hồ thành flow, mockup, BRD/FSD deliverable, backlog item và QA-ready checks.",
         },
       ],
       genres: [
@@ -1888,7 +2304,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
     },
     contact: {
       eyebrow: "Liên hệ",
-      title: "Hãy trao đổi về game products, LiveOps, hoặc các tính năng hướng đến người chơi.",
+      title: "Sẵn sàng trao đổi về các cơ hội BA/PM, Game Product, Game Operations và LiveOps — đặc biệt ở những team cần tư duy product có cấu trúc và khả năng hỗ trợ triển khai thực tế.",
       emailLabel: "Gửi email →",
       linkedinLabel: "LinkedIn",
       cvLabel: "Tải CV",

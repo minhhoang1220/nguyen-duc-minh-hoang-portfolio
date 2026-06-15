@@ -10,6 +10,14 @@ type HeroProps = {
   linkedinAria: string;
   cvDownloadAria: string;
   openArtifactLabel: string;
+  socialLabels: {
+    linkedinMicroLabel: string;
+    linkedinMicroText: string;
+    cvMicroLabel: string;
+    cvMicroText: string;
+    emailMicroLabel: string;
+    emailMicroText: string;
+  };
   onImageOpen: (image: AssetImage) => void;
 };
 
@@ -20,6 +28,7 @@ function Hero({
   linkedinAria,
   cvDownloadAria,
   openArtifactLabel,
+  socialLabels,
   onImageOpen,
 }: HeroProps) {
   const mainArtifact = hero.artifacts.find((artifact) => artifact.type === "image" && artifact.priority);
@@ -155,7 +164,7 @@ function Hero({
           <p className="mt-5 max-w-2xl text-base leading-8 text-cream/80 md:text-lg">{hero.intro}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg border-2 border-sky bg-sky px-5 py-2.5 text-sm md:text-base font-bold text-[#080E24] shadow-md transition duration-300 hover:-translate-y-px hover:bg-sky/90 hover:border-sky/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-[#080E24]" href="#case-studies" aria-label={hero.ctas.caseStudies}>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg border-2 border-sky bg-sky px-5 py-2.5 text-sm md:text-base font-bold text-[#080E24] shadow-md transition duration-300 hover:-translate-y-px hover:bg-sky/90 hover:border-sky/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-[#080E24]" href="#experience" aria-label={hero.ctas.caseStudies}>
               {hero.ctas.caseStudies}
             </a>
             <a className="inline-flex min-h-11 w-fit items-center justify-center rounded-lg border-2 border-cream/30 bg-transparent px-5 py-2.5 text-sm md:text-base font-bold text-cream transition duration-300 hover:-translate-y-px hover:border-sky hover:text-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2 focus-visible:ring-offset-[#080E24]" href="#contact" aria-label={hero.ctas.contact}>
@@ -170,14 +179,14 @@ function Hero({
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 rounded-lg border border-navy/10 bg-[#FCFBF8] px-4 py-2.5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3] hover:border-navy/35 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
-              aria-label="LinkedIn Profile"
+              aria-label={linkedinAria}
             >
               <svg className="h-5 w-5 fill-current text-navy shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
               </svg>
               <div className="flex flex-col text-left">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">LinkedIn</span>
-                <span className="text-xs text-navy">Connect</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">{socialLabels.linkedinMicroLabel}</span>
+                  <span className="text-xs text-navy">{socialLabels.linkedinMicroText}</span>
               </div>
             </a>
 
@@ -192,8 +201,8 @@ function Hero({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <div className="flex flex-col text-left">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">Download CV</span>
-                <span className="text-xs text-navy">Resume PDF</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">{socialLabels.cvMicroLabel}</span>
+                  <span className="text-xs text-navy">{socialLabels.cvMicroText}</span>
               </div>
             </CvLink>
 
@@ -201,15 +210,15 @@ function Hero({
               href={`mailto:${personal.email}`}
               className="inline-flex items-center gap-3 rounded-lg border border-navy/10 bg-[#FCFBF8] px-4 py-2.5 text-sm font-semibold text-navy transition duration-300 hover:-translate-y-0.5 hover:bg-[#F3EFE3] hover:border-navy/35 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
               title={personal.email}
-              aria-label={`Email: ${personal.email}`}
+                aria-label={`${socialLabels.emailMicroLabel}: ${personal.email}`}
             >
               <svg className="h-5 w-5 fill-none stroke-current text-navy stroke-2 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               <div className="flex flex-col text-left">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">Email</span>
-                <span className="text-xs text-navy hidden lg:inline-block">{personal.email}</span>
-                <span className="text-xs text-navy inline-block lg:hidden">Email me</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-navy/60">{socialLabels.emailMicroLabel}</span>
+                  <span className="text-xs text-navy hidden lg:inline-block">{personal.email}</span>
+                  <span className="text-xs text-navy inline-block lg:hidden">{socialLabels.emailMicroText}</span>
               </div>
             </a>
           </div>
@@ -329,7 +338,7 @@ function HeroSignalPanel({
 
 function CommandJourney({ journey }: { journey: HeroJourneyStep[] }) {
   return (
-    <ol className="command-journey" aria-label="Player signal to delivery artifact journey">
+    <ol className="command-journey" aria-label="Product idea to delivery-ready work output journey">
       {journey.map((step, index) => (
         <li key={step.label} className="command-journey-step">
           <span className="command-step-index">0{index + 1}</span>
@@ -421,8 +430,8 @@ function CommandTemplateArtifacts({ visual }: { visual: PortfolioContent["hero"]
 function HighlightedHeadline({ text }: { text: string }) {
   const target =
     [
-      "delivery-ready product artifacts",
-      "artifact sản phẩm sẵn sàng triển khai",
+      "handoff-ready documentation",
+      "tài liệu đủ rõ để handoff",
       "Game Product and Operations",
       "Game Product và Operations",
       "clear product flows",

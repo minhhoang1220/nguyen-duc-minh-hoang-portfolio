@@ -1,19 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import About from "./components/About";
 import ArtifactLightbox from "./components/ArtifactLightbox";
-import CaseStudyCard from "./components/CaseStudyCard";
 import Contact from "./components/Contact";
-import ExperienceCard from "./components/ExperienceCard";
 import Footer from "./components/Footer";
-import GameThinking from "./components/GameThinking";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import OrganizationsStrip from "./components/OrganizationsStrip";
 import ProductSamples from "./components/ProductSamples";
-import ProductProof from "./components/ProductProof";
+import ProfessionalExperience from "./components/ProfessionalExperience";
 import ProofSnapshot from "./components/ProofSnapshot";
-import ProjectCard from "./components/ProjectCard";
 import Reveal from "./components/Reveal";
-import SectionHeader from "./components/SectionHeader";
 import SkillsMatrix from "./components/SkillsMatrix";
 import WhyWorkWithMe from "./components/WhyWorkWithMe";
 import { type AssetImage, type Language, portfolioContent } from "./data/portfolio";
@@ -59,11 +55,32 @@ function App() {
           linkedinAria={portfolio.ui.linkedinAria}
           cvDownloadAria={portfolio.ui.cvDownloadAria}
           openArtifactLabel={portfolio.ui.openArtifact}
+          socialLabels={{
+            linkedinMicroLabel: portfolio.ui.linkedinMicroLabel,
+            linkedinMicroText: portfolio.ui.linkedinMicroText,
+            cvMicroLabel: portfolio.ui.cvMicroLabel,
+            cvMicroText: portfolio.ui.cvMicroText,
+            emailMicroLabel: portfolio.ui.emailMicroLabel,
+            emailMicroText: portfolio.ui.emailMicroText,
+          }}
           onImageOpen={setSelectedImage}
         />
 
         <Reveal>
-          <GameThinking content={portfolio.gameDirection} />
+          <About content={portfolio.about} />
+        </Reveal>
+
+        <Reveal>
+          <OrganizationsStrip content={portfolio.organizations} />
+        </Reveal>
+
+        <Reveal>
+          <SkillsMatrix
+            mindset={portfolio.mindset}
+            process={portfolio.process}
+            approach={portfolio.approach}
+            skillGroups={portfolio.skillGroups}
+          />
         </Reveal>
 
         <Reveal>
@@ -71,114 +88,15 @@ function App() {
         </Reveal>
 
         <Reveal>
+          <ProfessionalExperience
+            content={portfolio.professionalExperience}
+            openSampleLabel={portfolio.ui.openArtifact}
+            onImageOpen={setSelectedImage}
+          />
+        </Reveal>
+
+        <Reveal>
           <WhyWorkWithMe content={portfolio.whyWork} />
-        </Reveal>
-
-        <section id="case-studies" className="section-full section-padding" aria-labelledby="case-studies-title" style={{ background: 'linear-gradient(180deg, #05140e 0%, #071f16 50%, #05140e 100%)' }}>
-          <div className="container-wide">
-            <Reveal>
-              <SectionHeader
-                eyebrow={portfolio.sections.caseStudies.eyebrow}
-                titleId="case-studies-title"
-                title={portfolio.sections.caseStudies.title}
-                description={portfolio.sections.caseStudies.description}
-                wide
-                inverse
-              />
-            </Reveal>
-            <div className="mt-10">
-              {portfolio.caseStudies.map((caseStudy, index) => (
-                <Reveal key={caseStudy.title} delay={index * 90}>
-                  <CaseStudyCard
-                    caseStudy={caseStudy}
-                    labels={portfolio.caseStudyLabels}
-                    index={index}
-                    openArtifactLabel={portfolio.ui.openArtifact}
-                    onImageOpen={setSelectedImage}
-                  />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" className="section-product-proof section-padding" aria-labelledby="product-proof-title">
-          <div className="container-wide">
-            <Reveal>
-              <ProductProof
-                proof={portfolio.projectProof}
-                titleId="product-proof-title"
-                openArtifactLabel={portfolio.ui.openArtifact}
-                onImageOpen={setSelectedImage}
-              />
-            </Reveal>
-
-            <Reveal>
-              <div className="mt-20 border-t border-line pt-12">
-                <div className="grid gap-6 lg:grid-cols-[140px_1fr] lg:items-start">
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{portfolio.sections.projects.eyebrow}</p>
-                  <div>
-                    <h2 className="section-title max-w-none w-full text-navy !text-wrap">
-                      {portfolio.sections.projects.title}
-                    </h2>
-                    {portfolio.sections.projects.description ? (
-                      <p className="mt-5 text-base leading-7 text-muted md:text-lg md:leading-8 !text-wrap max-w-none">
-                        {portfolio.sections.projects.description}
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-              {portfolio.projects.map((project, index) => (
-                <Reveal key={project.title} delay={index * 100}>
-                  <ProjectCard
-                    project={project}
-                    index={index}
-                    openArtifactLabel={portfolio.ui.openArtifact}
-                    onImageOpen={setSelectedImage}
-                  />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <Reveal>
-          <About content={portfolio.about} />
-        </Reveal>
-
-        <section id="experience" className="section-experience section-padding" aria-labelledby="experience-title">
-          <div className="container-wide">
-            <Reveal>
-              <SectionHeader
-                eyebrow={portfolio.sections.experience.eyebrow}
-                titleId="experience-title"
-                title={portfolio.sections.experience.title}
-                description={portfolio.sections.experience.description}
-                wide
-              />
-            </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-6">
-              {portfolio.experience[0] ? (
-                <Reveal>
-                  <ExperienceCard experience={portfolio.experience[0]} featured />
-                </Reveal>
-              ) : null}
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                {portfolio.experience.slice(1).map((experience, index) => (
-                  <Reveal key={experience.company} delay={(index + 1) * 100}>
-                    <ExperienceCard experience={experience} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Reveal>
-          <SkillsMatrix process={portfolio.process} approach={portfolio.approach} skillGroups={portfolio.skillGroups} />
         </Reveal>
         <Reveal>
           <ProductSamples content={portfolio.productNotes} />
@@ -190,6 +108,14 @@ function App() {
             cvFallback={portfolio.ui.cvFallback}
             linkedinAria={portfolio.ui.linkedinAria}
             cvDownloadAria={portfolio.ui.cvDownloadAria}
+            socialLabels={{
+              linkedinMicroLabel: portfolio.ui.linkedinMicroLabel,
+              linkedinMicroText: portfolio.ui.linkedinMicroText,
+              cvMicroLabel: portfolio.ui.cvMicroLabel,
+              cvMicroText: portfolio.ui.cvMicroText,
+              emailMicroLabel: portfolio.ui.emailMicroLabel,
+              emailMicroText: portfolio.ui.emailMicroText,
+            }}
           />
         </Reveal>
       </main>

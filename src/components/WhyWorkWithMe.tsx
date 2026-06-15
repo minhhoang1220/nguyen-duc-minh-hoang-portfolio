@@ -13,7 +13,7 @@ function WhyWorkWithMe({ content }: WhyWorkWithMeProps) {
   ];
 
   return (
-    <section className="section-padding bg-cream text-ink border-b border-line" aria-labelledby="why-work-title">
+    <section id="value" className="section-padding bg-cream text-ink border-b border-line" aria-labelledby="why-work-title">
       <div className="container-wide">
         <div className="grid gap-8 border-t border-line pt-8 lg:grid-cols-[140px_1fr] lg:gap-12">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-navy-accent">{content.eyebrow}</p>
@@ -43,7 +43,7 @@ function WhyWorkWithMe({ content }: WhyWorkWithMeProps) {
               </div>
               {pillar.proof && (
                 <div className="mt-6 border-t border-cream/10 pt-4 border-dashed">
-                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky">Evidence</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-sky">{content.proofLabel}</p>
                   <p className="mt-1.5 text-xs text-cream/70 leading-relaxed font-medium">{pillar.proof}</p>
                 </div>
               )}
