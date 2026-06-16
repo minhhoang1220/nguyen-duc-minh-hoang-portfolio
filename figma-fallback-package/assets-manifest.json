@@ -1,0 +1,730 @@
+{
+  "generatedAt": "2026-06-16T07:15:58.036Z",
+  "usedAssets": [
+    "/Nguyen-Duc-Minh-Hoang-CV.pdf",
+    "/assets/case-studies/vega-canvas-flow.png",
+    "/assets/case-studies/vega-flow-details.png",
+    "/assets/case-studies/vega-mess-chatbox.png",
+    "/assets/cdp-automation-flow-map.png",
+    "/assets/cdp-campaign-list-ui.png",
+    "/assets/cdp-flow-management-states.png",
+    "/assets/cdp-flow-report-detail.png",
+    "/assets/chatbot-feedback-rating-flow.png",
+    "/assets/chatbot-zalo-journey-flow.png",
+    "/assets/dashboard-revenue-overview.png",
+    "/assets/immersevietnam-website-overview.png",
+    "/assets/logos/british-council-logo.png",
+    "/assets/logos/cmcts-logo.png",
+    "/assets/logos/vega-fintech-logo.png",
+    "/assets/logos/vnu-is-logo-landscape.png",
+    "/assets/portrait-nguyen-duc-minh-hoang.jpg",
+    "/assets/previews/cdp-automation-flow-map-preview.jpg",
+    "/assets/previews/cdp-campaign-list-ui-preview.jpg",
+    "/assets/previews/cdp-flow-management-states-preview.jpg",
+    "/assets/previews/cdp-flow-report-detail-preview.jpg",
+    "/assets/previews/chatbot-feedback-rating-flow-preview.jpg",
+    "/assets/previews/chatbot-zalo-journey-flow-preview.jpg",
+    "/assets/previews/dashboard-revenue-overview-preview.jpg",
+    "/assets/previews/immersevietnam-website-overview-preview.jpg",
+    "/assets/previews/thesis-portfolio-optimization-overview-preview.jpg",
+    "/assets/previews/vega-canvas-flow-preview.png",
+    "/assets/previews/vega-flow-details-preview.png",
+    "/assets/previews/vega-mess-chatbox-preview.png",
+    "/assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png",
+    "/assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png",
+    "/assets/thesis-portfolio-optimization-overview.png"
+  ],
+  "missingAssets": [],
+  "publicFiles": [
+    {
+      "path": "/assets/archive/DataWarehouse_Final (1)-2.png",
+      "bytes": 133655,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/DataWarehouse_Final (1)-3.png",
+      "bytes": 127482,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/ImmerseVN1.png",
+      "bytes": 2238121,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/ImmerseVN2.png",
+      "bytes": 1920074,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/ML1.png",
+      "bytes": 168116,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/ML2.png",
+      "bytes": 119346,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/archive/ML4.png",
+      "bytes": 213079,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/case-studies/vega-canvas-flow.png",
+      "bytes": 437033,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/case-studies/vega-facebook-profile.png",
+      "bytes": 217233,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/case-studies/vega-flow-details.png",
+      "bytes": 1375043,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/case-studies/vega-mess-chatbox.png",
+      "bytes": 159348,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/case-studies/vega-zalo.png",
+      "bytes": 64511,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/cdp-automation-flow-map.png",
+      "bytes": 4704555,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/cdp-campaign-list-ui.png",
+      "bytes": 362814,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/cdp-flow-management-states.png",
+      "bytes": 2079104,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/cdp-flow-report-detail.png",
+      "bytes": 1531917,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/chatbot-feedback-rating-flow.png",
+      "bytes": 2163155,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/chatbot-zalo-journey-flow.png",
+      "bytes": 2559795,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/dashboard-revenue-overview.png",
+      "bytes": 157511,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/immersevietnam-website-overview.png",
+      "bytes": 941069,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/logos/AoV-logo.png",
+      "bytes": 2704,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/AoVlogo.png",
+      "bytes": 11252,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/british-council-logo.png",
+      "bytes": 24995,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/logos/cmcts-logo.png",
+      "bytes": 11200,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/logos/counter-strike-seeklogo.png",
+      "bytes": 48080,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/counter-strike-seeklogo.svg",
+      "bytes": 7042,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/league-of-legends-_-lol-logo (1).svg",
+      "bytes": 6410,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/league-of-legends-_-lol-logo (2).svg",
+      "bytes": 6575,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/league-of-legends-_-lol-logo.png",
+      "bytes": 1041646,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/league-of-legends-_-lol-logo.svg",
+      "bytes": 6725,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/pubg-battlegrounds-logo (1).png",
+      "bytes": 39281,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/pubg-battlegrounds-logo (1).svg",
+      "bytes": 8019,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/pubg-battlegrounds-logo (2).svg",
+      "bytes": 8452,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/pubg-battlegrounds-logo.png",
+      "bytes": 39281,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/pubg-battlegrounds-logo.svg",
+      "bytes": 8336,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/.DS_Store",
+      "bytes": 6148,
+      "ext": "",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logomark/TFT_Logomark_Black.png",
+      "bytes": 215091,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logomark/TFT_Logomark_White.png",
+      "bytes": 208064,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logotype Horizontal/TFT_Logotype_Horiz_Black.png",
+      "bytes": 227956,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logotype Horizontal/TFT_Logotype_Horiz_White.png",
+      "bytes": 219834,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logotype Stacked/TFT_Logotype_Stacked_Black.png",
+      "bytes": 258490,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/TFT Logos/Logotype Stacked/TFT_Logotype_Stacked_White.png",
+      "bytes": 246763,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/._.DS_Store",
+      "bytes": 120,
+      "ext": ".ds_store",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logomark/._TFT_Logomark_Black.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logomark/._TFT_Logomark_White.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logotype Horizontal/._TFT_Logotype_Horiz_Black.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logotype Horizontal/._TFT_Logotype_Horiz_White.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logotype Stacked/._TFT_Logotype_Stacked_Black.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/tft-logos/__MACOSX/TFT Logos/Logotype Stacked/._TFT_Logotype_Stacked_White.png",
+      "bytes": 220,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (1).svg",
+      "bytes": 3976,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (2).svg",
+      "bytes": 7152,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (3).svg",
+      "bytes": 1450,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (4).svg",
+      "bytes": 3898,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (5).svg",
+      "bytes": 1472,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo (6).svg",
+      "bytes": 3887,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo.png",
+      "bytes": 19183,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/valorant-logo.svg",
+      "bytes": 1424,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/Valorantlogo.png",
+      "bytes": 235568,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/vega-fintech-logo.png",
+      "bytes": 5965,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/logos/vega-fintech_logo.png",
+      "bytes": 5965,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/VNU IS logo landscape.png",
+      "bytes": 26553,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/vnu-is-logo-landscape.png",
+      "bytes": 107859,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/logos/vnu-is-logo.png",
+      "bytes": 175184,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/logos/VNUIS-logo.png",
+      "bytes": 175184,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/portrait-nguyen-duc-minh-hoang.jpg",
+      "bytes": 223217,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/cdp-automation-flow-map-preview.jpg",
+      "bytes": 62457,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/cdp-campaign-list-ui-preview.jpg",
+      "bytes": 96307,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/cdp-flow-management-states-preview.jpg",
+      "bytes": 177917,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/cdp-flow-report-detail-preview.jpg",
+      "bytes": 185891,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/chatbot-feedback-rating-flow-preview.jpg",
+      "bytes": 89637,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/chatbot-zalo-journey-flow-preview.jpg",
+      "bytes": 139214,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/dashboard-revenue-overview-preview.jpg",
+      "bytes": 147852,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/immersevietnam-website-overview-preview.jpg",
+      "bytes": 99655,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/thesis-portfolio-optimization-overview-preview.jpg",
+      "bytes": 55568,
+      "ext": ".jpg",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/vega-canvas-flow-preview.png",
+      "bytes": 437033,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/vega-facebook-profile-preview.png",
+      "bytes": 217233,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/previews/vega-flow-details-preview.png",
+      "bytes": 1375043,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/vega-mess-chatbox-preview.png",
+      "bytes": 159348,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/previews/vega-zalo-preview.png",
+      "bytes": 64511,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/case-study-01-feature-logic.png",
+      "bytes": 382180,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/case-study-02-product-operations.png",
+      "bytes": 104113,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/case-study-03-system-logic.png",
+      "bytes": 250430,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/hero-command-center-forest.png",
+      "bytes": 210642,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/hero-command-center-navy.png",
+      "bytes": 201505,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/previews/case-study-01-feature-logic-preview.jpg",
+      "bytes": 24107,
+      "ext": ".jpg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/previews/case-study-02-product-operations-preview.jpg",
+      "bytes": 17747,
+      "ext": ".jpg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/previews/case-study-03-system-logic-preview.jpg",
+      "bytes": 15571,
+      "ext": ".jpg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/previews/hero-command-center-forest-preview.jpg",
+      "bytes": 19252,
+      "ext": ".jpg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/previews/hero-command-center-navy-preview.jpg",
+      "bytes": 19625,
+      "ext": ".jpg",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/templates/case-study-01.html",
+      "bytes": 8791,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/templates/case-study-02.html",
+      "bytes": 11761,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/templates/case-study-03.html",
+      "bytes": 10719,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/templates/hero-forest.html",
+      "bytes": 11779,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/templates/hero-navy.html",
+      "bytes": 11860,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/capture-v3.cjs",
+      "bytes": 7539,
+      "ext": ".cjs",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/case-study-01-v3-cover.png",
+      "bytes": 477282,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/case-study-02-v3-cover.png",
+      "bytes": 526384,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/case-study-03-v3-cover.png",
+      "bytes": 489790,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/generate-previews.cjs",
+      "bytes": 1021,
+      "ext": ".cjs",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/hero-command-center-navy-v3.png",
+      "bytes": 242660,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/previews/case-study-01-v3-cover-preview.png",
+      "bytes": 477282,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/previews/case-study-02-v3-cover-preview.png",
+      "bytes": 526384,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/prototypes/v3/previews/case-study-03-v3-cover-preview.png",
+      "bytes": 489790,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/assets/prototypes/v3/previews/hero-command-center-navy-v3-preview.png",
+      "bytes": 242660,
+      "ext": ".png",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/templates/case-study-01-v3-cover.html",
+      "bytes": 7731,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/templates/case-study-02-v3-cover.html",
+      "bytes": 9058,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/templates/case-study-03-v3-cover.html",
+      "bytes": 9504,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/prototypes/v3/templates/hero-navy-v3.html",
+      "bytes": 12314,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/assets/thesis-portfolio-optimization-overview.png",
+      "bytes": 204211,
+      "ext": ".png",
+      "usedInContent": true
+    },
+    {
+      "path": "/favicon.svg",
+      "bytes": 264,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/Nguyen-Duc-Minh-Hoang-CV.pdf",
+      "bytes": 195906,
+      "ext": ".pdf",
+      "usedInContent": true
+    },
+    {
+      "path": "/og-image.svg",
+      "bytes": 1476,
+      "ext": ".svg",
+      "usedInContent": false
+    },
+    {
+      "path": "/prototype-review-final.html",
+      "bytes": 29399,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/prototype-review-v3.html",
+      "bytes": 25002,
+      "ext": ".html",
+      "usedInContent": false
+    },
+    {
+      "path": "/prototype-review.html",
+      "bytes": 11854,
+      "ext": ".html",
+      "usedInContent": false
+    }
+  ]
+}

@@ -1,0 +1,608 @@
+{
+  "generatedAt": "2026-06-16T07:15:58.034Z",
+  "source": "src/data/portfolio.ts via TypeScript transpilation",
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "sectionOrder": [
+    {
+      "id": "home",
+      "component": "Hero",
+      "purpose": "Hero"
+    },
+    {
+      "id": "game-direction",
+      "component": "GameThinking",
+      "purpose": "Game direction / product-domain positioning"
+    },
+    {
+      "id": "about",
+      "component": "About",
+      "purpose": "Profile, background, education"
+    },
+    {
+      "id": "organizations",
+      "component": "OrganizationsStrip",
+      "purpose": "Credibility logo marquee"
+    },
+    {
+      "id": "tools",
+      "component": "ToolsStrip",
+      "purpose": "Toolset marquee"
+    },
+    {
+      "id": "mindset",
+      "component": "SkillsMatrix",
+      "purpose": "Mindset, process, approach, skill groups"
+    },
+    {
+      "id": "snapshot",
+      "component": "ProofSnapshot",
+      "purpose": "Stats and recommendation/social proof cards"
+    },
+    {
+      "id": "experience",
+      "component": "ProfessionalExperience",
+      "purpose": "Vega projects and additional professional entries"
+    },
+    {
+      "id": "additional-experience",
+      "component": "AdditionalExperience",
+      "purpose": "Supplemental operating/data background"
+    },
+    {
+      "id": "projects",
+      "component": "AcademicProjects",
+      "purpose": "Academic and portfolio project cards"
+    },
+    {
+      "id": "value",
+      "component": "WhyWorkWithMe",
+      "purpose": "Team value pillars"
+    },
+    {
+      "id": "work-samples",
+      "component": "ProductSamples",
+      "purpose": "Supporting product writing sample"
+    },
+    {
+      "id": "contact",
+      "component": "Contact",
+      "purpose": "Final CTA and links"
+    },
+    {
+      "id": "footer",
+      "component": "Footer",
+      "purpose": "Footer contact and focus note"
+    }
+  ],
+  "summaries": {
+    "en": {
+      "personal": {
+        "name": "Nguyễn Đức Minh Hoàng",
+        "shortRole": "BA/PM moving toward Game Product & LiveOps",
+        "location": "Hanoi, Vietnam",
+        "email": "hoang.nguyenducminh@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/hoangnguyenducminh/",
+        "cv": "/Nguyen-Duc-Minh-Hoang-CV.pdf"
+      },
+      "navigation": [
+        {
+          "label": "About",
+          "href": "#about"
+        },
+        {
+          "label": "Mindset",
+          "href": "#mindset"
+        },
+        {
+          "label": "Snapshot",
+          "href": "#snapshot"
+        },
+        {
+          "label": "Experience",
+          "href": "#experience"
+        },
+        {
+          "label": "Value",
+          "href": "#value"
+        },
+        {
+          "label": "Contact",
+          "href": "#contact"
+        }
+      ],
+      "hero": {
+        "roleLine": "BA/PM foundation for product workflow, documentation, and game-product direction.",
+        "headline": "BA/PM-oriented product learner building toward Game Product, Game Operations, and LiveOps roles.",
+        "intro": "I turn ambiguous product ideas into structured workflows, UX mockups, requirements, and handoff-ready documentation — with a long-term direction toward Game Product, Game Operations, and LiveOps.",
+        "ctas": {
+          "caseStudies": "View experience",
+          "gameDirection": "Explore mindset",
+          "contact": "Let's talk",
+          "cv": "Download CV",
+          "linkedin": "LinkedIn"
+        },
+        "focusItems": [
+          "BA/PM foundation: workflow, documentation, mockups, QA/UAT",
+          "Product direction: Game Product / Game Operations / LiveOps",
+          "Transferable base: Product Operations and cross-functional delivery"
+        ]
+      },
+      "proofStats": [
+        {
+          "value": "65+",
+          "label": "Feature Screens / Product States",
+          "subtitle": "Structured across CDP and customer-service modules."
+        },
+        {
+          "value": "21",
+          "label": "User Roles",
+          "subtitle": "Mapped in permission and access-control logic."
+        },
+        {
+          "value": "~400",
+          "label": "Permission Points",
+          "subtitle": "Structured for system governance."
+        },
+        {
+          "value": "3-4",
+          "label": "Features per Sprint",
+          "subtitle": "Planned and coordinated in delivery cycles."
+        },
+        {
+          "value": "8-10",
+          "label": "Tasks per Sprint",
+          "subtitle": "Coordinated across developer handoff."
+        },
+        {
+          "value": "~5",
+          "label": "Bugs before UAT",
+          "subtitle": "Detected and clarified before release validation."
+        }
+      ],
+      "professionalProjects": [
+        {
+          "title": "CDP Automation Flow & Journey Builder Logic",
+          "tags": [
+            "CDP",
+            "Journey Builder",
+            "Workflow",
+            "Edge Cases",
+            "QA/UAT"
+          ],
+          "sampleCount": 3
+        },
+        {
+          "title": "Omnichannel Customer Engagement & AI Chatbot Integration",
+          "tags": [
+            "Omnichannel",
+            "AI Chatbot",
+            "Zalo",
+            "Messenger",
+            "Webhook"
+          ],
+          "sampleCount": 3
+        },
+        {
+          "title": "ML Forecasting & Product Support",
+          "tags": [
+            "ML Forecasting",
+            "Sprint Tracking",
+            "Permission Matrix",
+            "RBAC",
+            "Product Support"
+          ],
+          "sampleCount": 2
+        }
+      ],
+      "academicProjects": [
+        {
+          "title": "ImmerseVietnam",
+          "type": "UX & Product Structure Project",
+          "tags": [
+            "Product Flow",
+            "Mockups",
+            "UX Logic",
+            "Content Structure"
+          ]
+        },
+        {
+          "title": "Sales Performance Dashboard",
+          "type": "Data Operations Dashboard",
+          "tags": [
+            "ETL Pipeline",
+            "KPI design",
+            "Data Modeling",
+            "BI Analytics"
+          ]
+        },
+        {
+          "title": "Data-Informed Product Analysis · VNU Research",
+          "type": "Analytical Research & Modeling",
+          "tags": [
+            "Research",
+            "Benchmarking",
+            "Time-Series",
+            "ML"
+          ]
+        }
+      ],
+      "skillGroups": [
+        {
+          "category": "BA/PM Execution",
+          "skills": [
+            "Requirement Gathering",
+            "BRD/SRS Documentation",
+            "User Stories",
+            "Sprint Planning",
+            "Backlog Management",
+            "QA/UAT Support"
+          ]
+        },
+        {
+          "category": "Product & UX Design",
+          "skills": [
+            "Figma Mockups",
+            "User Journey Mapping",
+            "Interaction Logic",
+            "Edge Case Analysis",
+            "Product Wireframes"
+          ]
+        },
+        {
+          "category": "System & Integration",
+          "skills": [
+            "API Integration",
+            "OAuth 2.0",
+            "Webhooks",
+            "Permission Design",
+            "Role-Matrix Logic",
+            "Event-Driven Flows"
+          ]
+        },
+        {
+          "category": "Data & Machine Learning",
+          "skills": [
+            "Python (Pandas, NumPy)",
+            "SQL",
+            "Time-Series Forecasting",
+            "Machine Learning Models",
+            "Portfolio Optimization"
+          ]
+        },
+        {
+          "category": "Game Product Direction",
+          "skills": [
+            "Player Behavior",
+            "Game Economy Basics",
+            "LiveOps Awareness",
+            "Retention / Engagement / Monetization",
+            "Competitive Meta Analysis",
+            "Event / Content Loop"
+          ]
+        }
+      ],
+      "gameDirection": {
+        "genres": [
+          "MOBA",
+          "FPS",
+          "Battle royale",
+          "Auto-battler",
+          "Strategy games",
+          "Meta shifts",
+          "Competitive multiplayer systems",
+          "Live-service events",
+          "Progression and reward loops",
+          "Balance updates",
+          "Player behavior"
+        ],
+        "games": [
+          "League of Legends",
+          "VALORANT",
+          "CS2",
+          "Arena of Valor / Liên Quân Mobile",
+          "Teamfight Tactics",
+          "PUBG",
+          "Other competitive and live-service titles"
+        ],
+        "pillars": [
+          {
+            "title": "Product & LiveOps Thinking",
+            "body": "Understanding how progression, events, rewards, and feature states shape long-term player engagement."
+          },
+          {
+            "title": "Player / Community Understanding",
+            "body": "Reading player behavior, competitive motivation, meta shifts, and community feedback as product signals."
+          },
+          {
+            "title": "Data-informed Decision Making",
+            "body": "Using a Business Data Analytics base to frame metrics, compare options, and explain tradeoffs clearly."
+          },
+          {
+            "title": "Delivery & Stakeholder Alignment",
+            "body": "Turning ambiguous needs into flows, mockups, BRD/FSD deliverables, backlog items, and QA-ready checks."
+          }
+        ]
+      },
+      "contact": {
+        "eyebrow": "Contact",
+        "title": "Open to BA/PM, Game Product, Game Operations, and LiveOps opportunities where structured product thinking and hands-on delivery support are valued.",
+        "emailLabel": "Send an email →",
+        "linkedinLabel": "LinkedIn",
+        "cvLabel": "Download CV"
+      },
+      "footer": {
+        "location": "Hanoi, Vietnam",
+        "techStack": "Built with React, TypeScript, and Tailwind CSS",
+        "vibeNote": "Built with React, TypeScript, and Tailwind CSS — refined through product thinking and iterative development.",
+        "currentFocus": "Currently exploring Game Product / LiveOps / Game Operations.",
+        "linksLabel": "Contact routes"
+      }
+    },
+    "vi": {
+      "personal": {
+        "name": "Nguyễn Đức Minh Hoàng",
+        "shortRole": "BA/PM đang chuyển hướng sang Game Product & LiveOps",
+        "location": "Hà Nội, Việt Nam",
+        "email": "hoang.nguyenducminh@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/hoangnguyenducminh/",
+        "cv": "/Nguyen-Duc-Minh-Hoang-CV.pdf"
+      },
+      "navigation": [
+        {
+          "label": "Giới thiệu",
+          "href": "#about"
+        },
+        {
+          "label": "Tư duy",
+          "href": "#mindset"
+        },
+        {
+          "label": "Điểm nổi bật",
+          "href": "#snapshot"
+        },
+        {
+          "label": "Kinh nghiệm",
+          "href": "#experience"
+        },
+        {
+          "label": "Giá trị",
+          "href": "#value"
+        },
+        {
+          "label": "Liên hệ",
+          "href": "#contact"
+        }
+      ],
+      "hero": {
+        "roleLine": "Nền tảng BA/PM cho product workflow, documentation và định hướng game-product.",
+        "headline": "Product learner có nền tảng BA/PM, phát triển theo hướng Game Product, Game Operations và LiveOps.",
+        "intro": "Biến các ý tưởng sản phẩm còn mơ hồ thành workflow, UX mockup, requirement và tài liệu đủ rõ để handoff — với định hướng phát triển sang Game Product, Game Operations và LiveOps.",
+        "ctas": {
+          "caseStudies": "Xem kinh nghiệm",
+          "gameDirection": "Khám phá tư duy",
+          "contact": "Trao đổi",
+          "cv": "Tải CV",
+          "linkedin": "LinkedIn"
+        },
+        "focusItems": [
+          "Nền tảng BA/PM: workflow, documentation, mockup, QA/UAT",
+          "Định hướng product: Game Product / Game Operations / LiveOps",
+          "Nền tảng chuyển đổi: Product Operations và cross-functional delivery"
+        ]
+      },
+      "proofStats": [
+        {
+          "value": "65+",
+          "label": "Feature Screens / Product States",
+          "subtitle": "Được cấu trúc qua các module CDP và customer-service."
+        },
+        {
+          "value": "21",
+          "label": "User Roles",
+          "subtitle": "Được mapping trong logic permission và access-control."
+        },
+        {
+          "value": "~400",
+          "label": "Permission Points",
+          "subtitle": "Được cấu trúc cho system governance."
+        },
+        {
+          "value": "3-4",
+          "label": "Features per Sprint",
+          "subtitle": "Được plan và điều phối trong các delivery cycle."
+        },
+        {
+          "value": "8-10",
+          "label": "Tasks per Sprint",
+          "subtitle": "Được điều phối trong quá trình handoff cho developer."
+        },
+        {
+          "value": "~5",
+          "label": "Bugs before UAT",
+          "subtitle": "Được phát hiện và làm rõ trước release validation."
+        }
+      ],
+      "professionalProjects": [
+        {
+          "title": "CDP Automation Flow & Journey Builder Logic",
+          "tags": [
+            "CDP",
+            "Journey Builder",
+            "Workflow",
+            "Edge Cases",
+            "QA/UAT"
+          ],
+          "sampleCount": 3
+        },
+        {
+          "title": "Omnichannel Customer Engagement & AI Chatbot Integration",
+          "tags": [
+            "Omnichannel",
+            "AI Chatbot",
+            "Zalo",
+            "Messenger",
+            "Webhook"
+          ],
+          "sampleCount": 3
+        },
+        {
+          "title": "ML Forecasting & Product Support",
+          "tags": [
+            "ML Forecasting",
+            "Sprint Tracking",
+            "Permission Matrix",
+            "RBAC",
+            "Product Support"
+          ],
+          "sampleCount": 2
+        }
+      ],
+      "academicProjects": [
+        {
+          "title": "ImmerseVietnam",
+          "type": "Dự án Thiết kế cấu trúc UX & Sản phẩm",
+          "tags": [
+            "Product Flow",
+            "Mockups",
+            "UX Logic",
+            "Cấu trúc nội dung"
+          ]
+        },
+        {
+          "title": "Sales Performance Dashboard",
+          "type": "Dashboard Vận hành & Phân tích Dữ liệu",
+          "tags": [
+            "ETL Pipeline",
+            "Thiết kế KPI",
+            "Mô hình dữ liệu",
+            "Phân tích BI"
+          ]
+        },
+        {
+          "title": "Phân tích sản phẩm dựa trên dữ liệu · VNU Research",
+          "type": "Nghiên cứu & Mô hình hóa Phân tích",
+          "tags": [
+            "Research",
+            "Benchmarking",
+            "Time-Series",
+            "ML"
+          ]
+        }
+      ],
+      "skillGroups": [
+        {
+          "category": "BA/PM Execution",
+          "skills": [
+            "Thu thập yêu cầu",
+            "Tài liệu BRD/SRS",
+            "User Stories",
+            "Sprint Planning",
+            "Backlog Management",
+            "QA/UAT Support"
+          ]
+        },
+        {
+          "category": "Product & UX Design",
+          "skills": [
+            "Figma Mockups",
+            "User Journey Mapping",
+            "Logic tương tác",
+            "Phân tích edge case",
+            "Product Wireframes"
+          ]
+        },
+        {
+          "category": "System & Integration",
+          "skills": [
+            "API Integration",
+            "OAuth 2.0",
+            "Webhooks",
+            "Thiết kế phân quyền",
+            "Ma trận vai trò",
+            "Event-Driven Flows"
+          ]
+        },
+        {
+          "category": "Dữ liệu & Học máy",
+          "skills": [
+            "Python (Pandas, NumPy)",
+            "SQL",
+            "Dự báo Time-Series",
+            "Mô hình Machine Learning",
+            "Tối ưu hóa danh mục"
+          ]
+        },
+        {
+          "category": "Game Product Direction",
+          "skills": [
+            "Player Behavior",
+            "Game Economy Basics",
+            "LiveOps Awareness",
+            "Retention / Engagement / Monetization",
+            "Competitive Meta Analysis",
+            "Event / Content Loop"
+          ]
+        }
+      ],
+      "gameDirection": {
+        "genres": [
+          "MOBA",
+          "FPS",
+          "Battle royale",
+          "Auto-battler",
+          "Strategy games",
+          "Meta shifts",
+          "Competitive multiplayer systems",
+          "Live-service events",
+          "Progression và reward loops",
+          "Balance updates",
+          "Hành vi người chơi"
+        ],
+        "games": [
+          "League of Legends",
+          "VALORANT",
+          "CS2",
+          "Liên Quân Mobile / Arena of Valor",
+          "Teamfight Tactics",
+          "PUBG",
+          "Các tựa game competitive và live-service khác"
+        ],
+        "pillars": [
+          {
+            "title": "Product & LiveOps Thinking",
+            "body": "Hiểu progression, event, reward và feature state ảnh hưởng thế nào tới long-term player engagement."
+          },
+          {
+            "title": "Player / Community Understanding",
+            "body": "Đọc player behavior, competitive motivation, meta shift và community feedback như tín hiệu sản phẩm."
+          },
+          {
+            "title": "Data-informed Decision Making",
+            "body": "Dùng nền tảng Business Data Analytics để frame metric, so sánh lựa chọn và giải thích tradeoff rõ ràng."
+          },
+          {
+            "title": "Delivery & Stakeholder Alignment",
+            "body": "Chuyển nhu cầu mơ hồ thành flow, mockup, BRD/FSD deliverable, backlog item và QA-ready checks."
+          }
+        ]
+      },
+      "contact": {
+        "eyebrow": "Liên hệ",
+        "title": "Sẵn sàng trao đổi về các cơ hội BA/PM, Game Product, Game Operations và LiveOps — đặc biệt ở những team cần tư duy product có cấu trúc và khả năng hỗ trợ triển khai thực tế.",
+        "emailLabel": "Gửi email →",
+        "linkedinLabel": "LinkedIn",
+        "cvLabel": "Tải CV"
+      },
+      "footer": {
+        "location": "Hà Nội, Việt Nam",
+        "techStack": "Xây dựng bằng React, TypeScript và Tailwind CSS",
+        "vibeNote": "Được phát triển bằng React, TypeScript và Tailwind CSS — tinh chỉnh thông qua tư duy sản phẩm và lặp lại liên tục.",
+        "currentFocus": "Hiện đang khám phá Game Product / LiveOps / Game Operations.",
+        "linksLabel": "Kênh liên hệ"
+      }
+    }
+  }
+}
